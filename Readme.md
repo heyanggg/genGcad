@@ -20,4 +20,37 @@ Recommended compression thresholds in SmartGen:
 | US      | daytime          | night       | 0.919                 | 93                           |
 |         | single           | multiple    | 0.913                 | 99                           |
 
+## Minimal source-only GCAD + Codex branch
+
+The `minimal-gcad-codex` branch keeps official SmartGen intact except for the generation entry point in `SmartGen/main.py`. Two optional adapters are added under `SmartGen/extensions/`:
+
+- `CodexFileBackend` exports the original SmartGen Prompt to text files and consumes Codex-authored text responses. It makes no external API call.
+- `source_gcad` learns source-only directional scores; `gss_rerank` can reorder existing `action_transitions.json` edges. It never adds GCAD-only edges.
+
+GCAD is off unless `--gcad-relation` is supplied. With GCAD off, the original GSS object and Prompt content are unchanged. TSS, SSC/SPPC, TOF, `baseline1.py`, `baseline2.py`, `security_check.py`, and the official anomaly detector remain unchanged.
+
+From the repository root, learn a source-only relation file:
+
+```bash
+/home/heyang/miniconda3/envs/smartguard_env/bin/python -m SmartGen.extensions.source_gcad \
+  --source SmartGen/IoT_data/fr/winter/trn.pkl \
+  --dataset fr \
+  --output outputs/fr_winter_relation.json
+```
+
+Run SmartGen from `SmartGen/`. First export its Prompts:
+
+```bash
+python main.py --need_generate True --need_test False --model codex \
+  --codex-mode export --codex-dir ../codex_io
+```
+
+Place Codex-authored responses in `codex_io/responses/day_*.txt`, then rerun with `--codex-mode consume`. For the GCAD arm, add:
+
+```bash
+--gcad-relation ../outputs/fr_winter_relation.json --gcad-alpha 0.2
+```
+
+No generated artifacts or experimental checkpoints are tracked on this clean branch.
+
 

@@ -3,7 +3,8 @@ import pickle
 import ast
 import os
 import json
-from openai import OpenAI
+from extensions.codex_file import CodexFileBackend
+from extensions.gss_rerank import load_and_rerank_gss
 from dictionary import dayofweek_dict, hour_dict, fr_devices_dict, fr_actions, sp_devices_dict, sp_actions, us_devices_dict, us_actions
 from split import Split
 from dayse import Dayse
@@ -43,40 +44,20 @@ def get_args_parser():
                         help='The experimental setup: True/False')
     parser.add_argument('--need_generate', default=False, type=bool,
                         help='The experimental setup: True/False')
+    parser.add_argument('--codex-mode', default='consume', choices=['export', 'consume'],
+                        help='Export prompts for Codex or consume Codex-authored response files')
+    parser.add_argument('--codex-dir', default='codex_io', type=str,
+                        help='Prompt/response exchange directory')
+    parser.add_argument('--gcad-relation', default=None, type=str,
+                        help='Optional source-only GCAD relation JSON; omit for byte-equivalent baseline GSS')
+    parser.add_argument('--gcad-alpha', default=0.2, type=float,
+                        help='Conservative weight used only to rerank existing GSS edges')
     return parser
 
-
-def LLM_call(openai_client, prompt):
-    messages = [
-        {
-            "role": "user",
-            "content": [
-                {
-                    "type": "text",
-                    "text": prompt
-                }
-            ]
-        }
-    ]
-
-
-    response = openai_client.chat.completions.create(
-        model="gpt-4o-2024-11-20",
-        # model="Meta-Llama-3.3-70B-Instruct",
-        # model="qwen2.5-72b-instruct",
-        stream=False,
-        messages=messages,
-        max_tokens=8040,
-        temperature=0,
-        top_p=0,
-        seed=2024
-    )
-
-    response = response.choices[0].message.content.strip()
-    # response = response.choices[0].message
-    print(response)
-    # response = cleanup_response(response)
-
+def LLM_call(codex_backend, prompt, request_id):
+    response = codex_backend.generate(request_id, prompt)
+    if response is not None:
+        print(response)
     return response
 
 if __name__ == "__main__":
@@ -113,26 +94,13 @@ if __name__ == "__main__":
 
         with open(f'IoT_data/{args.dataset}/{args.ori_env}/action_transitions.json', 'r', encoding='utf-8') as f:
             action_transition = json.load(f)
+        action_transition = load_and_rerank_gss(action_transition, args.gcad_relation, args.gcad_alpha)
+        codex_backend = CodexFileBackend(args.codex_dir, args.codex_mode)
 
         for day in all_categories:
             with open(f'IoT_data/{args.dataset}/{args.ori_env}/trn_day_{day}_{args.method}_th={args.threshold}_text.pkl', 'rb') as file3:
                 user_sequence = pickle.load(file3)
                 print(len(user_sequence))
-            # gpt
-            openai_client = OpenAI(
-                api_key=" ",
-                base_url=" ",
-            )
-            # Llama
-            # openai_client = OpenAI(
-            #     api_key=" ",
-            #     base_url=" ",
-            # )
-            # Qwen
-            # openai_client = OpenAI(
-            #     api_key=" ",
-            #     base_url=" ",
-            # )
             prompt = "You're an IoT expert. And you are very knowledgeable about user behavior and habits in smart homes. Now, the user would like to ask you about the possible changes in user behavior sequence after the change of environment. " \
                      "The user will provide you with the user's previous life environment and the changed environment, the user's previous behavior sequence, and a set of devices and device states. And the user hope that you can use your knowledge and the set to generate possible user behavior sequences after the change based on the original sequences." \
                      "Each user behavior sequence consists of some quadruples containing the number of weeks, hours, devices." \
@@ -149,9 +117,14 @@ if __name__ == "__main__":
                      "6.The final generated behavior sequences set is in the format of <seq [['...'], ['...'], ['...']] seq>. For example, the sequences set can be like <seq [['Sunday', '(21~24)', 'Blind', 'Blind:windowShade open', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement charging', 'Sunday', '(21~24)', 'Camera', 'Camera:notification', 'Sunday', '(21~24)', 'Blind', 'Blind:windowShade close', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning'], ['Friday', '(0~3)', 'Blind', 'Blind:windowShade open', 'Friday', '(0~3)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning', 'Friday', '(0~3)', 'Camera', 'Camera:notification', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade close', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade open', 'Friday', '(0~3)', 'Camera', 'Camera:notification', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade close']] seq>" \
                      "Note that each [...] subsequence represents the user's behavior over a period of time. There is no direct correlation between subsequences. At the same time, the final sequence is strictly generated in the format of <seq [['......'], ['......'], ['......']] seq> without line breaks or inconsistent formats." \
                      "Please think step by step, and return the final generated user behavior sequence set."
-            response = LLM_call(openai_client, prompt)
-            with open(f'IoT_data/{args.dataset}/{args.new_env}/{args.dataset}_{args.new_env}_generation_day_{day}_{args.method}_th={args.threshold}_{args.model}.pkl', 'wb') as f3:
-                pickle.dump(response, f3)
+            response = LLM_call(codex_backend, prompt, f"day_{day}")
+            if response is not None:
+                with open(f'IoT_data/{args.dataset}/{args.new_env}/{args.dataset}_{args.new_env}_generation_day_{day}_{args.method}_th={args.threshold}_{args.model}.pkl', 'wb') as f3:
+                    pickle.dump(response, f3)
+
+        if args.codex_mode == 'export':
+            print(f"Prompts exported to {args.codex_dir}. Add Codex responses and rerun with --codex-mode consume.")
+            raise SystemExit(0)
 
         Extract(args.dataset, args.new_env, args.threshold, args.method, args.model, all_categories)
         Transnum(args.dataset, args.new_env, args.threshold, args.method, args.model, all_categories, dictionaries)

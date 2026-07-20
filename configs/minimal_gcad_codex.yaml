@@ -1,0 +1,22 @@
+codex:
+  backend: file
+  directory: codex_io
+  external_api: false
+
+gcad:
+  enabled: false
+  source_only: true
+  relation_file: null
+  history: 2
+  seeds: [2024, 2025, 2026]
+  fusion_mode: rerank_existing
+  alpha: 0.2
+  allow_new_edges: false
+
+smartgen:
+  tss_unchanged: true
+  ssc_unchanged: true
+  tof_unchanged: true
+  detector_unchanged: true
+  ranking_enabled: false
+
