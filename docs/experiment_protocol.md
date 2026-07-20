@@ -1,6 +1,8 @@
 # Experiment protocol
 
-The first cell is FR winter→spring, chosen before target evaluation. Frozen source settings: device-action/binary/3-hour tensorization, history 4, 3 Mixer layers, hidden 96, batch 64, Adam 1e-3, weight decay 1e-5, maximum 30 epochs, patience 6, gradient clip 1.0. Full-source seeds are 2024–2026. Two additional 80% disjoint partition replicates use seeds 3101/3102. Relation thresholds are edge 0.01/top-k 5, occurrence 0.6, direction consistency 0.6, stable score 0.08. Fusion is `rerank_existing`, alpha 0.2, no new edges. Generation is 137 samples, batches 20/17. Original TOF uses 10 epochs per fit. Downstream uses seed 2024, 15 epochs, and generated-validation percentile 95.5.
+The first cell is FR winter→spring, chosen before target evaluation. Frozen v1 source settings were device-action/binary/3-hour tensorization, history 4, 3 Mixer layers, hidden 96, batch 64, Adam 1e-3, weight decay 1e-5, maximum 30 epochs, patience 6, gradient clip 1.0. Full-source seeds were 2024–2026 plus partition replicates 3101/3102. V1 GCAD settings and results are preserved as smoke evidence, not extended here.
+
+Baseline protocol v2 freezes generation at 137 samples allocated across the 15 official SPPC source groups (`8,6,12,10,7,6,6,8,8,29,9,9,6,7,6`). Group-local length bounds come from source q10/q90 only. Original TOF uses 10 epochs per fit. Downstream uses seed 2024, deterministic whole-sequence 80/20 splitting, 15 epochs, and generated-validation percentile 95.5. Exact duplicate sequences cannot cross the split.
 
 Groups are:
 
@@ -10,6 +12,6 @@ Groups are:
 - D: exactly B's TOF PKL plus soft relation weights.
 - E/F: random-directed and symmetric control interfaces implemented, full generation/evaluation deferred.
 
-All source parameters, both generation sets, TOF results, and detector protocol were frozen before any target file was opened. Final metrics cannot select parameters or batches. This is a one-replicate smoke experiment, not inferential evidence; expansion should add Codex generation replicates and all nine cells without changing the frozen boundary.
+For A2, validation/materialization, source-only generation diagnostics, TOF, detector training, threshold creation, reconstruction gating, and the pre-target checksum manifest were complete before any target file was opened. `evaluate-prepared` then performed one final target evaluation. Its metrics cannot select parameters, thresholds, gates, or batches. A2 did not improve A1, so this branch does not create or run GCAD representation v2 and does not expand the other cells.
 
-Run tests with `/home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q`. Execute individual stages with `SmartGen.gcad_source.cli`; `scripts/run_source_gcad_smartgen.sh` covers tensorization, three seed trainings, and relation extraction.
+Run tests with `/home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q`. Ranking now uses an identical full-coverage DataLoader plus bounded per-sample weighted loss; uniform signals bypass weighting exactly. Invalid semantic channels such as `None:location` fail immediately.
