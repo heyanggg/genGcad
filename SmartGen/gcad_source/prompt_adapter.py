@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import json
 
+from .semantic_channels import require_valid_semantic_channels, validate_relation_nodes
+
 
 SOFT_RELATION_PREAMBLE = (
     "\n\nOptional source-only predictive relation guidance: The following patterns were learned "
@@ -17,6 +19,11 @@ def adapt_prompt(base_prompt: str, enabled: bool, stable_relation: dict | None =
         return base_prompt
     if stable_relation is None or fused_gss is None:
         raise ValueError("enabled GCAD prompt adapter requires stable_relation and fused_gss")
+    validate_relation_nodes(stable_relation)
+    fused_channels = list(fused_gss)
+    for record in fused_gss.values():
+        fused_channels.extend(item.get("next_action") for item in record.get("transitions", []))
+    require_valid_semantic_channels(fused_channels, "fused GSS")
     compact_edges = [
         {
             "source": edge["source"],
@@ -61,4 +68,3 @@ def build_original_smartgen_prompt(
         "Note that each [...] subsequence represents the user's behavior over a period of time. There is no direct correlation between subsequences. At the same time, the final sequence is strictly generated in the format of <seq [['......'], ['......'], ['......']] seq> without line breaks or inconsistent formats."
         "Please think step by step, and return the final generated user behavior sequence set."
     )
-

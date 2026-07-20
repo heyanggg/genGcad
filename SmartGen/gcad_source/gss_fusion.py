@@ -7,6 +7,7 @@ from typing import Mapping
 
 from .data_boundary import require_roles
 from .data_roles import RoleBoundPath
+from .semantic_channels import is_valid_semantic_channel, validate_relation_nodes
 
 
 def _device(channel: str) -> str:
@@ -33,8 +34,18 @@ def fuse_gss(
         raise ValueError("alpha must remain in [0, 0.3]")
     if mode not in {"rerank_existing", "allow_stable_new_edges"}:
         raise ValueError("unsupported fusion mode")
+    validate_relation_nodes(stable_relation)
     stable_edges = {(edge["source"], edge["target"]): edge for edge in stable_relation.get("edges", [])}
-    fused = deepcopy(original_gss)
+    fused = {
+        source: deepcopy(record)
+        for source, record in original_gss.items()
+        if is_valid_semantic_channel(source)
+    }
+    for record in fused.values():
+        record["transitions"] = [
+            item for item in record.get("transitions", [])
+            if is_valid_semantic_channel(item.get("next_action"))
+        ]
     details = []
     original_pairs = set()
     for source, record in fused.items():

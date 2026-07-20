@@ -19,6 +19,7 @@ from .gradient_relation import extract_gradient_relation
 from .gss_fusion import fuse_gss_files
 from .prediction_baselines import compare_baselines
 from .sequence_ranking import rank_sequences
+from .semantic_channels import sanitize_static_metadata
 from .stability_filter import build_stable_relation
 from .source_resampling import save_selection, select_source_replicate
 from .trainer import load_checkpoint, train_model
@@ -36,7 +37,7 @@ def target_metadata(dataset: str) -> dict[str, list[str]]:
     for channel in sorted(actions):
         device, action = channel.split(":", 1)
         result.setdefault(device, []).append(action)
-    return result
+    return sanitize_static_metadata(result)
 
 
 def command_metadata(args):

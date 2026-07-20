@@ -11,6 +11,7 @@ import numpy as np
 
 from .data_boundary import guarded_open
 from .data_roles import DataRole, RoleBoundPath
+from .semantic_channels import is_valid_semantic_channel, require_valid_semantic_channels
 
 
 @dataclass(frozen=True)
@@ -89,7 +90,20 @@ class SourceEventTensorizer:
         for sequence_index, raw in enumerate(raw_sequences):
             try:
                 events = self.parse_sequence(raw)
-                event_channels = [self._channel(event) for event in events]
+                filtered_events = []
+                event_channels = []
+                for event in events:
+                    channel = self._channel(event)
+                    if not is_valid_semantic_channel(channel):
+                        skipped.append({
+                            "sequence_index": sequence_index,
+                            "reason": "invalid_semantic_event",
+                            "channel": channel,
+                        })
+                        continue
+                    filtered_events.append(event)
+                    event_channels.append(channel)
+                events = filtered_events
             except (KeyError, TypeError, ValueError) as exc:
                 if self.unknown_policy == "error":
                     raise
@@ -100,7 +114,9 @@ class SourceEventTensorizer:
                 continue
             parsed.append((sequence_index, events))
             channels.update(event_channels)
-        return parsed, skipped, sorted(channels)
+        vocabulary = sorted(channels)
+        require_valid_semantic_channels(vocabulary, "channel vocabulary")
+        return parsed, skipped, vocabulary
 
     def tensorize(self, raw_sequences: Sequence[Sequence[int]]) -> TensorizedData:
         parsed, skipped, vocabulary = self._prepare(raw_sequences)
@@ -178,4 +194,3 @@ def load_tensorized(path: str | Path) -> tuple[list[np.ndarray], list[str], dict
     vocabulary = json.loads((directory / "channel_vocabulary.json").read_text(encoding="utf-8"))
     metadata = json.loads((directory / "tensor_metadata.json").read_text(encoding="utf-8"))
     return sequences, vocabulary, metadata
-

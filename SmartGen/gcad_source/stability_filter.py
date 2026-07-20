@@ -7,6 +7,8 @@ from typing import Sequence
 
 import numpy as np
 
+from .semantic_channels import require_valid_semantic_channels
+
 
 def _rank_matrix(matrix: np.ndarray) -> np.ndarray:
     flat = matrix.ravel()
@@ -29,6 +31,7 @@ def build_stable_relation(
 ) -> dict:
     if not matrices:
         raise ValueError("at least one relation matrix is required")
+    require_valid_semantic_channels(vocabulary, "stable relation vocabulary")
     stack = np.stack([np.asarray(matrix, dtype=float) for matrix in matrices])
     presence = stack > 0
     occurrence = presence.mean(axis=0)
@@ -91,4 +94,3 @@ def build_stable_relation(
             writer.writeheader()
             writer.writerows(edges)
     return {"matrix": stable, "edges": edges, "payload": payload}
-
