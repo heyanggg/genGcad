@@ -393,17 +393,27 @@ def audit_candidate_support(directory: str | Path, support_plan_path: str | Path
     records = load_jsonl(directory / "candidate_pool.jsonl")
     support = candidate_sequence_support(records)
     groups = Counter(record["group_id"] for record in records)
+    group_action_support = Counter(
+        (record["group_id"], action) for record in records for action in set(record["actions"])
+    )
     unsupported = sorted({
         (record["sequence_id"], action, record["group_id"])
         for record in records for action in set(record["actions"])
         if action in plan["actions"] and record["group_id"] not in plan["actions"][action]["allowed_source_groups"]
     })
     low = sorted(action for action in plan["actions"] if support[action] < plan["candidate_pool_sequence_support_target"])
+    unmet_group_targets = sorted(
+        (group, action, target, group_action_support[(group, action)])
+        for group, group_plan in plan["groups"].items()
+        for action, target in group_plan["candidate_action_sequence_support_targets"].items()
+        if group_action_support[(group, action)] < target
+    )
     expected_groups = {group: item["candidate_quota"] for group, item in plan["groups"].items()}
     checks = {
         "candidate_count_160": len(records) == policy["candidate_pool_size"],
         "group_candidate_quotas": dict(groups) == expected_groups,
         "all_source_actions_meet_candidate_support_target": not low,
+        "all_group_action_support_targets_met": not unmet_group_targets,
         "source_actions_only_in_supported_groups": not unsupported,
         "all_candidates_codex_authored": all(record.get("content_author") == AUTHOR for record in records),
         "programmatic_event_construction_absent": all(record.get("programmatic_event_construction") is False for record in records),
@@ -412,6 +422,17 @@ def audit_candidate_support(directory: str | Path, support_plan_path: str | Path
         "stage": "candidate_support_plan_audit", "passed": all(checks.values()), "checks": checks,
         "candidate_count": len(records), "candidate_action_sequence_support": dict(sorted(support.items())),
         "low_support_actions": low,
+        "unmet_group_action_support_targets": [
+            {"group_id": group, "action": action, "target": target, "actual": actual}
+            for group, action, target, actual in unmet_group_targets
+        ],
+        "group_action_sequence_support": {
+            group: {
+                action: group_action_support[(group, action)]
+                for action in sorted(plan["groups"][group]["candidate_action_sequence_support_targets"])
+            }
+            for group in sorted(plan["groups"])
+        },
         "unsupported_source_action_group_usages": [
             {"sequence_id": sid, "action": action, "group_id": group} for sid, action, group in unsupported
         ],
