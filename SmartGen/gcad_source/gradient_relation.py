@@ -58,6 +58,7 @@ def extract_gradient_relation(
     output.mkdir(parents=True, exist_ok=True)
     np.save(output / "raw_relation_matrix.npy", raw_relation)
     np.save(output / "lag_relation_matrix.npy", lag_relation)
+    np.save(output / "primary_lag_matrix.npy", primary_lag)
     edges = [
         {
             "source": vocabulary[i],
@@ -83,4 +84,3 @@ def extract_gradient_relation(
     }
     (output / "relation_metadata.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     return {"raw_relation": raw_relation, "lag_relation": lag_relation, "primary_lag": primary_lag, "metadata": metadata}
-
