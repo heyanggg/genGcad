@@ -1,0 +1,164 @@
+{
+  "policy": {
+    "version": "reconstruction_health_v1",
+    "split_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "minimum_validation_sequence_count": 20,
+    "near_zero_loss_cutoff": 1e-06,
+    "maximum_near_zero_loss_ratio": 0.25,
+    "minimum_p90_minus_p10": 0.0001,
+    "top_fraction": 0.1,
+    "maximum_top_fraction_loss_contribution": 0.5,
+    "bimodality_log10_gap": 1.0,
+    "minimum_bimodal_cluster_fraction": 0.2,
+    "maximum_threshold_coefficient_of_variation": 0.2,
+    "maximum_threshold_relative_range": 0.5,
+    "required_train_validation_exact_overlap": 0,
+    "threshold_percentile": 95.5,
+    "uses_official_synthetic_threshold": false,
+    "uses_target_behavior": false
+  },
+  "policy_sha256": "600c1ca86cc7e0b412521b1cc525ddd66fc3e21ff999f938a79ddc029a4a822c",
+  "seed_reports": {
+    "2024": {
+      "metrics": {
+        "validation_sequence_count": 28,
+        "near_zero_loss_ratio": 0.0,
+        "quantiles": {
+          "p10": 1.1386489404685562e-05,
+          "p25": 1.804931753213168e-05,
+          "p50": 4.825808537134435e-05,
+          "p75": 0.00011275101314822678,
+          "p90": 0.00026570037298370155,
+          "p95_5": 0.00030860098806442695,
+          "p99": 0.0025567106550443
+        },
+        "p90_minus_p10": 0.000254313883579016,
+        "top_fraction_count": 3,
+        "top_fraction_loss_contribution": 0.7033255196477255,
+        "loss_mode_diagnostic": {
+          "largest_log10_gap": 1.0277174680703043,
+          "split_index": 27,
+          "lower_cluster_fraction": 0.9642857142857143,
+          "upper_cluster_fraction": 0.0357142857142857,
+          "obvious_bimodality": false
+        },
+        "threshold": 0.00030860098806442695,
+        "train_validation_exact_overlap": 0
+      },
+      "checks": {
+        "validation_count": true,
+        "exact_overlap_zero": true,
+        "near_zero_ratio": true,
+        "loss_dispersion": true,
+        "top_loss_not_dominant": false,
+        "not_obviously_bimodal": true
+      },
+      "passed": false
+    },
+    "2025": {
+      "metrics": {
+        "validation_sequence_count": 28,
+        "near_zero_loss_ratio": 0.0,
+        "quantiles": {
+          "p10": 1.0292453407600987e-05,
+          "p25": 1.7503303752164356e-05,
+          "p50": 4.145175262237899e-05,
+          "p75": 0.00011492621342767961,
+          "p90": 0.00021804770804010332,
+          "p95_5": 0.00025418866054678803,
+          "p99": 0.003305697582254654
+        },
+        "p90_minus_p10": 0.00020775525463250234,
+        "top_fraction_count": 3,
+        "top_fraction_loss_contribution": 0.7564080370159979,
+        "loss_mode_diagnostic": {
+          "largest_log10_gap": 1.2308435773769384,
+          "split_index": 27,
+          "lower_cluster_fraction": 0.9642857142857143,
+          "upper_cluster_fraction": 0.0357142857142857,
+          "obvious_bimodality": false
+        },
+        "threshold": 0.00025418866054678803,
+        "train_validation_exact_overlap": 0
+      },
+      "checks": {
+        "validation_count": true,
+        "exact_overlap_zero": true,
+        "near_zero_ratio": true,
+        "loss_dispersion": true,
+        "top_loss_not_dominant": false,
+        "not_obviously_bimodal": true
+      },
+      "passed": false
+    },
+    "2026": {
+      "metrics": {
+        "validation_sequence_count": 28,
+        "near_zero_loss_ratio": 0.0,
+        "quantiles": {
+          "p10": 1.1956542493862798e-05,
+          "p25": 1.7732198330122628e-05,
+          "p50": 3.060711151192663e-05,
+          "p75": 9.836884601099882e-05,
+          "p90": 0.0001365122094284743,
+          "p95_5": 0.0001469389228441287,
+          "p99": 0.002943185514886865
+        },
+        "p90_minus_p10": 0.0001245556669346115,
+        "top_fraction_count": 3,
+        "top_fraction_loss_contribution": 0.7887412125985336,
+        "loss_mode_diagnostic": {
+          "largest_log10_gap": 1.426875396883545,
+          "split_index": 27,
+          "lower_cluster_fraction": 0.9642857142857143,
+          "upper_cluster_fraction": 0.0357142857142857,
+          "obvious_bimodality": false
+        },
+        "threshold": 0.0001469389228441287,
+        "train_validation_exact_overlap": 0
+      },
+      "checks": {
+        "validation_count": true,
+        "exact_overlap_zero": true,
+        "near_zero_ratio": true,
+        "loss_dispersion": true,
+        "top_loss_not_dominant": false,
+        "not_obviously_bimodal": true
+      },
+      "passed": false
+    }
+  },
+  "threshold_stability": {
+    "split_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "thresholds": [
+      0.00030860098806442695,
+      0.00025418866054678803,
+      0.0001469389228441287
+    ],
+    "coefficient_of_variation": 0.2838959039156734,
+    "relative_range": 0.6359924351957527,
+    "checks": {
+      "threshold_cv": false,
+      "threshold_relative_range": false
+    }
+  },
+  "gate": {
+    "stage": "pre_target_reconstruction_health_v1",
+    "passed": false,
+    "checks": {
+      "all_split_health_checks": false,
+      "threshold_stability": false
+    },
+    "threshold_basis": "generated-only reconstruction losses across frozen split seeds",
+    "uses_official_synthetic_threshold": false,
+    "uses_target_behavior": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "stage": "candidate_support_plan_audit",
+  "passed": true,
+  "checks": {
+    "candidate_count_160": true,
+    "group_candidate_quotas": true,
+    "all_source_actions_meet_candidate_support_target": true,
+    "all_group_action_support_targets_met": true,
+    "source_actions_only_in_supported_groups": true,
+    "all_candidates_codex_authored": true,
+    "programmatic_event_construction_absent": true
+  },
+  "uses_target_behavior": false
+}

@@ -1,0 +1,53 @@
+{
+  "status": "prospective replicate-5 reconstruction health gate failure",
+  "experiment_id": "fr_spring_codex_support_aware_v5_replicate_5",
+  "protocol": "A5. Support-Aware Codex GPT-5.6 Candidate-Pool Baseline",
+  "candidate_count": 160,
+  "selected_count": 137,
+  "rejected_count": 23,
+  "initial_hard_error_count": 6,
+  "actual_replacement_count": 6,
+  "programmatic_event_construction": false,
+  "generation_distribution_gate_passed": true,
+  "source_semantic_v2_pre_tof_passed": true,
+  "split_feasibility_pre_tof_passed": true,
+  "formal_tof": {
+    "device": "cpu",
+    "input_count": 137,
+    "stage1_retained_count": 131,
+    "stage1_outlier_count": 6,
+    "stage2_recovered_count": 6,
+    "final_count": 137,
+    "uses_target_behavior": false
+  },
+  "invalid_cuda_attempt_preserved_for_audit": true,
+  "source_semantic_v2_post_tof_passed": true,
+  "split_feasibility_post_tof_passed": true,
+  "reconstruction_health_v1": {
+    "passed": false,
+    "thresholds_by_split_seed": {
+      "2024": 0.00030860098806442695,
+      "2025": 0.00025418866054678803,
+      "2026": 0.0001469389228441287
+    },
+    "top_10_percent_loss_contribution": {
+      "2024": 0.7033255196477255,
+      "2025": 0.7564080370159979,
+      "2026": 0.7887412125985336
+    },
+    "threshold_coefficient_of_variation": 0.2838959039156734,
+    "threshold_relative_range": 0.6359924351957527
+  },
+  "target_behavior_read": false,
+  "target_normal_read": false,
+  "target_attack_read": false,
+  "target_labels_read": false,
+  "final_evaluation_run": false,
+  "gcad_source_enabled": false,
+  "ranking_enabled": false,
+  "gcad_v2_ready": false,
+  "tests": {
+    "passed": 109,
+    "warnings": 3
+  }
+}

@@ -1,8 +1,8 @@
 # SmartGen + Source-only GCAD
 
-Current A4 status: the genuinely Codex GPT-5.6-agent-authored replicate-4 produced 137 candidates and passed provenance, legality, copy-safety, and generation-distribution gates, then stopped on the frozen pre-TOF `source_semantic_v2` minimum sequence-support rule. It did not access target behavior or run TOF, downstream evaluation, GCAD, or Ranking. See [replicate4_results.md](docs/replicate4_results.md).
+Current A5 status: replicate-5 directly authored 160 Codex GPT-5.6 candidates, selected a valid 137 subset, passed both semantic and all fixed-split checks before and after formal CPU TOF, then stopped at the unchanged `reconstruction_health_v1` gate because high-loss samples dominated and thresholds were unstable across seeds. It never accessed target behavior or ran final evaluation, GCAD, or Ranking. See [replicate5_results.md](docs/replicate5_results.md).
 
-A5 is preregistered as a 160-candidate, support-aware Codex-agent pool reduced deterministically to the unchanged 137 group quotas. Python selects but never authors or edits events; all v4 semantic, split, reconstruction, and 95.5% threshold rules remain unchanged.
+A5 was preregistered as a 160-candidate, support-aware Codex-agent pool reduced deterministically to the unchanged 137 group quotas. Python selected but never authored or edited events; all v4 semantic, split, reconstruction, and 95.5% threshold rules remained unchanged.
 
 Replicate-3 is frozen and reclassified as a Programmatic Source-Constrained Composition Stress Test; it is not
 an LLM baseline. Formal GPT-5.6-via-Codex generation work proceeds only on
@@ -19,7 +19,7 @@ Training, relation extraction, prompting, generation, TOF, ranking, validation-t
 
 ## Environment and quick start
 
-Use `/home/heyang/miniconda3/bin/conda run -n smartguard_env`. The smoke run used Python 3.12.7 and PyTorch 2.13.0+cu130. CUDA was requested first but is genuinely unavailable: the installed NVIDIA driver reports CUDA 12.6 compatibility while this PyTorch build requires a newer driver, so the recorded experiment ran on CPU.
+Use `/home/heyang/miniconda3/bin/conda run -n smartguard_env`. The v5 request context required the formal experiment to run on CPU. A CUDA device unexpectedly became visible during execution; that non-formal attempt is retained separately, while the formal TOF and reconstruction runs explicitly hid CUDA and report CPU execution.
 
 ```bash
 /home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q

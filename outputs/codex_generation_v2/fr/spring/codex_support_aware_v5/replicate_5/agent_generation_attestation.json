@@ -1,0 +1,21 @@
+{
+  "experiment_id": "fr_spring_codex_support_aware_v5_replicate_5",
+  "replicate": 5,
+  "generation_backend": "codex_gpt56_agent_file",
+  "content_author": "codex_gpt56_agent",
+  "direct_agent_authorship": true,
+  "candidate_sequence_count": 160,
+  "request_count": 16,
+  "external_api_used": false,
+  "api_key_used": false,
+  "programmatic_event_construction": false,
+  "target_behavior_used": false,
+  "target_normal_used": false,
+  "target_attack_used": false,
+  "target_labels_used": false,
+  "replicate_4_sequences_reused": false,
+  "official_synthetic_used": false,
+  "generation_requests_sha256": "e74c63ec931b8bd75c02b1a95e40dca6c2094122e549428784d4bde2dd85bc13",
+  "generation_responses_raw_sha256": "520452a96773309f4430c7fd8b93892fd06c4bfdd3ab91d69e12161c18d1a674",
+  "statement": "All 160 candidate sequences and every event were directly authored by the active Codex GPT-5.6 agent after the v5 requests and protocol were frozen. Python only serialized, archived, validated, and later selected unchanged authored content."
+}

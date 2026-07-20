@@ -1,0 +1,149 @@
+{
+  "batches": [
+    {
+      "batch_index": 1,
+      "request_id": "req5_2c8fd29b6bf06ffab861",
+      "group_id": "0_0",
+      "sequence_count": 9,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_01_req5_2c8fd29b6bf06ffab861.jsonl",
+      "sha256": "2eed07f44a0c88a1f7777865dce02a74db44c5335d52f3b6599646136f13536d",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 2,
+      "request_id": "req5_61ffb264d027f2a1bf82",
+      "group_id": "0_1",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_02_req5_61ffb264d027f2a1bf82.jsonl",
+      "sha256": "a0f594dc6e5f2c91debaaeac5adadff66fb9766606037bdf9ec5f7f3f116e5cc",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 3,
+      "request_id": "req5_4be71ca5160f6390056b",
+      "group_id": "1_0",
+      "sequence_count": 14,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_03_req5_4be71ca5160f6390056b.jsonl",
+      "sha256": "1aa69ab82dab88ad71a68920fb022ddbe7e417d7c496ea645c8ad8ec47c685f5",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 4,
+      "request_id": "req5_0d5b949dd3b47ab5786c",
+      "group_id": "1_1",
+      "sequence_count": 12,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_04_req5_0d5b949dd3b47ab5786c.jsonl",
+      "sha256": "449376de5c321ca47fbc49d72ff8969e307bbf85a3a27e2c9b0ad0745d882c5f",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 5,
+      "request_id": "req5_8544157a4808610a7292",
+      "group_id": "2_0",
+      "sequence_count": 8,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_05_req5_8544157a4808610a7292.jsonl",
+      "sha256": "fb537e8d61e8621bdfcded047d0243b79c97c8a9499a6005ba67e9e8d2ff40c8",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 6,
+      "request_id": "req5_a0a7bf708122e04d3aff",
+      "group_id": "2_1",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_06_req5_a0a7bf708122e04d3aff.jsonl",
+      "sha256": "8b297c66345ab9336b98aae5b432308ac7ce29e566c5d2559092a83fe27ad26c",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 7,
+      "request_id": "req5_ad2954669c6f59d33102",
+      "group_id": "3_0",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_07_req5_ad2954669c6f59d33102.jsonl",
+      "sha256": "f5659bdf9ccd2025b689f10d1d69f1ca97f1e66fb196b247b1ed1381d4708cd4",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 8,
+      "request_id": "req5_293da3aa51ac431ffed9",
+      "group_id": "3_1",
+      "sequence_count": 9,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_08_req5_293da3aa51ac431ffed9.jsonl",
+      "sha256": "789c3a75f91ae5932ec3408d4760e265de75375bf724c5ae524f187dc242bc45",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 9,
+      "request_id": "req5_fe4ff7a1ae241da893ec",
+      "group_id": "4_0",
+      "sequence_count": 9,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_09_req5_fe4ff7a1ae241da893ec.jsonl",
+      "sha256": "5f4e640a6924442b9ed5e347ba92f702e30b8e5616367e73de15fa71864b337b",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 10,
+      "request_id": "req5_85092f01917c68ffc02f",
+      "group_id": "4_1",
+      "sequence_count": 17,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_10_req5_85092f01917c68ffc02f.jsonl",
+      "sha256": "d7b0d6d65f0a153a32ae48eaccf790478fcf87d0e8a73167c9460741731db9bf",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 11,
+      "request_id": "req5_6137a79ef83eccd4193e",
+      "group_id": "4_1",
+      "sequence_count": 17,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_11_req5_6137a79ef83eccd4193e.jsonl",
+      "sha256": "ba89aaf9a14490d1b601fa4fe05c9fcb36cbb8e4eb4febf44db69addf142b37d",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 12,
+      "request_id": "req5_a58640c855eafdb69fcd",
+      "group_id": "4_2",
+      "sequence_count": 11,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_12_req5_a58640c855eafdb69fcd.jsonl",
+      "sha256": "45d331745d1ed2a7bb187f195a0b1aa09f6a12775d41d9e014650e1237a2dea1",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 13,
+      "request_id": "req5_83ac17c556a175aa63b5",
+      "group_id": "5_0",
+      "sequence_count": 11,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_13_req5_83ac17c556a175aa63b5.jsonl",
+      "sha256": "8d94395652d6be9bfe4034f83b0dcc9bc5e5acdb6a7b0fad0e331affadf8f975",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 14,
+      "request_id": "req5_da502062c5a0681d4c40",
+      "group_id": "5_1",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_14_req5_da502062c5a0681d4c40.jsonl",
+      "sha256": "629bdae7921db7505ffa261e8d3e1a4e97413dcb2bb170347a3bb13cb19fd5e0",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 15,
+      "request_id": "req5_3697c4b23b9da8811c30",
+      "group_id": "6_0",
+      "sequence_count": 8,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_15_req5_3697c4b23b9da8811c30.jsonl",
+      "sha256": "c83126e2c0e6a0bb2a19c2e76b626ed1dfc0b6eed1a0b9c24bcf666a2f90e226",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 16,
+      "request_id": "req5_b68c52e02d534b7e0870",
+      "group_id": "6_1",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/agent_batches/batch_16_req5_b68c52e02d534b7e0870.jsonl",
+      "sha256": "7dcdeea1675f52acb080aa53d370deed2237c2978b6fdae16991b0f0f6bec23d",
+      "event_content_modified": false
+    }
+  ],
+  "uses_target_behavior": false
+}

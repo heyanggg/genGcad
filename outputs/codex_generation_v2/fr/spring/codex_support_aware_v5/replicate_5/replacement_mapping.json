@@ -1,0 +1,320 @@
+[
+  {
+    "sequence_id": "r5_g40_001",
+    "request_id": "req5_fe4ff7a1ae241da893ec",
+    "reason": "duplicate",
+    "failure_detail": "duplicates r5_g11_001",
+    "old_events": [
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "AirPurifier",
+        "action": "setFanSpeed"
+      },
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "Blind",
+        "action": "windowShade open"
+      },
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "Camera",
+        "action": "notification"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "AirPurifier",
+        "action": "setFanSpeed"
+      },
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "Television",
+        "action": "setChannel"
+      },
+      {
+        "day": "Friday",
+        "hour": "(6~9)",
+        "device": "Camera",
+        "action": "notification"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  },
+  {
+    "sequence_id": "r5_g41_002",
+    "request_id": "req5_85092f01917c68ffc02f",
+    "reason": "duplicate",
+    "failure_detail": "duplicates r5_g20_001",
+    "old_events": [
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "Heater",
+        "action": "switch on"
+      },
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "AirPurifier",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "Heater",
+        "action": "switch off"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "Heater",
+        "action": "switch off"
+      },
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "AirPurifier",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Friday",
+        "hour": "(9~12)",
+        "device": "Television",
+        "action": "setChannel"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  },
+  {
+    "sequence_id": "r5_g51_002",
+    "request_id": "req5_da502062c5a0681d4c40",
+    "reason": "duplicate",
+    "failure_detail": "duplicates r5_g50_003",
+    "old_events": [
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "SmartPlug",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement charging"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "Television",
+        "action": "setChannel"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "SmartPlug",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "Blind",
+        "action": "windowShade open"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(9~12)",
+        "device": "Camera",
+        "action": "notification"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  },
+  {
+    "sequence_id": "r5_g51_005",
+    "request_id": "req5_da502062c5a0681d4c40",
+    "reason": "source_copy",
+    "failure_detail": "exact source representative device:action sequence copy (day/hour ignored)",
+    "old_events": [
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Blind",
+        "action": "windowShade open"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Camera",
+        "action": "notification"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Blind",
+        "action": "windowShade close"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement charging"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Television",
+        "action": "setChannel"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Other",
+        "action": "switch on"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "NetworkAudio",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "SmartPlug",
+        "action": "refresh refresh"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement charging"
+      },
+      {
+        "day": "Sunday",
+        "hour": "(18~21)",
+        "device": "Television",
+        "action": "setChannel"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  },
+  {
+    "sequence_id": "r5_g61_001",
+    "request_id": "req5_b68c52e02d534b7e0870",
+    "reason": "duplicate",
+    "failure_detail": "duplicates r5_g60_001",
+    "old_events": [
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "Dryer",
+        "action": "notification"
+      },
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "NetworkAudio",
+        "action": "audioVolume setVolume"
+      },
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement charging"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "Dryer",
+        "action": "notification"
+      },
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement charging"
+      },
+      {
+        "day": "Monday",
+        "hour": "(6~9)",
+        "device": "NetworkAudio",
+        "action": "audioVolume setVolume"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  },
+  {
+    "sequence_id": "r5_g61_002",
+    "request_id": "req5_b68c52e02d534b7e0870",
+    "reason": "duplicate",
+    "failure_detail": "duplicates r5_g21_001",
+    "old_events": [
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "Blind",
+        "action": "windowShade open"
+      },
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "Camera",
+        "action": "notification"
+      },
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "Blind",
+        "action": "windowShade close"
+      }
+    ],
+    "new_events": [
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "Television",
+        "action": "audioMute unmute"
+      },
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "Television",
+        "action": "setChannel"
+      },
+      {
+        "day": "Monday",
+        "hour": "(9~12)",
+        "device": "RobotCleaner",
+        "action": "setRobotCleanerMovement cleaning"
+      }
+    ],
+    "content_author": "codex_gpt56_agent",
+    "source_semantic_score_used": false,
+    "target_result_used": false
+  }
+]

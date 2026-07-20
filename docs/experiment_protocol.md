@@ -22,3 +22,7 @@ Run tests with `/home/heyang/miniconda3/bin/conda run -n smartguard_env python -
 # A4 outcome
 
 The A4 replicate-4 protocol stopped at pre-TOF `source_semantic_v2`. Its failure does not authorize changes to the same replicate; all target-data and GCAD stages remain blocked.
+
+# A5 outcome
+
+Replicate-5 passed support-aware candidate selection, both generation gates, all pre/post TOF split gates, and formal CPU TOF. It stopped prospectively at `reconstruction_health_v1`; target evaluation and GCAD v2 remain blocked.

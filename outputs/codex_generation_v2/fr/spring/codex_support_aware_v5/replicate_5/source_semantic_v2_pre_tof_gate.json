@@ -1,0 +1,17 @@
+{
+  "stage": "pre_tof_source_semantic_v2",
+  "passed": true,
+  "checks": {
+    "source_action_precision": true,
+    "global_source_vocabulary_recall": true,
+    "group_vocabulary_recall": true,
+    "frequency_weighted_recall": true,
+    "rare_action_recall": true,
+    "per_action_sequence_support": true,
+    "low_support_action_ratio": true,
+    "target_metadata_only_token_share": true,
+    "source_transition_coverage": true,
+    "unseen_transition_ratio": true
+  },
+  "uses_target_behavior": false
+}

@@ -26,3 +26,5 @@ Formal provenance metadata is:
 
 Any response produced by an authored-plan builder, template loop, random event generator, GSS constructor, or
 source-vocabulary combinator is ineligible for this backend and must fail provenance before later gates run.
+
+Replicate-5 followed this boundary for all 160 candidates. Six hard-invalid candidates were directly re-authored by Codex within the frozen replacement allowance; Python only serialized and verified the exact six-ID replacement mapping.

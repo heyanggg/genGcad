@@ -1,0 +1,9 @@
+{
+  "stage": "candidate_exact_duplicate_and_source_copy",
+  "passed": true,
+  "checks": {
+    "candidate_exact_duplicate_zero": true,
+    "source_representative_copy_zero": true
+  },
+  "uses_target_behavior": false
+}

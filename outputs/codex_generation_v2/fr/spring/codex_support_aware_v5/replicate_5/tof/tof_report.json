@@ -1,0 +1,13 @@
+{
+  "implementation": "SmartGen original two-stage TOF",
+  "input_path": "/home/heyang/projects/SmartGen_GCAD/outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/generated_sequences.pkl",
+  "input_count": 137,
+  "stage1_retained_count": 131,
+  "stage1_outlier_count": 6,
+  "stage2_recovered_count": 6,
+  "final_count": 137,
+  "epochs_per_fit": 10,
+  "device": "cpu",
+  "uses_target_behavior": false,
+  "output_path": "outputs/codex_generation_v2/fr/spring/codex_support_aware_v5/replicate_5/tof/tof_sequences.pkl"
+}

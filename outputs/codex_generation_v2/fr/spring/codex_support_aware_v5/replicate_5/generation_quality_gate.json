@@ -1,0 +1,18 @@
+{
+  "stage": "pre_tof_generation_distribution",
+  "passed": true,
+  "checks": {
+    "illegal_device_action_zero": true,
+    "exact_duplicates_zero": true,
+    "unique_sequence_ratio": true,
+    "lengths_vary": true,
+    "bigram_entropy_source_relative": true,
+    "trigram_entropy_source_relative": true,
+    "top_template_share": true,
+    "cross_group_duplicates_zero": true,
+    "source_exact_copies_zero": true,
+    "maximum_action_share": true
+  },
+  "threshold_basis": "source representative and generated-internal statistics only",
+  "uses_target_behavior": false
+}

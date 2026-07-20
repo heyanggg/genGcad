@@ -1,0 +1,21 @@
+{
+  "stage": "codex_gpt56_generation_provenance",
+  "passed": true,
+  "checks": {
+    "backend": true,
+    "author": true,
+    "direct_agent_authorship": true,
+    "external_api_unused": true,
+    "api_key_unused": true,
+    "programmatic_event_construction_absent": true,
+    "target_behavior_unused": true,
+    "raw_response_sha256": true,
+    "request_sha256": true
+  },
+  "generation_backend": "codex_gpt56_agent_file",
+  "content_author": "codex_gpt56_agent",
+  "external_api_used": false,
+  "api_key_used": false,
+  "programmatic_event_construction": false,
+  "uses_target_behavior": false
+}

@@ -1,0 +1,6 @@
+{"request_id": "req5_fe4ff7a1ae241da893ec", "sequence_id": "r5_g40_001", "category": "duplicate", "reason": "duplicates r5_g11_001"}
+{"request_id": "req5_85092f01917c68ffc02f", "sequence_id": "r5_g41_002", "category": "duplicate", "reason": "duplicates r5_g20_001"}
+{"request_id": "req5_da502062c5a0681d4c40", "sequence_id": "r5_g51_002", "category": "duplicate", "reason": "duplicates r5_g50_003"}
+{"request_id": "req5_da502062c5a0681d4c40", "sequence_id": "r5_g51_005", "category": "source_copy", "reason": "exact source representative device:action sequence copy (day/hour ignored)"}
+{"request_id": "req5_b68c52e02d534b7e0870", "sequence_id": "r5_g61_001", "category": "duplicate", "reason": "duplicates r5_g60_001"}
+{"request_id": "req5_b68c52e02d534b7e0870", "sequence_id": "r5_g61_002", "category": "duplicate", "reason": "duplicates r5_g21_001"}

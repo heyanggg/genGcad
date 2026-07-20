@@ -1,0 +1,7 @@
+{
+  "stage": "post_tof_split_feasibility_v1",
+  "passed": true,
+  "all_fixed_seeds_required": true,
+  "favorable_seed_selection_allowed": false,
+  "uses_target_behavior": false
+}

@@ -1,0 +1,6 @@
+{
+  "stage": "deterministic_support_preserving_selection",
+  "passed": true,
+  "event_content_modified": false,
+  "uses_target_behavior": false
+}
