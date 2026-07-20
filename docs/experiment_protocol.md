@@ -26,3 +26,9 @@ The A4 replicate-4 protocol stopped at pre-TOF `source_semantic_v2`. Its failure
 # A5 outcome
 
 Replicate-5 passed support-aware candidate selection, both generation gates, all pre/post TOF split gates, and formal CPU TOF. It stopped prospectively at `reconstruction_health_v1`; target evaluation and GCAD v2 remain blocked.
+
+# GCAD representation v2 outcome
+
+The subsequent research protocol reclassified reconstruction health as a mandatory downstream diagnostic rather than a permanent block on pure-source mechanism research, without altering A5's failure. GCAD v2 was preregistered before prediction training. It uses pre-TSS FR winter sequences, legal device-action channels, source-level splits, event-position/history 2, three fixed seeds, and macro F1 as the primary prediction gate.
+
+The Mixer lost to the best simple n-gram baseline on 0/3 seeds. Formal relation extraction, GSS fusion, B5, and target access are therefore blocked.

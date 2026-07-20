@@ -408,9 +408,19 @@ def run_prediction() -> dict:
     return gate
 
 
+def write_checksums() -> Path:
+    _, _, output = paths()
+    checksum_path = output / "checksums.sha256"
+    lines = []
+    for artifact in sorted(path for path in output.rglob("*") if path.is_file() and path != checksum_path):
+        lines.append(f"{sha256_file(artifact)}  {artifact.relative_to(output)}")
+    checksum_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return checksum_path
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("stage", choices=("audit", "representations", "prediction", "all"))
+    parser.add_argument("stage", choices=("audit", "representations", "prediction", "checksums", "all"))
     args = parser.parse_args()
     if args.stage in {"audit", "all"}:
         run_audit()
@@ -420,6 +430,8 @@ def main():
         gate = run_prediction()
         if not gate["passed"]:
             print("GCAD v2 source prediction gate failed; relations, fusion, and B5 are blocked.")
+    if args.stage in {"checksums", "all"}:
+        write_checksums()
 
 
 if __name__ == "__main__":

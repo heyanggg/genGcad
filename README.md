@@ -1,5 +1,7 @@
 # SmartGen + Source-only GCAD
 
+GCAD representation v2 has now completed its pure-source decision. It repaired v1's representation defects (579 formal event-position windows, 39 legal channels, zero source-split leakage), but the selected Mixer lost to n-gram baselines on all three fixed seeds. The formal source prediction gate failed, so no stable relation, GSS fusion, B5 generation, or target evaluation was run. The current recommendation is to terminate the GCAD directional-relation route; see [gcad_v2_final_decision.md](docs/gcad_v2_final_decision.md).
+
 Current A5 status: replicate-5 directly authored 160 Codex GPT-5.6 candidates, selected a valid 137 subset, passed both semantic and all fixed-split checks before and after formal CPU TOF, then stopped at the unchanged `reconstruction_health_v1` gate because high-loss samples dominated and thresholds were unstable across seeds. It never accessed target behavior or ran final evaluation, GCAD, or Ranking. See [replicate5_results.md](docs/replicate5_results.md).
 
 A5 was preregistered as a 160-candidate, support-aware Codex-agent pool reduced deterministically to the unchanged 137 group quotas. Python selected but never authored or edited events; all v4 semantic, split, reconstruction, and 95.5% threshold rules remained unchanged.
@@ -11,9 +13,9 @@ an LLM baseline. Formal GPT-5.6-via-Codex generation work proceeds only on
 
 This repository extends the official [SmartGen](https://github.com/horizonsinzqs/SmartGen) code with an optional source-only branch that extracts **GCAD-style predictive directional relations**. `main` remains the unmodified official baseline (`c2ed36c`); the baseline repair is on `baseline-protocol-v2`. The local reference implementation is `/home/heyang/projects/GCAD`, the official `Tc99m/GCAD` checkout. It was audited but not modified.
 
-The added path is:
+The guarded research path is:
 
-`TSS full source sequences → tensorizer → Mixer predictor → per-output gradients → asymmetric/stable relation → conservative GSS adapter → Codex agent file generation → original two-stage TOF → soft ranking → original downstream detector → final target evaluation`.
+`pre-TSS source sequences → canonical representation → leakage-safe source prediction gate → [blocked unless passed] per-output gradients → stable relation → conservative GSS adapter → Codex agent generation → original two-stage TOF → original downstream detector → paired final evaluation`.
 
 Training, relation extraction, prompting, generation, TOF, ranking, validation-threshold estimation, and hyperparameter selection use no target behavior data. Target normal and attack records enter only `evaluate-generated`, after the detector and generated-validation threshold are frozen. Static target device/action metadata and the textual context change remain allowed.
 
