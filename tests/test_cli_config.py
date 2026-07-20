@@ -47,3 +47,13 @@ def test_source_semantic_gate_requires_only_explicit_source_input():
     ])
     assert args.command == "gate-source-semantics"
     assert not hasattr(args, "target")
+
+
+def test_reconstruction_health_gate_accepts_only_generated_diagnostics():
+    args = parser().parse_args([
+        "gate-reconstruction-health", "--directory", "out", "--diagnostics",
+        "seed_2024.json", "seed_2025.json", "seed_2026.json",
+    ])
+    assert args.command == "gate-reconstruction-health"
+    assert len(args.diagnostics) == 3
+    assert not hasattr(args, "target")

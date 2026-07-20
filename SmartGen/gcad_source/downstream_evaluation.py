@@ -113,6 +113,10 @@ def evaluate_prepared_detector(
     """The only function in this module that opens target behavior artifacts."""
     root = Path(repository_root).resolve()
     output = Path(prepared_dir)
+    if "baseline_source_semantic" in output.parts:
+        from SmartGen.generation_backends.reconstruction_health import require_final_evaluation_gates
+
+        require_final_evaluation_gates(output)
     prepared = json.loads((output / "training_diagnostics.json").read_text(encoding="utf-8"))
     attack = RoleBoundPath.build(
         root / "anomaly_detection_pipeline" / "attack" / dataset / f"labeled_{dataset}_{ATTACK_NAMES[context]}.pkl",

@@ -247,6 +247,12 @@ def command_reconstruction_gate(args):
     print(json.dumps(apply_reconstruction_gate(args.directory, args.diagnostics), indent=2))
 
 
+def command_reconstruction_health_gate(args):
+    from SmartGen.generation_backends.reconstruction_health import apply_reconstruction_health_gate
+
+    print(json.dumps(apply_reconstruction_health_gate(args.directory, args.diagnostics), indent=2))
+
+
 def command_continue(args):
     from SmartGen.security_check import security_check_file
 
@@ -398,6 +404,9 @@ def parser() -> argparse.ArgumentParser:
     item = sub.add_parser("gate-reconstruction")
     item.add_argument("--directory", required=True); item.add_argument("--diagnostics", required=True)
     item.set_defaults(function=command_reconstruction_gate)
+    item = sub.add_parser("gate-reconstruction-health")
+    item.add_argument("--directory", required=True); item.add_argument("--diagnostics", nargs="+", required=True)
+    item.set_defaults(function=command_reconstruction_health_gate)
     item = sub.add_parser("continue-pipeline")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.add_argument("--context", required=True)
     item.add_argument("--tof-epochs", type=int, default=10); item.add_argument("--stable-relation")

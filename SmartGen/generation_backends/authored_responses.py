@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from .frozen_protocol import verify_frozen_requests
 from .response_loader import load_jsonl
 
 
@@ -11,6 +12,9 @@ DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sun
 
 def materialize_authored_responses(requests_path: str | Path, authored_plan_path: str | Path, output_path: str | Path):
     """Serialize explicitly agent-authored plans; this performs no generation or random sampling."""
+    requests_path = Path(requests_path)
+    if "baseline_source_semantic" in requests_path.parts and requests_path.parent.name == "replicate_2":
+        verify_frozen_requests(requests_path)
     requests = load_jsonl(requests_path)
     request_map = {item["request_id"]: item for item in requests}
     plan = json.loads(Path(authored_plan_path).read_text(encoding="utf-8"))

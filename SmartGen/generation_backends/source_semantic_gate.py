@@ -4,6 +4,7 @@ import json
 import pickle
 from collections import defaultdict
 from pathlib import Path
+from types import MappingProxyType
 
 import numpy as np
 
@@ -13,7 +14,7 @@ from SmartGen.gcad_source.semantic_channels import is_valid_semantic_channel
 from .response_loader import load_jsonl
 
 
-POLICY = {
+POLICY = MappingProxyType({
     "version": "source_semantic_v1",
     "action_floor_fraction_of_cross_day_source": 0.5,
     "transition_floor_fraction_of_cross_day_source": 0.25,
@@ -22,7 +23,7 @@ POLICY = {
     "minimum_zero_anchor_cap": 0.1,
     "zero_anchor_source_multiplier": 5.0,
     "maximum_zero_anchor_cap": 0.25,
-}
+})
 
 
 def _numeric_sequences(sequences: list[list[int]], dataset: str) -> tuple[list[list[str]], list[int]]:
@@ -173,7 +174,7 @@ def semantic_support_report(
         ),
     }
     return {
-        "policy": POLICY,
+        "policy": dict(POLICY),
         "calibration": calibration,
         "thresholds": thresholds,
         "metrics": metrics,

@@ -1,0 +1,18 @@
+{
+  "version": "reconstruction_health_v1",
+  "split_seeds": [2024, 2025, 2026],
+  "minimum_validation_sequence_count": 20,
+  "near_zero_loss_cutoff": 0.000001,
+  "maximum_near_zero_loss_ratio": 0.25,
+  "minimum_p90_minus_p10": 0.0001,
+  "top_fraction": 0.1,
+  "maximum_top_fraction_loss_contribution": 0.5,
+  "bimodality_log10_gap": 1.0,
+  "minimum_bimodal_cluster_fraction": 0.2,
+  "maximum_threshold_coefficient_of_variation": 0.2,
+  "maximum_threshold_relative_range": 0.5,
+  "required_train_validation_exact_overlap": 0,
+  "threshold_percentile": 95.5,
+  "uses_official_synthetic_threshold": false,
+  "uses_target_behavior": false
+}
