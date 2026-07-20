@@ -119,6 +119,9 @@ def validate_responses(
     (output / "generation_responses_validated.jsonl").write_text(
         "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in valid_responses), encoding="utf-8"
     )
+    replacement_path = output / "replacement_mapping.json"
+    if not replacement_path.exists():
+        replacement_path.write_text("[]\n", encoding="utf-8")
     counts = Counter(item["category"] for item in failure_records)
     final_valid = sum(len(item["sequences"]) for item in valid_responses)
     report = {
@@ -147,4 +150,3 @@ def validate_responses(
 
 def save_replacement_mapping(output_dir: str | Path, mapping: list[dict]) -> None:
     Path(output_dir, "replacement_mapping.json").write_text(json.dumps(mapping, indent=2), encoding="utf-8")
-
