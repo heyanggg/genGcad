@@ -1,0 +1,14 @@
+{
+  "experiment_identity": "A4. GPT-5.6 Codex-Agent-Authored Grouped SmartGen-Compatible Baseline",
+  "generation_backend": "codex_gpt56_agent_file",
+  "content_author": "codex_gpt56_agent",
+  "request_count": 16,
+  "candidate_sequence_count": 137,
+  "final_sequence_count": 137,
+  "programmatic_event_construction": false,
+  "external_api_used": false,
+  "api_key_used": false,
+  "target_behavior_used": false,
+  "gcad_source_enabled": false,
+  "ranking_enabled": false
+}
