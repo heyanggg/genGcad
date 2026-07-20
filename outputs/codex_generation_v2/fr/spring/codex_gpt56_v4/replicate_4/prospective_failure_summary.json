@@ -1,0 +1,36 @@
+{
+  "experiment": "A4. GPT-5.6 Codex-Agent-Authored Grouped SmartGen-Compatible Baseline",
+  "replicate": 4,
+  "formal_status": "prospective replicate-4 source_semantic_v2 failure",
+  "stop_stage": "pre_tof_source_semantic_v2",
+  "candidate_count": 137,
+  "selected_count": 137,
+  "hard_replacement_count": 10,
+  "provenance_gate_passed": true,
+  "legality_gate_passed": true,
+  "copy_gate_passed": true,
+  "generation_distribution_gate_passed": true,
+  "source_semantic_v2_passed": false,
+  "failure_reason": "two source actions have sequence support 3 below the frozen minimum 4",
+  "low_support_actions": [
+    {
+      "action": "AirPurifier:setAirPurifierMode",
+      "token_occurrence_count": 6,
+      "sequence_support_count": 3
+    },
+    {
+      "action": "Television:setPictureMode",
+      "token_occurrence_count": 6,
+      "sequence_support_count": 3
+    }
+  ],
+  "split_feasibility_run": false,
+  "tof_run": false,
+  "post_tof_gates_run": false,
+  "reconstruction_health_run": false,
+  "target_behavior_read": false,
+  "final_evaluation_run": false,
+  "gcad_run": false,
+  "ranking_run": false,
+  "same_replicate_modified_after_semantic_failure": false
+}

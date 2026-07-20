@@ -1,0 +1,21 @@
+{
+  "request_count": 16,
+  "initial_sequence_count": 137,
+  "json_failures": 0,
+  "schema_failures": 0,
+  "provenance_failures": 0,
+  "illegal_device_count": 0,
+  "illegal_action_count": 0,
+  "length_failures": 0,
+  "duplicate_count": 0,
+  "source_copy_count": 0,
+  "missing_response_count": 0,
+  "extra_response_count": 0,
+  "repair_count": 0,
+  "final_valid_sequence_count": 137,
+  "failure_count": 0,
+  "external_api_called": false,
+  "api_key_used": false,
+  "target_behavior_read": false,
+  "cross_group_duplicate_check": true
+}

@@ -1,0 +1,10 @@
+{"request_id": "req4_ce8c8b13d43547baf539", "sequence_id": "r4_g11_005", "category": "duplicate", "reason": "duplicates r4_g10_005"}
+{"request_id": "req4_4e1bec8b82f37d1829e2", "sequence_id": "r4_g41a_005", "category": "duplicate", "reason": "duplicates r4_g10_002"}
+{"request_id": "req4_4e1bec8b82f37d1829e2", "sequence_id": "r4_g41a_006", "category": "duplicate", "reason": "duplicates r4_g11_006"}
+{"request_id": "req4_c57da55485133ca8eaa0", "sequence_id": "r4_g50_001", "category": "duplicate", "reason": "duplicates r4_g42_001"}
+{"request_id": "req4_c57da55485133ca8eaa0", "sequence_id": "r4_g50_002", "category": "duplicate", "reason": "duplicates r4_g10_003"}
+{"request_id": "req4_c57da55485133ca8eaa0", "sequence_id": "r4_g50_005", "category": "duplicate", "reason": "duplicates r4_g10_010"}
+{"request_id": "req4_c57da55485133ca8eaa0", "sequence_id": "r4_g50_008", "category": "source_copy", "reason": "exact source representative device:action sequence copy (day/hour ignored)"}
+{"request_id": "req4_8ca2e8fb32221215ecdf", "sequence_id": "r4_g60_001", "category": "duplicate", "reason": "duplicates r4_g40_001"}
+{"request_id": "req4_8ca2e8fb32221215ecdf", "sequence_id": "r4_g60_007", "category": "source_copy", "reason": "exact source representative device:action sequence copy (day/hour ignored)"}
+{"request_id": "req4_87ae153025b770dde2ff", "sequence_id": "r4_g61_003", "category": "duplicate", "reason": "duplicates r4_g60_005"}

@@ -1,0 +1,149 @@
+{
+  "batches": [
+    {
+      "batch_index": 1,
+      "request_id": "req4_91e45bb099c178934b50",
+      "group_id": "0_0",
+      "sequence_count": 8,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_01_req4_91e45bb099c178934b50.jsonl",
+      "sha256": "4a1c2e0ad4cd630ea68aed2e08b076144be6e3ae4b08dba25ca0c3415372ac53",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 2,
+      "request_id": "req4_6d33ff532d28e2316f85",
+      "group_id": "0_1",
+      "sequence_count": 6,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_02_req4_6d33ff532d28e2316f85.jsonl",
+      "sha256": "5d923288bdf415d62dcd9206e8129bd2dc834926833379c16d31d76186834e6b",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 3,
+      "request_id": "req4_20a72ecbbc890de5caff",
+      "group_id": "1_0",
+      "sequence_count": 12,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_03_req4_20a72ecbbc890de5caff.jsonl",
+      "sha256": "05425c5fd9c5a6102f83423d4ce25dca8d2cb3fb367576ddd35e8ae7c88c1406",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 4,
+      "request_id": "req4_ce8c8b13d43547baf539",
+      "group_id": "1_1",
+      "sequence_count": 10,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_04_req4_ce8c8b13d43547baf539.jsonl",
+      "sha256": "a9c797f65ed52934024aaef3f11df4cbb5f0c796368a0214e9d11453d2c5e7aa",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 5,
+      "request_id": "req4_53b56716c81ecfdc3587",
+      "group_id": "2_0",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_05_req4_53b56716c81ecfdc3587.jsonl",
+      "sha256": "a44e7dea1923f7f1ace64931ff52001bce2746716dc40f10384811df908604b3",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 6,
+      "request_id": "req4_b7503d0b15ea6635edcb",
+      "group_id": "2_1",
+      "sequence_count": 6,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_06_req4_b7503d0b15ea6635edcb.jsonl",
+      "sha256": "cdfe4c0f95932df453972f1aafd914875c88b6ba53464f890af88385a7739c1e",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 7,
+      "request_id": "req4_df7a5965dae022731f78",
+      "group_id": "3_0",
+      "sequence_count": 6,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_07_req4_df7a5965dae022731f78.jsonl",
+      "sha256": "ab0a751d11c478f52f05a1a0a2d6b3ea5104fb891b8ef627c0e1c8ac9bc55549",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 8,
+      "request_id": "req4_de0f9fba7d873d8a054c",
+      "group_id": "3_1",
+      "sequence_count": 8,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_08_req4_de0f9fba7d873d8a054c.jsonl",
+      "sha256": "0aa3b2a91df17642b64e72c7b72df3e7138866e40fd2cf75c695390918d6dd75",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 9,
+      "request_id": "req4_2dcedc1fcc609ec32076",
+      "group_id": "4_0",
+      "sequence_count": 8,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_09_req4_2dcedc1fcc609ec32076.jsonl",
+      "sha256": "0155eb6d210109b449f76e0344e0bbe82d9d6fb578bfbf6979bcbdba0f101e2e",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 10,
+      "request_id": "req4_4e1bec8b82f37d1829e2",
+      "group_id": "4_1",
+      "sequence_count": 15,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_10_req4_4e1bec8b82f37d1829e2.jsonl",
+      "sha256": "f68a21029413a37481f2eccfa4b2c48bbdebee34f527b6b07b24faf8e0a19071",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 11,
+      "request_id": "req4_89a9cd42866916fa0847",
+      "group_id": "4_1",
+      "sequence_count": 14,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_11_req4_89a9cd42866916fa0847.jsonl",
+      "sha256": "7455780da2310aae4f8262968b9b2f02ca45e5723249f8623e9223aad58652e2",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 12,
+      "request_id": "req4_f8d87c8d9772f22cbae7",
+      "group_id": "4_2",
+      "sequence_count": 9,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_12_req4_f8d87c8d9772f22cbae7.jsonl",
+      "sha256": "92cd558acb6d7ad7c93b73e5ff5190fd97d87bd3b336a8750f870c8a043cbec9",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 13,
+      "request_id": "req4_c57da55485133ca8eaa0",
+      "group_id": "5_0",
+      "sequence_count": 9,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_13_req4_c57da55485133ca8eaa0.jsonl",
+      "sha256": "f43ba7ecc5aad14832a31b05b42cea3f1d4b3dc9abb1696e6d50c913a380e42b",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 14,
+      "request_id": "req4_ec9b723d7367f53c7154",
+      "group_id": "5_1",
+      "sequence_count": 6,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_14_req4_ec9b723d7367f53c7154.jsonl",
+      "sha256": "8a812e2b3c20b84403bacfcdfbd5d21cad0e4b59ee0329020315a071f558150f",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 15,
+      "request_id": "req4_8ca2e8fb32221215ecdf",
+      "group_id": "6_0",
+      "sequence_count": 7,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_15_req4_8ca2e8fb32221215ecdf.jsonl",
+      "sha256": "dc3d6ed556bbab6a7766146c16810ae5e55b58daa7ac8903c506ac7ca2605ece",
+      "event_content_modified": false
+    },
+    {
+      "batch_index": 16,
+      "request_id": "req4_87ae153025b770dde2ff",
+      "group_id": "6_1",
+      "sequence_count": 6,
+      "path": "outputs/codex_generation_v2/fr/spring/codex_gpt56_v4/replicate_4/agent_batches/batch_16_req4_87ae153025b770dde2ff.jsonl",
+      "sha256": "380d49d5f10df23b408ca26131b7e399e04b1434b107e29af23921021ee5c08d",
+      "event_content_modified": false
+    }
+  ],
+  "uses_target_behavior": false
+}

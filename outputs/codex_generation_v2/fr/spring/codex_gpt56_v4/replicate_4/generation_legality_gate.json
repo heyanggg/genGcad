@@ -1,0 +1,13 @@
+{
+  "stage": "json_schema_static_legality",
+  "passed": true,
+  "checks": {
+    "json_zero": true,
+    "schema_zero": true,
+    "provenance_metadata_zero": true,
+    "illegal_device_zero": true,
+    "illegal_action_zero": true,
+    "count_complete": true
+  },
+  "uses_target_behavior": false
+}

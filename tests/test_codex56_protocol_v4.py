@@ -47,13 +47,15 @@ def test_gpt56_backend_metadata_is_exact_and_does_not_fabricate_api_fields():
 
 @pytest.mark.parametrize("field", ["authored_plan", "event_template", "per_sequence_actions", "programmatic_events"])
 def test_codex_mode_forbids_programmatic_request_fields(field):
-    request = _request() | {field: []}
+    request = _request()
+    request[field] = []
     with pytest.raises(ValueError, match="programmatic"):
         validate_codex56_requests([request])
 
 
 def test_programmatic_output_cannot_be_marked_as_codex():
-    response = _response() | {"programmatic_event_construction": True}
+    response = _response()
+    response["programmatic_event_construction"] = True
     with pytest.raises(ValueError, match="programmatic_event_construction"):
         validate_codex56_response_metadata(response)
 
@@ -168,7 +170,8 @@ def test_all_fixed_splits_are_independently_required():
 def test_infeasible_action_support_fails_instead_of_selecting_a_favorable_seed():
     records = _split_records(20)
     records[0]["actions"].append("Rare:only")
-    policy = _split_policy() | {"minimum_train_sequence_support_for_validation_action": 100}
+    policy = _split_policy()
+    policy["minimum_train_sequence_support_for_validation_action"] = 100
     report = build_coverage_constrained_split(records, policy, 2024)
     assert report["passed"] is False
 

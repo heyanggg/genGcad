@@ -1,0 +1,10 @@
+{
+  "candidate_count": 137,
+  "selected_count": 137,
+  "selection_rule": "select all hard-valid candidates; oversampling ratio 1.0",
+  "candidate_sha256": "ea35a2dc6b8499d2968393bcbd60d43674010763a4336d8fe5cda66c5b8370d0",
+  "selected_sha256": "ea35a2dc6b8499d2968393bcbd60d43674010763a4336d8fe5cda66c5b8370d0",
+  "event_content_modified": false,
+  "favorable_subset_selection": false,
+  "uses_target_behavior": false
+}
