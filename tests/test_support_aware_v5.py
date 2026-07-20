@@ -105,6 +105,20 @@ def test_selection_constraints_refuse_action_support_or_group_quota_damage():
     assert broken["checks"]["group_quotas_not_below_final"] is False
 
 
+def test_lightweight_selector_metrics_equal_full_diagnostic_formulas():
+    from SmartGen.generation_backends.generation_diagnostics import sequence_metrics
+
+    sequences = [record["actions"] for record in _records()]
+    lightweight = v5._selector_sequence_metrics(sequences)
+    full = sequence_metrics(sequences)
+    for key in (
+        "unique_sequence_ratio", "normalized_bigram_entropy", "normalized_trigram_entropy",
+        "top_1_template_share", "maximum_action_share",
+    ):
+        assert lightweight[key] == full[key]
+    assert lightweight["length"]["distinct_count"] == full["length"]["distinct_count"]
+
+
 def test_v5_selector_source_has_no_event_constructor_or_supplemental_generation():
     source = inspect.getsource(v5.select_support_preserving_subset)
     assert "event[" not in source

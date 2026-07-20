@@ -15,7 +15,7 @@ from SmartGen.gcad_source.data_boundary import boundary_declaration
 from SmartGen.gcad_source.prompt_adapter import build_original_smartgen_prompt
 
 from .codex56_provenance import AUTHOR, BACKEND, sha256_file, validate_codex56_requests
-from .generation_diagnostics import _sequence_similarity, sequence_metrics
+from .generation_diagnostics import _sequence_similarity, normalized_ngram_entropy
 from .grouped_requests import _balanced_chunks, _context_sentence, derive_source_length_summary
 from .response_loader import load_jsonl
 from .schemas import SCHEMA_VERSION, prompt_sha256
@@ -334,6 +334,25 @@ def candidate_sequence_support(records: list[dict]) -> Counter:
     return Counter(action for record in records for action in set(record["actions"]))
 
 
+def _selector_sequence_metrics(action_sequences: list[list[str]]) -> dict:
+    """Compute only frozen selector fields, with the same formulas as full diagnostics."""
+    templates = [tuple(sequence) for sequence in action_sequences]
+    template_counts = Counter(templates)
+    lengths = [len(sequence) for sequence in action_sequences]
+    actions = Counter(action for sequence in action_sequences for action in sequence)
+    _, bigram_entropy = normalized_ngram_entropy(action_sequences, 2)
+    _, trigram_entropy = normalized_ngram_entropy(action_sequences, 3)
+    total = len(templates) or 1
+    return {
+        "unique_sequence_ratio": len(template_counts) / total,
+        "length": {"distinct_count": len(set(lengths))},
+        "normalized_bigram_entropy": bigram_entropy,
+        "normalized_trigram_entropy": trigram_entropy,
+        "top_1_template_share": template_counts.most_common(1)[0][1] / total if template_counts else 0.0,
+        "maximum_action_share": max(actions.values()) / sum(actions.values()) if actions else 0.0,
+    }
+
+
 def validate_candidate_pool(directory: str | Path) -> dict:
     directory = Path(directory)
     provenance = json.loads((directory / "generation_provenance_gate.json").read_text(encoding="utf-8"))
@@ -469,8 +488,8 @@ def _selection_constraints(records: list[dict], *, plan: dict, protocol: dict,
     target_only_tokens = sum(count for action, count in tokens.items() if action not in source_actions)
     transitions = [pair for record in records for pair in zip(record["actions"], record["actions"][1:])]
     transition_coverage = sum(pair in source_transitions for pair in transitions) / max(1, len(transitions))
-    source_metrics = sequence_metrics(source_sequences)
-    selected_metrics = sequence_metrics([record["actions"] for record in records])
+    source_metrics = _selector_sequence_metrics(source_sequences)
+    selected_metrics = _selector_sequence_metrics([record["actions"] for record in records])
     distribution = {
         "unique_sequence_ratio": selected_metrics["unique_sequence_ratio"] >= min(0.98, source_metrics["unique_sequence_ratio"]),
         "lengths_vary": selected_metrics["length"]["distinct_count"] >= min(3, source_metrics["length"]["distinct_count"]),
