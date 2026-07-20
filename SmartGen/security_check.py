@@ -1,7 +1,9 @@
 import argparse
+import json
 import os
 import pickle
 import random
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -9,7 +11,10 @@ import torch.nn as nn
 from torch import optim
 from torch.utils.data import DataLoader
 
-from models1 import TransformerAutoencoder, TimeSeriesDataset1
+try:
+    from .models1 import TransformerAutoencoder, TimeSeriesDataset1
+except ImportError:  # Preserve direct ``python main.py`` execution from SmartGen/.
+    from models1 import TransformerAutoencoder, TimeSeriesDataset1
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 vocab_dic = {"an": 141, "fr": 223, "us": 269, "sp": 235}
@@ -176,7 +181,7 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -228,7 +233,7 @@ def train_check(new_env, vocab_size, epochs, train_file, add_file, model_name, s
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -251,7 +256,7 @@ def vld_check(new_env, vocab_size, vld_file, model_name, seq_len):
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
 
     losses = []
@@ -264,7 +269,7 @@ def vld_check(new_env, vocab_size, vld_file, model_name, seq_len):
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -283,7 +288,7 @@ def check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
 
     losses = []
@@ -295,7 +300,7 @@ def check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -368,3 +373,59 @@ def security_check(dataset, new_env, thres, method, model):
 
     print(
         f'The true reversed sequences ： {reversed_sequence}. \n The true number of reversed sequences is {len(reversed_sequence)}.')
+
+
+def security_check_file(data_file, output_dir, dataset, new_env, epochs=10):
+    """Run SmartGen's original two-stage TOF on an explicit generated PKL.
+
+    Stage one applies the original reconstruction-loss IQR rule. Stage two adds
+    each candidate back and compares validation loss, exactly as ``security_check``.
+    All training and validation inputs are derived from ``data_file``.
+    """
+    output = Path(output_dir)
+    output.mkdir(parents=True, exist_ok=True)
+    data_file = str(Path(data_file).resolve())
+    model_name = str(output / "tof_model.pth")
+    first_stage_file = str(output / "tof_stage1_sequences.pkl")
+    final_file = str(output / "tof_sequences.pkl")
+    vocab_size = vocab_dic[dataset]
+    seq_len = 40
+    setup_seed(2024)
+    train(new_env, vocab_size, epochs, data_file, model_name, seq_len)
+    retained, outliers = check_outlier(new_env, vocab_size, data_file, first_stage_file, model_name, seq_len)
+    first_stage_count = len(retained)
+    outlier_prefix = str(output / "tof_stage1_outlier")
+    flag = save_outliers(outliers, outlier_prefix)
+    recovered = 0
+    if flag == 1:
+        train_file = str(output / "tof_stage2_train.pkl")
+        validation_file = str(output / "tof_stage2_validation.pkl")
+        split_random(first_stage_file, train_file, validation_file)
+        train(new_env, vocab_size, epochs, train_file, model_name, seq_len)
+        standard_loss = vld_check(new_env, vocab_size, validation_file, model_name, seq_len)
+        for index, outlier in enumerate(outliers):
+            add_file = f"{outlier_prefix}_{index}.pkl"
+            train_check(new_env, vocab_size, epochs, train_file, add_file, model_name, seq_len)
+            new_loss = vld_check(new_env, vocab_size, validation_file, model_name, seq_len)
+            if new_loss <= standard_loss:
+                retained.append(outlier)
+                recovered += 1
+    with open(final_file, "wb") as handle:
+        pickle.dump(retained, handle)
+    with open(data_file, "rb") as handle:
+        input_count = len(pickle.load(handle))
+    report = {
+        "implementation": "SmartGen original two-stage TOF",
+        "input_path": data_file,
+        "input_count": input_count,
+        "stage1_retained_count": first_stage_count,
+        "stage1_outlier_count": len(outliers),
+        "stage2_recovered_count": recovered,
+        "final_count": len(retained),
+        "epochs_per_fit": epochs,
+        "device": str(device),
+        "uses_target_behavior": False,
+        "output_path": final_file,
+    }
+    (output / "tof_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    return Path(final_file), report

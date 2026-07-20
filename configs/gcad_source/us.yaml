@@ -1,0 +1,35 @@
+gcad_source:
+  enabled: true
+  channel_mode: device_action
+  time_bin: 3.0
+  occurrence_mode: binary
+  history_length: 4
+  hidden_size: 128
+  num_layers: 3
+  dropout: 0.1
+  activation: relu
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  batch_size: 64
+  epochs: 50
+  patience: 7
+  seeds: [2024, 2025, 2026]
+  bootstrap_count: 1
+  validation_ratio: 0.2
+  gradient_clip: 1.0
+  stability_threshold: 0.25
+  occurrence_threshold: 0.6667
+  direction_consistency_threshold: 0.6667
+  edge_threshold: 0.01
+  top_k: 5
+  fusion_alpha: 0.2
+  fusion_mode: rerank_existing
+  allow_new_edges: false
+  max_new_edges_per_source: 1
+  ranking_enabled: true
+  ranking_weight: 1.0
+  device: cpu
+  num_workers: 0
+generation_backend:
+  type: codex_file
+
