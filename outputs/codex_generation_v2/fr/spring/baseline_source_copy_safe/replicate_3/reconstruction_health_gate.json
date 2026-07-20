@@ -1,0 +1,11 @@
+{
+  "stage": "pre_target_reconstruction_health_v1",
+  "passed": false,
+  "checks": {
+    "all_split_health_checks": false,
+    "threshold_stability": false
+  },
+  "threshold_basis": "generated-only reconstruction losses across frozen split seeds",
+  "uses_official_synthetic_threshold": false,
+  "uses_target_behavior": false
+}

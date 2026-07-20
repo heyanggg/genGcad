@@ -330,7 +330,8 @@ def command_prepare_detector(args):
     from .downstream_evaluation import prepare_generated_detector
 
     result = prepare_generated_detector(
-        args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs, args.ranking
+        args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs, args.ranking,
+        args.split_seed, args.model_seed,
     )
     print(json.dumps(result, indent=2))
 
@@ -450,7 +451,8 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--generated", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--context", required=True); item.add_argument("--output", required=True)
     item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
-    item.add_argument("--ranking"); item.set_defaults(function=command_prepare_detector)
+    item.add_argument("--ranking"); item.add_argument("--split-seed", type=int, default=2024)
+    item.add_argument("--model-seed", type=int, default=2024); item.set_defaults(function=command_prepare_detector)
     item = sub.add_parser("evaluate-prepared")
     item.add_argument("--prepared", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--context", required=True); item.set_defaults(function=command_evaluate_prepared)

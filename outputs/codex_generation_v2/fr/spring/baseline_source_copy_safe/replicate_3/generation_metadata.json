@@ -1,0 +1,8 @@
+{
+  "sequence_count": 137,
+  "format": "flat SmartGen integer quadruples [day,hour,device,action]",
+  "created_at_utc": "2026-07-20T16:08:46.346078+00:00",
+  "source": "/home/heyang/projects/SmartGen_GCAD/outputs/codex_generation_v2/fr/spring/baseline_source_copy_safe/replicate_3/generation_responses_validated.jsonl",
+  "external_api_called": false,
+  "target_behavior_read": false
+}

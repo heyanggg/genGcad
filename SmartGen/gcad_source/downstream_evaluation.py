@@ -46,6 +46,8 @@ def prepare_generated_detector(
     percentile: float,
     epochs: int = 15,
     ranking_path: str | Path | None = None,
+    split_seed: int = 2024,
+    model_seed: int = 2024,
 ) -> dict:
     """Freeze detector and threshold without accepting any target role."""
     output = Path(output_dir)
@@ -54,7 +56,7 @@ def prepare_generated_detector(
     require_roles("threshold", [generated])
     with generated.path.open("rb") as handle:
         sequences = pickle.load(handle)
-    train_indices, validation_indices, split_report = split_without_exact_overlap(sequences, seed=2024)
+    train_indices, validation_indices, split_report = split_without_exact_overlap(sequences, seed=split_seed)
     train_file = output / "generated_train.pkl"
     validation_file = output / "generated_validation.pkl"
     write_split(sequences, train_indices, validation_indices, train_file, validation_file)
@@ -70,7 +72,7 @@ def prepare_generated_detector(
             raise ValueError("ranking indices do not exactly cover generated sequences")
         if weights_by_index is not None:
             train_weights = [weights_by_index[index] for index in train_indices]
-    setup_seed(2024)
+    setup_seed(model_seed)
     vocabulary_size = vocab_dic[dataset]
     sequence_length = 10
     model_path = output / "downstream_model.pth"
@@ -84,6 +86,7 @@ def prepare_generated_detector(
     )
     report = {
         "dataset": dataset, "context": context, "generated_file": str(generated.path),
+        "split_seed": split_seed, "model_seed": model_seed,
         "model_path": str(model_path.resolve()), "threshold_source": "generated_validation",
         "threshold_percentile": percentile, "threshold": float(threshold), "epochs": epochs,
         "training_loss_by_epoch": history,
@@ -113,7 +116,7 @@ def evaluate_prepared_detector(
     """The only function in this module that opens target behavior artifacts."""
     root = Path(repository_root).resolve()
     output = Path(prepared_dir)
-    if "baseline_source_semantic" in output.parts:
+    if "codex_generation_v2" in output.parts:
         from SmartGen.generation_backends.reconstruction_health import require_final_evaluation_gates
 
         require_final_evaluation_gates(output)
@@ -155,6 +158,10 @@ def evaluate_generated_sequences(
     epochs: int = 15,
     repository_root: str | Path = ".",
     ranking_path: str | Path | None = None,
+    split_seed: int = 2024,
+    model_seed: int = 2024,
 ) -> dict:
-    prepare_generated_detector(generated_file, dataset, context, output_dir, percentile, epochs, ranking_path)
+    prepare_generated_detector(
+        generated_file, dataset, context, output_dir, percentile, epochs, ranking_path, split_seed, model_seed
+    )
     return evaluate_prepared_detector(output_dir, dataset, context, repository_root)

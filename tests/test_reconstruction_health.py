@@ -121,3 +121,19 @@ def test_final_evaluation_is_blocked_until_all_three_gates_pass(tmp_path):
         json.dumps({"passed": True, "uses_target_behavior": False})
     )
     require_final_evaluation_gates(prepared)
+
+
+def test_codex_v2_prepared_evaluation_invokes_three_gate_guard(tmp_path, monkeypatch):
+    from SmartGen.gcad_source import downstream_evaluation as module
+
+    prepared = tmp_path / "outputs" / "codex_generation_v2" / "replicate_3" / "downstream_prepared"
+    prepared.mkdir(parents=True)
+    called = []
+    monkeypatch.setattr(
+        "SmartGen.generation_backends.reconstruction_health.require_final_evaluation_gates",
+        lambda path: called.append(Path(path)),
+    )
+    monkeypatch.setattr(Path, "read_text", lambda self, encoding=None: (_ for _ in ()).throw(RuntimeError("stop")))
+    with pytest.raises(RuntimeError, match="stop"):
+        module.evaluate_prepared_detector(prepared, "fr", "spring")
+    assert called == [prepared]

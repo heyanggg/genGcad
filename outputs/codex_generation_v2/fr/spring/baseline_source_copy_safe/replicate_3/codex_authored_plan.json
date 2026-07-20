@@ -1,0 +1,1682 @@
+[
+  {
+    "request_id": "req_51e40060f8946d2abfac",
+    "group_id": "0_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_0_0_1_01",
+        "day": 0,
+        "start_bin": 0,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Heater|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_02",
+        "day": 3,
+        "start_bin": 5,
+        "actions": [
+          "Light|setLightingMode",
+          "Light|switch on",
+          "Light|setLightingMode",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_03",
+        "day": 6,
+        "start_bin": 2,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_04",
+        "day": 2,
+        "start_bin": 7,
+        "actions": [
+          "Light|switch on",
+          "Light|setLightingMode",
+          "Light|setLightingMode",
+          "GarageDoor|doorControl open"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_05",
+        "day": 5,
+        "start_bin": 4,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_06",
+        "day": 1,
+        "start_bin": 1,
+        "actions": [
+          "Television|setInputSource",
+          "Light|setLightingMode",
+          "Light|switch on",
+          "Light|setLightingMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_07",
+        "day": 4,
+        "start_bin": 6,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Light|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_0_1_08",
+        "day": 0,
+        "start_bin": 3,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Light|switch on",
+          "Light|setLightingMode",
+          "Television|audioMute unmute"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_439f27c85c245c8d3d14",
+    "group_id": "0_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_0_1_1_01",
+        "day": 4,
+        "start_bin": 2,
+        "actions": [
+          "Television|audioMute unmute",
+          "Television|switch on",
+          "Television|switch on",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_1_1_02",
+        "day": 0,
+        "start_bin": 7,
+        "actions": [
+          "Television|audioMute unmute",
+          "Television|switch on",
+          "Television|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_1_1_03",
+        "day": 3,
+        "start_bin": 4,
+        "actions": [
+          "Camera|notification",
+          "Television|switch on",
+          "Television|audioMute unmute",
+          "Television|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_1_1_04",
+        "day": 6,
+        "start_bin": 1,
+        "actions": [
+          "Television|switch on",
+          "Television|audioMute unmute",
+          "Television|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_1_1_05",
+        "day": 2,
+        "start_bin": 6,
+        "actions": [
+          "Camera|notification",
+          "Television|audioMute unmute",
+          "Television|switch on",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_0_1_1_06",
+        "day": 5,
+        "start_bin": 3,
+        "actions": [
+          "Television|audioMute unmute",
+          "Television|switch on",
+          "Television|volumeDown"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_3b8ddc1cbdf8e99eb8b1",
+    "group_id": "1_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_1_0_1_01",
+        "day": 2,
+        "start_bin": 2,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_02",
+        "day": 5,
+        "start_bin": 7,
+        "actions": [
+          "Television|audioMute unmute",
+          "Other|switch on",
+          "Camera|notification",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_03",
+        "day": 1,
+        "start_bin": 4,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_04",
+        "day": 4,
+        "start_bin": 1,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Light|setLevel"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_05",
+        "day": 0,
+        "start_bin": 6,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Television|audioMute unmute"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_06",
+        "day": 3,
+        "start_bin": 3,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "GarageDoor|doorControl close",
+          "GarageDoor|doorControl open"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_07",
+        "day": 6,
+        "start_bin": 0,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_08",
+        "day": 2,
+        "start_bin": 5,
+        "actions": [
+          "Other|switch on",
+          "GarageDoor|doorControl close",
+          "Camera|notification",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_09",
+        "day": 5,
+        "start_bin": 2,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Projector|custom.soundmode setSoundMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_10",
+        "day": 1,
+        "start_bin": 7,
+        "actions": [
+          "Light|setLevel",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_11",
+        "day": 4,
+        "start_bin": 4,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Other|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_0_1_12",
+        "day": 0,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Television|volumeDown",
+          "Blind|windowShade close"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_514eda2bbbdfe10b75d1",
+    "group_id": "1_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_1_1_1_01",
+        "day": 4,
+        "start_bin": 0,
+        "actions": [
+          "NetworkAudio|audioMute mute",
+          "Camera|notification",
+          "AirPurifier|setFanSpeed",
+          "Blind|windowShade open"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_02",
+        "day": 0,
+        "start_bin": 5,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "Blind|windowShade open",
+          "Television|setInputSource"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_03",
+        "day": 3,
+        "start_bin": 2,
+        "actions": [
+          "NetworkAudio|audioMute mute",
+          "AirPurifier|setFanSpeed",
+          "Blind|windowShade open",
+          "NetworkAudio|audioMute mute"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_04",
+        "day": 6,
+        "start_bin": 7,
+        "actions": [
+          "Camera|notification",
+          "Other|switch on",
+          "Other|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_05",
+        "day": 2,
+        "start_bin": 4,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "Blind|windowShade open",
+          "Camera|notification",
+          "NetworkAudio|audioMute mute"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_06",
+        "day": 5,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Light|setLevel"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_07",
+        "day": 1,
+        "start_bin": 6,
+        "actions": [
+          "Other|switch on",
+          "Other|switch on",
+          "Other|switch on",
+          "Television|setInputSource"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_08",
+        "day": 4,
+        "start_bin": 3,
+        "actions": [
+          "Television|volumeDown",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_09",
+        "day": 0,
+        "start_bin": 0,
+        "actions": [
+          "Television|setInputSource",
+          "Other|switch on",
+          "Other|switch on",
+          "Other|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_1_1_1_10",
+        "day": 3,
+        "start_bin": 5,
+        "actions": [
+          "Television|setInputSource",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_1cc0e8766acc2168aa01",
+    "group_id": "2_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_2_0_1_01",
+        "day": 0,
+        "start_bin": 4,
+        "actions": [
+          "Light|setLightingMode",
+          "AirPurifier|refresh refresh",
+          "Heater|switch off",
+          "Television|audioMute unmute"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_02",
+        "day": 3,
+        "start_bin": 1,
+        "actions": [
+          "Television|refresh refresh",
+          "Television|audioMute unmute",
+          "Television|volumeDown",
+          "Blind|windowShade open",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_03",
+        "day": 6,
+        "start_bin": 6,
+        "actions": [
+          "AirPurifier|refresh refresh",
+          "Heater|switch off",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_04",
+        "day": 2,
+        "start_bin": 3,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Television|audioMute unmute",
+          "Television|volumeDown",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_05",
+        "day": 5,
+        "start_bin": 0,
+        "actions": [
+          "AirPurifier|refresh refresh",
+          "Heater|switch off",
+          "Heater|switch on",
+          "Heater|switch off",
+          "Heater|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_06",
+        "day": 1,
+        "start_bin": 5,
+        "actions": [
+          "Heater|switch on",
+          "Television|audioMute unmute",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_0_1_07",
+        "day": 4,
+        "start_bin": 2,
+        "actions": [
+          "Television|audioMute unmute",
+          "AirPurifier|refresh refresh",
+          "Heater|switch off",
+          "AirPurifier|refresh refresh"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_07d8b02115d321757b25",
+    "group_id": "2_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_2_1_1_01",
+        "day": 1,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade open",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_1_1_02",
+        "day": 4,
+        "start_bin": 6,
+        "actions": [
+          "Blind|windowShade close",
+          "Television|setChannel",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_1_1_03",
+        "day": 0,
+        "start_bin": 3,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|setChannel",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_1_1_04",
+        "day": 3,
+        "start_bin": 0,
+        "actions": [
+          "Dryer|notification",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|setChannel",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_1_1_05",
+        "day": 6,
+        "start_bin": 5,
+        "actions": [
+          "Blind|windowShade open",
+          "Camera|notification",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Dryer|notification",
+          "Blind|windowShade open",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_2_1_1_06",
+        "day": 2,
+        "start_bin": 2,
+        "actions": [
+          "Television|setChannel",
+          "Blind|windowShade close",
+          "Dryer|notification",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close",
+          "Television|setChannel"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_ce40c15eb03426daa197",
+    "group_id": "3_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_3_0_1_01",
+        "day": 6,
+        "start_bin": 1,
+        "actions": [
+          "Light|setLightingMode",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade open"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_0_1_02",
+        "day": 2,
+        "start_bin": 6,
+        "actions": [
+          "SmartLock|lock lock",
+          "Camera|notification",
+          "Blind|windowShade open",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_0_1_03",
+        "day": 5,
+        "start_bin": 3,
+        "actions": [
+          "AirPurifier|setAirPurifierMode",
+          "Light|setLightingMode",
+          "Light|setLightingMode",
+          "AirPurifier|setAirPurifierMode",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_0_1_04",
+        "day": 1,
+        "start_bin": 0,
+        "actions": [
+          "Light|setLightingMode",
+          "Television|setInputSource",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade close",
+          "Television|setChannel",
+          "Light|setLightingMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_0_1_05",
+        "day": 4,
+        "start_bin": 5,
+        "actions": [
+          "SmartLock|lock lock",
+          "Camera|notification",
+          "Television|setInputSource",
+          "SmartLock|lock lock",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Camera|notification",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_0_1_06",
+        "day": 0,
+        "start_bin": 2,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_75d07e65fc140e7de5a7",
+    "group_id": "3_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_3_1_1_01",
+        "day": 4,
+        "start_bin": 1,
+        "actions": [
+          "Television|setChannel",
+          "Television|setChannel",
+          "Blind|windowShade open",
+          "Blind|windowShade close",
+          "Light|switch off"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_02",
+        "day": 0,
+        "start_bin": 6,
+        "actions": [
+          "NetworkAudio|audioMute mute",
+          "NetworkAudio|audioMute mute",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Other|switch on",
+          "Other|switch on",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_03",
+        "day": 3,
+        "start_bin": 3,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade open",
+          "Light|switch off"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_04",
+        "day": 6,
+        "start_bin": 0,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|setChannel",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_05",
+        "day": 2,
+        "start_bin": 5,
+        "actions": [
+          "Light|switch off",
+          "Light|switch off",
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_06",
+        "day": 5,
+        "start_bin": 2,
+        "actions": [
+          "Television|volumeDown",
+          "Television|volumeDown",
+          "Blind|windowShade close",
+          "Television|setChannel",
+          "NetworkAudio|audioMute mute",
+          "NetworkAudio|audioMute mute"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_07",
+        "day": 1,
+        "start_bin": 7,
+        "actions": [
+          "Blind|windowShade open",
+          "Blind|windowShade close",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_3_1_1_08",
+        "day": 4,
+        "start_bin": 4,
+        "actions": [
+          "Other|switch on",
+          "Other|switch on",
+          "NetworkAudio|audioMute mute",
+          "Television|volumeDown"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_9cef5a82a9a8a8a5a5e8",
+    "group_id": "4_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_4_0_1_01",
+        "day": 1,
+        "start_bin": 3,
+        "actions": [
+          "Other|notification",
+          "Camera|notification",
+          "Blind|windowShade open",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_02",
+        "day": 4,
+        "start_bin": 0,
+        "actions": [
+          "Television|setChannel",
+          "Camera|notification",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed",
+          "NetworkAudio|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_03",
+        "day": 0,
+        "start_bin": 5,
+        "actions": [
+          "Other|notification",
+          "Camera|notification",
+          "Camera|notification",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Other|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_04",
+        "day": 3,
+        "start_bin": 2,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "Television|setChannel",
+          "Television|setChannel",
+          "Television|setChannel",
+          "NetworkAudio|switch on",
+          "AirPurifier|setFanSpeed",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_05",
+        "day": 6,
+        "start_bin": 7,
+        "actions": [
+          "Other|notification",
+          "Camera|notification",
+          "AirPurifier|setFanSpeed"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_06",
+        "day": 2,
+        "start_bin": 4,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "Television|volumeDown",
+          "Television|audioMute unmute",
+          "AirPurifier|setFanSpeed"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_07",
+        "day": 5,
+        "start_bin": 1,
+        "actions": [
+          "Other|notification",
+          "Camera|notification",
+          "Television|setChannel",
+          "Other|notification",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_0_1_08",
+        "day": 1,
+        "start_bin": 6,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "Television|setChannel",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed",
+          "Camera|notification",
+          "AirPurifier|setFanSpeed"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_12a89546fd14fcfad959",
+    "group_id": "4_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_4_1_1_01",
+        "day": 5,
+        "start_bin": 5,
+        "actions": [
+          "AirPurifier|refresh refresh",
+          "Television|setChannel",
+          "AirPurifier|refresh refresh",
+          "Television|audioMute unmute",
+          "Heater|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_02",
+        "day": 1,
+        "start_bin": 2,
+        "actions": [
+          "Heater|switch off",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|switch on",
+          "Television|audioMute unmute",
+          "Projector|custom.soundmode setSoundMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_03",
+        "day": 4,
+        "start_bin": 7,
+        "actions": [
+          "Switch|refresh refresh",
+          "AirPurifier|refresh refresh",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close",
+          "Television|refresh refresh",
+          "Blind|windowShade close",
+          "Television|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_04",
+        "day": 0,
+        "start_bin": 4,
+        "actions": [
+          "Television|setPictureMode",
+          "Camera|notification",
+          "Television|setInputSource",
+          "Other|custom.soundmode setSoundMode",
+          "Blind|windowShade close",
+          "AirPurifier|refresh refresh",
+          "AirPurifier|setFanSpeed",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_05",
+        "day": 3,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Switch|refresh refresh",
+          "Television|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_06",
+        "day": 6,
+        "start_bin": 6,
+        "actions": [
+          "Heater|switch on",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_07",
+        "day": 2,
+        "start_bin": 3,
+        "actions": [
+          "Television|audioMute unmute",
+          "AirPurifier|setAirPurifierMode",
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_08",
+        "day": 5,
+        "start_bin": 0,
+        "actions": [
+          "Television|switch on",
+          "Heater|switch off",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "AirPurifier|setAirPurifierMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_09",
+        "day": 1,
+        "start_bin": 5,
+        "actions": [
+          "Blind|windowShade close",
+          "Switch|refresh refresh",
+          "AirPurifier|setFanSpeed",
+          "Television|setChannel",
+          "Television|setChannel",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_10",
+        "day": 4,
+        "start_bin": 2,
+        "actions": [
+          "Other|custom.soundmode setSoundMode",
+          "Television|setPictureMode",
+          "Heater|switch on",
+          "AirPurifier|refresh refresh",
+          "Television|setChannel",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Switch|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_11",
+        "day": 0,
+        "start_bin": 7,
+        "actions": [
+          "Camera|notification",
+          "Television|setChannel",
+          "Television|audioMute unmute"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_12",
+        "day": 3,
+        "start_bin": 4,
+        "actions": [
+          "Television|volumeDown",
+          "Television|setChannel",
+          "Heater|switch off",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_13",
+        "day": 6,
+        "start_bin": 1,
+        "actions": [
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close",
+          "Television|setInputSource",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_14",
+        "day": 2,
+        "start_bin": 6,
+        "actions": [
+          "Projector|custom.soundmode setSoundMode",
+          "Television|switch on",
+          "Other|custom.soundmode setSoundMode",
+          "Heater|switch on",
+          "AirPurifier|refresh refresh",
+          "Television|audioMute unmute"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_1_15",
+        "day": 5,
+        "start_bin": 3,
+        "actions": [
+          "Television|setChannel",
+          "Blind|windowShade close",
+          "Television|refresh refresh",
+          "Heater|switch off",
+          "Television|setPictureMode",
+          "Television|setPictureMode",
+          "Television|setPictureMode"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_0785bf98fba491e2f9f4",
+    "group_id": "4_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_4_1_2_01",
+        "day": 2,
+        "start_bin": 2,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Camera|notification",
+          "Blind|windowShade open"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_02",
+        "day": 5,
+        "start_bin": 7,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|switch on",
+          "Television|volumeDown",
+          "AirPurifier|setFanSpeed"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_03",
+        "day": 1,
+        "start_bin": 4,
+        "actions": [
+          "Television|setInputSource",
+          "Blind|windowShade open",
+          "Blind|windowShade open",
+          "Heater|switch on",
+          "AirPurifier|setFanSpeed"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_04",
+        "day": 4,
+        "start_bin": 1,
+        "actions": [
+          "AirPurifier|setAirPurifierMode",
+          "Projector|custom.soundmode setSoundMode",
+          "AirPurifier|refresh refresh",
+          "Television|audioMute unmute",
+          "Switch|refresh refresh",
+          "Television|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_05",
+        "day": 0,
+        "start_bin": 6,
+        "actions": [
+          "Heater|switch off",
+          "Television|setChannel",
+          "Camera|notification",
+          "Television|switch on",
+          "AirPurifier|refresh refresh",
+          "Television|setChannel",
+          "Other|custom.soundmode setSoundMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_06",
+        "day": 3,
+        "start_bin": 3,
+        "actions": [
+          "Switch|refresh refresh",
+          "AirPurifier|refresh refresh",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|setChannel",
+          "Television|refresh refresh",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_07",
+        "day": 6,
+        "start_bin": 0,
+        "actions": [
+          "Television|refresh refresh",
+          "Blind|windowShade close",
+          "Television|setInputSource"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_08",
+        "day": 2,
+        "start_bin": 5,
+        "actions": [
+          "AirPurifier|setFanSpeed",
+          "AirPurifier|setFanSpeed",
+          "Camera|notification",
+          "Television|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_09",
+        "day": 5,
+        "start_bin": 2,
+        "actions": [
+          "Camera|notification",
+          "AirPurifier|setFanSpeed",
+          "Heater|switch off",
+          "Television|volumeDown",
+          "Television|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_10",
+        "day": 1,
+        "start_bin": 7,
+        "actions": [
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed",
+          "Switch|refresh refresh",
+          "Blind|windowShade open",
+          "Television|volumeDown",
+          "Television|setInputSource"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_11",
+        "day": 4,
+        "start_bin": 4,
+        "actions": [
+          "Television|switch on",
+          "Heater|switch off",
+          "Television|setPictureMode",
+          "Projector|custom.soundmode setSoundMode",
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "AirPurifier|refresh refresh"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_12",
+        "day": 0,
+        "start_bin": 1,
+        "actions": [
+          "Blind|windowShade close",
+          "Switch|refresh refresh",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Projector|custom.soundmode setSoundMode",
+          "Heater|switch off",
+          "Camera|notification",
+          "Heater|switch off"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_13",
+        "day": 3,
+        "start_bin": 6,
+        "actions": [
+          "Television|setChannel",
+          "Camera|notification",
+          "Heater|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_1_2_14",
+        "day": 6,
+        "start_bin": 3,
+        "actions": [
+          "Television|refresh refresh",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_9d53cee7f5d6f98d4e06",
+    "group_id": "4_2",
+    "sequences": [
+      {
+        "sequence_id": "r3_4_2_1_01",
+        "day": 3,
+        "start_bin": 2,
+        "actions": [
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Television|volumeDown",
+          "NetworkAudio|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_02",
+        "day": 6,
+        "start_bin": 7,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "NetworkAudio|switch on",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_03",
+        "day": 2,
+        "start_bin": 4,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|volumeDown",
+          "Camera|notification",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_04",
+        "day": 5,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade open",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close",
+          "NetworkAudio|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_05",
+        "day": 1,
+        "start_bin": 6,
+        "actions": [
+          "Blind|windowShade open",
+          "Camera|notification",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_06",
+        "day": 4,
+        "start_bin": 3,
+        "actions": [
+          "Television|volumeDown",
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_07",
+        "day": 0,
+        "start_bin": 0,
+        "actions": [
+          "NetworkAudio|switch on",
+          "Blind|windowShade open",
+          "Camera|notification",
+          "Television|volumeDown",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_08",
+        "day": 3,
+        "start_bin": 5,
+        "actions": [
+          "Camera|notification",
+          "GarageDoor|doorControl open",
+          "Television|volumeDown",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Television|volumeDown"
+        ]
+      },
+      {
+        "sequence_id": "r3_4_2_1_09",
+        "day": 6,
+        "start_bin": 2,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "NetworkAudio|switch on",
+          "Camera|notification",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_1707795cc4321ccfb207",
+    "group_id": "5_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_5_0_1_01",
+        "day": 3,
+        "start_bin": 1,
+        "actions": [
+          "Other|switch on",
+          "AirPurifier|setFanSpeed",
+          "Dryer|notification",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_02",
+        "day": 6,
+        "start_bin": 6,
+        "actions": [
+          "Television|volumeDown",
+          "Other|switch on",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade open",
+          "Dryer|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_03",
+        "day": 2,
+        "start_bin": 3,
+        "actions": [
+          "Dryer|notification",
+          "Blind|windowShade open",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_04",
+        "day": 5,
+        "start_bin": 0,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Television|setChannel",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_05",
+        "day": 1,
+        "start_bin": 5,
+        "actions": [
+          "Blind|windowShade close",
+          "Other|switch on",
+          "Other|switch on",
+          "GarageDoor|doorControl open",
+          "Other|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_06",
+        "day": 4,
+        "start_bin": 2,
+        "actions": [
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_07",
+        "day": 0,
+        "start_bin": 7,
+        "actions": [
+          "Television|setChannel",
+          "Television|setChannel",
+          "AirPurifier|setFanSpeed",
+          "Blind|windowShade open"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_08",
+        "day": 3,
+        "start_bin": 4,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Projector|custom.soundmode setSoundMode",
+          "Other|switch on",
+          "Projector|custom.soundmode setSoundMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_0_1_09",
+        "day": 6,
+        "start_bin": 1,
+        "actions": [
+          "Projector|custom.soundmode setSoundMode",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_65bf897fa82aae96f85c",
+    "group_id": "5_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_5_1_1_01",
+        "day": 3,
+        "start_bin": 0,
+        "actions": [
+          "Blind|windowShade open",
+          "Other|switch on",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_1_1_02",
+        "day": 6,
+        "start_bin": 5,
+        "actions": [
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_1_1_03",
+        "day": 2,
+        "start_bin": 2,
+        "actions": [
+          "Television|setChannel",
+          "Blind|windowShade open",
+          "Television|setChannel",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_1_1_04",
+        "day": 5,
+        "start_bin": 7,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade close",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_1_1_05",
+        "day": 1,
+        "start_bin": 4,
+        "actions": [
+          "Other|switch on",
+          "Blind|windowShade close",
+          "Camera|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_5_1_1_06",
+        "day": 4,
+        "start_bin": 1,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Camera|notification"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_cd1a906c7db312421f5d",
+    "group_id": "6_0",
+    "sequences": [
+      {
+        "sequence_id": "r3_6_0_1_01",
+        "day": 1,
+        "start_bin": 0,
+        "actions": [
+          "Light|switch off",
+          "Television|switch on",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "NetworkAudio|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_02",
+        "day": 4,
+        "start_bin": 5,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Dryer|notification",
+          "Television|volumeDown",
+          "Television|setChannel",
+          "NetworkAudio|audioVolume setVolume",
+          "RobotCleaner|setRobotCleanerMovement charging"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_03",
+        "day": 0,
+        "start_bin": 2,
+        "actions": [
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Light|switch off"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_04",
+        "day": 3,
+        "start_bin": 7,
+        "actions": [
+          "NetworkAudio|audioVolume setVolume",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Projector|custom.soundmode setSoundMode"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_05",
+        "day": 6,
+        "start_bin": 4,
+        "actions": [
+          "Television|audioMute unmute",
+          "Light|switch off",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Television|switch on"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_06",
+        "day": 2,
+        "start_bin": 1,
+        "actions": [
+          "Blind|windowShade open",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "NetworkAudio|audioVolume setVolume",
+          "NetworkAudio|audioVolume setVolume",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "NetworkAudio|audioVolume setVolume"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_0_1_07",
+        "day": 5,
+        "start_bin": 6,
+        "actions": [
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Television|audioMute unmute"
+        ]
+      }
+    ]
+  },
+  {
+    "request_id": "req_6125f8fb21dee7f911c3",
+    "group_id": "6_1",
+    "sequences": [
+      {
+        "sequence_id": "r3_6_1_1_01",
+        "day": 2,
+        "start_bin": 5,
+        "actions": [
+          "Blind|windowShade open",
+          "Blind|windowShade close",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "Blind|windowShade close"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_1_1_02",
+        "day": 5,
+        "start_bin": 2,
+        "actions": [
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade close",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Dryer|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_1_1_03",
+        "day": 1,
+        "start_bin": 7,
+        "actions": [
+          "Camera|notification",
+          "Blind|windowShade open",
+          "Camera|notification",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "Blind|windowShade close",
+          "Camera|notification",
+          "Television|setChannel"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_1_1_04",
+        "day": 4,
+        "start_bin": 4,
+        "actions": [
+          "Television|audioMute unmute",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "NetworkAudio|audioVolume setVolume",
+          "RobotCleaner|setRobotCleanerMovement charging",
+          "RobotCleaner|setRobotCleanerMovement cleaning",
+          "NetworkAudio|audioVolume setVolume",
+          "NetworkAudio|audioVolume setVolume",
+          "RobotCleaner|setRobotCleanerMovement cleaning"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_1_1_05",
+        "day": 0,
+        "start_bin": 1,
+        "actions": [
+          "Blind|windowShade close",
+          "Blind|windowShade open",
+          "Dryer|notification"
+        ]
+      },
+      {
+        "sequence_id": "r3_6_1_1_06",
+        "day": 3,
+        "start_bin": 6,
+        "actions": [
+          "Television|setChannel",
+          "Camera|notification",
+          "Dryer|notification",
+          "Camera|notification"
+        ]
+      }
+    ]
+  }
+]
