@@ -26,3 +26,15 @@ def test_continue_pipeline_can_explicitly_enable_final_evaluation():
     ])
     assert args.evaluate_output == "evaluation"
     assert args.apply_ranking_to_downstream is True
+
+
+def test_preparation_and_final_evaluation_are_separate_commands():
+    prepare = parser().parse_args([
+        "prepare-generated", "--generated", "x.pkl", "--dataset", "fr", "--context", "spring",
+        "--output", "prepared", "--percentile", "95.5",
+    ])
+    final = parser().parse_args([
+        "evaluate-prepared", "--prepared", "prepared", "--dataset", "fr", "--context", "spring",
+    ])
+    assert prepare.command == "prepare-generated"
+    assert final.command == "evaluate-prepared"

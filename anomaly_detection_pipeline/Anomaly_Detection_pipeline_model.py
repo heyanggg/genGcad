@@ -124,6 +124,7 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_w
     if sample_weights is not None and len(sample_weights) != len(train_loader.dataset):
         raise ValueError("sample weights must cover every training sequence exactly once")
 
+    history = []
     for epoch in range(num_epochs):
         total_loss = 0
         sample_offset = 0
@@ -148,13 +149,15 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_w
             optimizer.step()
         torch.save(model.state_dict(), model_name)
         avg_loss = total_loss / len(train_loader)
+        history.append(float(avg_loss))
 
         print(
             f"Epoch [{epoch + 1}/{num_epochs}] - Train Loss: {avg_loss:.4f}")
     print('Finished Training')
+    return history
 
 
-def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentage):
+def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentage, return_losses=False):
     val_loader = make_data(new_env, vocab_size, data_file=vld_file, batch_size=1)
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
@@ -184,10 +187,12 @@ def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentag
     print(f"Avg Loss (Validation Dataset): {avg_loss:.4f}")
     threshold = np.percentile(losses, percentage)
     print(f"Percentage:{percentage}% Threshold: {threshold}")
+    if return_losses:
+        return threshold, losses
     return threshold
 
 
-def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, threshold):
+def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, threshold, return_details=False):
     with open(test_file1, 'rb') as file:
         input_train_attack1 = pickle.load(file)
     input_train_attack = input_train_attack1
@@ -276,6 +281,16 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
     print(f"Max loss {max_loss:.4f} , Min loss: {min_loss:.4f}")
     print('Finished Test')
 
+    if return_details:
+        normal_count = len(input_train_test)
+        details = {
+            "confusion_matrix": {"tn": int(TN), "fp": int(FP), "fn": int(FN), "tp": int(TP)},
+            "fpr": float(FPR),
+            "fnr": float(FNR),
+            "normal_scores": [float(value) for value in losses[:normal_count]],
+            "attack_scores": [float(value) for value in losses[normal_count:]],
+        }
+        return recall, precision, accuracy, f1_score, details
     return recall, precision, accuracy, f1_score
 
 

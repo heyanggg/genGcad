@@ -266,6 +266,21 @@ def command_evaluate(args):
     print(json.dumps(result, indent=2))
 
 
+def command_prepare_detector(args):
+    from .downstream_evaluation import prepare_generated_detector
+
+    result = prepare_generated_detector(
+        args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs, args.ranking
+    )
+    print(json.dumps(result, indent=2))
+
+
+def command_evaluate_prepared(args):
+    from .downstream_evaluation import evaluate_prepared_detector
+
+    print(json.dumps(evaluate_prepared_detector(args.prepared, args.dataset, args.context), indent=2))
+
+
 def command_control(args):
     from .mechanism_controls import write_control
 
@@ -351,6 +366,14 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
     item.add_argument("--ranking")
     item.set_defaults(function=command_evaluate)
+    item = sub.add_parser("prepare-generated")
+    item.add_argument("--generated", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--context", required=True); item.add_argument("--output", required=True)
+    item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
+    item.add_argument("--ranking"); item.set_defaults(function=command_prepare_detector)
+    item = sub.add_parser("evaluate-prepared")
+    item.add_argument("--prepared", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--context", required=True); item.set_defaults(function=command_evaluate_prepared)
     item = sub.add_parser("build-mechanism-control")
     item.add_argument("--relation", required=True); item.add_argument("--output", required=True)
     item.add_argument("--mode", required=True, choices=["random_directed", "symmetric"])
