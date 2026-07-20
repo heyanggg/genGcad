@@ -218,7 +218,13 @@ def command_evaluate(args):
     from .downstream_evaluation import evaluate_generated_sequences
 
     result = evaluate_generated_sequences(
-        args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs
+        args.generated,
+        args.dataset,
+        args.context,
+        args.output,
+        args.percentile,
+        args.epochs,
+        ranking_path=args.ranking,
     )
     print(json.dumps(result, indent=2))
 
@@ -288,6 +294,7 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--generated", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--context", required=True); item.add_argument("--output", required=True)
     item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
+    item.add_argument("--ranking")
     item.set_defaults(function=command_evaluate)
     return root
 

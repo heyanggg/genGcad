@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 from sklearn.metrics import accuracy_score, recall_score, precision_score, confusion_matrix
 from torch import optim
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 
 try:
     from .models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
@@ -80,7 +80,8 @@ def get_args_parser():
     return parser
 
 
-def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_instance_10.pkl', batch_size=32):
+def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_instance_10.pkl', batch_size=32,
+              sample_weights=None, sampler_seed=2024):
     with open(data_file, 'rb') as file:
         sequences = pickle.load(file)
     data = pad(vocab_size, sequences)
@@ -95,11 +96,24 @@ def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_in
     else:
         dataset = None
 
-    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
+    sampler = None
+    if sample_weights is not None:
+        weights = torch.as_tensor(sample_weights, dtype=torch.double)
+        if len(weights) != len(dataset):
+            raise ValueError(f"sample weight count {len(weights)} != dataset count {len(dataset)}")
+        generator = torch.Generator()
+        generator.manual_seed(sampler_seed)
+        sampler = WeightedRandomSampler(
+            weights=weights,
+            num_samples=len(dataset),
+            replacement=True,
+            generator=generator,
+        )
+    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, sampler=sampler)
     return data_loader
 
 
-def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
+def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_weights=None):
     model = TransformerAutoencoder(vocab_size=vocab_size, d_model=512, nhead=8, num_encoder_layers=2,
                                    num_decoder_layers=2)
 
@@ -108,7 +122,13 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
     criterion = nn.CrossEntropyLoss(reduction='none')
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     num_epochs = epochs
-    train_loader = make_data(new_env, vocab_size, data_file=train_file)
+    train_loader = make_data(
+        new_env,
+        vocab_size,
+        data_file=train_file,
+        sample_weights=sample_weights,
+        sampler_seed=2024,
+    )
 
     for epoch in range(num_epochs):
         total_loss = 0
