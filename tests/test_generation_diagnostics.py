@@ -4,6 +4,7 @@ import numpy as np
 
 from SmartGen.generation_backends.generation_diagnostics import (
     effective_count,
+    near_duplicate_metrics,
     normalized_ngram_entropy,
     sequence_metrics,
 )
@@ -27,3 +28,15 @@ def test_effective_sequence_count_and_template_collapse_metrics():
     assert metrics["exact_duplicate_count"] == 1
     assert metrics["top_1_template_share"] == 0.5
     assert metrics["length"]["distinct_count"] == 2
+
+
+def test_near_duplicate_templates_are_reported_without_counting_exact_duplicates():
+    sequences = [
+        ("a", "b", "c", "d", "e"),
+        ("a", "b", "c", "d", "f"),
+        ("a", "b", "c", "d", "e"),
+        ("x", "y"),
+    ]
+    pair_count, sequence_count = near_duplicate_metrics(sequences)
+    assert pair_count == 1
+    assert sequence_count == 2

@@ -35,6 +35,38 @@ def effective_count(items) -> float:
     return float(np.exp(-np.sum(probabilities * np.log(probabilities))))
 
 
+def _sequence_similarity(left: tuple[str, ...], right: tuple[str, ...]) -> float:
+    """Normalized Levenshtein similarity used only for generated-internal diagnostics."""
+    if left == right:
+        return 1.0
+    if not left or not right:
+        return 0.0
+    previous = list(range(len(right) + 1))
+    for left_index, left_item in enumerate(left, 1):
+        current = [left_index]
+        for right_index, right_item in enumerate(right, 1):
+            current.append(min(
+                current[-1] + 1,
+                previous[right_index] + 1,
+                previous[right_index - 1] + (left_item != right_item),
+            ))
+        previous = current
+    return 1.0 - previous[-1] / max(len(left), len(right))
+
+
+def near_duplicate_metrics(templates: list[tuple[str, ...]], threshold: float = 0.8) -> tuple[int, int]:
+    unique_templates = list(dict.fromkeys(templates))
+    pairs = 0
+    participating = set()
+    for left_index, left in enumerate(unique_templates):
+        for right_index in range(left_index + 1, len(unique_templates)):
+            right = unique_templates[right_index]
+            if _sequence_similarity(left, right) >= threshold:
+                pairs += 1
+                participating.update((left_index, right_index))
+    return pairs, len(participating)
+
+
 def sequence_metrics(action_sequences: list[list[str]]) -> dict:
     templates = [tuple(sequence) for sequence in action_sequences]
     counts = Counter(templates)
@@ -46,6 +78,7 @@ def sequence_metrics(action_sequences: list[list[str]]) -> dict:
     top = [count / total for _, count in counts.most_common(5)]
     opening = Counter(tuple(sequence[:2]) for sequence in action_sequences)
     ending = Counter(tuple(sequence[-2:]) for sequence in action_sequences)
+    near_duplicate_pairs, near_duplicate_sequences = near_duplicate_metrics(templates)
     return {
         "sequence_count": len(templates),
         "length": {
@@ -56,6 +89,9 @@ def sequence_metrics(action_sequences: list[list[str]]) -> dict:
         "unique_sequence_count": len(counts),
         "unique_sequence_ratio": len(counts) / total,
         "exact_duplicate_count": len(templates) - len(counts),
+        "near_duplicate_definition": "distinct action templates with normalized Levenshtein similarity >= 0.8",
+        "near_duplicate_pair_count": near_duplicate_pairs,
+        "near_duplicate_sequence_count": near_duplicate_sequences,
         "unique_unigram_count": len(actions),
         "unique_bigram_count": bigram_count,
         "unique_trigram_count": trigram_count,
