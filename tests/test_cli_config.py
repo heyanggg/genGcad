@@ -7,10 +7,13 @@ def test_config_and_cli_are_runnable():
     assert config.epochs > 2
     assert config.device == "cpu"
     assert parser().parse_args(["validate", "--directory", "x"]).command == "validate"
+    assert parser().parse_args([
+        "evaluate-generated", "--generated", "x.pkl", "--dataset", "fr", "--context", "spring",
+        "--output", "out", "--percentile", "95.5"
+    ]).command == "evaluate-generated"
 
 
 def test_target_metadata_comes_from_static_dictionary():
     metadata = target_metadata("fr")
     assert "Light" in metadata
     assert "switch on" in metadata["Light"]
-

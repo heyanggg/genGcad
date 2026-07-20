@@ -214,6 +214,15 @@ def command_continue(args):
     print(json.dumps(report, indent=2))
 
 
+def command_evaluate(args):
+    from .downstream_evaluation import evaluate_generated_sequences
+
+    result = evaluate_generated_sequences(
+        args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs
+    )
+    print(json.dumps(result, indent=2))
+
+
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(prog="source-gcad")
     sub = root.add_subparsers(dest="command", required=True)
@@ -275,6 +284,11 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.add_argument("--context", required=True)
     item.add_argument("--tof-epochs", type=int, default=10); item.add_argument("--stable-relation")
     item.add_argument("--ranking-weight", type=float, default=1.0); item.set_defaults(function=command_continue)
+    item = sub.add_parser("evaluate-generated")
+    item.add_argument("--generated", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--context", required=True); item.add_argument("--output", required=True)
+    item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
+    item.set_defaults(function=command_evaluate)
     return root
 
 

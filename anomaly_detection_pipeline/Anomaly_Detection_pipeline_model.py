@@ -10,7 +10,10 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, confu
 from torch import optim
 from torch.utils.data import DataLoader
 
-from models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
+try:
+    from .models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
+except ImportError:
+    from models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 vocab_dic = {"an": 141, "fr": 223, "us": 269, "sp": 235}
@@ -115,7 +118,7 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
             mask_v = mask_v.to(device)
             padding_mask = padding_mask.to(device)
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -137,7 +140,7 @@ def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentag
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
 
     losses = []
@@ -149,7 +152,7 @@ def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentag
         mask_v = mask_v.to(device)
         padding_mask = padding_mask.to(device)
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -198,7 +201,7 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
     losses = []
     predictions = []
@@ -212,7 +215,7 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
