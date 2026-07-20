@@ -19,6 +19,7 @@ from .gss_fusion import fuse_gss_files
 from .prediction_baselines import compare_baselines
 from .sequence_ranking import rank_sequences
 from .stability_filter import build_stable_relation
+from .source_resampling import save_selection, select_source_replicate
 from .trainer import load_checkpoint, train_model
 
 
@@ -59,6 +60,11 @@ def command_train(args):
     config = GCADConfig.from_yaml(args.config)
     config.device = args.device or config.device
     sequences, _, _ = load_tensorized(args.tensor_dir)
+    sequences, _, selection = select_source_replicate(
+        sequences, args.seed, args.partition_index, args.partition_count, args.bootstrap_fraction
+    )
+    Path(args.output).mkdir(parents=True, exist_ok=True)
+    save_selection(Path(args.output) / "replicate_selection.json", selection)
     result = train_model(sequences, config, args.output, args.seed)
     comparison = compare_baselines(
         result.model,
@@ -74,6 +80,9 @@ def command_train(args):
 
 def command_extract(args):
     sequences, vocabulary, metadata = load_tensorized(args.tensor_dir)
+    if args.selection:
+        selection = json.loads(Path(args.selection).read_text(encoding="utf-8"))
+        sequences = [sequences[index] for index in selection["selected_sequence_indices"]]
     model, payload = load_checkpoint(args.checkpoint, args.device)
     result = extract_gradient_relation(
         model,
@@ -196,10 +205,13 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--tensor-dir", required=True); item.add_argument("--output", required=True)
     item.add_argument("--config", required=True); item.add_argument("--seed", type=int, required=True)
     item.add_argument("--device"); item.add_argument("--ngram-order", type=int, default=2)
+    item.add_argument("--partition-index", type=int, default=0); item.add_argument("--partition-count", type=int, default=1)
+    item.add_argument("--bootstrap-fraction", type=float, default=1.0)
     item.set_defaults(function=command_train)
     item = sub.add_parser("extract-relations")
     item.add_argument("--tensor-dir", required=True); item.add_argument("--checkpoint", required=True)
     item.add_argument("--output", required=True); item.add_argument("--device", default="cpu")
+    item.add_argument("--selection")
     item.add_argument("--batch-size", type=int, default=64); item.add_argument("--sample-aggregation", default="mean")
     item.add_argument("--lag-aggregation", default="max"); item.add_argument("--edge-threshold", type=float, default=0.01)
     item.add_argument("--top-k", type=int, default=5); item.set_defaults(function=command_extract)
@@ -244,4 +256,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
