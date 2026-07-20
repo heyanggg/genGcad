@@ -229,6 +229,13 @@ def command_evaluate(args):
     print(json.dumps(result, indent=2))
 
 
+def command_control(args):
+    from .mechanism_controls import write_control
+
+    result = write_control(args.relation, args.output, args.mode, args.seed)
+    print(json.dumps({"mode": args.mode, "edge_count": result["edge_count"]}, indent=2))
+
+
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(prog="source-gcad")
     sub = root.add_subparsers(dest="command", required=True)
@@ -296,6 +303,10 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
     item.add_argument("--ranking")
     item.set_defaults(function=command_evaluate)
+    item = sub.add_parser("build-mechanism-control")
+    item.add_argument("--relation", required=True); item.add_argument("--output", required=True)
+    item.add_argument("--mode", required=True, choices=["random_directed", "symmetric"])
+    item.add_argument("--seed", type=int, default=2024); item.set_defaults(function=command_control)
     return root
 
 
