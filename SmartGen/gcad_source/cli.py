@@ -182,6 +182,25 @@ def command_generate_export(args):
     print(json.dumps({"request_count": len(requests), "sequence_count": args.count}, indent=2))
 
 
+def command_generate_grouped(args):
+    from SmartGen.generation_backends.grouped_requests import export_grouped_baseline_requests
+
+    requests = export_grouped_baseline_requests(
+        args.output,
+        experiment_id=args.experiment_id,
+        dataset=args.dataset,
+        source_context=args.source_context,
+        target_context=args.context,
+        compression_threshold=args.threshold,
+        group_plan_path=args.group_plan,
+        target_metadata_path=args.target_metadata,
+        original_gss_path=args.original_gss,
+        device_control_path=args.device_control,
+        replicate=args.replicate,
+    )
+    print(json.dumps({"request_count": len(requests), "sequence_count": sum(x["requested_sequence_count"] for x in requests)}, indent=2))
+
+
 def command_generate_validate(args):
     print(json.dumps(CodexFileBackend().validate(args.directory), indent=2))
 
@@ -309,6 +328,13 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--source-sequence-count", type=int, required=True); item.add_argument("--context-description", required=True)
     item.add_argument("--target-metadata", required=True); item.add_argument("--original-gss", required=True)
     item.add_argument("--fused-gss"); item.add_argument("--stable-relation"); item.set_defaults(function=command_generate_export)
+    item = sub.add_parser("export-grouped-baseline")
+    item.add_argument("--output", required=True); item.add_argument("--experiment-id", required=True)
+    item.add_argument("--dataset", required=True); item.add_argument("--source-context", required=True)
+    item.add_argument("--context", required=True); item.add_argument("--threshold", type=float, required=True)
+    item.add_argument("--group-plan", required=True); item.add_argument("--target-metadata", required=True)
+    item.add_argument("--original-gss", required=True); item.add_argument("--device-control", required=True)
+    item.add_argument("--replicate", type=int, default=1); item.set_defaults(function=command_generate_grouped)
     item = sub.add_parser("validate"); item.add_argument("--directory", required=True); item.set_defaults(function=command_generate_validate)
     item = sub.add_parser("convert"); item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.set_defaults(function=command_generate_convert)
     item = sub.add_parser("continue-pipeline")

@@ -1,0 +1,20 @@
+{
+  "audit_basis": "SmartGen precomputed SPPC groups and historical per-group output counts; historical sequence contents are not reused",
+  "groups": [
+    {"group_id": "0_0", "source_date_or_partition": "day_0", "requested_sequence_count": 8},
+    {"group_id": "0_1", "source_date_or_partition": "day_0", "requested_sequence_count": 6},
+    {"group_id": "1_0", "source_date_or_partition": "day_1", "requested_sequence_count": 12},
+    {"group_id": "1_1", "source_date_or_partition": "day_1", "requested_sequence_count": 10},
+    {"group_id": "2_0", "source_date_or_partition": "day_2", "requested_sequence_count": 7},
+    {"group_id": "2_1", "source_date_or_partition": "day_2", "requested_sequence_count": 6},
+    {"group_id": "3_0", "source_date_or_partition": "day_3", "requested_sequence_count": 6},
+    {"group_id": "3_1", "source_date_or_partition": "day_3", "requested_sequence_count": 8},
+    {"group_id": "4_0", "source_date_or_partition": "day_4", "requested_sequence_count": 8},
+    {"group_id": "4_1", "source_date_or_partition": "day_4", "requested_sequence_count": 29},
+    {"group_id": "4_2", "source_date_or_partition": "day_4", "requested_sequence_count": 9},
+    {"group_id": "5_0", "source_date_or_partition": "day_5", "requested_sequence_count": 9},
+    {"group_id": "5_1", "source_date_or_partition": "day_5", "requested_sequence_count": 6},
+    {"group_id": "6_0", "source_date_or_partition": "day_6", "requested_sequence_count": 7},
+    {"group_id": "6_1", "source_date_or_partition": "day_6", "requested_sequence_count": 6}
+  ]
+}
