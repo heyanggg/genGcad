@@ -5,6 +5,7 @@ import pytest
 
 from SmartGen import dictionary
 from SmartGen.generation_backends.grouped_requests import (
+    derive_group_semantic_envelope,
     derive_source_length_summary,
     export_grouped_baseline_requests,
 )
@@ -50,6 +51,9 @@ def test_grouped_requests_are_traceable_and_prompts_do_not_merge_groups(tmp_path
     assert "source group 1_0" not in requests[0]["prompt"]
     assert requests[0]["sequence_constraints"]["min_events"] == 2
     assert requests[0]["source_length_summary"]["derivation"].startswith("max(2")
+    assert requests[0]["source_semantic_envelope"]["uses_target_behavior"] is False
+    assert requests[0]["sequence_constraints"]["minimum_group_anchor_actions_per_sequence"] == 1
+    assert "Source-group action vocabulary" in requests[0]["prompt"]
 
 
 def test_grouped_output_cannot_overwrite_a1(tmp_path):
@@ -68,6 +72,19 @@ def test_length_bounds_are_source_derived_and_not_target_based():
     assert summary["min"] == 1 and summary["max"] == 6
     assert summary["allowed_min"] >= 2
     assert "target" not in summary["derivation"]
+
+
+def test_semantic_envelope_is_derived_only_from_its_source_group():
+    device = dictionary.fr_devices_dict["Light"]
+    on = dictionary.fr_actions["Light:switch on"]
+    off = dictionary.fr_actions["Light:switch off"]
+    envelope = derive_group_semantic_envelope(
+        [[0, 0, device, on, 0, 1, device, off]], "fr"
+    )
+    assert envelope["source_group_action_vocabulary"] == ["Light:switch off", "Light:switch on"]
+    assert envelope["source_group_transition_vocabulary"] == [["Light:switch on", "Light:switch off"]]
+    assert envelope["minimum_batch_group_action_coverage"] == 0.5
+    assert envelope["uses_target_behavior"] is False
 
 
 def test_cross_group_duplicate_is_rejected(tmp_path):

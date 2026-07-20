@@ -38,3 +38,12 @@ def test_preparation_and_final_evaluation_are_separate_commands():
     ])
     assert prepare.command == "prepare-generated"
     assert final.command == "evaluate-prepared"
+
+
+def test_source_semantic_gate_requires_only_explicit_source_input():
+    args = parser().parse_args([
+        "gate-source-semantics", "--directory", "out", "--dataset", "fr",
+        "--source", "SmartGen/IoT_data/fr/winter/split_trn.pkl",
+    ])
+    assert args.command == "gate-source-semantics"
+    assert not hasattr(args, "target")

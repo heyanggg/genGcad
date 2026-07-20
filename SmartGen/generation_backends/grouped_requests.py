@@ -14,6 +14,7 @@ from SmartGen import dictionary
 from SmartGen.gcad_source.cell_builder import numeric_to_text
 from SmartGen.gcad_source.data_boundary import boundary_declaration
 from SmartGen.gcad_source.prompt_adapter import build_original_smartgen_prompt
+from SmartGen.gcad_source.semantic_channels import is_valid_semantic_channel
 
 from .schemas import SCHEMA_VERSION, prompt_sha256
 
@@ -36,6 +37,33 @@ def derive_source_length_summary(sequences: list[list[int]]) -> dict:
         "allowed_min": allowed_min,
         "allowed_max": allowed_max,
         "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))",
+    }
+
+
+def derive_group_semantic_envelope(sequences: list[list[int]], dataset: str) -> dict:
+    inverse = {value: key for key, value in getattr(dictionary, f"{dataset}_actions").items()}
+    action_sequences = [
+        [
+            inverse[int(sequence[index])]
+            for index in range(3, len(sequence), 4)
+            if is_valid_semantic_channel(inverse[int(sequence[index])])
+        ]
+        for sequence in sequences
+    ]
+    action_sequences = [sequence for sequence in action_sequences if sequence]
+    actions = sorted({action for sequence in action_sequences for action in sequence})
+    transitions = sorted({pair for sequence in action_sequences for pair in zip(sequence, sequence[1:])})
+    if not actions:
+        raise ValueError("source representative group has no valid semantic actions")
+    return {
+        "source_group_action_vocabulary": actions,
+        "source_group_transition_vocabulary": [list(pair) for pair in transitions],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2 if transitions else 0.0,
+        "maximum_novel_action_types": len(actions),
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": False,
     }
 
 
@@ -111,6 +139,7 @@ def export_grouped_baseline_requests(
             for index, sequence in enumerate(numeric)
         ]
         length_summary = derive_source_length_summary(numeric)
+        semantic_envelope = derive_group_semantic_envelope(numeric, dataset)
         base_prompt = build_original_smartgen_prompt(
             device_control,
             _context_sentence(source_context, target_context),
@@ -123,7 +152,14 @@ def export_grouped_baseline_requests(
             f"{length_summary['allowed_max']} events. Use varied lengths across the returned set; do not fix every "
             "sequence at four or five events. Avoid repeated full templates, shared fixed openings or endings, and "
             "mechanical coverage of every transition. Maintain diverse legal behavior combinations without inventing "
-            "a device-action pair outside the supplied static mapping. Return only the required structured data."
+            "a device-action pair outside the supplied static mapping. Source-semantic constraints: every generated "
+            "sequence must contain at least one action from the source-group action vocabulary below; across this "
+            "response, at least half of all events must use that vocabulary; use observed source-group adjacent "
+            "transitions where applicable, while never copying a complete representative sequence; and introduce no "
+            "more novel action types than the number of source-group action types.\n"
+            f"Source-group action vocabulary: {json.dumps(semantic_envelope['source_group_action_vocabulary'])}\n"
+            f"Observed source-group transitions: {json.dumps(semantic_envelope['source_group_transition_vocabulary'])}\n"
+            "Return only the required structured data."
         )
         chunks = _balanced_chunks(int(group["requested_sequence_count"]), 20)
         source_sha = hashlib.sha256(source_path.read_bytes()).hexdigest()
@@ -135,6 +171,7 @@ def export_grouped_baseline_requests(
             "representative_sequence_count": len(numeric),
             "representative_sequence_ids": representative_ids,
             "source_length_summary": length_summary,
+            "source_semantic_envelope": semantic_envelope,
             "requested_sequence_count": int(group["requested_sequence_count"]),
             "request_chunks": chunks,
         })
@@ -158,6 +195,7 @@ def export_grouped_baseline_requests(
                 "representative_sequence_ids": representative_ids,
                 "representative_sequence_count": len(numeric),
                 "source_length_summary": length_summary,
+                "source_semantic_envelope": semantic_envelope,
                 "source_group_path": str(source_path.resolve()),
                 "source_group_sha256": source_sha,
                 "requested_sequence_count": count,
@@ -175,6 +213,12 @@ def export_grouped_baseline_requests(
                     "min_events": length_summary["allowed_min"],
                     "max_events": length_summary["allowed_max"],
                     "lengths_must_vary_within_group": len(chunks) == 1 and count > 1,
+                    "minimum_group_anchor_actions_per_sequence": 1,
+                    "minimum_batch_group_action_coverage": 0.5,
+                    "minimum_batch_group_transition_coverage": semantic_envelope[
+                        "minimum_batch_group_transition_coverage"
+                    ],
+                    "maximum_novel_action_types": semantic_envelope["maximum_novel_action_types"],
                 },
                 "schema_version": SCHEMA_VERSION,
                 "data_boundary": boundary_declaration(),
@@ -198,6 +242,7 @@ def export_grouped_baseline_requests(
         "external_api": False,
         "api_key_required": False,
         "target_behavior_read": False,
+        "source_semantic_policy": "source_semantic_v1",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
     }
     output.joinpath("request_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")

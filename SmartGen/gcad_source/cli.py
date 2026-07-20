@@ -234,6 +234,13 @@ def command_generation_diagnostics(args):
     print(json.dumps(result, indent=2))
 
 
+def command_source_semantic_gate(args):
+    from SmartGen.generation_backends.source_semantic_gate import diagnose_source_semantics
+
+    result = diagnose_source_semantics(args.directory, args.dataset, args.source)
+    print(json.dumps(result, indent=2))
+
+
 def command_reconstruction_gate(args):
     from SmartGen.generation_backends.generation_diagnostics import apply_reconstruction_gate
 
@@ -244,6 +251,10 @@ def command_continue(args):
     from SmartGen.security_check import security_check_file
 
     directory = Path(args.directory)
+    if "codex_generation_v2" in directory.parts:
+        from SmartGen.generation_backends.source_semantic_gate import require_pre_tof_gates
+
+        require_pre_tof_gates(directory)
     tof_path, report = security_check_file(
         directory / "generated_sequences.pkl", directory / "tof", args.dataset, args.context, args.tof_epochs
     )
@@ -381,6 +392,9 @@ def parser() -> argparse.ArgumentParser:
     item = sub.add_parser("diagnose-generation")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--original-gss", required=True); item.set_defaults(function=command_generation_diagnostics)
+    item = sub.add_parser("gate-source-semantics")
+    item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--source", required=True); item.set_defaults(function=command_source_semantic_gate)
     item = sub.add_parser("gate-reconstruction")
     item.add_argument("--directory", required=True); item.add_argument("--diagnostics", required=True)
     item.set_defaults(function=command_reconstruction_gate)
