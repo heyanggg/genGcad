@@ -1,0 +1,7 @@
+{
+  "status": "blocked_by_source_prediction_gate",
+  "formal_relation_extraction_run": false,
+  "stable_relation_v2_created": false,
+  "reason": "The selected Mixer lost to the best simple baseline on all three fixed seeds.",
+  "target_behavior_used": false
+}

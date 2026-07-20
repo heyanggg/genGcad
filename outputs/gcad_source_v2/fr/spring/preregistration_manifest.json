@@ -1,0 +1,15 @@
+{
+  "protocol": "source_only_gcad_representation_v2",
+  "frozen_before_formal_prediction": true,
+  "frozen_commit": "c5f76ef",
+  "config_sha256": {
+    "default.yaml": "3f2f99d206a927ba82f2725d65d57ca2a9a5d6e83ea3c87e5acbeca5505b222c",
+    "fr_spring.yaml": "8d028d48d98750324fbd77b40287aa28311e6d738ccb072dc32828b6e4544dfa",
+    "representation_grid.yaml": "6538ca473862a0b4a4fa36fbce2fb3872d1f26739412af8e502c4d305f5ac690",
+    "prediction_gate.yaml": "4998bc6bff92b3cbf248a34fdb5fb71f6a961f07ce840fc66e341062ead815b1",
+    "relation_gate.yaml": "098cb458296345892ef561053307e2f04d9ff20b0522870aa5363ede89ca9d0a",
+    "gss_fusion.yaml": "657a9dd2038c73bff0504bbb71c8f12ad357bf688f5ab39a86547f9f756eabea",
+    "paired_experiment.yaml": "7e90e72bb95d0b7ae001b64fd47347b8266fd73490cb7c28dea8df12b0059267"
+  },
+  "target_behavior_used": false
+}

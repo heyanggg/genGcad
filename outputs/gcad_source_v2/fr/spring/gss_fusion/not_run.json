@@ -1,0 +1,10 @@
+{
+  "status": "blocked_before_gss_fusion",
+  "original_gss_edge_count": 82,
+  "stable_gcad_edge_count": 0,
+  "affected_edge_count": 0,
+  "rank_change_count": 0,
+  "prompt_changed": false,
+  "reason": "Formal relation extraction was blocked by the source prediction gate.",
+  "target_behavior_used": false
+}

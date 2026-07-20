@@ -1,0 +1,17 @@
+{
+  "hard_excluded": [
+    "None",
+    "None:location",
+    "location",
+    "unknown",
+    "padding",
+    "context",
+    "date",
+    "day",
+    "timestamp",
+    "sequence_id",
+    "user_id",
+    "room metadata"
+  ],
+  "source_observed_invalid_action": "None:location"
+}

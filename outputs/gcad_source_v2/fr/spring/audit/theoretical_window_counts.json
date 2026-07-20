@@ -1,0 +1,22 @@
+{
+  "2": {
+    "event_position_pre_tss_legal_events": 579,
+    "tss_fragments_too_short_by_slot_span": 1446,
+    "v1_tss_3h_slot_span": 634
+  },
+  "3": {
+    "event_position_pre_tss_legal_events": 360,
+    "tss_fragments_too_short_by_slot_span": 1541,
+    "v1_tss_3h_slot_span": 352
+  },
+  "4": {
+    "event_position_pre_tss_legal_events": 243,
+    "tss_fragments_too_short_by_slot_span": 1645,
+    "v1_tss_3h_slot_span": 165
+  },
+  "6": {
+    "event_position_pre_tss_legal_events": 103,
+    "tss_fragments_too_short_by_slot_span": 1707,
+    "v1_tss_3h_slot_span": 45
+  }
+}

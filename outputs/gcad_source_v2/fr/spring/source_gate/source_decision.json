@@ -1,0 +1,8 @@
+{
+  "B5_generation_allowed": false,
+  "failure_conclusion": "Current SmartGen source data does not support reliable GCAD directional relation enhancement; terminate the GCAD route.",
+  "formal_relation_extraction_allowed": false,
+  "prediction_gate_passed": false,
+  "status": "stop_gcad_v2_at_source_prediction_gate",
+  "target_behavior_used": false
+}

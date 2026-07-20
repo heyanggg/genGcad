@@ -1,0 +1,6 @@
+{
+  "all_seeds_passed": true,
+  "maximum_source_overlap": 0,
+  "split_before_window_construction": true,
+  "uses_target_behavior": false
+}

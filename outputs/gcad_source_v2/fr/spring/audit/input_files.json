@@ -1,0 +1,14 @@
+{
+  "historical_v1_tensor_metadata": "/home/heyang/projects/SmartGen_GCAD/outputs/gcad_source/fr/spring/tensor/tensor_metadata.json",
+  "source_pre_tss": {
+    "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn.pkl",
+    "role": "source_normal",
+    "sha256": "bbaf902a85a145fcf4a874cbe1e06e794c3648bfcebac81c9cfc940e430cd84f"
+  },
+  "source_tss": {
+    "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/split_trn.pkl",
+    "role": "source_normal",
+    "sha256": "5ed99cb3c2084e1e8a2917ee81930460638dabea37c43acc66393c5bc8722d76"
+  },
+  "target_behavior_used": false
+}

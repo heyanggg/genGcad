@@ -1,0 +1,8 @@
+{
+  "all_channels_device_action": true,
+  "channel_count": 39,
+  "invalid_channel_count": 0,
+  "invalid_event_count": 1390,
+  "passed": true,
+  "uses_target_behavior": false
+}

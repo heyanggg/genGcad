@@ -1,0 +1,8 @@
+{
+  "status": "blocked_before_formal_mechanism_controls",
+  "random_graph_run": false,
+  "symmetric_graph_run": false,
+  "frequency_graph_run": false,
+  "reason": "No formal stable GCAD graph exists after source prediction gate failure.",
+  "target_behavior_used": false
+}

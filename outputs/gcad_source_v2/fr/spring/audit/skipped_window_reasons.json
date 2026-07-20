@@ -1,0 +1,15 @@
+{
+  "field_parse_failure_count": 0,
+  "invalid_event_reasons": {
+    "forbidden_semantic_field": 1390
+  },
+  "root_cause": "TSS over-segmentation leaves most fragments spanning fewer than history+1 time slots",
+  "v1_did_not_filter_empty_time_slots": true,
+  "v1_did_not_require_nonempty_history_slots": true,
+  "v1_short_fragment_counts": {
+    "2": 1446,
+    "3": 1541,
+    "4": 1645,
+    "6": 1707
+  }
+}

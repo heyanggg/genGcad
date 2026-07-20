@@ -1,0 +1,9 @@
+{
+  "python_executable": "/home/heyang/miniconda3/envs/smartguard_env/bin/python",
+  "python_version": "3.8.20",
+  "torch_version": "2.2.0",
+  "cuda_visible_to_formal_environment_at_final_audit": true,
+  "torch_cuda_version": "12.1",
+  "formal_experiment_device": "cpu",
+  "target_behavior_used": false
+}
