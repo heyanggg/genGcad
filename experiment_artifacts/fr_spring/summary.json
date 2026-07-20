@@ -1,0 +1,28 @@
+{
+  "experiment_id": "fr-winter-spring-smoke-2026-07-20",
+  "environment": {"conda": "smartguard_env", "python": "3.12.7", "torch": "2.13.0+cu130", "device": "cpu", "cuda_available": false},
+  "data_boundary": {"pre_evaluation_target_behavior_read": false, "target_first_used_at": "final_evaluation", "target_metrics_used_for_selection": false},
+  "tensor": {"source_sequences": 1728, "channels": 40, "history_length": 4, "valid_windows": 165, "input_sha256": "5ed99e3670885750076110f8fdf4e3a0b443d8c52c0bc6c57519e61ef49ca5d8"},
+  "source_validation_loss": {
+    "2024": {"markov": 0.016324279250697144, "ngram2": 0.011650782521610076, "mixer": 0.017808778352929384, "best_epoch": 23},
+    "2025": {"markov": 0.01303221638463666, "ngram2": 0.014673004585386014, "mixer": 0.041592432585737665, "best_epoch": 30},
+    "2026": {"markov": 0.014247433930172842, "ngram2": 0.012195045252035828, "mixer": 0.015424923994968521, "best_epoch": 30}
+  },
+  "relations": {"replicates": 5, "seeds": [2024, 2025, 2026, 3101, 3102], "split_count": 3, "asymmetric_edges": [77, 50, 76, 181, 188], "stable_edges": 39, "occurrence_threshold": 0.6, "direction_threshold": 0.6, "stable_score_threshold": 0.08},
+  "fusion": {"mode": "rerank_existing", "alpha": 0.2, "original_edges": 82, "stable_edges": 39, "influenced_existing_edges": 2, "new_edges": 0, "rank_changes": 0},
+  "prompts": {"baseline_sha256": "b78d87c9fe3d9a81c7ac0ad2994478fde4eaebd427d324719c88a00c7abe4740", "gcad_gss_sha256": "f09ea6195400743e2015167abf8a851d83689f7c4eb47068db21715e1701ea82"},
+  "generation": {
+    "baseline": {"requests": 7, "initial": 137, "failures": 0, "repairs": 0, "valid": 137, "request_sha256": "ac8f982fc2a0829a1bdc49133b0ea7ad70b100659bffdc91e822a9607004e427", "response_sha256": "f6d59fc78672143377f893622cde84bc3878431f0175020286c7ec32d79ba058"},
+    "gcad_gss": {"requests": 7, "initial": 137, "failures": 0, "repairs": 0, "valid": 137, "request_sha256": "2ab79063db24a76d621c315d4b5919323fb0e4ed91b5bb7b1c2ff037e6ac4ae1", "response_sha256": "310f26a1accbcf21732b7424ad23e35f32973012adc3ac957073bddac67e0b33"},
+    "external_api_called": false, "api_key_used": false, "old_synthetic_used": false
+  },
+  "tof": {"baseline": {"input": 137, "stage1_retained": 133, "stage1_outliers": 4, "stage2_recovered": 2, "final": 135}, "gcad_gss": {"input": 137, "stage1_retained": 127, "stage1_outliers": 10, "stage2_recovered": 5, "final": 132}},
+  "downstream": {
+    "A_baseline": {"threshold": 0.00006174807640491053, "recall": 0.9886363636363636, "precision": 0.635036496350365, "accuracy": 0.7102272727272727, "f1": 0.7733333333333334},
+    "B_gcad_gss": {"threshold": 0.00005787427653558552, "recall": 1.0, "precision": 0.5, "accuracy": 0.5, "f1": 0.6666666666666666},
+    "C_ranking": {"threshold": 0.000020444051187951118, "recall": 1.0, "precision": 0.5, "accuracy": 0.5, "f1": 0.6666666666666666},
+    "D_both": {"threshold": 0.00010421181650599465, "recall": 1.0, "precision": 0.5, "accuracy": 0.5, "f1": 0.6666666666666666}
+  },
+  "tests": {"passed": 39, "skipped": 1, "skip_reason": "CUDA unavailable"},
+  "conclusion": "The source-only GCAD mechanisms ran end-to-end but did not improve this smoke cell."
+}
