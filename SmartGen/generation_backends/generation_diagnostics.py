@@ -11,6 +11,7 @@ import numpy as np
 from SmartGen import dictionary
 
 from .response_loader import load_jsonl
+from .semantic_actions import event_semantic_actions, numeric_semantic_actions
 
 
 def normalized_ngram_entropy(sequences: list[list[str]], order: int) -> tuple[int, float]:
@@ -109,10 +110,8 @@ def sequence_metrics(action_sequences: list[list[str]]) -> dict:
     }
 
 
-def _numeric_actions(sequences, dataset: str) -> list[list[str]]:
-    mapping = getattr(dictionary, f"{dataset}_actions")
-    inverse = {value: key for key, value in mapping.items()}
-    return [[inverse[int(value)] for value in sequence[3::4]] for sequence in sequences]
+def _numeric_actions(sequences, dataset: str, metadata: dict[str, list[str]]) -> list[list[str]]:
+    return [numeric_semantic_actions(sequence, dataset, metadata) for sequence in sequences]
 
 
 def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gss_path: str | Path) -> dict:
@@ -120,6 +119,7 @@ def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gs
     requests = load_jsonl(directory / "generation_requests.jsonl")
     responses = load_jsonl(directory / "generation_responses_validated.jsonl")
     request_map = {item["request_id"]: item for item in requests}
+    metadata = requests[0]["target_static_device_metadata"]
     generated_actions = []
     group_actions = defaultdict(list)
     group_templates = defaultdict(set)
@@ -128,10 +128,7 @@ def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gs
         request = request_map[response["request_id"]]
         group = request["group_id"]
         for sequence in response["sequences"]:
-            actions = [
-                event["action"] if ":" in event["action"] else f"{event['device']}:{event['action']}"
-                for event in sequence["events"]
-            ]
+            actions = event_semantic_actions(sequence["events"], metadata)
             generated_actions.append(actions)
             group_actions[group].append(actions)
             template = tuple(actions)
@@ -144,7 +141,7 @@ def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gs
         if path not in seen_source_paths:
             source_numeric.extend(pickle.loads(Path(path).read_bytes()))
             seen_source_paths.add(path)
-    source_actions = _numeric_actions(source_numeric, dataset)
+    source_actions = _numeric_actions(source_numeric, dataset, metadata)
     generated = sequence_metrics(generated_actions)
     source = sequence_metrics(source_actions)
     cross_group_duplicates = sum(1 for groups in template_groups.values() if len(groups) > 1)
@@ -160,7 +157,6 @@ def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gs
     for sequence in generated_actions:
         pairs = list(zip(sequence, sequence[1:]))
         coverage.append(sum(pair in gss_pairs for pair in pairs) / len(pairs) if pairs else 0.0)
-    metadata = requests[0]["target_static_device_metadata"]
     legal_actions = {f"{device}:{action.split(':', 1)[-1]}" for device, actions in metadata.items() for action in actions}
     generated_unique_actions = {action for sequence in generated_actions for action in sequence}
     validation = json.loads((directory / "generation_validation_report.json").read_text(encoding="utf-8"))

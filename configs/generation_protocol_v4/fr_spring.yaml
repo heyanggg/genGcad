@@ -1,0 +1,70 @@
+version: generation_protocol_v4
+experiment_identity: A4. GPT-5.6 Codex-Agent-Authored Grouped SmartGen-Compatible Baseline
+generation_backend: codex_gpt56_agent_file
+model_family: GPT-5.6 via Codex agent
+content_author: codex_gpt56_agent
+external_api_used: false
+api_key_used: false
+programmatic_event_construction: false
+uses_target_behavior: false
+gcad_source_enabled: false
+ranking_enabled: false
+official_sppc_group_count: 15
+independent_request_count: 16
+final_sequence_count: 137
+candidate_oversampling_ratio: 1.0
+candidate_selection_rules:
+  select_all_hard-valid_candidates: true
+  event_content_modification_allowed: false
+  favorable_subset_selection_allowed: false
+maximum_hard_error_replacements: 10
+allowed_replacement_categories:
+  - json_or_markdown
+  - schema
+  - illegal_device
+  - illegal_action
+  - sequence_count
+  - missing_response
+  - duplicate
+  - source_copy
+source_semantic_v2:
+  minimum_source_action_precision: 0.95
+  minimum_global_source_vocabulary_recall: 1.0
+  minimum_group_vocabulary_recall: 0.75
+  minimum_frequency_weighted_recall: 0.98
+  rare_source_sequence_support_maximum: 4
+  minimum_rare_action_recall: 1.0
+  minimum_sequence_support_per_action: 4
+  maximum_low_support_action_ratio: 0.0
+  maximum_target_metadata_only_token_share: 0.03
+  minimum_source_transition_coverage: 0.45
+  maximum_unseen_transition_ratio: 0.55
+  minimum_source_transition_sequence_support: 1
+split_feasibility_v1:
+  fixed_split_seeds: [2024, 2025, 2026]
+  train_validation_ratio: 0.8
+  minimum_train_sequence_support_for_validation_action: 3
+  minimum_group_size_for_validation: 5
+  maximum_length_distribution_total_variation: 0.20
+length_policy:
+  minimum_events: 3
+  maximum_events: 8
+  require_short_medium_long_global_coverage: true
+reconstruction_health_v1:
+  config_path: configs/generation_protocol/reconstruction_health_v1.json
+  config_sha256: 600c1ca86cc7e0b412521b1cc525ddd66fc3e21ff999f938a79ddc029a4a822c
+  threshold_percentile: 95.5
+threshold_basis:
+  - source normal behavior only
+  - official precomputed SPPC groups
+  - fixed 137-sequence scale
+  - fixed 0.8 train ratio
+  - SmartGen action-token reconstruction support requirements
+  - source-only feasibility analysis
+forbidden_threshold_inputs:
+  - replicate-3 target result
+  - official synthetic target metrics
+  - target normal behavior
+  - target attack behavior
+  - target labels
+prospective_disclosure: source_semantic_v2 and split_feasibility_v1 were motivated by replicate-3 post-hoc diagnosis; all A4 thresholds are frozen before any replicate-4 response is authored

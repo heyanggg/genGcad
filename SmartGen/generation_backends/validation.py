@@ -66,14 +66,23 @@ def validate_responses(
         request = request_map.get(request_id)
         if request is None or response_counts[request_id] != 1:
             continue
-        if response.get("schema_version") != SCHEMA_VERSION or response.get("generation_backend") != "codex_agent_file":
+        expected_backend = request.get("generation_backend", "codex_agent_file")
+        if response.get("schema_version") != SCHEMA_VERSION or response.get("generation_backend") != expected_backend:
             failures.append(ValidationFailure(request_id, None, "schema", "backend or schema_version mismatch"))
             continue
         if request.get("group_id") is not None and response.get("group_id") != request["group_id"]:
             failures.append(ValidationFailure(request_id, None, "schema", "response group_id mismatch"))
             continue
         notes = response.get("generation_notes", {})
-        if any(notes.get(key) is not False for key in ("used_target_behavior", "used_target_labels", "copied_from_existing_synthetic_data")):
+        if expected_backend == "codex_gpt56_agent_file":
+            from .codex56_provenance import validate_codex56_response_metadata
+
+            try:
+                validate_codex56_response_metadata(response)
+            except ValueError as exc:
+                failures.append(ValidationFailure(request_id, None, "provenance", str(exc)))
+                continue
+        elif any(notes.get(key) is not False for key in ("used_target_behavior", "used_target_labels", "copied_from_existing_synthetic_data")):
             failures.append(ValidationFailure(request_id, None, "boundary", "generation notes do not assert source-only generation"))
             continue
         sequences = response.get("sequences")
@@ -147,6 +156,7 @@ def validate_responses(
         "initial_sequence_count": total_initial,
         "json_failures": counts["json_or_markdown"],
         "schema_failures": counts["schema"],
+        "provenance_failures": counts["provenance"],
         "illegal_device_count": counts["illegal_device"],
         "illegal_action_count": counts["illegal_action"],
         "length_failures": counts["length"],

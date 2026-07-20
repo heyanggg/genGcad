@@ -202,6 +202,66 @@ def command_generate_grouped(args):
     print(json.dumps({"request_count": len(requests), "sequence_count": sum(x["requested_sequence_count"] for x in requests)}, indent=2))
 
 
+def command_export_codex56(args):
+    from SmartGen.generation_backends.codex56_requests import export_codex56_grouped_requests
+
+    requests = export_codex56_grouped_requests(
+        args.output,
+        preregistration_dir=args.preregistration,
+        experiment_id=args.experiment_id,
+        dataset=args.dataset,
+        source_context=args.source_context,
+        target_context=args.context,
+        compression_threshold=args.threshold,
+        group_plan_path=args.group_plan,
+        protocol_path=args.protocol,
+        source_full_path=args.source,
+        target_metadata_path=args.target_metadata,
+        original_gss_path=args.original_gss,
+        device_control_path=args.device_control,
+        replicate=4,
+    )
+    print(json.dumps({
+        "request_count": len(requests),
+        "candidate_sequence_count": sum(item["candidate_sequence_count"] for item in requests),
+        "programmatic_event_construction": False,
+    }, indent=2))
+
+
+def command_codex56_provenance(args):
+    from SmartGen.generation_backends.codex56_provenance import apply_generation_provenance_gate
+
+    print(json.dumps(apply_generation_provenance_gate(args.directory), indent=2))
+
+
+def command_validate_codex56(args):
+    from SmartGen.generation_backends.codex56_pipeline import validate_codex56_candidates
+
+    print(json.dumps(validate_codex56_candidates(args.directory), indent=2))
+
+
+def command_source_semantic_v2(args):
+    from SmartGen.generation_backends.source_semantic_v2 import run_source_semantic_v2
+    from SmartGen.generation_backends.split_feasibility import post_tof_records
+
+    records = post_tof_records(args.directory, args.tof) if args.stage == "post_tof" else None
+    print(json.dumps(run_source_semantic_v2(
+        args.directory, args.dataset, args.source, args.protocol, stage=args.stage, records=records
+    ), indent=2))
+
+
+def command_split_feasibility(args):
+    from SmartGen.generation_backends.split_feasibility import (
+        post_tof_records,
+        run_split_feasibility,
+    )
+
+    records = post_tof_records(args.directory, args.tof) if args.stage == "post_tof" else None
+    print(json.dumps(run_split_feasibility(
+        args.directory, args.protocol, stage=args.stage, records=records
+    ), indent=2))
+
+
 def command_generate_validate(args):
     if args.source_copy_safe:
         from SmartGen.generation_backends.validation import validate_source_copy_safe
@@ -278,9 +338,15 @@ def command_continue(args):
 
     directory = Path(args.directory)
     if "codex_generation_v2" in directory.parts:
-        from SmartGen.generation_backends.source_semantic_gate import require_pre_tof_gates
+        requests = (directory / "generation_requests.jsonl").read_text(encoding="utf-8")
+        if "codex_gpt56_agent_file" in requests:
+            from SmartGen.generation_backends.codex56_pipeline import require_pre_tof_v4
 
-        require_pre_tof_gates(directory)
+            require_pre_tof_v4(directory)
+        else:
+            from SmartGen.generation_backends.source_semantic_gate import require_pre_tof_gates
+
+            require_pre_tof_gates(directory)
     tof_path, report = security_check_file(
         directory / "generated_sequences.pkl", directory / "tof", args.dataset, args.context, args.tof_epochs
     )
@@ -329,9 +395,17 @@ def command_evaluate(args):
 def command_prepare_detector(args):
     from .downstream_evaluation import prepare_generated_detector
 
+    experiment = Path(args.output).parent
+    requests_path = experiment / "generation_requests.jsonl"
+    if requests_path.exists() and "codex_gpt56_agent_file" in requests_path.read_text(encoding="utf-8"):
+        from SmartGen.generation_backends.codex56_pipeline import require_pre_training_v4
+
+        require_pre_training_v4(experiment)
+
     result = prepare_generated_detector(
         args.generated, args.dataset, args.context, args.output, args.percentile, args.epochs, args.ranking,
         args.split_seed, args.model_seed,
+        args.split_manifest,
     )
     print(json.dumps(result, indent=2))
 
@@ -412,6 +486,28 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--original-gss", required=True); item.add_argument("--device-control", required=True)
     item.add_argument("--replicate", type=int, default=1)
     item.add_argument("--source-copy-safe-config"); item.set_defaults(function=command_generate_grouped)
+    item = sub.add_parser("export-codex56-v4")
+    item.add_argument("--output", required=True); item.add_argument("--preregistration", required=True)
+    item.add_argument("--experiment-id", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--source-context", required=True); item.add_argument("--context", required=True)
+    item.add_argument("--threshold", type=float, required=True); item.add_argument("--group-plan", required=True)
+    item.add_argument("--protocol", required=True); item.add_argument("--source", required=True)
+    item.add_argument("--target-metadata", required=True); item.add_argument("--original-gss", required=True)
+    item.add_argument("--device-control", required=True); item.set_defaults(function=command_export_codex56)
+    item = sub.add_parser("gate-codex56-provenance")
+    item.add_argument("--directory", required=True); item.set_defaults(function=command_codex56_provenance)
+    item = sub.add_parser("validate-codex56")
+    item.add_argument("--directory", required=True); item.set_defaults(function=command_validate_codex56)
+    item = sub.add_parser("gate-source-semantics-v2")
+    item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--source", required=True); item.add_argument("--protocol", required=True)
+    item.add_argument("--stage", choices=["pre_tof", "post_tof"], default="pre_tof")
+    item.add_argument("--tof")
+    item.set_defaults(function=command_source_semantic_v2)
+    item = sub.add_parser("gate-split-feasibility")
+    item.add_argument("--directory", required=True); item.add_argument("--protocol", required=True)
+    item.add_argument("--stage", choices=["pre_tof", "post_tof"], default="pre_tof")
+    item.add_argument("--tof"); item.set_defaults(function=command_split_feasibility)
     item = sub.add_parser("validate"); item.add_argument("--directory", required=True)
     item.add_argument("--source-copy-safe", action="store_true"); item.set_defaults(function=command_generate_validate)
     item = sub.add_parser("materialize-authored")
@@ -452,7 +548,8 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--context", required=True); item.add_argument("--output", required=True)
     item.add_argument("--percentile", type=float, required=True); item.add_argument("--epochs", type=int, default=15)
     item.add_argument("--ranking"); item.add_argument("--split-seed", type=int, default=2024)
-    item.add_argument("--model-seed", type=int, default=2024); item.set_defaults(function=command_prepare_detector)
+    item.add_argument("--model-seed", type=int, default=2024); item.add_argument("--split-manifest")
+    item.set_defaults(function=command_prepare_detector)
     item = sub.add_parser("evaluate-prepared")
     item.add_argument("--prepared", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--context", required=True); item.set_defaults(function=command_evaluate_prepared)

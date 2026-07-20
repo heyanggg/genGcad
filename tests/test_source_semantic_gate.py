@@ -1,4 +1,5 @@
 import json
+import pickle
 
 import pytest
 
@@ -78,3 +79,30 @@ def test_diagnostic_only_report_cannot_create_or_replace_formal_gate(tmp_path, m
     monkeypatch.setattr(module, "load_jsonl", lambda path: [])
     with pytest.raises(ValueError, match="failed_upstream"):
         module.diagnose_source_semantics(tmp_path, "fr", tmp_path / "source.pkl", diagnostic_only=True)
+
+
+def test_diagnostic_only_writes_only_diagnostic_and_keeps_formal_status_unchanged(tmp_path):
+    from SmartGen import dictionary
+    from SmartGen.generation_backends import source_semantic_gate as module
+
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    device = dictionary.fr_devices_dict["Light"]
+    action = dictionary.fr_actions["Light:switch on"]
+    numeric = [[0, 0, device, action], [1, 0, device, action]]
+    source = source_dir / "split_trn.pkl"; source.write_bytes(pickle.dumps(numeric))
+    group = source_dir / "group.pkl"; group.write_bytes(pickle.dumps(numeric))
+    request = {"request_id": "r", "group_id": "g", "source_group_path": str(group),
+               "uses_target_behavior": False, "target_static_device_metadata": {"Light": ["switch on"]}}
+    response = {"request_id": "r", "sequences": [{"sequence_id": "s", "events": [
+        {"day": "Monday", "hour": "(0~3)", "device": "Light", "action": "switch on"}
+    ]}]}
+    (tmp_path / "generation_requests.jsonl").write_text(json.dumps(request) + "\n")
+    (tmp_path / "generation_responses_validated.jsonl").write_text(json.dumps(response) + "\n")
+    result = module.diagnose_source_semantics(
+        tmp_path, "fr", source, diagnostic_only=True, formal_gate_status="failed_upstream"
+    )
+    assert result["diagnostic_only"] is True and result["formal_gate_status"] == "unchanged"
+    assert result["upstream_formal_gate_status"] == "failed_upstream"
+    assert (tmp_path / "source_semantic_diagnostic_only.json").exists()
+    assert not (tmp_path / "source_semantic_gate.json").exists()

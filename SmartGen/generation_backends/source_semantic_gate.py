@@ -8,10 +8,8 @@ from types import MappingProxyType
 
 import numpy as np
 
-from SmartGen import dictionary
-from SmartGen.gcad_source.semantic_channels import is_valid_semantic_channel
-
 from .response_loader import load_jsonl
+from .semantic_actions import event_semantic_actions, numeric_semantic_actions
 
 
 POLICY = MappingProxyType({
@@ -26,19 +24,16 @@ POLICY = MappingProxyType({
 })
 
 
-def _numeric_sequences(sequences: list[list[int]], dataset: str) -> tuple[list[list[str]], list[int]]:
-    inverse = {value: key for key, value in getattr(dictionary, f"{dataset}_actions").items()}
+def _numeric_sequences(
+    sequences: list[list[int]], dataset: str, metadata: dict[str, list[str]]
+) -> tuple[list[list[str]], list[int]]:
     actions = []
     days = []
     for sequence in sequences:
-        events = [
-            (int(sequence[index]), inverse[int(sequence[index + 3])])
-            for index in range(0, len(sequence), 4)
-        ]
-        events = [(day, action) for day, action in events if is_valid_semantic_channel(action)]
-        if events:
-            days.append(events[0][0])
-            actions.append([action for _, action in events])
+        semantic = numeric_semantic_actions(sequence, dataset, metadata)
+        if semantic:
+            days.append(int(sequence[0]))
+            actions.append(semantic)
     return actions, days
 
 
@@ -228,22 +223,20 @@ def diagnose_source_semantics(
     responses = load_jsonl(directory / "generation_responses_validated.jsonl")
     _assert_source_only_provenance(requests, source_path)
     request_map = {request["request_id"]: request for request in requests}
+    metadata = requests[0]["target_static_device_metadata"]
     generated_by_group = defaultdict(list)
     for response in responses:
         group = request_map[response["request_id"]]["group_id"]
         for sequence in response["sequences"]:
-            generated_by_group[group].append([
-                event["action"] if ":" in event["action"] else f"{event['device']}:{event['action']}"
-                for event in sequence["events"]
-            ])
+            generated_by_group[group].append(event_semantic_actions(sequence["events"], metadata))
     source_numeric = pickle.loads(Path(source_path).read_bytes())
-    source_sequences, source_days = _numeric_sequences(source_numeric, dataset)
+    source_sequences, source_days = _numeric_sequences(source_numeric, dataset, metadata)
     group_source_sequences = {}
     for request in requests:
         group = request["group_id"]
         if group not in group_source_sequences:
             numeric = pickle.loads(Path(request["source_group_path"]).read_bytes())
-            group_source_sequences[group] = _numeric_sequences(numeric, dataset)[0]
+            group_source_sequences[group] = _numeric_sequences(numeric, dataset, metadata)[0]
     result = semantic_support_report(
         dict(generated_by_group), source_sequences, source_days, group_source_sequences
     )
@@ -261,7 +254,8 @@ def diagnose_source_semantics(
     if diagnostic_only:
         result.update({
             "diagnostic_only": True,
-            "formal_gate_status": formal_gate_status,
+            "formal_gate_status": "unchanged",
+            "upstream_formal_gate_status": formal_gate_status,
             "formal_gate_decision_modified": False,
         })
         (directory / "source_semantic_diagnostic_only.json").write_text(

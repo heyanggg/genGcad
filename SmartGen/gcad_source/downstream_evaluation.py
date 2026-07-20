@@ -48,6 +48,7 @@ def prepare_generated_detector(
     ranking_path: str | Path | None = None,
     split_seed: int = 2024,
     model_seed: int = 2024,
+    split_manifest_path: str | Path | None = None,
 ) -> dict:
     """Freeze detector and threshold without accepting any target role."""
     output = Path(output_dir)
@@ -56,7 +57,24 @@ def prepare_generated_detector(
     require_roles("threshold", [generated])
     with generated.path.open("rb") as handle:
         sequences = pickle.load(handle)
-    train_indices, validation_indices, split_report = split_without_exact_overlap(sequences, seed=split_seed)
+    if split_manifest_path is not None:
+        manifest = json.loads(Path(split_manifest_path).read_text(encoding="utf-8"))
+        if manifest.get("seed") != split_seed or manifest.get("passed") is not True:
+            raise ValueError("frozen split manifest seed mismatch or infeasible split")
+        train_indices = manifest["train_indices"]
+        validation_indices = manifest["validation_indices"]
+        split_report = {
+            "seed": split_seed,
+            "requested_ratio": manifest["train_validation_ratio"],
+            "train_count": len(train_indices),
+            "validation_count": len(validation_indices),
+            "duplicates_moved_to_train": 0,
+            "exact_overlap_count": manifest["sequence_id_overlap_count"],
+            "coverage_constrained_stratified": True,
+            "manifest_path": str(Path(split_manifest_path).resolve()),
+        }
+    else:
+        train_indices, validation_indices, split_report = split_without_exact_overlap(sequences, seed=split_seed)
     train_file = output / "generated_train.pkl"
     validation_file = output / "generated_validation.pkl"
     write_split(sequences, train_indices, validation_indices, train_file, validation_file)
@@ -87,6 +105,7 @@ def prepare_generated_detector(
     report = {
         "dataset": dataset, "context": context, "generated_file": str(generated.path),
         "split_seed": split_seed, "model_seed": model_seed,
+        "split_manifest_path": str(Path(split_manifest_path).resolve()) if split_manifest_path else None,
         "model_path": str(model_path.resolve()), "threshold_source": "generated_validation",
         "threshold_percentile": percentile, "threshold": float(threshold), "epochs": epochs,
         "training_loss_by_epoch": history,
@@ -160,8 +179,10 @@ def evaluate_generated_sequences(
     ranking_path: str | Path | None = None,
     split_seed: int = 2024,
     model_seed: int = 2024,
+    split_manifest_path: str | Path | None = None,
 ) -> dict:
     prepare_generated_detector(
-        generated_file, dataset, context, output_dir, percentile, epochs, ranking_path, split_seed, model_seed
+        generated_file, dataset, context, output_dir, percentile, epochs, ranking_path, split_seed, model_seed,
+        split_manifest_path,
     )
     return evaluate_prepared_detector(output_dir, dataset, context, repository_root)
