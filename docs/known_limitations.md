@@ -13,3 +13,6 @@
 - Role guards provide code-level enforcement, not filesystem sandbox isolation. Target files existed locally and were intentionally opened only in the final evaluation stage.
 - A2 has one authored generation replicate. Its perfect action-template uniqueness is too broad relative to observed source behavior; the original pre-target gates did not measure this dimension.
 - `source_semantic_v1` now supplies that gate and A2 fails it post hoc. Because the policy was adopted after A2 target metrics were viewed, it cannot retroactively make A2 target-blind. The frozen replicate-2 requests must be treated as a new protocol artifact, and no target evaluation should occur until an independently authorized generation run passes all pre-TOF gates.
+# Replicate-4 source-support failure
+
+The formal GPT-5.6 Codex-agent replicate-4 stopped before TOF because two actions had support in only three independent sequences, below the frozen minimum four. Token repetition inside a sequence does not provide independent training support.

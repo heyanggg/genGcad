@@ -17,3 +17,6 @@ For A2, validation/materialization, source-only generation diagnostics, TOF, det
 After A2 was closed, `source_semantic_v1` was frozen for future replicates. It calibrates action/transition support by leave-one-source-day-out coverage and checks global support, per-group anchors, zero-anchor share, and vocabulary expansion. Because it was introduced after A2 target metrics were viewed, its A2 diagnosis is explicitly post hoc. Future TOF execution requires both the original distribution gate and this semantic gate; passing them does not authorize a target evaluation by itself.
 
 Run tests with `/home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q`. Ranking now uses an identical full-coverage DataLoader plus bounded per-sample weighted loss; uniform signals bypass weighting exactly. Invalid semantic channels such as `None:location` fail immediately.
+# A4 outcome
+
+The A4 replicate-4 protocol stopped at pre-TOF `source_semantic_v2`. Its failure does not authorize changes to the same replicate; all target-data and GCAD stages remain blocked.

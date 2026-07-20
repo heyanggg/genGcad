@@ -21,3 +21,6 @@ python -m SmartGen.gcad_source.cli evaluate-prepared --prepared OUT/downstream_p
 ```
 
 For new v2 exports, each request also contains a source-group semantic envelope. `continue-pipeline` refuses TOF unless both the distribution gate and source-semantic gate pass with zero-target declarations. A1 outputs remain under `outputs/codex_generation/` and `experiment_artifacts/fr_spring/`. A2 is isolated under `outputs/codex_generation_v2/`; compact hashes and results are versioned under `experiment_artifacts/fr_spring_baseline_v2/`.
+# Formal GPT-5.6 backend
+
+For A4, `codex_gpt56_agent_file` means that the active Codex GPT-5.6 agent authors every event directly after reading each frozen prompt. Python may serialize, validate, select frozen candidates, and run gates, but may not construct event content.

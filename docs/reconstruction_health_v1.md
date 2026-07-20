@@ -16,4 +16,7 @@ For every split it requires:
 Across the three fixed splits, threshold coefficient of variation must be at most 0.2 and threshold relative range `(max−min)/median` at most 0.5. All three generation/reconstruction gate artifacts must pass and declare `uses_target_behavior=false` before the only target-evaluation function can open target files.
 
 Automated tests use synthetic loss arrays to prove that near-zero collapse, high-loss-tail dominance, obvious bimodality, unstable split thresholds, target roles, and incomplete gate sets are rejected. These tests do not run or tune the replicate-2 model.
+# Replicate-4 applicability
+
+Replicate-4 never reached reconstruction health because its pre-TOF semantic support gate failed. No reconstruction threshold or health rule was changed.
 

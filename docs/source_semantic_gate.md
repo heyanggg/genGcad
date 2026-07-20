@@ -45,4 +45,7 @@ python -m SmartGen.gcad_source.cli gate-source-semantics \
   --directory OUT --dataset fr \
   --source SmartGen/IoT_data/fr/winter/split_trn.pkl
 ```
+# Replicate-4 result
+
+The frozen `source_semantic_v2` gate correctly distinguished token count from independent sequence support: two actions had six tokens but only three supporting sequences, causing the prospective gate to fail.
 
