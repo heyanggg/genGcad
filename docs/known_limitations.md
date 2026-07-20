@@ -1,5 +1,7 @@
 # Known limitations
 
+Support-aware selection can only retain evidence present in the frozen candidate pool. If Codex authorship does not produce the uniform pool targets, selection cannot manufacture missing support and the replicate must fail.
+
 - CUDA is not usable on this server because PyTorch 2.13.0+cu130 rejects the installed driver (reported version 12060). All real training/TOF/downstream results are CPU results; the conditional CUDA test was skipped honestly.
 - The official checkout lacks `SmartGen/IoT_model/Transformer_fr_winter_15epoch.pth`, so SPPC could not be regenerated from scratch. Existing official SPPC day artifacts were used only for prompt representatives. GCAD correctly used the complete TSS output.
 - A1 combined all 305 representatives into one prompt. A2 now restores the 15 official source groups, but remains non-equivalent to the historical generation experiment because the official backend was GPT-4o, no explicit official output count existed, and A2 uses offline Codex-authored files.

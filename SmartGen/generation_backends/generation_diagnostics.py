@@ -117,7 +117,10 @@ def _numeric_actions(sequences, dataset: str, metadata: dict[str, list[str]]) ->
 def diagnose_grouped_generation(directory: str | Path, dataset: str, original_gss_path: str | Path) -> dict:
     directory = Path(directory)
     requests = load_jsonl(directory / "generation_requests.jsonl")
-    responses = load_jsonl(directory / "generation_responses_validated.jsonl")
+    response_path = directory / "generation_responses_selected.jsonl"
+    if not response_path.exists():
+        response_path = directory / "generation_responses_validated.jsonl"
+    responses = load_jsonl(response_path)
     request_map = {item["request_id"]: item for item in requests}
     metadata = requests[0]["target_static_device_metadata"]
     generated_actions = []

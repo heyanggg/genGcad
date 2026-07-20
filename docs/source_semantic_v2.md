@@ -1,5 +1,7 @@
 # Source semantic v2
 
+Protocol v5 does not alter this gate. Minimum independent sequence support remains four and the maximum low-support action ratio remains zero. Pool support six and selected support five are prospective generation safety margins, not formal threshold changes.
+
 `source_semantic_v2` retains v1 and adds source-vocabulary recall, frequency-weighted recall, rare-action recall,
 static-metadata-only usage, per-action sequence support, and transition support. Its source denominator is only
 `source_observed_target_legal_actions`: actions observed in source-normal behavior and legal in the target static

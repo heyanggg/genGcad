@@ -268,7 +268,10 @@ def run_source_semantic_v2(
     requests = load_jsonl(directory / "generation_requests.jsonl")
     metadata = _request_metadata(requests[0])
     if records is None:
-        responses = load_jsonl(directory / "generation_responses_validated.jsonl")
+        response_path = directory / "generation_responses_selected.jsonl"
+        if not response_path.exists():
+            response_path = directory / "generation_responses_validated.jsonl"
+        responses = load_jsonl(response_path)
         records = _records_from_responses(requests, responses, metadata)
     source_numeric = pickle.loads(Path(source_path).read_bytes())
     group_source_numeric = {}

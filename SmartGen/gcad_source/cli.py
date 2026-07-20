@@ -240,6 +240,39 @@ def command_validate_codex56(args):
     print(json.dumps(validate_codex56_candidates(args.directory), indent=2))
 
 
+def command_export_support_aware_v5(args):
+    from SmartGen.generation_backends.support_aware_v5 import export_support_aware_v5_requests
+
+    requests = export_support_aware_v5_requests(
+        args.output, preregistration_dir=args.preregistration, experiment_id=args.experiment_id,
+        dataset=args.dataset, source_context=args.source_context, target_context=args.context,
+        compression_threshold=args.threshold, group_plan_path=args.group_plan,
+        protocol_path=args.protocol, source_full_path=args.source,
+        target_metadata_path=args.target_metadata, original_gss_path=args.original_gss,
+        device_control_path=args.device_control,
+    )
+    print(json.dumps({"request_count": len(requests),
+                      "candidate_sequence_count": sum(item["candidate_sequence_count"] for item in requests),
+                      "programmatic_event_construction": False}, indent=2))
+
+
+def command_validate_candidate_pool(args):
+    from SmartGen.generation_backends.support_aware_v5 import validate_candidate_pool
+    print(json.dumps(validate_candidate_pool(args.directory), indent=2))
+
+
+def command_audit_candidate_support(args):
+    from SmartGen.generation_backends.support_aware_v5 import audit_candidate_support
+    print(json.dumps(audit_candidate_support(args.directory, args.support_plan, args.protocol), indent=2))
+
+
+def command_select_support_aware(args):
+    from SmartGen.generation_backends.support_aware_v5 import select_support_preserving_subset
+    print(json.dumps(select_support_preserving_subset(
+        args.directory, args.support_plan, args.protocol, args.source
+    ), indent=2))
+
+
 def command_source_semantic_v2(args):
     from SmartGen.generation_backends.source_semantic_v2 import run_source_semantic_v2
     from SmartGen.generation_backends.split_feasibility import post_tof_records
@@ -340,9 +373,13 @@ def command_continue(args):
     if "codex_generation_v2" in directory.parts:
         requests = (directory / "generation_requests.jsonl").read_text(encoding="utf-8")
         if "codex_gpt56_agent_file" in requests:
-            from SmartGen.generation_backends.codex56_pipeline import require_pre_tof_v4
-
-            require_pre_tof_v4(directory)
+            request_head = json.loads(requests.splitlines()[0])
+            if request_head.get("replicate") == 5:
+                from SmartGen.generation_backends.support_aware_v5 import require_pre_tof_v5
+                require_pre_tof_v5(directory)
+            else:
+                from SmartGen.generation_backends.codex56_pipeline import require_pre_tof_v4
+                require_pre_tof_v4(directory)
         else:
             from SmartGen.generation_backends.source_semantic_gate import require_pre_tof_gates
 
@@ -498,6 +535,23 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--directory", required=True); item.set_defaults(function=command_codex56_provenance)
     item = sub.add_parser("validate-codex56")
     item.add_argument("--directory", required=True); item.set_defaults(function=command_validate_codex56)
+    item = sub.add_parser("export-support-aware-v5")
+    item.add_argument("--output", required=True); item.add_argument("--preregistration", required=True)
+    item.add_argument("--experiment-id", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--source-context", required=True); item.add_argument("--context", required=True)
+    item.add_argument("--threshold", type=float, required=True); item.add_argument("--group-plan", required=True)
+    item.add_argument("--protocol", required=True); item.add_argument("--source", required=True)
+    item.add_argument("--target-metadata", required=True); item.add_argument("--original-gss", required=True)
+    item.add_argument("--device-control", required=True); item.set_defaults(function=command_export_support_aware_v5)
+    item = sub.add_parser("validate-candidate-pool-v5")
+    item.add_argument("--directory", required=True); item.set_defaults(function=command_validate_candidate_pool)
+    item = sub.add_parser("audit-candidate-support-v5")
+    item.add_argument("--directory", required=True); item.add_argument("--support-plan", required=True)
+    item.add_argument("--protocol", required=True); item.set_defaults(function=command_audit_candidate_support)
+    item = sub.add_parser("select-support-aware-v5")
+    item.add_argument("--directory", required=True); item.add_argument("--support-plan", required=True)
+    item.add_argument("--protocol", required=True); item.add_argument("--source", required=True)
+    item.set_defaults(function=command_select_support_aware)
     item = sub.add_parser("gate-source-semantics-v2")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--source", required=True); item.add_argument("--protocol", required=True)

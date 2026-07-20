@@ -23,7 +23,10 @@ def _length_bin(length: int) -> str:
 def response_records(directory: str | Path) -> list[dict]:
     directory = Path(directory)
     requests = load_jsonl(directory / "generation_requests.jsonl")
-    responses = load_jsonl(directory / "generation_responses_validated.jsonl")
+    response_path = directory / "generation_responses_selected.jsonl"
+    if not response_path.exists():
+        response_path = directory / "generation_responses_validated.jsonl"
+    responses = load_jsonl(response_path)
     request_map = {item["request_id"]: item for item in requests}
     metadata = _request_metadata(requests[0])
     records = []

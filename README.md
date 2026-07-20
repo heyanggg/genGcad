@@ -2,6 +2,8 @@
 
 Current A4 status: the genuinely Codex GPT-5.6-agent-authored replicate-4 produced 137 candidates and passed provenance, legality, copy-safety, and generation-distribution gates, then stopped on the frozen pre-TOF `source_semantic_v2` minimum sequence-support rule. It did not access target behavior or run TOF, downstream evaluation, GCAD, or Ranking. See [replicate4_results.md](docs/replicate4_results.md).
 
+A5 is preregistered as a 160-candidate, support-aware Codex-agent pool reduced deterministically to the unchanged 137 group quotas. Python selects but never authors or edits events; all v4 semantic, split, reconstruction, and 95.5% threshold rules remain unchanged.
+
 Replicate-3 is frozen and reclassified as a Programmatic Source-Constrained Composition Stress Test; it is not
 an LLM baseline. Formal GPT-5.6-via-Codex generation work proceeds only on
 `codex56-generation-protocol-v4` with Python prohibited from constructing event content. See

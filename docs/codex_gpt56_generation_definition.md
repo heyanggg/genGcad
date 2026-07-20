@@ -1,5 +1,7 @@
 # Codex GPT-5.6 agent generation definition
 
+In protocol v5, the same authorship boundary applies to all 160 candidates. Support targets guide a complete request batch but never specify a particular sequence's actions. Python may count, validate, and delete whole candidates; it cannot create, replace, or modify events.
+
 The formal v4 backend is `codex_gpt56_agent_file`. Python extracts source data, builds and freezes complete
 SmartGen-compatible prompts, validates response artifacts, selects only from a prospectively frozen candidate
 pool, converts validated responses, and runs gates. Python does not create, complete, reorder, or rewrite event

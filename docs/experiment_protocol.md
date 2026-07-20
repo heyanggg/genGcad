@@ -1,5 +1,7 @@
 # Experiment protocol
 
+A5 changes only generation-time support allocation and deterministic candidate selection. Its 160 pool size, group quotas, uniform support margins, deletion ordering, and all downstream gates must be frozen before the first candidate is authored.
+
 The first cell is FR winter→spring, chosen before target evaluation. Frozen v1 source settings were device-action/binary/3-hour tensorization, history 4, 3 Mixer layers, hidden 96, batch 64, Adam 1e-3, weight decay 1e-5, maximum 30 epochs, patience 6, gradient clip 1.0. Full-source seeds were 2024–2026 plus partition replicates 3101/3102. V1 GCAD settings and results are preserved as smoke evidence, not extended here.
 
 Baseline protocol v2 freezes generation at 137 samples allocated across the 15 official SPPC source groups (`8,6,12,10,7,6,6,8,8,29,9,9,6,7,6`). Group-local length bounds come from source q10/q90 only. Original TOF uses 10 epochs per fit. Downstream uses seed 2024, deterministic whole-sequence 80/20 splitting, 15 epochs, and generated-validation percentile 95.5. Exact duplicate sequences cannot cross the split.

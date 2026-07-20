@@ -28,5 +28,7 @@ class CodexFileBackend:
 
     def convert(self, output_dir: str | Path, **kwargs) -> Path:
         directory = Path(output_dir)
-        return convert_responses_to_smartgen(directory / "generation_responses_validated.jsonl", directory, **kwargs)
-
+        responses = directory / "generation_responses_selected.jsonl"
+        if not responses.exists():
+            responses = directory / "generation_responses_validated.jsonl"
+        return convert_responses_to_smartgen(responses, directory, **kwargs)
