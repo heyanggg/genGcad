@@ -1,0 +1,70 @@
+{
+  "algorithm": "largest_remainder",
+  "formula": "candidate_pool_size * original_group_quota / final_sequence_count; floor then descending remainder; group_id ascending tie-break",
+  "candidate_pool_size": 160,
+  "final_sequence_count": 137,
+  "groups": {
+    "0_0": {
+      "original_final_quota": 8,
+      "candidate_quota": 9
+    },
+    "0_1": {
+      "original_final_quota": 6,
+      "candidate_quota": 7
+    },
+    "1_0": {
+      "original_final_quota": 12,
+      "candidate_quota": 14
+    },
+    "1_1": {
+      "original_final_quota": 10,
+      "candidate_quota": 12
+    },
+    "2_0": {
+      "original_final_quota": 7,
+      "candidate_quota": 8
+    },
+    "2_1": {
+      "original_final_quota": 6,
+      "candidate_quota": 7
+    },
+    "3_0": {
+      "original_final_quota": 6,
+      "candidate_quota": 7
+    },
+    "3_1": {
+      "original_final_quota": 8,
+      "candidate_quota": 9
+    },
+    "4_0": {
+      "original_final_quota": 8,
+      "candidate_quota": 9
+    },
+    "4_1": {
+      "original_final_quota": 29,
+      "candidate_quota": 34
+    },
+    "4_2": {
+      "original_final_quota": 9,
+      "candidate_quota": 11
+    },
+    "5_0": {
+      "original_final_quota": 9,
+      "candidate_quota": 11
+    },
+    "5_1": {
+      "original_final_quota": 6,
+      "candidate_quota": 7
+    },
+    "6_0": {
+      "original_final_quota": 7,
+      "candidate_quota": 8
+    },
+    "6_1": {
+      "original_final_quota": 6,
+      "candidate_quota": 7
+    }
+  },
+  "uses_generation_results": false,
+  "uses_target_behavior": false
+}

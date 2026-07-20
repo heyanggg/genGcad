@@ -1,0 +1,21 @@
+{
+  "version": "deterministic_support_preserving_deletion_v1",
+  "initial_pool_size": 160,
+  "final_size": 137,
+  "mutation_allowed": false,
+  "supplemental_generation_allowed": false,
+  "ranking": [
+    "highest_minimum_action_support_redundancy",
+    "highest_group_surplus",
+    "highest_candidate_similarity",
+    "lowest_observed_transition_contribution",
+    "sequence_id_ascending"
+  ],
+  "tie_break": "sequence_id_ascending",
+  "forbidden_inputs": [
+    "target_behavior",
+    "target_labels",
+    "anomaly_scores",
+    "reconstruction_loss"
+  ]
+}

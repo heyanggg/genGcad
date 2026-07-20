@@ -1,0 +1,1752 @@
+{
+  "version": "source_support_plan_v2",
+  "role": "group-level support guidance for direct Codex authorship; never an event plan",
+  "candidate_pool_sequence_support_target": 6,
+  "selected_sequence_support_target": 5,
+  "formal_source_semantic_v2_minimum": 4,
+  "source_observed_target_legal_action_count": 39,
+  "actions": {
+    "AirPurifier:notification": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 3,
+        "0_1": 3
+      }
+    },
+    "AirPurifier:refresh refresh": {
+      "allowed_source_groups": [
+        "2_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "2_0": 1,
+        "4_1": 5
+      }
+    },
+    "AirPurifier:setAirPurifierMode": {
+      "allowed_source_groups": [
+        "3_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "3_0": 1,
+        "4_1": 5
+      }
+    },
+    "AirPurifier:setFanSpeed": {
+      "allowed_source_groups": [
+        "1_1",
+        "4_0",
+        "4_1",
+        "5_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_1": 1,
+        "4_0": 1,
+        "4_1": 3,
+        "5_0": 1
+      }
+    },
+    "Blind:windowShade close": {
+      "allowed_source_groups": [
+        "0_0",
+        "1_0",
+        "1_1",
+        "2_1",
+        "3_0",
+        "3_1",
+        "4_0",
+        "4_1",
+        "4_2",
+        "5_0",
+        "5_1",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 0,
+        "1_0": 1,
+        "1_1": 1,
+        "2_1": 0,
+        "3_0": 0,
+        "3_1": 0,
+        "4_0": 0,
+        "4_1": 2,
+        "4_2": 1,
+        "5_0": 1,
+        "5_1": 0,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "Blind:windowShade open": {
+      "allowed_source_groups": [
+        "0_0",
+        "1_1",
+        "2_0",
+        "2_1",
+        "3_0",
+        "3_1",
+        "4_0",
+        "4_1",
+        "4_2",
+        "5_0",
+        "5_1",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "1_1": 1,
+        "2_0": 0,
+        "2_1": 0,
+        "3_0": 0,
+        "3_1": 0,
+        "4_0": 0,
+        "4_1": 2,
+        "4_2": 1,
+        "5_0": 1,
+        "5_1": 0,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "Camera:notification": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1",
+        "1_0",
+        "1_1",
+        "2_0",
+        "2_1",
+        "3_0",
+        "4_0",
+        "4_1",
+        "4_2",
+        "5_0",
+        "5_1",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "0_1": 0,
+        "1_0": 1,
+        "1_1": 1,
+        "2_0": 0,
+        "2_1": 0,
+        "3_0": 0,
+        "4_0": 0,
+        "4_1": 1,
+        "4_2": 1,
+        "5_0": 1,
+        "5_1": 0,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "Dryer:notification": {
+      "allowed_source_groups": [
+        "2_1",
+        "5_0",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "2_1": 1,
+        "5_0": 2,
+        "6_0": 2,
+        "6_1": 1
+      }
+    },
+    "GarageDoor:doorControl close": {
+      "allowed_source_groups": [
+        "1_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 6
+      }
+    },
+    "GarageDoor:doorControl open": {
+      "allowed_source_groups": [
+        "0_0",
+        "1_0",
+        "4_2",
+        "5_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "1_0": 2,
+        "4_2": 2,
+        "5_0": 1
+      }
+    },
+    "Heater:switch off": {
+      "allowed_source_groups": [
+        "2_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "2_0": 1,
+        "4_1": 5
+      }
+    },
+    "Heater:switch on": {
+      "allowed_source_groups": [
+        "0_0",
+        "2_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "2_0": 1,
+        "4_1": 4
+      }
+    },
+    "Light:setLevel": {
+      "allowed_source_groups": [
+        "1_0",
+        "1_1",
+        "3_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 3,
+        "1_1": 2,
+        "3_0": 1
+      }
+    },
+    "Light:setLightingMode": {
+      "allowed_source_groups": [
+        "0_0",
+        "2_0",
+        "3_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 2,
+        "2_0": 2,
+        "3_0": 2
+      }
+    },
+    "Light:switch off": {
+      "allowed_source_groups": [
+        "3_0",
+        "3_1",
+        "6_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "3_0": 2,
+        "3_1": 2,
+        "6_0": 2
+      }
+    },
+    "Light:switch on": {
+      "allowed_source_groups": [
+        "0_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 6
+      }
+    },
+    "NetworkAudio:audioMute mute": {
+      "allowed_source_groups": [
+        "1_1",
+        "2_0",
+        "3_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_1": 2,
+        "2_0": 2,
+        "3_1": 2
+      }
+    },
+    "NetworkAudio:audioVolume setVolume": {
+      "allowed_source_groups": [
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "6_0": 3,
+        "6_1": 3
+      }
+    },
+    "NetworkAudio:mediaPlayback play": {
+      "allowed_source_groups": [
+        "1_0",
+        "1_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 3,
+        "1_1": 3
+      }
+    },
+    "NetworkAudio:refresh refresh": {
+      "allowed_source_groups": [
+        "5_0",
+        "5_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "5_0": 4,
+        "5_1": 2
+      }
+    },
+    "NetworkAudio:switch on": {
+      "allowed_source_groups": [
+        "4_0",
+        "4_2",
+        "6_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "4_0": 2,
+        "4_2": 2,
+        "6_0": 2
+      }
+    },
+    "Other:custom.soundmode setSoundMode": {
+      "allowed_source_groups": [
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "4_1": 6
+      }
+    },
+    "Other:notification": {
+      "allowed_source_groups": [
+        "3_0",
+        "4_0",
+        "5_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "3_0": 2,
+        "4_0": 2,
+        "5_0": 2
+      }
+    },
+    "Other:switch on": {
+      "allowed_source_groups": [
+        "1_0",
+        "1_1",
+        "3_1",
+        "5_0",
+        "5_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 2,
+        "1_1": 1,
+        "3_1": 1,
+        "5_0": 1,
+        "5_1": 1
+      }
+    },
+    "Projector:custom.soundmode setSoundMode": {
+      "allowed_source_groups": [
+        "1_0",
+        "4_1",
+        "5_0",
+        "6_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 1,
+        "4_1": 3,
+        "5_0": 1,
+        "6_0": 1
+      }
+    },
+    "RobotCleaner:setRobotCleanerMovement charging": {
+      "allowed_source_groups": [
+        "0_0",
+        "1_0",
+        "2_0",
+        "2_1",
+        "3_0",
+        "4_0",
+        "5_0",
+        "5_1",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "1_0": 1,
+        "2_0": 1,
+        "2_1": 0,
+        "3_0": 0,
+        "4_0": 1,
+        "5_0": 1,
+        "5_1": 0,
+        "6_0": 1,
+        "6_1": 0
+      }
+    },
+    "RobotCleaner:setRobotCleanerMovement cleaning": {
+      "allowed_source_groups": [
+        "0_0",
+        "2_0",
+        "2_1",
+        "3_0",
+        "3_1",
+        "4_1",
+        "4_2",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "2_0": 1,
+        "2_1": 0,
+        "3_0": 0,
+        "3_1": 1,
+        "4_1": 2,
+        "4_2": 1,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "RobotCleaner:setting": {
+      "allowed_source_groups": [
+        "1_0",
+        "1_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "1_0": 3,
+        "1_1": 3
+      }
+    },
+    "SmartLock:lock lock": {
+      "allowed_source_groups": [
+        "3_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "3_0": 6
+      }
+    },
+    "SmartLock:switch off": {
+      "allowed_source_groups": [
+        "3_0",
+        "3_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "3_0": 3,
+        "3_1": 3
+      }
+    },
+    "SmartPlug:refresh refresh": {
+      "allowed_source_groups": [
+        "5_0",
+        "5_1"
+      ],
+      "group_evidence": "source_normal_day",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "5_0": 4,
+        "5_1": 2
+      }
+    },
+    "Switch:refresh refresh": {
+      "allowed_source_groups": [
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "4_1": 6
+      }
+    },
+    "Television:audioMute unmute": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1",
+        "1_0",
+        "2_0",
+        "3_0",
+        "4_0",
+        "4_1",
+        "5_0",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "0_1": 0,
+        "1_0": 1,
+        "2_0": 0,
+        "3_0": 0,
+        "4_0": 1,
+        "4_1": 2,
+        "5_0": 1,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "Television:refresh refresh": {
+      "allowed_source_groups": [
+        "2_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "2_0": 1,
+        "4_1": 5
+      }
+    },
+    "Television:setChannel": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1",
+        "1_0",
+        "1_1",
+        "2_0",
+        "2_1",
+        "3_0",
+        "3_1",
+        "4_0",
+        "4_1",
+        "5_0",
+        "5_1",
+        "6_0",
+        "6_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "0_1": 0,
+        "1_0": 1,
+        "1_1": 1,
+        "2_0": 0,
+        "2_1": 0,
+        "3_0": 0,
+        "3_1": 0,
+        "4_0": 0,
+        "4_1": 2,
+        "5_0": 1,
+        "5_1": 0,
+        "6_0": 0,
+        "6_1": 0
+      }
+    },
+    "Television:setInputSource": {
+      "allowed_source_groups": [
+        "0_0",
+        "1_1",
+        "3_0",
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "1_1": 1,
+        "3_0": 1,
+        "4_1": 3
+      }
+    },
+    "Television:setPictureMode": {
+      "allowed_source_groups": [
+        "4_1"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "4_1": 6
+      }
+    },
+    "Television:switch on": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1",
+        "4_1",
+        "6_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 1,
+        "0_1": 1,
+        "4_1": 3,
+        "6_0": 1
+      }
+    },
+    "Television:volumeDown": {
+      "allowed_source_groups": [
+        "0_0",
+        "0_1",
+        "1_0",
+        "1_1",
+        "2_0",
+        "3_0",
+        "3_1",
+        "4_0",
+        "4_1",
+        "4_2",
+        "5_0",
+        "6_0"
+      ],
+      "group_evidence": "direct_sppc",
+      "candidate_pool_sequence_support_target": 6,
+      "selected_sequence_support_target": 5,
+      "formal_source_semantic_v2_minimum": 4,
+      "candidate_group_support_allocation": {
+        "0_0": 0,
+        "0_1": 0,
+        "1_0": 1,
+        "1_1": 1,
+        "2_0": 0,
+        "3_0": 0,
+        "3_1": 0,
+        "4_0": 0,
+        "4_1": 2,
+        "4_2": 1,
+        "5_0": 1,
+        "6_0": 0
+      }
+    }
+  },
+  "groups": {
+    "0_0": {
+      "candidate_quota": 9,
+      "final_quota": 8,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:notification": 3,
+        "Blind:windowShade open": 1,
+        "Camera:notification": 1,
+        "GarageDoor:doorControl open": 1,
+        "Heater:switch on": 1,
+        "Light:setLightingMode": 2,
+        "Light:switch on": 6,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "RobotCleaner:setRobotCleanerMovement cleaning": 1,
+        "Television:audioMute unmute": 1,
+        "Television:setChannel": 1,
+        "Television:setInputSource": 1,
+        "Television:switch on": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "GarageDoor:doorControl open",
+          "GarageDoor:doorControl open"
+        ],
+        [
+          "Light:switch on",
+          "Light:setLightingMode"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade open"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Camera:notification"
+        ],
+        [
+          "Television:audioMute unmute",
+          "Television:switch on"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setInputSource"
+        ],
+        [
+          "Television:setInputSource",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 5,
+        "4": 4
+      }
+    },
+    "0_1": {
+      "candidate_quota": 7,
+      "final_quota": 6,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:notification": 3,
+        "Television:switch on": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Television:audioMute unmute",
+          "Television:switch on"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 4,
+        "4": 3
+      }
+    },
+    "1_0": {
+      "candidate_quota": 14,
+      "final_quota": 12,
+      "candidate_action_sequence_support_targets": {
+        "Blind:windowShade close": 1,
+        "Camera:notification": 1,
+        "GarageDoor:doorControl close": 6,
+        "GarageDoor:doorControl open": 2,
+        "Light:setLevel": 3,
+        "NetworkAudio:mediaPlayback play": 3,
+        "Other:switch on": 2,
+        "Projector:custom.soundmode setSoundMode": 1,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "RobotCleaner:setting": 3,
+        "Television:audioMute unmute": 1,
+        "Television:setChannel": 1,
+        "Television:volumeDown": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "GarageDoor:doorControl open",
+          "GarageDoor:doorControl close"
+        ],
+        [
+          "GarageDoor:doorControl open",
+          "GarageDoor:doorControl open"
+        ],
+        [
+          "Other:switch on",
+          "Other:switch on"
+        ],
+        [
+          "Television:setChannel",
+          "Television:audioMute unmute"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ],
+        [
+          "Television:volumeDown",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 7,
+        "4": 7
+      }
+    },
+    "1_1": {
+      "candidate_quota": 12,
+      "final_quota": 10,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:setFanSpeed": 1,
+        "Blind:windowShade close": 1,
+        "Blind:windowShade open": 1,
+        "Camera:notification": 1,
+        "Light:setLevel": 2,
+        "NetworkAudio:audioMute mute": 2,
+        "NetworkAudio:mediaPlayback play": 3,
+        "Other:switch on": 1,
+        "RobotCleaner:setting": 3,
+        "Television:setChannel": 1,
+        "Television:setInputSource": 1,
+        "Television:volumeDown": 1
+      },
+      "source_transition_anchors": [
+        [
+          "AirPurifier:setFanSpeed",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade open"
+        ],
+        [
+          "Other:switch on",
+          "Other:switch on"
+        ],
+        [
+          "Television:setInputSource",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 6,
+        "4": 6
+      }
+    },
+    "2_0": {
+      "candidate_quota": 8,
+      "final_quota": 7,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:refresh refresh": 1,
+        "Heater:switch off": 1,
+        "Heater:switch on": 1,
+        "Light:setLightingMode": 2,
+        "NetworkAudio:audioMute mute": 2,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "RobotCleaner:setRobotCleanerMovement cleaning": 1,
+        "Television:refresh refresh": 1
+      },
+      "source_transition_anchors": [
+        [
+          "AirPurifier:refresh refresh",
+          "Heater:switch off"
+        ],
+        [
+          "Heater:switch off",
+          "Television:setChannel"
+        ],
+        [
+          "Heater:switch on",
+          "AirPurifier:refresh refresh"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Camera:notification"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Television:audioMute unmute",
+          "Television:volumeDown"
+        ],
+        [
+          "Television:refresh refresh",
+          "Television:setChannel"
+        ],
+        [
+          "Television:setChannel",
+          "Heater:switch on"
+        ],
+        [
+          "Television:setChannel",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Television:setChannel",
+          "Television:refresh refresh"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ],
+        [
+          "Television:volumeDown",
+          "Television:volumeDown"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 3,
+        "4": 3,
+        "5": 2
+      }
+    },
+    "2_1": {
+      "candidate_quota": 7,
+      "final_quota": 6,
+      "candidate_action_sequence_support_targets": {
+        "Dryer:notification": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade open"
+        ],
+        [
+          "Dryer:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:setChannel"
+        ],
+        [
+          "Television:setChannel",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1
+      }
+    },
+    "3_0": {
+      "candidate_quota": 7,
+      "final_quota": 6,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:setAirPurifierMode": 1,
+        "Light:setLevel": 1,
+        "Light:setLightingMode": 2,
+        "Light:switch off": 2,
+        "Other:notification": 2,
+        "SmartLock:lock lock": 6,
+        "SmartLock:switch off": 3,
+        "Television:setInputSource": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Television:setChannel"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Blind:windowShade open",
+          "Television:setChannel"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade open"
+        ],
+        [
+          "Camera:notification",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Light:setLightingMode",
+          "Light:setLightingMode"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade open"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Blind:windowShade open"
+        ],
+        [
+          "Television:setChannel",
+          "Camera:notification"
+        ],
+        [
+          "Television:setChannel",
+          "Light:setLightingMode"
+        ],
+        [
+          "Television:setChannel",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      }
+    },
+    "3_1": {
+      "candidate_quota": 9,
+      "final_quota": 8,
+      "candidate_action_sequence_support_targets": {
+        "Light:switch off": 2,
+        "NetworkAudio:audioMute mute": 2,
+        "Other:switch on": 1,
+        "RobotCleaner:setRobotCleanerMovement cleaning": 1,
+        "SmartLock:switch off": 3
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Television:setChannel"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Other:switch on",
+          "Other:switch on"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Blind:windowShade open"
+        ],
+        [
+          "Television:setChannel",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 3,
+        "4": 2,
+        "5": 2,
+        "6": 2
+      }
+    },
+    "4_0": {
+      "candidate_quota": 9,
+      "final_quota": 8,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:setFanSpeed": 1,
+        "NetworkAudio:switch on": 2,
+        "Other:notification": 2,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "Television:audioMute unmute": 1
+      },
+      "source_transition_anchors": [
+        [
+          "AirPurifier:setFanSpeed",
+          "Camera:notification"
+        ],
+        [
+          "AirPurifier:setFanSpeed",
+          "Television:setChannel"
+        ],
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Camera:notification",
+          "AirPurifier:setFanSpeed"
+        ],
+        [
+          "Camera:notification",
+          "Television:setChannel"
+        ],
+        [
+          "Other:notification",
+          "Other:notification"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade open"
+        ],
+        [
+          "Television:setChannel",
+          "AirPurifier:setFanSpeed"
+        ],
+        [
+          "Television:setChannel",
+          "Camera:notification"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ],
+        [
+          "Television:volumeDown",
+          "Television:audioMute unmute"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1
+      }
+    },
+    "4_1": {
+      "candidate_quota": 34,
+      "final_quota": 29,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:refresh refresh": 5,
+        "AirPurifier:setAirPurifierMode": 5,
+        "AirPurifier:setFanSpeed": 3,
+        "Blind:windowShade close": 2,
+        "Blind:windowShade open": 2,
+        "Camera:notification": 1,
+        "Heater:switch off": 5,
+        "Heater:switch on": 4,
+        "Other:custom.soundmode setSoundMode": 6,
+        "Projector:custom.soundmode setSoundMode": 3,
+        "RobotCleaner:setRobotCleanerMovement cleaning": 2,
+        "Switch:refresh refresh": 6,
+        "Television:audioMute unmute": 2,
+        "Television:refresh refresh": 5,
+        "Television:setChannel": 2,
+        "Television:setInputSource": 3,
+        "Television:setPictureMode": 6,
+        "Television:switch on": 3,
+        "Television:volumeDown": 2
+      },
+      "source_transition_anchors": [
+        [
+          "AirPurifier:refresh refresh",
+          "Television:setChannel"
+        ],
+        [
+          "AirPurifier:setFanSpeed",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade open",
+          "Heater:switch on"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Camera:notification",
+          "AirPurifier:setFanSpeed"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Television:setChannel"
+        ],
+        [
+          "Heater:switch on",
+          "AirPurifier:refresh refresh"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Camera:notification"
+        ],
+        [
+          "Switch:refresh refresh",
+          "Television:refresh refresh"
+        ],
+        [
+          "Television:refresh refresh",
+          "Blind:windowShade close"
+        ],
+        [
+          "Television:setChannel",
+          "AirPurifier:setFanSpeed"
+        ],
+        [
+          "Television:setChannel",
+          "Camera:notification"
+        ],
+        [
+          "Television:setChannel",
+          "Heater:switch off"
+        ],
+        [
+          "Television:setPictureMode",
+          "Television:setPictureMode"
+        ],
+        [
+          "Television:switch on",
+          "Television:volumeDown"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 6,
+        "4": 6,
+        "5": 6,
+        "6": 6,
+        "7": 5,
+        "8": 5
+      }
+    },
+    "4_2": {
+      "candidate_quota": 11,
+      "final_quota": 9,
+      "candidate_action_sequence_support_targets": {
+        "Blind:windowShade close": 1,
+        "Blind:windowShade open": 1,
+        "Camera:notification": 1,
+        "GarageDoor:doorControl open": 2,
+        "NetworkAudio:switch on": 2,
+        "RobotCleaner:setRobotCleanerMovement cleaning": 1,
+        "Television:volumeDown": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade open"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Camera:notification"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 3,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2
+      }
+    },
+    "5_0": {
+      "candidate_quota": 11,
+      "final_quota": 9,
+      "candidate_action_sequence_support_targets": {
+        "AirPurifier:setFanSpeed": 1,
+        "Blind:windowShade close": 1,
+        "Blind:windowShade open": 1,
+        "Camera:notification": 1,
+        "Dryer:notification": 2,
+        "GarageDoor:doorControl open": 1,
+        "NetworkAudio:refresh refresh": 4,
+        "Other:notification": 2,
+        "Other:switch on": 1,
+        "Projector:custom.soundmode setSoundMode": 1,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "SmartPlug:refresh refresh": 4,
+        "Television:audioMute unmute": 1,
+        "Television:setChannel": 1,
+        "Television:volumeDown": 1
+      },
+      "source_transition_anchors": [
+        [
+          "AirPurifier:setFanSpeed",
+          "Dryer:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade close"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Other:switch on",
+          "Other:switch on"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade open"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Television:setChannel"
+        ],
+        [
+          "Television:setChannel",
+          "AirPurifier:setFanSpeed"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 4,
+        "4": 4,
+        "5": 3
+      }
+    },
+    "5_1": {
+      "candidate_quota": 7,
+      "final_quota": 6,
+      "candidate_action_sequence_support_targets": {
+        "NetworkAudio:refresh refresh": 2,
+        "Other:switch on": 1,
+        "SmartPlug:refresh refresh": 2
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Blind:windowShade open",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade open",
+          "Television:setChannel"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Other:switch on",
+          "Other:switch on"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade open"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      }
+    },
+    "6_0": {
+      "candidate_quota": 8,
+      "final_quota": 7,
+      "candidate_action_sequence_support_targets": {
+        "Dryer:notification": 2,
+        "Light:switch off": 2,
+        "NetworkAudio:audioVolume setVolume": 3,
+        "NetworkAudio:switch on": 2,
+        "Projector:custom.soundmode setSoundMode": 1,
+        "RobotCleaner:setRobotCleanerMovement charging": 1,
+        "Television:switch on": 1
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Dryer:notification"
+        ],
+        [
+          "Camera:notification",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Dryer:notification",
+          "NetworkAudio:audioVolume setVolume"
+        ],
+        [
+          "NetworkAudio:audioVolume setVolume",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Camera:notification"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ],
+        [
+          "Television:setChannel",
+          "Television:switch on"
+        ],
+        [
+          "Television:switch on",
+          "Television:audioMute unmute"
+        ],
+        [
+          "Television:volumeDown",
+          "Television:volumeDown"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2
+      }
+    },
+    "6_1": {
+      "candidate_quota": 7,
+      "final_quota": 6,
+      "candidate_action_sequence_support_targets": {
+        "Dryer:notification": 1,
+        "NetworkAudio:audioVolume setVolume": 3
+      },
+      "source_transition_anchors": [
+        [
+          "Blind:windowShade close",
+          "Blind:windowShade open"
+        ],
+        [
+          "Blind:windowShade close",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade close",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Blind:windowShade open",
+          "Camera:notification"
+        ],
+        [
+          "Blind:windowShade open",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade close"
+        ],
+        [
+          "Camera:notification",
+          "Blind:windowShade open"
+        ],
+        [
+          "Camera:notification",
+          "Dryer:notification"
+        ],
+        [
+          "NetworkAudio:audioVolume setVolume",
+          "RobotCleaner:setRobotCleanerMovement charging"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Blind:windowShade close"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Camera:notification"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Blind:windowShade close"
+        ],
+        [
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "RobotCleaner:setRobotCleanerMovement cleaning"
+        ],
+        [
+          "Television:setChannel",
+          "Television:setChannel"
+        ]
+      ],
+      "length_distribution_target": {
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1
+      }
+    }
+  },
+  "maximum_target_metadata_only_token_share": 0.03,
+  "contains_complete_event_sequences": false,
+  "contains_per_sequence_actions": false,
+  "contains_combination_formula": false,
+  "programmatic_event_construction": false,
+  "uses_target_behavior": false
+}
