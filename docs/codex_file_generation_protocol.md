@@ -12,6 +12,7 @@ python -m SmartGen.gcad_source.cli materialize-authored --directory OUT --plan O
 python -m SmartGen.gcad_source.cli validate --directory OUT
 python -m SmartGen.gcad_source.cli convert --directory OUT --dataset fr
 python -m SmartGen.gcad_source.cli diagnose-generation --directory OUT --dataset fr --original-gss GSS.json
+python -m SmartGen.gcad_source.cli gate-source-semantics --directory OUT --dataset fr --source SmartGen/IoT_data/fr/winter/split_trn.pkl
 python -m SmartGen.gcad_source.cli continue-pipeline --directory OUT --dataset fr --context spring --tof-epochs 10
 python -m SmartGen.gcad_source.cli prepare-generated --generated OUT/tof/tof_sequences.pkl --dataset fr --context spring --output OUT/downstream_prepared --percentile 95.5 --epochs 15
 python -m SmartGen.gcad_source.cli gate-reconstruction --directory OUT --diagnostics OUT/downstream_prepared/training_diagnostics.json
@@ -19,4 +20,4 @@ python -m SmartGen.gcad_source.cli gate-reconstruction --directory OUT --diagnos
 python -m SmartGen.gcad_source.cli evaluate-prepared --prepared OUT/downstream_prepared --dataset fr --context spring
 ```
 
-A1 outputs remain under `outputs/codex_generation/` and `experiment_artifacts/fr_spring/`. A2 is isolated under `outputs/codex_generation_v2/`; compact hashes and results are versioned under `experiment_artifacts/fr_spring_baseline_v2/`.
+For new v2 exports, each request also contains a source-group semantic envelope. `continue-pipeline` refuses TOF unless both the distribution gate and source-semantic gate pass with zero-target declarations. A1 outputs remain under `outputs/codex_generation/` and `experiment_artifacts/fr_spring/`. A2 is isolated under `outputs/codex_generation_v2/`; compact hashes and results are versioned under `experiment_artifacts/fr_spring_baseline_v2/`.

@@ -22,5 +22,6 @@ The A2 generation and reconstruction gates passed before target evaluation, and 
 
 Do not create `gcad-representation-v2` yet. Illegal GCAD semantic channels are now hard-rejected and ranking fairness is repaired, but A2 is not yet a sufficiently stable downstream reference: it replaces near-zero template collapse with a bimodal validation distribution and excessive threshold. A future baseline iteration must use a pre-registered, source-only semantic-coherence criterion and new generation replicate; it must not optimize against the A2 target result.
 
-Compact evidence and hashes are in `experiment_artifacts/fr_spring_baseline_v2/`; full local score arrays and checkpoints remain under `outputs/codex_generation_v2/`.
+That criterion is now implemented as `source_semantic_v1`. Applied post hoc without opening target files, A2 fails all five source-semantic checks: only 36.79% event support, 3.08% transition support, 27.74% zero-anchor sequences, 41.61% group-anchor coverage, and 3.72× action-vocabulary expansion. A new request-only replicate is frozen, but no responses, TOF, or target evaluation have been run.
 
+Compact evidence and hashes are in `experiment_artifacts/fr_spring_baseline_v2/`; full local score arrays and checkpoints remain under `outputs/codex_generation_v2/`.

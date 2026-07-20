@@ -14,4 +14,6 @@ Groups are:
 
 For A2, validation/materialization, source-only generation diagnostics, TOF, detector training, threshold creation, reconstruction gating, and the pre-target checksum manifest were complete before any target file was opened. `evaluate-prepared` then performed one final target evaluation. Its metrics cannot select parameters, thresholds, gates, or batches. A2 did not improve A1, so this branch does not create or run GCAD representation v2 and does not expand the other cells.
 
+After A2 was closed, `source_semantic_v1` was frozen for future replicates. It calibrates action/transition support by leave-one-source-day-out coverage and checks global support, per-group anchors, zero-anchor share, and vocabulary expansion. Because it was introduced after A2 target metrics were viewed, its A2 diagnosis is explicitly post hoc. Future TOF execution requires both the original distribution gate and this semantic gate; passing them does not authorize a target evaluation by itself.
+
 Run tests with `/home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q`. Ranking now uses an identical full-coverage DataLoader plus bounded per-sample weighted loss; uniform signals bypass weighting exactly. Invalid semantic channels such as `None:location` fail immediately.

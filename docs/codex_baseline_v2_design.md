@@ -32,7 +32,8 @@ The first gate uses source representative and generated-internal statistics only
 
 Both gates passed before target evaluation. The freeze manifest is `outputs/codex_generation_v2/fr/spring/baseline/replicate_1/pre_target_freeze_manifest.json`.
 
+Post-experiment audit found that these two original gates did not constrain source-semantic support. The subsequently frozen `source_semantic_v1` policy is documented separately and A2 fails it. This is a post-hoc source-only diagnosis, not a retroactive pre-target A2 gate. Future v2 replicates must pass distribution plus source-semantic gates before TOF.
+
 ## A1 versus A2
 
 A1 concatenated all 305 representatives into one prompt and then split only the requested output count into seven batches. A2 restores the 15 group contexts, uses group-local length limits, validates group identity, and freezes the detector before final evaluation. A1 remains an engineering smoke test. A2 improves protocol fidelity and removes action-template collapse, but the different backend means it still cannot be called an official generation reproduction.
-

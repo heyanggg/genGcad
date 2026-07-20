@@ -1,0 +1,55 @@
+{
+  "identity": "source_semantic_v1 post-A2 baseline repair",
+  "scope": "source-only semantic coherence gate and frozen replicate-2 requests",
+  "important_timing_note": "This policy was added after the A2 target result was observed. Its thresholds use no target behavior, but it is not retroactively claimed as an A2 pre-target gate.",
+  "source": {
+    "path": "SmartGen/IoT_data/fr/winter/split_trn.pkl",
+    "raw_sequence_count": 1728,
+    "usable_sequence_count_after_invalid_semantic_event_filtering": 923,
+    "invalid_semantic_events_removed": 1390,
+    "action_vocabulary_count": 39,
+    "transition_count": 94
+  },
+  "leave_one_source_day_out_calibration": {
+    "mean_action_coverage": 0.977699530516432,
+    "mean_transition_coverage": 0.7139748677248677,
+    "zero_anchor_share": 0.017334777898158182
+  },
+  "frozen_thresholds": {
+    "minimum_mean_global_action_coverage": 0.488849765258216,
+    "minimum_mean_global_transition_coverage": 0.17849371693121693,
+    "maximum_zero_global_anchor_share": 0.1,
+    "minimum_group_anchor_share": 0.5,
+    "maximum_action_vocabulary_expansion": 2.0
+  },
+  "a2_post_hoc_source_only_diagnosis": {
+    "generated_action_vocabulary_count": 145,
+    "action_vocabulary_expansion": 3.717948717948718,
+    "mean_global_action_coverage": 0.36789190128606186,
+    "mean_global_transition_coverage": 0.030848105665623914,
+    "zero_global_anchor_count": 38,
+    "zero_global_anchor_share": 0.2773722627737226,
+    "group_anchor_share": 0.41605839416058393,
+    "checks": {
+      "global_action_coverage": false,
+      "global_transition_coverage": false,
+      "zero_global_anchor_share": false,
+      "group_anchor_share": false,
+      "action_vocabulary_expansion": false
+    },
+    "passed": false,
+    "target_files_opened_by_diagnostic": [],
+    "uses_target_behavior": false
+  },
+  "frozen_next_replicate_requests": {
+    "path": "outputs/codex_generation_v2/fr/spring/baseline_source_semantic/replicate_2",
+    "group_count": 15,
+    "request_count": 16,
+    "requested_sequence_count": 137,
+    "generation_completed": false,
+    "target_evaluation_completed": false,
+    "generation_requests_sha256": "7c0fd1766598b4cfacdbcfac31fc1f672416dbc80c652ed4ddd8f4d9439c6860",
+    "uses_target_behavior": false
+  },
+  "decision": "Do not run GCAD v2. Any future replicate must pass distribution and source-semantic gates before TOF; no new FR target evaluation is authorized by this artifact."
+}

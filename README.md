@@ -27,4 +27,6 @@ The historical FR winter→spring A1 smoke generated 137 baseline and 137 GCAD-G
 
 The A2 repair uses the 15 official precomputed SPPC source groups, 16 independent offline Codex-file requests, source-derived length limits, source/internal generation gates, deterministic duplicate-safe splitting, and a detector frozen before one target evaluation. It eliminated illegal actions and action-template collapse, but did **not** improve performance: precision 0.7647, recall 0.4432, F1 0.5612, FPR 0.1364, threshold 4.2920. This negative result was not used to regenerate or retune A2. GCAD representation v2 remains paused.
 
+A post-A2 source-only audit found the missing control: only 36.79% of A2 events and 3.08% of adjacent transitions are supported by FR winter behavior, while 38/137 sequences have no source action anchor. `source_semantic_v1` now calibrates coverage by leave-one-source-day-out validation, embeds group anchors in future Prompts, and blocks TOF on failure. See [the semantic-gate design](docs/source_semantic_gate.md).
+
 Detailed design, data roles, provenance, generation protocol, and audit material are under `docs/`. Large run products and checkpoints remain local under `outputs/`; compact, versioned evidence is under `experiment_artifacts/`.
