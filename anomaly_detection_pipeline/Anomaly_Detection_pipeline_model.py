@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 from sklearn.metrics import accuracy_score, recall_score, precision_score, confusion_matrix
 from torch import optim
-from torch.utils.data import DataLoader, WeightedRandomSampler
+from torch.utils.data import DataLoader
 
 try:
     from .models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
@@ -80,8 +80,7 @@ def get_args_parser():
     return parser
 
 
-def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_instance_10.pkl', batch_size=32,
-              sample_weights=None, sampler_seed=2024):
+def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_instance_10.pkl', batch_size=32):
     with open(data_file, 'rb') as file:
         sequences = pickle.load(file)
     data = pad(vocab_size, sequences)
@@ -96,21 +95,20 @@ def make_data(new_env, vocab_size, data_file='reduced_flattened_useful_us_trn_in
     else:
         dataset = None
 
-    sampler = None
-    if sample_weights is not None:
-        weights = torch.as_tensor(sample_weights, dtype=torch.double)
-        if len(weights) != len(dataset):
-            raise ValueError(f"sample weight count {len(weights)} != dataset count {len(dataset)}")
-        generator = torch.Generator()
-        generator.manual_seed(sampler_seed)
-        sampler = WeightedRandomSampler(
-            weights=weights,
-            num_samples=len(dataset),
-            replacement=True,
-            generator=generator,
-        )
-    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, sampler=sampler)
+    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
     return data_loader
+
+
+def masked_weighted_loss(token_loss, mask, sample_weights=None):
+    """Preserve baseline token coverage while weighting whole-sequence losses."""
+    numerator = torch.sum(token_loss * mask, dim=1)
+    denominator = torch.sum(mask, dim=1)
+    if sample_weights is None:
+        return torch.sum(numerator) / torch.sum(denominator)
+    weights = torch.as_tensor(sample_weights, dtype=token_loss.dtype, device=token_loss.device)
+    if len(weights) != len(numerator):
+        raise ValueError("batch sample-weight count mismatch")
+    return torch.sum(weights * numerator) / torch.sum(weights * denominator)
 
 
 def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_weights=None):
@@ -122,16 +120,13 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_w
     criterion = nn.CrossEntropyLoss(reduction='none')
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     num_epochs = epochs
-    train_loader = make_data(
-        new_env,
-        vocab_size,
-        data_file=train_file,
-        sample_weights=sample_weights,
-        sampler_seed=2024,
-    )
+    train_loader = make_data(new_env, vocab_size, data_file=train_file)
+    if sample_weights is not None and len(sample_weights) != len(train_loader.dataset):
+        raise ValueError("sample weights must cover every training sequence exactly once")
 
     for epoch in range(num_epochs):
         total_loss = 0
+        sample_offset = 0
         for batch in train_loader:
             src, padding_mask, mask_v = batch
             src = src.to(device)
@@ -141,8 +136,12 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len, sample_w
             src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
-            loss = loss.reshape(-1, seq_len) * mask_v
-            loss = torch.sum(loss) / torch.sum(mask_v)
+            loss = loss.reshape(-1, seq_len)
+            batch_weights = None
+            if sample_weights is not None:
+                batch_weights = sample_weights[sample_offset:sample_offset + len(src)]
+            loss = masked_weighted_loss(loss, mask_v, batch_weights)
+            sample_offset += len(src)
             total_loss += loss.item()
             optimizer.zero_grad()
             loss.backward()

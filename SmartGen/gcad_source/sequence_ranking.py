@@ -6,6 +6,8 @@ from typing import Sequence
 
 import numpy as np
 
+from .ranking_weights import bounded_relation_weights
+
 from .data_boundary import require_roles
 from .data_roles import RoleBoundPath
 
@@ -87,7 +89,21 @@ def rank_sequences(
     for rank, (row, weight) in enumerate(zip(rows, raw_weights), 1):
         row["new_rank"] = rank
         row["sampling_weight"] = float(weight)
-    return {"ranking_mode": "soft", "hard_filter": False, "sequence_count": len(sequences), "ranking": rows}
+    training_weights, diagnostics = bounded_relation_weights(rows)
+    if training_weights is not None:
+        for row in rows:
+            row["training_weight"] = training_weights[row["sequence_index"]]
+    else:
+        for row in rows:
+            row["training_weight"] = 1.0
+    return {
+        "ranking_mode": "per_sample_weighted_loss",
+        "deprecated_sampling_weight_present_for_audit": True,
+        "hard_filter": False,
+        "sequence_count": len(sequences),
+        "weight_diagnostics": diagnostics,
+        "ranking": rows,
+    }
 
 
 def rank_sequence_file(sequences, stable_relation_path: str | Path, output_path: str | Path, **kwargs):
@@ -95,4 +111,3 @@ def rank_sequence_file(sequences, stable_relation_path: str | Path, output_path:
     result = rank_sequences(sequences, stable, **kwargs)
     Path(output_path).write_text(json.dumps(result, indent=2), encoding="utf-8")
     return result
-

@@ -51,6 +51,6 @@ def test_ranking_is_soft_deterministic_and_shared_data():
     second = rank_sequences(sequences, stable)
     assert first == second
     assert first["hard_filter"] is False
+    assert first["ranking_mode"] == "per_sample_weighted_loss"
     assert first["sequence_count"] == len(sequences)
     assert sorted(row["sequence_index"] for row in first["ranking"]) == [0, 1]
-

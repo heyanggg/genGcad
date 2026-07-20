@@ -16,6 +16,7 @@ from anomaly_detection_pipeline.Anomaly_Detection_pipeline_model import (
 
 from .data_boundary import require_roles
 from .data_roles import DataRole, RoleBoundPath
+from .ranking_weights import bounded_relation_weights
 
 
 ATTACK_NAMES = {
@@ -54,20 +55,19 @@ def evaluate_generated_sequences(
     validation_file = output / "generated_validation.pkl"
     model_path = output / "downstream_model.pth"
     train_weights = None
+    weight_diagnostics = None
     if ranking_path is None:
         split_random(str(generated.path), str(train_file), str(validation_file), seed=2024)
     else:
         ranking_file = Path(ranking_path).resolve()
         ranking = json.loads(ranking_file.read_text(encoding="utf-8"))
-        if ranking.get("hard_filter") is not False or ranking.get("ranking_mode") != "soft":
+        if ranking.get("hard_filter") is not False:
             raise ValueError("downstream ranking must be soft and must not delete sequences")
         with generated.path.open("rb") as handle:
             sequences = pickle.load(handle)
-        weights_by_index = {
-            int(row["sequence_index"]): float(row["sampling_weight"])
-            for row in ranking["ranking"]
-        }
-        if set(weights_by_index) != set(range(len(sequences))):
+        weights_by_index, weight_diagnostics = bounded_relation_weights(ranking["ranking"])
+        covered_indices = {int(row["sequence_index"]) for row in ranking["ranking"]}
+        if covered_indices != set(range(len(sequences))):
             raise ValueError("ranking indices do not exactly cover generated sequences")
         indices = list(range(len(sequences)))
         random.Random(2024).shuffle(indices)
@@ -77,7 +77,8 @@ def evaluate_generated_sequences(
             pickle.dump([sequences[index] for index in train_indices], handle)
         with validation_file.open("wb") as handle:
             pickle.dump([sequences[index] for index in validation_indices], handle)
-        train_weights = [weights_by_index[index] for index in train_indices]
+        if weights_by_index is not None:
+            train_weights = [weights_by_index[index] for index in train_indices]
     setup_seed(2024)
     vocabulary_size = vocab_dic[dataset]
     sequence_length = 10
@@ -115,9 +116,12 @@ def evaluate_generated_sequences(
         "target_attack_role": attack.role.value,
         "target_data_first_used_at": "final_evaluation",
         "metrics_not_used_for_selection": True,
-        "ranking_applied": ranking_path is not None,
+        "ranking_requested": ranking_path is not None,
+        "ranking_applied": ranking_path is not None and train_weights is not None,
+        "ranking_signal_absent": bool(weight_diagnostics and weight_diagnostics["ranking_signal_absent"]),
+        "ranking_weight_diagnostics": weight_diagnostics,
         "ranking_path": str(Path(ranking_path).resolve()) if ranking_path is not None else None,
-        "ranking_policy": "weighted_sampling_with_replacement" if ranking_path is not None else "uniform_full_set",
+        "ranking_policy": "per_sample_weighted_loss" if train_weights is not None else "uniform_full_set",
         "hard_sequence_deletion": False,
         "recall": float(recall),
         "precision": float(precision),
