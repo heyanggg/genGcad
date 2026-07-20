@@ -1,7 +1,48 @@
+# Python caches and test artifacts
 __pycache__/
 *.py[cod]
 .pytest_cache/
-outputs/
-codex_io/
-*.pt
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
 
+# Local virtual environments and editor state
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*~
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Runtime model checkpoints
+*.pt
+*.pth
+SmartGen/IoT_model/
+SmartGen/check_model/
+
+# GCAD cache artifacts (recomputed from TSS output)
+SmartGen/IoT_data/*/*/gcad_hints.json
+
+# Per-prompt generation responses; retain merged/final experiment datasets
+SmartGen/IoT_data/*/*/*_generation_day_*.pkl
+
+# TOF security-check scratch files; retain *_seq_filter_true.pkl
+SmartGen/filter_data/*/*/*_seq_filter_out_*.pkl
+SmartGen/filter_data/*/*/*_seq_filter_trn.pkl
+SmartGen/filter_data/*/*/*_seq_filter_vld.pkl
+
+# Anomaly-detector reproducibility scratch data; retain metrics.json
+SmartGen/anomaly_runs/**/train.pkl
+SmartGen/anomaly_runs/**/validation.pkl

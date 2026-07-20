@@ -5,7 +5,7 @@ This document contains part of the source code for the paper *"SmartGen: Synthes
 1. In the code, **SPPC** refers to **SSC**. SPPC is an earlier naming version that was not changed due to the established workflow.
 2. The **SmartGen** folder contains the implementations of the four functional modules as well as the data synthesis system. The other six folders correspond to various experimental setups.
 3. Each folder includes a `main.py` file, which serves as the entry point for running the corresponding experiment. The CSV files in the `results` directory contain the recorded outcomes of these experiments.
-4. This code does **not** provide APIs for large language models, but it **does** open-source various types of synthesized data and synthesis logs.
+4. The original code did not include a usable large-language-model connection. This branch invokes GPT-5.6 through the locally authenticated Codex CLI.
 
 Recommended compression thresholds in SmartGen:
 | Dataset | Original Context | New Context | Compression Threshold | Anomaly Detection Percentage |
@@ -20,37 +20,40 @@ Recommended compression thresholds in SmartGen:
 | US      | daytime          | night       | 0.919                 | 93                           |
 |         | single           | multiple    | 0.913                 | 99                           |
 
-## Minimal source-only GCAD + Codex branch
+## SmartGen + GCAD + Codex GPT-5.6
 
-The `minimal-gcad-codex` branch keeps official SmartGen intact except for the generation entry point in `SmartGen/main.py`. Two optional adapters are added under `SmartGen/extensions/`:
+The generation path keeps the original TSS, SSC/SPPC, GSS, and TOF behavior. The GCAD branch reads the complete `split_trn.pkl` produced by TSS before SSC compression. Because SmartGen stores event sequences instead of equal-interval continuous sensor vectors, this integration is explicitly described as **GCAD-derived** rather than as proof of real-world causality.
 
-- `CodexFileBackend` exports the original SmartGen Prompt to text files and consumes Codex-authored text responses. It makes no external API call.
-- `source_gcad` learns source-only directional scores; `gss_rerank` can reorder existing `action_transitions.json` edges. It never adds GCAD-only edges.
+The adapted GCAD stages are:
 
-GCAD is off unless `--gcad-relation` is supplied. With GCAD off, the original GSS object and Prompt content are unchanged. TSS, SSC/SPPC, TOF, `baseline1.py`, `baseline2.py`, `security_check.py`, and the official anomaly detector remain unchanged.
+1. Encode behavior positions as multichannel one-hot history and target tensors.
+2. Train a TSMixer-style multichannel predictor with per-channel MSE and early stopping.
+3. On held-out source sequences, backpropagate each target channel separately to build the complete `source action × target action × lag` gradient tensor.
+4. Integrate lag scores, apply `max(0, A - Aᵀ)`, and sparsify the graph.
+5. Repeat with three model seeds and retain only relationships stable across at least two seeds.
 
-From the repository root, learn a source-only relation file:
+The predictor must outperform a held-out frequency baseline. If the data are too small, validation fails, or no edge is stable, GCAD writes a disabled artifact with an empty relationship list; SmartGen then continues with the original GSS guidance. A successful relationship records its raw and normalized strength, lag, support, and seed stability. GCAD anomaly scoring is intentionally not included.
 
-```bash
-/home/heyang/miniconda3/envs/smartguard_env/bin/python -m SmartGen.extensions.source_gcad \
-  --source SmartGen/IoT_data/fr/winter/trn.pkl \
-  --dataset fr \
-  --output outputs/fr_winter_relation.json
-```
+The only added runtime files are:
 
-Run SmartGen from `SmartGen/`. First export its Prompts:
+- `SmartGen/gcad.py`: prediction, gradient relationship discovery, and graph sparsification.
+- `SmartGen/codex_backend.py`: direct non-interactive Codex CLI invocation using `gpt-5.6-sol`.
 
-```bash
-python main.py --need_generate True --need_test False --model codex \
-  --codex-mode export --codex-dir ../codex_io
-```
-
-Place Codex-authored responses in `codex_io/responses/day_*.txt`, then rerun with `--codex-mode consume`. For the GCAD arm, add:
+Use the `smartguard_env` virtual environment and run from `SmartGen/`:
 
 ```bash
---gcad-relation ../outputs/fr_winter_relation.json --gcad-alpha 0.2
+conda activate smartguard_env
+codex login status
+cd SmartGen
+python main.py --need_generate True --model gpt-5.6-sol
 ```
 
-No generated artifacts or experimental checkpoints are tracked on this clean branch.
+By default, GCAD writes `IoT_data/<dataset>/<original_environment>/gcad_hints.json`. The artifact includes a source-data hash and extraction configuration, so an unchanged result is reused instead of retrained. Pass `--gcad-force` to rebuild it. The original `action_transitions.json` is only read and is never reranked or overwritten by GCAD. Only the compact relationship list—not training diagnostics—is sent to the model, and it is labeled as soft predictive guidance. Codex runs with a read-only sandbox, explicit `medium` reasoning effort, and the current Codex login; no prompt/response exchange directory or OpenAI Python SDK is required.
+
+## Verified experiment
+
+The `FR / winter → spring / SPPC / threshold 0.918 / seed 2024` generation run completed end to end. GCAD retained five relationships stable across all three internal seeds, all 16 Codex generation groups parsed successfully, and TOF retained 204 valid sequences.
+
+The original SmartGen anomaly detector was then trained with 163 generated sequences and validated with 41. On 88 normal and 88 attack samples it produced `TP=87`, `TN=88`, `FP=0`, and `FN=1` (`accuracy=0.9943`, `F1=0.9943`). The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json).
 
 
