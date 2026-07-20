@@ -205,6 +205,16 @@ def command_generate_validate(args):
     print(json.dumps(CodexFileBackend().validate(args.directory), indent=2))
 
 
+def command_materialize_authored(args):
+    from SmartGen.generation_backends.authored_responses import materialize_authored_responses
+
+    directory = Path(args.directory)
+    responses = materialize_authored_responses(
+        directory / "generation_requests.jsonl", args.plan, directory / "generation_responses_raw.jsonl"
+    )
+    print(json.dumps({"response_count": len(responses), "sequence_count": sum(len(x["sequences"]) for x in responses)}, indent=2))
+
+
 def command_generate_convert(args):
     devices, actions = dataset_mappings(args.dataset)
     path = CodexFileBackend().convert(
@@ -364,6 +374,9 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--original-gss", required=True); item.add_argument("--device-control", required=True)
     item.add_argument("--replicate", type=int, default=1); item.set_defaults(function=command_generate_grouped)
     item = sub.add_parser("validate"); item.add_argument("--directory", required=True); item.set_defaults(function=command_generate_validate)
+    item = sub.add_parser("materialize-authored")
+    item.add_argument("--directory", required=True); item.add_argument("--plan", required=True)
+    item.set_defaults(function=command_materialize_authored)
     item = sub.add_parser("convert"); item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.set_defaults(function=command_generate_convert)
     item = sub.add_parser("diagnose-generation")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
