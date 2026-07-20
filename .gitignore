@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Source-only GCAD runtime artifacts are reproducible and may contain large checkpoints.
+outputs/
+
