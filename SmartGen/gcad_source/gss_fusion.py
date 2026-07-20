@@ -73,7 +73,8 @@ def fuse_gss(
                     "reason": "no_stable_relation" if relation is None else ("illegal_target_metadata" if not legal else "used"),
                 }
             )
-        transitions.sort(key=lambda item: (-item["fused_score"], item["next_action"]))
+        # Python's stable sort preserves the official GSS order for score ties.
+        transitions.sort(key=lambda item: -item["fused_score"])
         for rank, transition in enumerate(transitions, 1):
             next(item for item in details if item["source"] == source and item["target"] == transition["next_action"])["new_rank"] = rank
 
@@ -109,6 +110,10 @@ def fuse_gss(
         "stable_edge_count": len(stable_edges),
         "fused_existing_edge_count": sum(item.get("reason") == "used" for item in details),
         "new_edge_count": sum(item.get("added", False) for item in details),
+        "rank_change_count": sum(
+            item.get("new_rank") is not None and item.get("new_rank") != item.get("original_rank")
+            for item in details
+        ),
         "details": details,
         "uses_target_behavior": False,
     }
@@ -138,4 +143,3 @@ def fuse_gss_files(
     lines = ["# GCAD-GSS fusion report", "", f"- Mode: `{mode}`", f"- Alpha: `{alpha}`", f"- Existing edges adjusted: `{report['fused_existing_edge_count']}`", f"- New edges: `{report['new_edge_count']}`"]
     (output / "fusion_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return fused, report
-

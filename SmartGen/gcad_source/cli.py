@@ -12,6 +12,7 @@ from SmartGen.generation_backends.codex_file import CodexFileBackend
 
 from .asymmetric_filter import save_asymmetric_relation
 from .config import GCADConfig
+from .cell_builder import build_cell_prompts
 from .data_roles import DataRole, RoleBoundPath
 from .event_tensorizer import SourceEventTensorizer, load_tensorized
 from .gradient_relation import extract_gradient_relation
@@ -36,6 +37,26 @@ def target_metadata(dataset: str) -> dict[str, list[str]]:
         device, action = channel.split(":", 1)
         result.setdefault(device, []).append(action)
     return result
+
+
+def command_metadata(args):
+    output = Path(args.output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(target_metadata(args.dataset), indent=2), encoding="utf-8")
+    print(output)
+
+
+def command_build_prompts(args):
+    result = build_cell_prompts(
+        dataset=args.dataset,
+        source_context=args.source_context,
+        target_context=args.target_context,
+        compression_threshold=args.threshold,
+        stable_relation_path=args.stable_relation,
+        fused_gss_path=args.fused_gss,
+        output_dir=args.output,
+    )
+    print(json.dumps(result, indent=2))
 
 
 def command_tensorize(args):
@@ -196,6 +217,14 @@ def command_continue(args):
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(prog="source-gcad")
     sub = root.add_subparsers(dest="command", required=True)
+    item = sub.add_parser("target-metadata")
+    item.add_argument("--dataset", required=True, choices=["fr", "sp", "us"])
+    item.add_argument("--output", required=True); item.set_defaults(function=command_metadata)
+    item = sub.add_parser("build-prompts")
+    item.add_argument("--dataset", required=True); item.add_argument("--source-context", required=True)
+    item.add_argument("--target-context", required=True); item.add_argument("--threshold", type=float, required=True)
+    item.add_argument("--stable-relation", required=True); item.add_argument("--fused-gss", required=True)
+    item.add_argument("--output", required=True); item.set_defaults(function=command_build_prompts)
     item = sub.add_parser("tensorize")
     item.add_argument("--input", required=True); item.add_argument("--output", required=True)
     item.add_argument("--dataset", required=True, choices=["fr", "sp", "us"])
