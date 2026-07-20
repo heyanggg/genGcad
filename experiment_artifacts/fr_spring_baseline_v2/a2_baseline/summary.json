@@ -1,0 +1,101 @@
+{
+  "experiment_identity": "A2. SmartGen-compatible Codex-file baseline v2",
+  "official_reproduction": false,
+  "generation_backend": "codex_agent_file",
+  "source_context": "fr/winter",
+  "target_context": "fr/spring",
+  "protocol": {
+    "source_group_count": 15,
+    "independent_request_count": 16,
+    "reason_for_extra_request": "group 4_1 allocation 29 was serialized as independent batches of 15 and 14",
+    "representative_sequence_count": 305,
+    "requested_sequence_count": 137,
+    "length_bounds_basis": "per-group source representative q10/q90, clipped to 2..10",
+    "uses_target_behavior_for_generation_or_gates": false,
+    "uses_historical_synthetic_contents": false
+  },
+  "generation": {
+    "validated_sequence_count": 137,
+    "illegal_device_action_count": 0,
+    "length": {
+      "min": 2,
+      "median": 4.0,
+      "max": 8,
+      "distribution": {"2": 33, "3": 33, "4": 30, "5": 15, "6": 12, "7": 8, "8": 6}
+    },
+    "unique_sequence_ratio": 1.0,
+    "exact_duplicate_count": 0,
+    "near_duplicate_pair_count": 0,
+    "unique_unigram_count": 145,
+    "unique_bigram_count": 290,
+    "unique_trigram_count": 238,
+    "normalized_bigram_entropy": 0.9768481249934624,
+    "normalized_trigram_entropy": 0.9926537941492398,
+    "top_1_template_share": 0.0072992700729927005,
+    "top_5_template_share": 0.0364963503649635,
+    "effective_sequence_count": 137.00000000000014,
+    "action_vocabulary_coverage_count": 145,
+    "action_vocabulary_coverage_ratio": 0.6621004566210046,
+    "device_coverage_count": 29,
+    "maximum_action_share": 0.048507462686567165,
+    "cross_group_duplicate_count": 0,
+    "exact_source_representative_copy_count": 0,
+    "generation_gate_passed": true
+  },
+  "tof": {
+    "implementation": "SmartGen original two-stage TOF",
+    "input_count": 137,
+    "stage1_retained_count": 121,
+    "stage1_outlier_count": 16,
+    "stage2_recovered_count": 15,
+    "final_count": 136,
+    "epochs_per_fit": 10
+  },
+  "reconstruction": {
+    "train_count": 108,
+    "validation_count": 28,
+    "train_validation_exact_overlap_count": 0,
+    "validation_loss_summary": {
+      "min": 0.0000066160869209852535,
+      "mean": 0.9269382199253836,
+      "median": 0.00022551491565536708,
+      "p90": 3.0642325401306163,
+      "p95_5": 4.292000006437302,
+      "max": 5.41799259185791,
+      "std": 1.5423708602233257
+    },
+    "threshold": 4.292000006437302,
+    "reconstruction_gate_passed": true,
+    "all_training_samples_covered_each_epoch": true,
+    "ranking_applied": false
+  },
+  "final_target_evaluation": {
+    "performed_once_after_freeze": true,
+    "precision": 0.7647058823529411,
+    "recall": 0.4431818181818182,
+    "accuracy": 0.6534090909090909,
+    "f1": 0.5611510791366906,
+    "fpr": 0.13636363636363635,
+    "confusion_matrix": {"tn": 76, "fp": 12, "fn": 49, "tp": 39},
+    "normal_score_median": 0.0002801180526148528,
+    "normal_score_p90": 4.29344367980957,
+    "attack_score_median": 3.2847039699554443,
+    "attack_score_p90": 6.05076789855957,
+    "metrics_used_for_selection": false
+  },
+  "comparisons": {
+    "a1_f1": 0.7733333333333334,
+    "a2_f1": 0.5611510791366906,
+    "a2_minus_a1_f1": -0.2121822541966428,
+    "official_synthetic_current_environment_f1": 0.8446601941747574,
+    "a2_prompt_and_template_collapse_fixed": true,
+    "a2_downstream_improved_over_a1": false
+  },
+  "decision": {
+    "generation_and_reconstruction_gates_passed": true,
+    "severe_near_zero_threshold_collapse_present": false,
+    "ready_to_start_gcad_representation_v2": false,
+    "reason": "A2 removed A1 template collapse but its bimodal held-out reconstruction losses produced a threshold above the median target attack score and materially worse recall. The target result is recorded, not used to regenerate or tune A2."
+  },
+  "tests": {"passed": 59, "skipped": 1, "skip_reason": "CUDA unavailable"}
+}
