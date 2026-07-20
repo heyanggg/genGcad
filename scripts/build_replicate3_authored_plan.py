@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the explicit, offline Codex-authored replicate-3 response plan.
+"""Build the historical programmatic replicate-3 stress-test plan.
 
 This authoring helper reads only frozen generation requests, the source-copy
 denylist, and replicate-2 responses used exclusively to enforce the no-reuse
@@ -90,6 +90,10 @@ def build_plan(directory: Path, replicate2_raw: Path) -> list[dict]:
 
 
 def main() -> None:
+    print(
+        "WARNING: This script creates programmatic source-constrained compositions.\n"
+        "Its outputs are not Codex/LLM-authored generations and must not be used as the formal Codex baseline."
+    )
     parser = argparse.ArgumentParser()
     parser.add_argument("--directory", required=True, type=Path)
     parser.add_argument("--replicate2-raw", required=True, type=Path)

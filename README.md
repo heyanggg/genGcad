@@ -1,5 +1,10 @@
 # SmartGen + Source-only GCAD
 
+Replicate-3 is frozen and reclassified as a Programmatic Source-Constrained Composition Stress Test; it is not
+an LLM baseline. Formal GPT-5.6-via-Codex generation work proceeds only on
+`codex56-generation-protocol-v4` with Python prohibited from constructing event content. See
+`docs/replicate3_programmatic_reclassification.md` and `docs/codex_gpt56_generation_definition.md`.
+
 This repository extends the official [SmartGen](https://github.com/horizonsinzqs/SmartGen) code with an optional source-only branch that extracts **GCAD-style predictive directional relations**. `main` remains the unmodified official baseline (`c2ed36c`); the baseline repair is on `baseline-protocol-v2`. The local reference implementation is `/home/heyang/projects/GCAD`, the official `Tc99m/GCAD` checkout. It was audited but not modified.
 
 The added path is:
