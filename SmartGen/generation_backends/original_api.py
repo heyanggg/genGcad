@@ -1,8 +1,21 @@
-"""Compatibility marker for the unchanged SmartGen/main.py LLM_call baseline.
+from __future__ import annotations
 
-Formal source-only experiments use ``CodexFileBackend``. This module performs no call;
-the official baseline implementation remains in SmartGen/main.py for auditability.
-"""
+from collections.abc import Callable
 
-ORIGINAL_ENTRYPOINT = "SmartGen.main.LLM_call"
 
+class OriginalSmartGenAPIBackend:
+    """Compatibility adapter around SmartGen's retained ``LLM_call`` path.
+
+    It is intentionally never selected by the source-only experiment. A caller
+    must explicitly supply the official call function and its configured client.
+    """
+
+    backend_type = "original_api"
+    requires_api_key = True
+
+    def __init__(self, llm_call: Callable[[object, str], str], client: object):
+        self._llm_call = llm_call
+        self._client = client
+
+    def generate(self, prompt: str) -> str:
+        return self._llm_call(self._client, prompt)

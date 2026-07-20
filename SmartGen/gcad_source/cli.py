@@ -204,14 +204,31 @@ def command_continue(args):
     tof_path, report = security_check_file(
         directory / "generated_sequences.pkl", directory / "tof", args.dataset, args.context, args.tof_epochs
     )
+    ranking_path = None
     if args.stable_relation:
         with tof_path.open("rb") as handle:
             sequences = pickle.load(handle)
         stable = json.loads(Path(args.stable_relation).read_text(encoding="utf-8"))
         _, actions = dataset_mappings(args.dataset)
         ranking = rank_sequences(sequences, stable, {value: key for key, value in actions.items()}, args.ranking_weight)
-        (directory / "tof" / "sequence_ranking.json").write_text(json.dumps(ranking, indent=2), encoding="utf-8")
-    print(json.dumps(report, indent=2))
+        ranking_path = directory / "tof" / "sequence_ranking.json"
+        ranking_path.write_text(json.dumps(ranking, indent=2), encoding="utf-8")
+    downstream = None
+    if args.evaluate_output:
+        if args.percentile is None:
+            raise ValueError("--percentile is required with --evaluate-output")
+        from .downstream_evaluation import evaluate_generated_sequences
+
+        downstream = evaluate_generated_sequences(
+            tof_path,
+            args.dataset,
+            args.context,
+            args.evaluate_output,
+            args.percentile,
+            args.downstream_epochs,
+            ranking_path=ranking_path if args.apply_ranking_to_downstream else None,
+        )
+    print(json.dumps({"tof": report, "downstream": downstream}, indent=2))
 
 
 def command_evaluate(args):
@@ -296,7 +313,11 @@ def parser() -> argparse.ArgumentParser:
     item = sub.add_parser("continue-pipeline")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.add_argument("--context", required=True)
     item.add_argument("--tof-epochs", type=int, default=10); item.add_argument("--stable-relation")
-    item.add_argument("--ranking-weight", type=float, default=1.0); item.set_defaults(function=command_continue)
+    item.add_argument("--ranking-weight", type=float, default=1.0)
+    item.add_argument("--evaluate-output"); item.add_argument("--percentile", type=float)
+    item.add_argument("--downstream-epochs", type=int, default=15)
+    item.add_argument("--apply-ranking-to-downstream", action="store_true")
+    item.set_defaults(function=command_continue)
     item = sub.add_parser("evaluate-generated")
     item.add_argument("--generated", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--context", required=True); item.add_argument("--output", required=True)

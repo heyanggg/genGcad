@@ -7,7 +7,7 @@ The active Codex agent reads each request and writes JSONL responses with matchi
 `validate` rejects non-JSON/Markdown, missing/extra IDs, schema/type/empty/length violations, illegal device-action pairs, within/across-batch duplicates, and direct source duplicates. It retains failures and supports replacement by sequence ID; `replacement_mapping.json` is always materialized. It never compares against target behavior. `convert` deterministically converts validated structured events to SmartGen flat integer quadruples and proves the PKL is readable by original TOF.
 
 ```bash
-python -m SmartGen.gcad_source.cli export --output OUT --experiment-id fr-spring-r1 --dataset fr --context spring --method baseline --replicate 1 --prompt PROMPT --count 137 --batch-size 20 --source-sequence-count 1728 --context-description CONTEXT.json --target-metadata META.json --original-gss GSS.json
+python -m SmartGen.gcad_source.cli export --output OUT --experiment-id fr-spring-r1 --dataset fr --context spring --method baseline --replicate 1 --prompt PROMPT --count 137 --batch-size 20 --source-sequence-count 1728 --context-description '{"change":"winter to warm spring"}' --target-metadata META.json --original-gss GSS.json
 # Codex agent creates OUT/generation_responses_raw.jsonl
 python -m SmartGen.gcad_source.cli validate --directory OUT
 python -m SmartGen.gcad_source.cli convert --directory OUT --dataset fr

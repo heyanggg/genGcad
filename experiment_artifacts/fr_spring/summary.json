@@ -23,6 +23,6 @@
     "C_ranking": {"threshold": 0.000020444051187951118, "recall": 1.0, "precision": 0.5, "accuracy": 0.5, "f1": 0.6666666666666666},
     "D_both": {"threshold": 0.00010421181650599465, "recall": 1.0, "precision": 0.5, "accuracy": 0.5, "f1": 0.6666666666666666}
   },
-  "tests": {"passed": 39, "skipped": 1, "skip_reason": "CUDA unavailable"},
+  "tests": {"passed": 41, "skipped": 1, "skip_reason": "CUDA unavailable"},
   "conclusion": "The source-only GCAD mechanisms ran end-to-end but did not improve this smoke cell."
 }

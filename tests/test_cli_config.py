@@ -17,3 +17,12 @@ def test_target_metadata_comes_from_static_dictionary():
     metadata = target_metadata("fr")
     assert "Light" in metadata
     assert "switch on" in metadata["Light"]
+
+
+def test_continue_pipeline_can_explicitly_enable_final_evaluation():
+    args = parser().parse_args([
+        "continue-pipeline", "--directory", "out", "--dataset", "fr", "--context", "spring",
+        "--evaluate-output", "evaluation", "--percentile", "95.5", "--apply-ranking-to-downstream",
+    ])
+    assert args.evaluate_output == "evaluation"
+    assert args.apply_ranking_to_downstream is True
