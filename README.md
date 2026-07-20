@@ -15,6 +15,8 @@ Use `/home/heyang/miniconda3/bin/conda run -n smartguard_env`. The smoke run use
 ```bash
 /home/heyang/miniconda3/bin/conda run -n smartguard_env python -m pytest -q
 bash scripts/run_source_gcad_smartgen.sh fr winter spring configs/gcad_source/fr.yaml
+# after Codex-authored JSONL responses exist
+bash scripts/continue_codex_cell.sh fr spring 95.5
 ```
 
 The unified CLI exposes `tensorize`, `train`, `extract-relations`, `build-stable-relation`, `fuse-gss`, `build-prompts`, `export`, `validate`, `convert`, `continue-pipeline`, `evaluate-generated`, and `build-mechanism-control`. See [the runbook](docs/gcad_integration_runbook.md) for exact commands and [the experiment report](experiment_artifacts/fr_spring/report.md) for real results.
