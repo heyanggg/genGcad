@@ -1,0 +1,13 @@
+requires_source_prediction_gate: true
+seeds: [2024, 2025, 2026]
+minimum_source_activation: 8
+minimum_target_activation: 5
+minimum_cooccurrence: 3
+minimum_asymmetric_margin: 0.0001
+minimum_occurrence_rate: 0.6666666667
+minimum_direction_consistency: 0.6666666667
+minimum_lag_stability: 0.6666666667
+maximum_rank_variance: 100.0
+illegal_node_count: 0
+failure_action: block_gss_fusion_and_B5
+

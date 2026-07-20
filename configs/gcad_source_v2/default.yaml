@@ -1,0 +1,14 @@
+protocol: source_only_gcad_representation_v2
+dataset: fr
+source_context: winter
+target_context_static_metadata_only: spring
+source_input: SmartGen/IoT_data/fr/winter/trn.pkl
+source_tss_input: SmartGen/IoT_data/fr/winter/split_trn.pkl
+output_root: outputs/gcad_source_v2/fr/spring
+target_behavior_access: false
+ranking_enabled: false
+device: cpu
+native_timestamp_resolution_hours: 3
+seeds: [2024, 2025, 2026]
+validation_ratio: 0.2
+

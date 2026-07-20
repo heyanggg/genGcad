@@ -1,0 +1,15 @@
+enabled_only_after_all_source_gates: true
+a5_identity: A5 Support-Aware Codex GPT-5.6 Candidate-Pool Baseline
+b5_identity: B5 A5 Generation Protocol plus GCAD-GSS v2
+generation_protocol: configs/generation_protocol_v5/fr_spring.yaml
+candidate_pool_size: 160
+final_sequence_count: 137
+paired_seeds: [2024, 2025, 2026]
+official_detector: anomaly_detection_pipeline/models1.py
+detector_modification_allowed: false
+threshold_percentile: 95.5
+reconstruction_health_role: required_diagnostic_not_method_selection_gate
+ranking_enabled: false
+target_behavior_access_stage: final_paired_evaluation_only
+reuse_a5_sequences: false
+

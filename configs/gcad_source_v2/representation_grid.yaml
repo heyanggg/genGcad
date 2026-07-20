@@ -1,0 +1,8 @@
+representations: [continuous_event_time, event_position]
+histories: [2, 3, 4, 6]
+continuous_time_bins_hours: [3, 6, 12]
+continuous_bin_basis: native_source_timestamp_resolution
+formal_selection_rule: event_position_history_2_fixed_after_window_audit_before_prediction_training
+do_not_cross: [original_sequence, day_for_continuous]
+empty_slot_semantics: real_empty_time_slot_not_padding
+

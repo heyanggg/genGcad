@@ -1,0 +1,11 @@
+mode: rerank_existing
+allow_new_edges: false
+alpha: 0.15
+alpha_selected_from: source_only_preregistration
+minimum_affected_edges: 8
+minimum_rank_changed_edges: 3
+minimum_top3_order_changed_nodes: 2
+require_prompt_visible_order_change: true
+require_control_difference: true
+ranking_enabled: false
+

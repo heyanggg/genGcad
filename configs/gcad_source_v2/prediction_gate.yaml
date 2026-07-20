@@ -1,0 +1,25 @@
+primary_metric: macro_f1
+simple_baselines:
+  - all_zero
+  - frequency
+  - persistence
+  - first_order_markov
+  - ngram_2
+  - ngram_3
+mixer_capacities: [tiny, small]
+losses: [bce, positive_weighted_bce, masked_bce]
+config_selection: highest_three_seed_mean_source_validation_macro_f1
+required_seed_wins: 2
+require_mean_win: true
+require_nonzero_predictions: true
+require_rare_channel_recall: true
+maximum_train_validation_macro_f1_gap: 0.30
+epochs: 40
+patience: 7
+batch_size: 64
+learning_rate: 0.001
+weight_decay: 0.0001
+dropout: 0.15
+gradient_clip: 1.0
+failure_action: block_formal_relation_extraction_gss_fusion_and_B5
+

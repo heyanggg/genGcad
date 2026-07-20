@@ -1,0 +1,13 @@
+extends: configs/gcad_source_v2/default.yaml
+formal_representation: event_position
+formal_history: 2
+formal_time_bin: null
+channel_mode: device_action
+invalid_event_policy: exclude_and_audit
+source_split_unit: original_independent_sequence
+minimum_effective_windows: 330
+reason_for_formal_representation: >-
+  The source artifact records only day and native three-hour bins rather than continuous
+  timestamps. Event-position prediction is therefore formal; continuous bins are audited
+  as coarse timestamp ablations and never presented as exact physical time.
+
