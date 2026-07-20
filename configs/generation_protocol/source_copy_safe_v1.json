@@ -1,0 +1,22 @@
+{
+  "version": "source-copy-safe-v1",
+  "source_match_unit": "ordered device:action sequence, ignoring generated day/hour",
+  "source_scope": "all 305 representatives across the 15 frozen SPPC groups",
+  "hard_invalidity": "exact_source_representative_copy",
+  "allowed_automatic_replacement_categories": [
+    "json_or_markdown",
+    "schema",
+    "illegal_device",
+    "illegal_action",
+    "sequence_count",
+    "missing_response",
+    "duplicate",
+    "source_copy"
+  ],
+  "maximum_replacement_candidates": 20,
+  "allow_replacement_by_source_semantic_score": false,
+  "allow_replacement_by_target_result": false,
+  "preserve_initial_raw_failures": true,
+  "preserve_replacement_mapping": true,
+  "uses_target_behavior": false
+}

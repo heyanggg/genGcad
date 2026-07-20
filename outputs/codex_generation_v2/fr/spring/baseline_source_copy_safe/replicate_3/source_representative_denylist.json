@@ -1,0 +1,2814 @@
+{
+  "version": "source-copy-safe-v1",
+  "match_unit": "ordered device:action sequence, ignoring generated day/hour",
+  "source_representative_count": 305,
+  "unique_action_fingerprint_count": 90,
+  "entries": [
+    {
+      "group_id": "0_0",
+      "representative_index": 0,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 1,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 2,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 3,
+      "actions": [
+        "Television:audioMute unmute",
+        "Television:switch on"
+      ],
+      "action_fingerprint": "cce923efa4acd945fe56934ccb30ab2a8b69c74bb24ca71692f3107f742a2537"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 4,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 5,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 6,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 7,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 8,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 9,
+      "actions": [
+        "Television:setInputSource"
+      ],
+      "action_fingerprint": "fd639bf4e8e0636cf1c474404e439ea8a45e5a147b12942674af2a961c933c86"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 10,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 11,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 12,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "0d8740b94d138fb9fdb5b5054ed203b69ef103fdde76924dcaa8947184b4e072"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 13,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 14,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 15,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 16,
+      "actions": [
+        "GarageDoor:doorControl open",
+        "GarageDoor:doorControl open"
+      ],
+      "action_fingerprint": "427e581230cc0750a0e08fce541994e279e556dc9db1996fa40652c554cfc2b9"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 17,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "347f07dfe6a7f5869d79f059ff96b010e8fc4fd8de929e635f2059b6389d3d1c"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 18,
+      "actions": [
+        "Television:setChannel",
+        "Television:setInputSource",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "da22b79ef72425c7f3fcd321d37301fd1065a631b6e149c20b7e964a9117aa62"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 19,
+      "actions": [
+        "Light:switch on",
+        "Light:setLightingMode"
+      ],
+      "action_fingerprint": "66a5433d50cd067c0d9411b6a783a3952d65a71f5784d76fedbd36c6831010d0"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 22,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 23,
+      "actions": [
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Blind:windowShade close"
+      ],
+      "action_fingerprint": "ac2b257b0a53e933a9c5124e79fff8d2cd9c624fe59c0fa3d4c512181ee7b246"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 24,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 25,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 26,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 27,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 28,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "0_0",
+      "representative_index": 29,
+      "actions": [
+        "Heater:switch on"
+      ],
+      "action_fingerprint": "8b7328a644b638046c4c830c805dc3ab9ceb6f7ad94e104cd30a14819be89043"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 0,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 1,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 2,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 3,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "663ba2d90ade901d6bde47720d1647cd20b46c5f9c3536ac996985433822f263"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 4,
+      "actions": [
+        "Television:audioMute unmute",
+        "Television:switch on"
+      ],
+      "action_fingerprint": "cce923efa4acd945fe56934ccb30ab2a8b69c74bb24ca71692f3107f742a2537"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 5,
+      "actions": [
+        "Camera:notification"
+      ],
+      "action_fingerprint": "e7433b05b77b7aac9d7dac4f272bab27408f05a294427c259f3ef1f6f3149feb"
+    },
+    {
+      "group_id": "0_1",
+      "representative_index": 6,
+      "actions": [
+        "Television:switch on"
+      ],
+      "action_fingerprint": "3a7694a4f13b95bcc1f833149899b59d2cac00d11410f584c920650c85c51572"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 0,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 1,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 2,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "9b0bff0aa842b5b93a2c1187366d04aac45d4cee21b078bfa033e45ee4db44b1"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 3,
+      "actions": [
+        "Light:setLevel"
+      ],
+      "action_fingerprint": "3425b9712229c85ed4c085ebb618498e29f6773f0ba8cfa1f1c3c035ef1a215e"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 4,
+      "actions": [
+        "Television:setChannel",
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "1c55559673153bf062b881f5de5eea2a8ffa28a32369491ddfc187a7e6f4c8e4"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 5,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 6,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 7,
+      "actions": [
+        "Light:setLevel"
+      ],
+      "action_fingerprint": "3425b9712229c85ed4c085ebb618498e29f6773f0ba8cfa1f1c3c035ef1a215e"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 8,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 9,
+      "actions": [
+        "Light:setLevel"
+      ],
+      "action_fingerprint": "3425b9712229c85ed4c085ebb618498e29f6773f0ba8cfa1f1c3c035ef1a215e"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 10,
+      "actions": [
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on"
+      ],
+      "action_fingerprint": "ab505777699e05baeddb1eac78f67dd0ecfa53496d858f0f33712f7cbf5d33c6"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 11,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 12,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 13,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 14,
+      "actions": [
+        "Camera:notification",
+        "Blind:windowShade close"
+      ],
+      "action_fingerprint": "f8dec2b076193ec11a61ec303ee0777ecc36109b6c5cd6a2dce9cd3d62110373"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 15,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 16,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 17,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 18,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 19,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 21,
+      "actions": [
+        "GarageDoor:doorControl open",
+        "GarageDoor:doorControl open",
+        "GarageDoor:doorControl close"
+      ],
+      "action_fingerprint": "826e110bf4aae0e2672793d5457c182687a175172bca691353e56241473782e1"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 22,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 23,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 24,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 25,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 26,
+      "actions": [
+        "Television:volumeDown",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "ade7b4a77f113aff7611d93e1e94e3ca1230ec2d678abb0bbfd34f89638a4083"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 27,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 28,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "1_0",
+      "representative_index": 29,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 0,
+      "actions": [
+        "Television:setInputSource",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "944704cb28427ccc9fca9457aa153907c0e2359c20eb92044eb76b1294fbdf32"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 1,
+      "actions": [
+        "AirPurifier:setFanSpeed",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "f9e1dec8c92bed07baa7eb3cd5c9a9d9261cdfa82ec3eb1b63081f9ba5679d3c"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 2,
+      "actions": [
+        "None:location",
+        "None:location",
+        "NetworkAudio:audioMute mute",
+        "None:location"
+      ],
+      "action_fingerprint": "462d30fe34cb46c8e41ded9c184331e608d7a4fbd078bf90fbd70f03cf5eca43"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 3,
+      "actions": [
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close"
+      ],
+      "action_fingerprint": "6c48f255fd938a219eb062e36db4e1ca83bb1906565477154334dffd1d757b40"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 5,
+      "actions": [
+        "Television:setInputSource"
+      ],
+      "action_fingerprint": "fd639bf4e8e0636cf1c474404e439ea8a45e5a147b12942674af2a961c933c86"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 6,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 7,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 8,
+      "actions": [
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on"
+      ],
+      "action_fingerprint": "4c14e58703f2816d5ba58c168b907a3f16f14fe2758e9c1feca7aaac0e19d71f"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 9,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 10,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 11,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 12,
+      "actions": [
+        "None:location",
+        "NetworkAudio:audioMute mute",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "fa4500872c176ce957f1acc4f5ae4ecffc1830b7340ac5b0f157604d15be21c7"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 13,
+      "actions": [
+        "Television:setInputSource"
+      ],
+      "action_fingerprint": "fd639bf4e8e0636cf1c474404e439ea8a45e5a147b12942674af2a961c933c86"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 14,
+      "actions": [
+        "Light:setLevel"
+      ],
+      "action_fingerprint": "3425b9712229c85ed4c085ebb618498e29f6773f0ba8cfa1f1c3c035ef1a215e"
+    },
+    {
+      "group_id": "1_1",
+      "representative_index": 15,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 0,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 1,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 2,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 3,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown",
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "84f279ffd8a766af61978d04aa106a0097334baa8dab7f99dde3a9171b3c0331"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 5,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 6,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 7,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "c09037e225803f525d485d32bee62fe01577b757f52b23d179d2f1f9d13cd64a"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 8,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 9,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 10,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 11,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "663ba2d90ade901d6bde47720d1647cd20b46c5f9c3536ac996985433822f263"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 12,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 13,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 14,
+      "actions": [
+        "NetworkAudio:audioMute mute",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "bfe5f8a1d76f8f6c6c1b3d4092bf329a4ea3501cbab72b2359d5afae8aa33775"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 15,
+      "actions": [
+        "Television:setChannel",
+        "Television:refresh refresh",
+        "Television:setChannel",
+        "Heater:switch on",
+        "AirPurifier:refresh refresh",
+        "Heater:switch off",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "a5a8bb8a63778c9d23ce3f35964f19e0e265874d43a36710f85344b203e33df8"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 16,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 17,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 18,
+      "actions": [
+        "Light:setLightingMode"
+      ],
+      "action_fingerprint": "657455946f80f3daee94c5b9edde2f5fdbef3179884bd3756d6d998b6f9bd5f0"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 19,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 22,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "574465080df584723a1fd13ad7c9524ea58a7a24975c79cf4ac951f640136259"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 23,
+      "actions": [
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "3479a5283da1d6f044c94eb43894bc8d01d4542a55091017ebe273928d63d18e"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 24,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 25,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 26,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 27,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 28,
+      "actions": [
+        "Television:audioMute unmute",
+        "Television:volumeDown",
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "1e7df0cc4cb926b59b305c1c70794dc52abaf1d72c01367ce43752fe7dc0920f"
+    },
+    {
+      "group_id": "2_0",
+      "representative_index": 29,
+      "actions": [
+        "Light:setLightingMode"
+      ],
+      "action_fingerprint": "657455946f80f3daee94c5b9edde2f5fdbef3179884bd3756d6d998b6f9bd5f0"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 0,
+      "actions": [
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "ffb5e3cbf5d698ad36a6b54cd5371081b9a4dde3e8537e507b3a0deb644692a6"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 1,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "8a6c4bdf93dfa70c4d0f64cdc130d62774c925c01869fa4c949ae2b76dfbb57e"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 2,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 3,
+      "actions": [
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "069da9010aefde88d2a5f0049aeb0d42a034263085a637d765e3c6f83ad36425"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 4,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 5,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 6,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "fde83c500053f485bdf9e7db2fb51179abbc0b3b6e27426a813ef4aaed79b078"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 7,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 8,
+      "actions": [
+        "Dryer:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "c76ca6952556cdabdf399551a597402e59a14b6f3d1895913b4a3ec791e8557a"
+    },
+    {
+      "group_id": "2_1",
+      "representative_index": 9,
+      "actions": [
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "5d75fed8c09032cc7a332891ccab3102cfd101ce4e283a6a860a31a274ac5f04"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 0,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 1,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 2,
+      "actions": [
+        "Light:setLevel"
+      ],
+      "action_fingerprint": "3425b9712229c85ed4c085ebb618498e29f6773f0ba8cfa1f1c3c035ef1a215e"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 3,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 5,
+      "actions": [
+        "Television:setChannel",
+        "Light:setLightingMode",
+        "Light:setLightingMode"
+      ],
+      "action_fingerprint": "b59b138f6208a5beef436bde4b7d4b5860618ff08d25507b2212d8dbcf3b2cce"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 6,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 7,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "77cc7a313c8d58f85f1f81eb373acad4402eb0553783b88ce948baece6b61131"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 8,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "574465080df584723a1fd13ad7c9524ea58a7a24975c79cf4ac951f640136259"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 9,
+      "actions": [
+        "Television:setInputSource"
+      ],
+      "action_fingerprint": "fd639bf4e8e0636cf1c474404e439ea8a45e5a147b12942674af2a961c933c86"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 10,
+      "actions": [
+        "Camera:notification",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "0e48a82bfd61d9b997883cbe010d9b22d6bfd8c12e39059ab8bd91fe5eb20641"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 11,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "5ce547bcd57e7bca1a9e79a38a32075191ef7c624ea34726c861b12aeecc617c"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 12,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 13,
+      "actions": [
+        "Camera:notification",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "0e48a82bfd61d9b997883cbe010d9b22d6bfd8c12e39059ab8bd91fe5eb20641"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 14,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 15,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "663ba2d90ade901d6bde47720d1647cd20b46c5f9c3536ac996985433822f263"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 16,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 17,
+      "actions": [
+        "Camera:notification",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "46b74c80cc9af18c9bb79053ee93b4f869e972926ffb284678aaeb15b373339e"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 18,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 19,
+      "actions": [
+        "Light:switch off"
+      ],
+      "action_fingerprint": "ff1940b7415ad093f2d1a8a672162b8103b240086f8a542ede14e73c8798e72e"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 20,
+      "actions": [
+        "Blind:windowShade open",
+        "Television:setChannel",
+        "Camera:notification",
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "28862977a8deeb244c6a56f7c75655fe2de868a88c86e29ce8487abf50127fd8"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 22,
+      "actions": [
+        "Blind:windowShade open",
+        "Television:setChannel",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "bda73467c16b0d7ede14fbe22e64143c5767e2d01d2f2a53a9f2301ee6f0de6f"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 23,
+      "actions": [
+        "AirPurifier:setAirPurifierMode"
+      ],
+      "action_fingerprint": "80a6c2fe3c38293e7252573db1fb0478511156c4a9d175c3d8206bcff8c79644"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 24,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "574465080df584723a1fd13ad7c9524ea58a7a24975c79cf4ac951f640136259"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 25,
+      "actions": [
+        "Other:notification"
+      ],
+      "action_fingerprint": "ad40469cf5996b69e1103f8a7f93a9394cf7e22a9d5703932f2258ebf09c034b"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 26,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 27,
+      "actions": [
+        "SmartLock:lock lock"
+      ],
+      "action_fingerprint": "d2dcc76035b08890eda27c7a629c90cdc31b2256b6905fadce305079feca04a1"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 28,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "3_0",
+      "representative_index": 29,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 0,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 1,
+      "actions": [
+        "Light:switch off"
+      ],
+      "action_fingerprint": "ff1940b7415ad093f2d1a8a672162b8103b240086f8a542ede14e73c8798e72e"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 2,
+      "actions": [
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "e737b41a48e2a803f0dc2a6db1a207f283d7f77f4426812ce56622741c3d828f"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 3,
+      "actions": [
+        "NetworkAudio:audioMute mute"
+      ],
+      "action_fingerprint": "c93e9c3d5979aeb0294125390ca1dc390670ecd95e0d1422317b5b19402d8e76"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 5,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 6,
+      "actions": [
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on"
+      ],
+      "action_fingerprint": "4c14e58703f2816d5ba58c168b907a3f16f14fe2758e9c1feca7aaac0e19d71f"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 7,
+      "actions": [
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Television:setChannel",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "19cad667cea22f5c22cf94bb5abe8dba4cc5dd6e18b0d23aa4ea3ba3082c435b"
+    },
+    {
+      "group_id": "3_1",
+      "representative_index": 8,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 0,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 1,
+      "actions": [
+        "AirPurifier:setFanSpeed",
+        "Television:setChannel",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "c190c25cfbd7707b5531ddb46615cbf562147f9b397237829508a272ebcc6503"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 2,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 3,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 5,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 6,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "d1c3ecc8619cbc05ce1ad14695e0836eb728ead1222a1cb1ffcbddb53ef54784"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 7,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 8,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 9,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 10,
+      "actions": [
+        "Television:setChannel",
+        "Camera:notification",
+        "Television:setChannel",
+        "Camera:notification",
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed",
+        "Television:setChannel",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "ccd03069e599c5b5a6e730e9d416d117ad365d99ea6e3670933f6d4082bffc4d"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 11,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 12,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 13,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 14,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 15,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 16,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 17,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 18,
+      "actions": [
+        "Other:notification",
+        "Other:notification",
+        "Other:notification"
+      ],
+      "action_fingerprint": "6aef328a31945c95a76751943bc2887142babc96e934fc7e1a2076924a529dda"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 19,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed",
+        "Television:setChannel",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed"
+      ],
+      "action_fingerprint": "8f627d683d2f8ac585dfc702e1825f57ac3422dcb5496130ae90026f0468eb7f"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 22,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 23,
+      "actions": [
+        "NetworkAudio:switch on"
+      ],
+      "action_fingerprint": "cd4f4e4bb71e93dbd95e8f9a061cdc181f7d810cf1051d47def3353e2a839097"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 24,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 25,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 26,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 27,
+      "actions": [
+        "Other:notification"
+      ],
+      "action_fingerprint": "ad40469cf5996b69e1103f8a7f93a9394cf7e22a9d5703932f2258ebf09c034b"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 28,
+      "actions": [
+        "Television:volumeDown",
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "1862a1e4060fb16cd5631ba90183f13684d647a23f30077be795dc556cb8315c"
+    },
+    {
+      "group_id": "4_0",
+      "representative_index": 29,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 0,
+      "actions": [
+        "Television:setPictureMode",
+        "Television:setPictureMode"
+      ],
+      "action_fingerprint": "e9bb154900f8a36e4a4f978f5b08b4225cd64ccdd1d5fa450631c9bbf80cc19f"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 1,
+      "actions": [
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "de8773dd8512ca81fd87d9976b7e5395e9b641156109eb624d46e3f7b3ad84b6"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 2,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 3,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 4,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 5,
+      "actions": [
+        "Television:setChannel",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification",
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "9000ff189f82213b1088704fc34456e2778ebeef22f7104e27377419b5fe079f"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 6,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 7,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 8,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 9,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 10,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 11,
+      "actions": [
+        "Television:switch on",
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "a4edb44f9adc5fc45efb13bef0c285fc8e61dad0c18ea498a76846dc12e13862"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 12,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 13,
+      "actions": [
+        "AirPurifier:setAirPurifierMode"
+      ],
+      "action_fingerprint": "80a6c2fe3c38293e7252573db1fb0478511156c4a9d175c3d8206bcff8c79644"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 14,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 15,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 16,
+      "actions": [
+        "Other:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "890a6345f2593301ffe7bc0f50517dce81c2258f14f824ddcadf715d972d47ac"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 17,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 18,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 19,
+      "actions": [
+        "None:location",
+        "Television:setInputSource"
+      ],
+      "action_fingerprint": "7d5974bd4665c16c90422abde2ed66e9524756dffcd63300bfe103cc31f17bc8"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 20,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 21,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 22,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 23,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 24,
+      "actions": [
+        "Television:switch on"
+      ],
+      "action_fingerprint": "3a7694a4f13b95bcc1f833149899b59d2cac00d11410f584c920650c85c51572"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 25,
+      "actions": [
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "1875de8a3ceb59e1a045c59fd2d5c515d0ad49f3d4a018f71cbca47c7cb007bc"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 26,
+      "actions": [
+        "Television:switch on"
+      ],
+      "action_fingerprint": "3a7694a4f13b95bcc1f833149899b59d2cac00d11410f584c920650c85c51572"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 27,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 28,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "4_1",
+      "representative_index": 29,
+      "actions": [
+        "Switch:refresh refresh",
+        "Television:refresh refresh",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Heater:switch on",
+        "AirPurifier:refresh refresh",
+        "Television:setChannel",
+        "Heater:switch off"
+      ],
+      "action_fingerprint": "6d0808261ac953b79cc99e6bbf3ac0a4957ac60e32d6532fc1a184f5069e6311"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 0,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 1,
+      "actions": [
+        "GarageDoor:doorControl open"
+      ],
+      "action_fingerprint": "5b762b51df4131f452109dfad2023c4b3b41051d9d7e4823a56d9794077099b7"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 2,
+      "actions": [
+        "GarageDoor:doorControl open"
+      ],
+      "action_fingerprint": "5b762b51df4131f452109dfad2023c4b3b41051d9d7e4823a56d9794077099b7"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 3,
+      "actions": [
+        "Camera:notification",
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Camera:notification"
+      ],
+      "action_fingerprint": "490aefd810e0e8c9a418acd1f06affdf28ba06c86ada9741f5ae6778974309e2"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 4,
+      "actions": [
+        "NetworkAudio:switch on"
+      ],
+      "action_fingerprint": "cd4f4e4bb71e93dbd95e8f9a061cdc181f7d810cf1051d47def3353e2a839097"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 5,
+      "actions": [
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "1875de8a3ceb59e1a045c59fd2d5c515d0ad49f3d4a018f71cbca47c7cb007bc"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 6,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 7,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "4_2",
+      "representative_index": 8,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 0,
+      "actions": [
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "233d8a00270ce9a7d74ccafb0ed72ce81f0aeefb97aaed8dd5da54b583a36545"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 1,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 2,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 3,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 4,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 5,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 6,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 7,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "77cc7a313c8d58f85f1f81eb373acad4402eb0553783b88ce948baece6b61131"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 8,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 9,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 10,
+      "actions": [
+        "Other:notification"
+      ],
+      "action_fingerprint": "ad40469cf5996b69e1103f8a7f93a9394cf7e22a9d5703932f2258ebf09c034b"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 11,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Television:setChannel",
+        "Television:setChannel",
+        "AirPurifier:setFanSpeed",
+        "Dryer:notification"
+      ],
+      "action_fingerprint": "e2e1a77342db50ccf8b2d2cb6c3e7d8f198e8a777861adc75455cfafba737e34"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 12,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 13,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 14,
+      "actions": [
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on"
+      ],
+      "action_fingerprint": "3e7fbd0e82e61f5b5f31aa30782965b8463022bb99a237bf4a609bc9e31c0c8a"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 15,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 16,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 17,
+      "actions": [
+        "GarageDoor:doorControl open"
+      ],
+      "action_fingerprint": "5b762b51df4131f452109dfad2023c4b3b41051d9d7e4823a56d9794077099b7"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 18,
+      "actions": [
+        "Blind:windowShade open",
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "05431ed2382d118901e04525547a13051b03ddf9e6108d2cfe611a07748cde58"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 19,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 22,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 23,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 24,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 25,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 26,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 27,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 28,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_0",
+      "representative_index": 29,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 0,
+      "actions": [
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on",
+        "Other:switch on"
+      ],
+      "action_fingerprint": "ab505777699e05baeddb1eac78f67dd0ecfa53496d858f0f33712f7cbf5d33c6"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 1,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 2,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 3,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 4,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 5,
+      "actions": [
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade open",
+        "Blind:windowShade open",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3023be976c3e025e5226873b8edc8cdffddf503cb61d82d42531f49eb91f7df5"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 6,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "5_1",
+      "representative_index": 7,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 0,
+      "actions": [
+        "Television:volumeDown",
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "84f279ffd8a766af61978d04aa106a0097334baa8dab7f99dde3a9171b3c0331"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 1,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "574465080df584723a1fd13ad7c9524ea58a7a24975c79cf4ac951f640136259"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 2,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 3,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 4,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "574465080df584723a1fd13ad7c9524ea58a7a24975c79cf4ac951f640136259"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 5,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 6,
+      "actions": [
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "3e644e673220e077ab599dd7257583c1d39eba7addc60a4d30a7e2157104b22a"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 7,
+      "actions": [
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Dryer:notification",
+        "NetworkAudio:audioVolume setVolume",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "e0a7d601c4274d05144cf4b1e5b33776dd7fe8c6487e3edc65ef3388ed44eec5"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 8,
+      "actions": [
+        "Television:volumeDown",
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "84f279ffd8a766af61978d04aa106a0097334baa8dab7f99dde3a9171b3c0331"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 9,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 10,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 11,
+      "actions": [
+        "Light:switch off"
+      ],
+      "action_fingerprint": "ff1940b7415ad093f2d1a8a672162b8103b240086f8a542ede14e73c8798e72e"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 12,
+      "actions": [
+        "NetworkAudio:switch on"
+      ],
+      "action_fingerprint": "cd4f4e4bb71e93dbd95e8f9a061cdc181f7d810cf1051d47def3353e2a839097"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 13,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 14,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 15,
+      "actions": [
+        "Light:switch off"
+      ],
+      "action_fingerprint": "ff1940b7415ad093f2d1a8a672162b8103b240086f8a542ede14e73c8798e72e"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 16,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "77cc7a313c8d58f85f1f81eb373acad4402eb0553783b88ce948baece6b61131"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 17,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 18,
+      "actions": [
+        "Projector:custom.soundmode setSoundMode"
+      ],
+      "action_fingerprint": "37f6714068f613d252f65125217a22fea0daa07d48d6ec0250e739838fdb9ac0"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 19,
+      "actions": [
+        "Television:volumeDown"
+      ],
+      "action_fingerprint": "f46bc12093babbb9870388e5fdb4f86cecab9ba35462580b874bd57384a8fb46"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 20,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 21,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel",
+        "Television:switch on",
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "bebd43357272b09d7fc64f217f159ae64a2d1aadeaf48f9c703ec70ace1502d6"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 22,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 23,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "ec477aaae79c451f19621c6c7bacae63c7ed64d30e0ac8a5faa01e88e31e826d"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 24,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 25,
+      "actions": [
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "58c0ae9f23617c1d4b706156448d151bd42260d54d14224f93be59111ad01298"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 26,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 27,
+      "actions": [
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Camera:notification",
+        "RobotCleaner:setRobotCleanerMovement charging"
+      ],
+      "action_fingerprint": "24b7baf37e6c605fa30143f8a9786befcb3ad77716310c416a5ce1cc7bd61307"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 28,
+      "actions": [
+        "None:location"
+      ],
+      "action_fingerprint": "84007b084bbe2ec029627420e69ed6148cef347d3188f866093dcaa217f444ea"
+    },
+    {
+      "group_id": "6_0",
+      "representative_index": 29,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "663ba2d90ade901d6bde47720d1647cd20b46c5f9c3536ac996985433822f263"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 0,
+      "actions": [
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Blind:windowShade close",
+        "Blind:windowShade open",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "RobotCleaner:setRobotCleanerMovement cleaning"
+      ],
+      "action_fingerprint": "2e79f54547faba8414ff6b61bd6ec00dc1096e31c954e934a38efb6e987520cc"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 1,
+      "actions": [
+        "NetworkAudio:audioVolume setVolume",
+        "RobotCleaner:setRobotCleanerMovement charging",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "RobotCleaner:setRobotCleanerMovement cleaning",
+        "Blind:windowShade close",
+        "Blind:windowShade open"
+      ],
+      "action_fingerprint": "4b1e00f50222229d5c834b90f9069dd146a63dde9dc89b657b86e1671dd43515"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 2,
+      "actions": [
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Blind:windowShade open",
+        "Camera:notification",
+        "Blind:windowShade close",
+        "Camera:notification",
+        "Dryer:notification"
+      ],
+      "action_fingerprint": "cb1be91dd0bb6810f2c06d3017c6d484ccce7a9993d3c631338a6313776c1795"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 3,
+      "actions": [
+        "Television:setChannel",
+        "Television:setChannel"
+      ],
+      "action_fingerprint": "3361964440de068e531466c58a23deb55cce94b6b8c33ea0122b241976e38968"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 4,
+      "actions": [
+        "None:location",
+        "None:location",
+        "None:location"
+      ],
+      "action_fingerprint": "f548c9390bc90a573b8e60bc0815994c87b58a3a43d0ac42ed34bb65f529106e"
+    },
+    {
+      "group_id": "6_1",
+      "representative_index": 5,
+      "actions": [
+        "Television:audioMute unmute"
+      ],
+      "action_fingerprint": "f0ce68f1d817e9d87c6eb76fddcabe06d60c880a213fa9b4bb4ea14f3b746d03"
+    }
+  ],
+  "uses_target_behavior": false
+}

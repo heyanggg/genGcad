@@ -1,0 +1,1684 @@
+{
+  "experiment_id": "fr_spring_baseline_source_copy_safe_replicate_3",
+  "protocol": "SmartGen-compatible grouped Codex-file baseline v2",
+  "official_backend_reproduced": false,
+  "group_count": 15,
+  "request_count": 16,
+  "requested_sequence_count": 137,
+  "groups": [
+    {
+      "group_id": "0_0",
+      "source_date_or_partition": "day_0",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_0_0_SPPC_th=0.918.pkl",
+      "source_sha256": "75689ffaf0ed66c3a9cb0252a52d648d3443a1721bad5759cc54c0b9ca642a2f",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_0_0_000_4eda3d704e",
+        "rep_0_0_001_b3322d6e19",
+        "rep_0_0_002_de0036ccc2",
+        "rep_0_0_003_6a8da56614",
+        "rep_0_0_004_fc21790d02",
+        "rep_0_0_005_da48665f4b",
+        "rep_0_0_006_5fb5369610",
+        "rep_0_0_007_0db4c6e156",
+        "rep_0_0_008_292525b709",
+        "rep_0_0_009_e3161a6fd7",
+        "rep_0_0_010_4659dd86b5",
+        "rep_0_0_011_313f6a83ce",
+        "rep_0_0_012_6a575f8e80",
+        "rep_0_0_013_1aabbcc43f",
+        "rep_0_0_014_0634157e78",
+        "rep_0_0_015_a39b5a8970",
+        "rep_0_0_016_b59cd66251",
+        "rep_0_0_017_1b1f50fb15",
+        "rep_0_0_018_31622a14f9",
+        "rep_0_0_019_1db9619e4e",
+        "rep_0_0_020_4fb02c2afe",
+        "rep_0_0_021_a1788ca8c5",
+        "rep_0_0_022_292525b709",
+        "rep_0_0_023_de93d60c7e",
+        "rep_0_0_024_292525b709",
+        "rep_0_0_025_30d7790627",
+        "rep_0_0_026_4659dd86b5",
+        "rep_0_0_027_9e0f6600fd",
+        "rep_0_0_028_bd564e2926",
+        "rep_0_0_029_677e48dfb0"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 6,
+        "q10": 1.0,
+        "q90": 3.0,
+        "allowed_min": 2,
+        "allowed_max": 4,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "GarageDoor:doorControl open",
+          "Heater:switch on",
+          "Light:setLightingMode",
+          "Light:switch on",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:setInputSource",
+          "Television:switch on",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "GarageDoor:doorControl open",
+            "GarageDoor:doorControl open"
+          ],
+          [
+            "Light:switch on",
+            "Light:setLightingMode"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade open"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Camera:notification"
+          ],
+          [
+            "Television:audioMute unmute",
+            "Television:switch on"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setInputSource"
+          ],
+          [
+            "Television:setInputSource",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 14,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 8,
+      "request_chunks": [
+        8
+      ]
+    },
+    {
+      "group_id": "0_1",
+      "source_date_or_partition": "day_0",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_0_1_SPPC_th=0.918.pkl",
+      "source_sha256": "ad8a67d7b74124c8db01599748057a5bd1644e305e4c703d3ba447d636870fe6",
+      "representative_sequence_count": 7,
+      "representative_sequence_ids": [
+        "rep_0_1_000_1aabbcc43f",
+        "rep_0_1_001_dd26b75ad2",
+        "rep_0_1_002_4659dd86b5",
+        "rep_0_1_003_ea17a798cb",
+        "rep_0_1_004_6a8da56614",
+        "rep_0_1_005_5eaa2a6314",
+        "rep_0_1_006_269965953a"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 4,
+        "q10": 1.0,
+        "q90": 2.8000000000000007,
+        "allowed_min": 2,
+        "allowed_max": 4,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Camera:notification",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:switch on",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Television:audioMute unmute",
+            "Television:switch on"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 5,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 6,
+      "request_chunks": [
+        6
+      ]
+    },
+    {
+      "group_id": "1_0",
+      "source_date_or_partition": "day_1",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_1_0_SPPC_th=0.918.pkl",
+      "source_sha256": "3033cafd6a5e4ab4cc0b4e8c647d2a799b83c02e844b06bce59ccc0ccfbf6e5e",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_1_0_000_a8dd95ce8b",
+        "rep_1_0_001_a4d628d11f",
+        "rep_1_0_002_8c8a9250b9",
+        "rep_1_0_003_4e2135d649",
+        "rep_1_0_004_84f48651db",
+        "rep_1_0_005_9268da1968",
+        "rep_1_0_006_2da3eae194",
+        "rep_1_0_007_4e2135d649",
+        "rep_1_0_008_c2d1f82447",
+        "rep_1_0_009_1813e4f790",
+        "rep_1_0_010_620afe2746",
+        "rep_1_0_011_08745a5af1",
+        "rep_1_0_012_222626b3d8",
+        "rep_1_0_013_37f12c7a80",
+        "rep_1_0_014_28065ae12d",
+        "rep_1_0_015_710cb0327e",
+        "rep_1_0_016_f7c5187e9e",
+        "rep_1_0_017_243950fdd2",
+        "rep_1_0_018_47651329cc",
+        "rep_1_0_019_7607f77470",
+        "rep_1_0_020_8ebbdee0ba",
+        "rep_1_0_021_971eec643e",
+        "rep_1_0_022_37f12c7a80",
+        "rep_1_0_023_b0fd01797d",
+        "rep_1_0_024_b0fd01797d",
+        "rep_1_0_025_222626b3d8",
+        "rep_1_0_026_7c47cf5155",
+        "rep_1_0_027_0b255c974b",
+        "rep_1_0_028_59634061e6",
+        "rep_1_0_029_1d9a97b474"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 6,
+        "q10": 1.0,
+        "q90": 3.0,
+        "allowed_min": 2,
+        "allowed_max": 4,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Camera:notification",
+          "GarageDoor:doorControl close",
+          "GarageDoor:doorControl open",
+          "Light:setLevel",
+          "Other:switch on",
+          "Projector:custom.soundmode setSoundMode",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "GarageDoor:doorControl open",
+            "GarageDoor:doorControl close"
+          ],
+          [
+            "GarageDoor:doorControl open",
+            "GarageDoor:doorControl open"
+          ],
+          [
+            "Other:switch on",
+            "Other:switch on"
+          ],
+          [
+            "Television:setChannel",
+            "Television:audioMute unmute"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ],
+          [
+            "Television:volumeDown",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 11,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 12,
+      "request_chunks": [
+        12
+      ]
+    },
+    {
+      "group_id": "1_1",
+      "source_date_or_partition": "day_1",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_1_1_SPPC_th=0.918.pkl",
+      "source_sha256": "31e64fe07bddc9a9f883b373cafe7ae558e6c5af1e00c43d8cf0174eb347bfcd",
+      "representative_sequence_count": 16,
+      "representative_sequence_ids": [
+        "rep_1_1_000_fbc255b5bb",
+        "rep_1_1_001_d048139093",
+        "rep_1_1_002_e18a366612",
+        "rep_1_1_003_7b29e30703",
+        "rep_1_1_004_14931b4594",
+        "rep_1_1_005_9ce9d39cb3",
+        "rep_1_1_006_2da3eae194",
+        "rep_1_1_007_1d9a97b474",
+        "rep_1_1_008_121052baca",
+        "rep_1_1_009_e236c568e9",
+        "rep_1_1_010_a9ba35336e",
+        "rep_1_1_011_df9ee053a7",
+        "rep_1_1_012_21eea3009f",
+        "rep_1_1_013_9ce9d39cb3",
+        "rep_1_1_014_1813e4f790",
+        "rep_1_1_015_1d9a97b474"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 4,
+        "q10": 1.0,
+        "q90": 4.0,
+        "allowed_min": 2,
+        "allowed_max": 4,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:setFanSpeed",
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Light:setLevel",
+          "NetworkAudio:audioMute mute",
+          "Other:switch on",
+          "Television:setChannel",
+          "Television:setInputSource",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "AirPurifier:setFanSpeed",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade open"
+          ],
+          [
+            "Other:switch on",
+            "Other:switch on"
+          ],
+          [
+            "Television:setInputSource",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 10,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 10,
+      "request_chunks": [
+        10
+      ]
+    },
+    {
+      "group_id": "2_0",
+      "source_date_or_partition": "day_2",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_2_0_SPPC_th=0.918.pkl",
+      "source_sha256": "4a4c695fef0b41d925df3e7332a50414375e9ed6bf0f2971d13c1bc09341d701",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_2_0_000_9ee90a7c42",
+        "rep_2_0_001_8c1deb0a3d",
+        "rep_2_0_002_202137eafd",
+        "rep_2_0_003_9bc1dc083e",
+        "rep_2_0_004_70768daade",
+        "rep_2_0_005_e223630cbb",
+        "rep_2_0_006_31fa44b9cb",
+        "rep_2_0_007_09b194d24e",
+        "rep_2_0_008_fd7dae6152",
+        "rep_2_0_009_cac6347d7e",
+        "rep_2_0_010_12dae0491f",
+        "rep_2_0_011_b8bec30afc",
+        "rep_2_0_012_6305310551",
+        "rep_2_0_013_e223630cbb",
+        "rep_2_0_014_c0315cd63a",
+        "rep_2_0_015_63124b497f",
+        "rep_2_0_016_8c28ed340c",
+        "rep_2_0_017_f328e0cd34",
+        "rep_2_0_018_179e75cfe3",
+        "rep_2_0_019_31fa44b9cb",
+        "rep_2_0_020_f9f2afceb2",
+        "rep_2_0_021_f328e0cd34",
+        "rep_2_0_022_2a707ece3c",
+        "rep_2_0_023_796d5dd822",
+        "rep_2_0_024_e223630cbb",
+        "rep_2_0_025_79beedbeaf",
+        "rep_2_0_026_a316f0ad14",
+        "rep_2_0_027_44344e03b3",
+        "rep_2_0_028_45da1cf629",
+        "rep_2_0_029_179e75cfe3"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 8,
+        "q10": 1.0,
+        "q90": 5.0,
+        "allowed_min": 2,
+        "allowed_max": 5,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:refresh refresh",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Heater:switch off",
+          "Heater:switch on",
+          "Light:setLightingMode",
+          "NetworkAudio:audioMute mute",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:audioMute unmute",
+          "Television:refresh refresh",
+          "Television:setChannel",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "AirPurifier:refresh refresh",
+            "Heater:switch off"
+          ],
+          [
+            "Heater:switch off",
+            "Television:setChannel"
+          ],
+          [
+            "Heater:switch on",
+            "AirPurifier:refresh refresh"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Camera:notification"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Television:audioMute unmute",
+            "Television:volumeDown"
+          ],
+          [
+            "Television:refresh refresh",
+            "Television:setChannel"
+          ],
+          [
+            "Television:setChannel",
+            "Heater:switch on"
+          ],
+          [
+            "Television:setChannel",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Television:setChannel",
+            "Television:refresh refresh"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ],
+          [
+            "Television:volumeDown",
+            "Television:volumeDown"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 13,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 7,
+      "request_chunks": [
+        7
+      ]
+    },
+    {
+      "group_id": "2_1",
+      "source_date_or_partition": "day_2",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_2_1_SPPC_th=0.918.pkl",
+      "source_sha256": "06462bd77897dfa103bcb77ae84361eaf61ac2b4fbf57217a0156c12af99b6a7",
+      "representative_sequence_count": 10,
+      "representative_sequence_ids": [
+        "rep_2_1_000_15fa3ff21f",
+        "rep_2_1_001_c0af7e1a34",
+        "rep_2_1_002_44344e03b3",
+        "rep_2_1_003_918543a2f6",
+        "rep_2_1_004_6305310551",
+        "rep_2_1_005_9bc1dc083e",
+        "rep_2_1_006_18794823a2",
+        "rep_2_1_007_eab695221e",
+        "rep_2_1_008_f5be49b9fc",
+        "rep_2_1_009_8e609d61dc"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 4.5,
+        "max": 8,
+        "q10": 1.0,
+        "q90": 7.1,
+        "allowed_min": 2,
+        "allowed_max": 8,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Dryer:notification",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:setChannel"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade open"
+          ],
+          [
+            "Dryer:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Television:setChannel"
+          ],
+          [
+            "Television:setChannel",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 7,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 6,
+      "request_chunks": [
+        6
+      ]
+    },
+    {
+      "group_id": "3_0",
+      "source_date_or_partition": "day_3",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_3_0_SPPC_th=0.918.pkl",
+      "source_sha256": "22bcebc505e2822a5c375894e6101707cd7513bba0875eb8bf4398bddbf3cf3e",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_3_0_000_413b608aab",
+        "rep_3_0_001_9e1ecb60c2",
+        "rep_3_0_002_f470f3fd69",
+        "rep_3_0_003_41f3623d4c",
+        "rep_3_0_004_5a68d41604",
+        "rep_3_0_005_d30187d9d7",
+        "rep_3_0_006_41f3623d4c",
+        "rep_3_0_007_4c49fea41f",
+        "rep_3_0_008_41c42a0290",
+        "rep_3_0_009_71a8c8a922",
+        "rep_3_0_010_84262fd620",
+        "rep_3_0_011_dddd90560f",
+        "rep_3_0_012_2728b90eea",
+        "rep_3_0_013_84262fd620",
+        "rep_3_0_014_f799d314db",
+        "rep_3_0_015_597b29009f",
+        "rep_3_0_016_5a68d41604",
+        "rep_3_0_017_1603c8ed7e",
+        "rep_3_0_018_bcdf931116",
+        "rep_3_0_019_fa60879061",
+        "rep_3_0_020_93d9cb715d",
+        "rep_3_0_021_11eb41525e",
+        "rep_3_0_022_c3159e173a",
+        "rep_3_0_023_904f1bf5a7",
+        "rep_3_0_024_8e8cddbb7c",
+        "rep_3_0_025_e9032ecb47",
+        "rep_3_0_026_f799d314db",
+        "rep_3_0_027_05b7ab80ee",
+        "rep_3_0_028_fd8ee082d9",
+        "rep_3_0_029_bcdf931116"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 8,
+        "q10": 1.0,
+        "q90": 6.200000000000003,
+        "allowed_min": 2,
+        "allowed_max": 7,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:setAirPurifierMode",
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Light:setLevel",
+          "Light:setLightingMode",
+          "Light:switch off",
+          "Other:notification",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "SmartLock:lock lock",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:setInputSource",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Television:setChannel"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Blind:windowShade open",
+            "Television:setChannel"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade open"
+          ],
+          [
+            "Camera:notification",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Light:setLightingMode",
+            "Light:setLightingMode"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade open"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Blind:windowShade open"
+          ],
+          [
+            "Television:setChannel",
+            "Camera:notification"
+          ],
+          [
+            "Television:setChannel",
+            "Light:setLightingMode"
+          ],
+          [
+            "Television:setChannel",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 15,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 6,
+      "request_chunks": [
+        6
+      ]
+    },
+    {
+      "group_id": "3_1",
+      "source_date_or_partition": "day_3",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_3_1_SPPC_th=0.918.pkl",
+      "source_sha256": "aee716ce97073ff6ee3994a72f7cc47c8bf726664c87d7d64e75c557f27370a9",
+      "representative_sequence_count": 9,
+      "representative_sequence_ids": [
+        "rep_3_1_000_5a68d41604",
+        "rep_3_1_001_fa60879061",
+        "rep_3_1_002_3e2cfc4d6b",
+        "rep_3_1_003_fe9f9896ba",
+        "rep_3_1_004_5a68d41604",
+        "rep_3_1_005_fd8ee082d9",
+        "rep_3_1_006_41b359dd13",
+        "rep_3_1_007_e0c9b92373",
+        "rep_3_1_008_41f3623d4c"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 6,
+        "q10": 1.0,
+        "q90": 5.2,
+        "allowed_min": 2,
+        "allowed_max": 6,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Light:switch off",
+          "NetworkAudio:audioMute mute",
+          "Other:switch on",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:setChannel",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Television:setChannel"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Other:switch on",
+            "Other:switch on"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Blind:windowShade open"
+          ],
+          [
+            "Television:setChannel",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 8,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 8,
+      "request_chunks": [
+        8
+      ]
+    },
+    {
+      "group_id": "4_0",
+      "source_date_or_partition": "day_4",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_4_0_SPPC_th=0.918.pkl",
+      "source_sha256": "77bf733b98fd07f42aae4f4b24d11571d999b88222240ddf185df0f93397d7cf",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_4_0_000_bcbaca79a8",
+        "rep_4_0_001_2aa3dc4bfc",
+        "rep_4_0_002_0fe0a4ab41",
+        "rep_4_0_003_c720d63a19",
+        "rep_4_0_004_5dad382574",
+        "rep_4_0_005_5dad382574",
+        "rep_4_0_006_64bf35f28d",
+        "rep_4_0_007_e01aa21c9f",
+        "rep_4_0_008_2b7cce6bbc",
+        "rep_4_0_009_aca4e17679",
+        "rep_4_0_010_80cae224e0",
+        "rep_4_0_011_4739674b61",
+        "rep_4_0_012_a4377fcbbd",
+        "rep_4_0_013_7030da9cd0",
+        "rep_4_0_014_0fe0a4ab41",
+        "rep_4_0_015_4a961d9a95",
+        "rep_4_0_016_57c8d76380",
+        "rep_4_0_017_5c4340824b",
+        "rep_4_0_018_2564bb9a28",
+        "rep_4_0_019_b117f59aa3",
+        "rep_4_0_020_248766ab34",
+        "rep_4_0_021_3a019370e9",
+        "rep_4_0_022_3620f68734",
+        "rep_4_0_023_ad6c318736",
+        "rep_4_0_024_5cfefabbae",
+        "rep_4_0_025_da78045a12",
+        "rep_4_0_026_ff25c58eae",
+        "rep_4_0_027_f38b286f95",
+        "rep_4_0_028_cd4c34460e",
+        "rep_4_0_029_fb66ccd75b"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 10,
+        "q10": 1.0,
+        "q90": 6.400000000000006,
+        "allowed_min": 2,
+        "allowed_max": 7,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:setFanSpeed",
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "NetworkAudio:switch on",
+          "Other:notification",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "AirPurifier:setFanSpeed",
+            "Camera:notification"
+          ],
+          [
+            "AirPurifier:setFanSpeed",
+            "Television:setChannel"
+          ],
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Camera:notification",
+            "AirPurifier:setFanSpeed"
+          ],
+          [
+            "Camera:notification",
+            "Television:setChannel"
+          ],
+          [
+            "Other:notification",
+            "Other:notification"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade open"
+          ],
+          [
+            "Television:setChannel",
+            "AirPurifier:setFanSpeed"
+          ],
+          [
+            "Television:setChannel",
+            "Camera:notification"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ],
+          [
+            "Television:volumeDown",
+            "Television:audioMute unmute"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 10,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 8,
+      "request_chunks": [
+        8
+      ]
+    },
+    {
+      "group_id": "4_1",
+      "source_date_or_partition": "day_4",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_4_1_SPPC_th=0.918.pkl",
+      "source_sha256": "8135fb4be6cb5dd36bfaba4ae45d4a79068415105550602d6bec093c1c3aaa0d",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_4_1_000_e3bbfc8b7d",
+        "rep_4_1_001_6d1ba13a3d",
+        "rep_4_1_002_cb815f8440",
+        "rep_4_1_003_d60bc6698e",
+        "rep_4_1_004_39f2285300",
+        "rep_4_1_005_e1e4bbeee1",
+        "rep_4_1_006_d96759acbe",
+        "rep_4_1_007_7555568f55",
+        "rep_4_1_008_82df75939a",
+        "rep_4_1_009_82df75939a",
+        "rep_4_1_010_eb53a4bdba",
+        "rep_4_1_011_26eafc557b",
+        "rep_4_1_012_ad7b385436",
+        "rep_4_1_013_95ca32bb9b",
+        "rep_4_1_014_453c31b9f6",
+        "rep_4_1_015_8c3cbd5d29",
+        "rep_4_1_016_dff32b78bb",
+        "rep_4_1_017_82df75939a",
+        "rep_4_1_018_7030da9cd0",
+        "rep_4_1_019_d38a5cf72d",
+        "rep_4_1_020_15b64f32de",
+        "rep_4_1_021_7555568f55",
+        "rep_4_1_022_aca4e17679",
+        "rep_4_1_023_39f2285300",
+        "rep_4_1_024_d268fb5771",
+        "rep_4_1_025_f4e3998f59",
+        "rep_4_1_026_d268fb5771",
+        "rep_4_1_027_e01f75b695",
+        "rep_4_1_028_c855db6535",
+        "rep_4_1_029_40a7431524"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 9,
+        "q10": 1.0,
+        "q90": 7.100000000000001,
+        "allowed_min": 2,
+        "allowed_max": 8,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:refresh refresh",
+          "AirPurifier:setAirPurifierMode",
+          "AirPurifier:setFanSpeed",
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Heater:switch off",
+          "Heater:switch on",
+          "Other:custom.soundmode setSoundMode",
+          "Projector:custom.soundmode setSoundMode",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Switch:refresh refresh",
+          "Television:audioMute unmute",
+          "Television:refresh refresh",
+          "Television:setChannel",
+          "Television:setInputSource",
+          "Television:setPictureMode",
+          "Television:switch on",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "AirPurifier:refresh refresh",
+            "Television:setChannel"
+          ],
+          [
+            "AirPurifier:setFanSpeed",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade open",
+            "Heater:switch on"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Camera:notification",
+            "AirPurifier:setFanSpeed"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Television:setChannel"
+          ],
+          [
+            "Heater:switch on",
+            "AirPurifier:refresh refresh"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Camera:notification"
+          ],
+          [
+            "Switch:refresh refresh",
+            "Television:refresh refresh"
+          ],
+          [
+            "Television:refresh refresh",
+            "Blind:windowShade close"
+          ],
+          [
+            "Television:setChannel",
+            "AirPurifier:setFanSpeed"
+          ],
+          [
+            "Television:setChannel",
+            "Camera:notification"
+          ],
+          [
+            "Television:setChannel",
+            "Heater:switch off"
+          ],
+          [
+            "Television:setPictureMode",
+            "Television:setPictureMode"
+          ],
+          [
+            "Television:switch on",
+            "Television:volumeDown"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 19,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 29,
+      "request_chunks": [
+        15,
+        14
+      ]
+    },
+    {
+      "group_id": "4_2",
+      "source_date_or_partition": "day_4",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_4_2_SPPC_th=0.918.pkl",
+      "source_sha256": "8e82ddf6aa28ab2f2489be8814faa6f6ed6cee92c0efc63647ecbc69fe84226e",
+      "representative_sequence_count": 9,
+      "representative_sequence_ids": [
+        "rep_4_2_000_e8bf834da4",
+        "rep_4_2_001_9fc62218f6",
+        "rep_4_2_002_21a8794aa5",
+        "rep_4_2_003_84778e8ac6",
+        "rep_4_2_004_ad6c318736",
+        "rep_4_2_005_f4e3998f59",
+        "rep_4_2_006_4a961d9a95",
+        "rep_4_2_007_ad7b385436",
+        "rep_4_2_008_248766ab34"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 7,
+        "q10": 1.0,
+        "q90": 7.0,
+        "allowed_min": 2,
+        "allowed_max": 7,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "GarageDoor:doorControl open",
+          "NetworkAudio:switch on",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade open"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Camera:notification"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 7,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 9,
+      "request_chunks": [
+        9
+      ]
+    },
+    {
+      "group_id": "5_0",
+      "source_date_or_partition": "day_5",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_5_0_SPPC_th=0.918.pkl",
+      "source_sha256": "73cb9188cd0596c48e36be3a3c7fb97ab826a3466ed02e49eadb036229f2cfc2",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_5_0_000_61f307b16b",
+        "rep_5_0_001_db005b3339",
+        "rep_5_0_002_884847f482",
+        "rep_5_0_003_8b8888733f",
+        "rep_5_0_004_fbf6927c74",
+        "rep_5_0_005_0f032c486f",
+        "rep_5_0_006_fbf6927c74",
+        "rep_5_0_007_a1382d0ced",
+        "rep_5_0_008_cfa643f498",
+        "rep_5_0_009_fbf6927c74",
+        "rep_5_0_010_1c9fc2a74b",
+        "rep_5_0_011_ed0093db97",
+        "rep_5_0_012_921a671f66",
+        "rep_5_0_013_62e4d38cd0",
+        "rep_5_0_014_0cc507bcbb",
+        "rep_5_0_015_b532dd00d9",
+        "rep_5_0_016_4bebc74272",
+        "rep_5_0_017_77ac8d6bf5",
+        "rep_5_0_018_dada86ed00",
+        "rep_5_0_019_49f932ca72",
+        "rep_5_0_020_fc4273794b",
+        "rep_5_0_021_0378c489d2",
+        "rep_5_0_022_921a671f66",
+        "rep_5_0_023_0378c489d2",
+        "rep_5_0_024_72712c973c",
+        "rep_5_0_025_72712c973c",
+        "rep_5_0_026_b2bd5456fe",
+        "rep_5_0_027_b2bd5456fe",
+        "rep_5_0_028_6590cd1451",
+        "rep_5_0_029_8b8888733f"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 6,
+        "q10": 1.0,
+        "q90": 5.0,
+        "allowed_min": 2,
+        "allowed_max": 5,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "AirPurifier:setFanSpeed",
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Dryer:notification",
+          "GarageDoor:doorControl open",
+          "Other:notification",
+          "Other:switch on",
+          "Projector:custom.soundmode setSoundMode",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "AirPurifier:setFanSpeed",
+            "Dryer:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade close"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Other:switch on",
+            "Other:switch on"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade open"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Television:setChannel"
+          ],
+          [
+            "Television:setChannel",
+            "AirPurifier:setFanSpeed"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 13,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 9,
+      "request_chunks": [
+        9
+      ]
+    },
+    {
+      "group_id": "5_1",
+      "source_date_or_partition": "day_5",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_5_1_SPPC_th=0.918.pkl",
+      "source_sha256": "c1d2d99b865865529ea1d42b1df735216eecfe6f5f016107f00389e1038ff1e7",
+      "representative_sequence_count": 8,
+      "representative_sequence_ids": [
+        "rep_5_1_000_6d3ea65511",
+        "rep_5_1_001_b2bd5456fe",
+        "rep_5_1_002_6590cd1451",
+        "rep_5_1_003_9926455433",
+        "rep_5_1_004_b2bd5456fe",
+        "rep_5_1_005_bb0708a5b6",
+        "rep_5_1_006_e613b8732e",
+        "rep_5_1_007_b2bd5456fe"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 7,
+        "q10": 1.0,
+        "q90": 6.3,
+        "allowed_min": 2,
+        "allowed_max": 7,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Other:switch on",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "Television:setChannel"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Blind:windowShade open",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade open",
+            "Television:setChannel"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Other:switch on",
+            "Other:switch on"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade open"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 6,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 6,
+      "request_chunks": [
+        6
+      ]
+    },
+    {
+      "group_id": "6_0",
+      "source_date_or_partition": "day_6",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_6_0_SPPC_th=0.918.pkl",
+      "source_sha256": "8c68397ed89381ba6d896926c5e20920e9d9332a176bfe3195c5e0663dec2bce",
+      "representative_sequence_count": 30,
+      "representative_sequence_ids": [
+        "rep_6_0_000_845d6e73d9",
+        "rep_6_0_001_a94c8cc865",
+        "rep_6_0_002_1bcc9dd84c",
+        "rep_6_0_003_9a2466f7d9",
+        "rep_6_0_004_c55d65e5bf",
+        "rep_6_0_005_fe24ddc83f",
+        "rep_6_0_006_d6f44aad09",
+        "rep_6_0_007_52510037c0",
+        "rep_6_0_008_fcc592b3b7",
+        "rep_6_0_009_fe24ddc83f",
+        "rep_6_0_010_b32ccb76fb",
+        "rep_6_0_011_d161ef3e4d",
+        "rep_6_0_012_b02e4ca0e8",
+        "rep_6_0_013_57937bb9ea",
+        "rep_6_0_014_c61f569e03",
+        "rep_6_0_015_d161ef3e4d",
+        "rep_6_0_016_7b6541745f",
+        "rep_6_0_017_df9018ecbd",
+        "rep_6_0_018_8890160506",
+        "rep_6_0_019_efc0d32224",
+        "rep_6_0_020_c61f569e03",
+        "rep_6_0_021_a3fac21b04",
+        "rep_6_0_022_d647f8a44c",
+        "rep_6_0_023_2b74a2b699",
+        "rep_6_0_024_c61f569e03",
+        "rep_6_0_025_ca6510ab28",
+        "rep_6_0_026_d647f8a44c",
+        "rep_6_0_027_aa4520dabc",
+        "rep_6_0_028_6fe30dcb82",
+        "rep_6_0_029_1317c7ee3c"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 1.0,
+        "max": 6,
+        "q10": 1.0,
+        "q90": 5.100000000000001,
+        "allowed_min": 2,
+        "allowed_max": 6,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Dryer:notification",
+          "Light:switch off",
+          "NetworkAudio:audioVolume setVolume",
+          "NetworkAudio:switch on",
+          "Projector:custom.soundmode setSoundMode",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:audioMute unmute",
+          "Television:setChannel",
+          "Television:switch on",
+          "Television:volumeDown"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Dryer:notification"
+          ],
+          [
+            "Camera:notification",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Dryer:notification",
+            "NetworkAudio:audioVolume setVolume"
+          ],
+          [
+            "NetworkAudio:audioVolume setVolume",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Camera:notification"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ],
+          [
+            "Television:setChannel",
+            "Television:switch on"
+          ],
+          [
+            "Television:switch on",
+            "Television:audioMute unmute"
+          ],
+          [
+            "Television:volumeDown",
+            "Television:volumeDown"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 14,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 7,
+      "request_chunks": [
+        7
+      ]
+    },
+    {
+      "group_id": "6_1",
+      "source_date_or_partition": "day_6",
+      "source_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn_day_6_1_SPPC_th=0.918.pkl",
+      "source_sha256": "e9ab21433aca8d6cdbfa03b96d8318361f81191f6b0db290f1d6a6a4f7555582",
+      "representative_sequence_count": 6,
+      "representative_sequence_ids": [
+        "rep_6_1_000_3fb5d1df02",
+        "rep_6_1_001_eecf82d762",
+        "rep_6_1_002_f1a8c0b44b",
+        "rep_6_1_003_70700135e9",
+        "rep_6_1_004_2144aed91e",
+        "rep_6_1_005_f148656e4e"
+      ],
+      "source_length_summary": {
+        "min": 1,
+        "median": 4.5,
+        "max": 8,
+        "q10": 1.5,
+        "q90": 8.0,
+        "allowed_min": 2,
+        "allowed_max": 8,
+        "derivation": "max(2,floor(source_q10)); min(10,max(allowed_min+2,ceil(source_q90)))"
+      },
+      "source_semantic_envelope": {
+        "source_group_action_vocabulary": [
+          "Blind:windowShade close",
+          "Blind:windowShade open",
+          "Camera:notification",
+          "Dryer:notification",
+          "NetworkAudio:audioVolume setVolume",
+          "RobotCleaner:setRobotCleanerMovement charging",
+          "RobotCleaner:setRobotCleanerMovement cleaning",
+          "Television:audioMute unmute",
+          "Television:setChannel"
+        ],
+        "source_group_transition_vocabulary": [
+          [
+            "Blind:windowShade close",
+            "Blind:windowShade open"
+          ],
+          [
+            "Blind:windowShade close",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade close",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Blind:windowShade open",
+            "Camera:notification"
+          ],
+          [
+            "Blind:windowShade open",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade close"
+          ],
+          [
+            "Camera:notification",
+            "Blind:windowShade open"
+          ],
+          [
+            "Camera:notification",
+            "Dryer:notification"
+          ],
+          [
+            "NetworkAudio:audioVolume setVolume",
+            "RobotCleaner:setRobotCleanerMovement charging"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Blind:windowShade close"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "Camera:notification"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement charging",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "Blind:windowShade close"
+          ],
+          [
+            "RobotCleaner:setRobotCleanerMovement cleaning",
+            "RobotCleaner:setRobotCleanerMovement cleaning"
+          ],
+          [
+            "Television:setChannel",
+            "Television:setChannel"
+          ]
+        ],
+        "required_group_anchor_actions_per_sequence": 1,
+        "minimum_batch_group_action_coverage": 0.5,
+        "minimum_batch_group_transition_coverage": 0.2,
+        "maximum_novel_action_types": 9,
+        "derivation": "valid actions and adjacent transitions from this source SPPC group only",
+        "uses_target_behavior": false
+      },
+      "requested_sequence_count": 6,
+      "request_chunks": [
+        6
+      ]
+    }
+  ],
+  "generation_backend": "codex_agent_file",
+  "external_api": false,
+  "api_key_required": false,
+  "target_behavior_read": false,
+  "source_semantic_policy": "source_semantic_v1",
+  "created_at_utc": "2026-07-20T16:05:09.677438+00:00",
+  "source_copy_safe": {
+    "version": "source-copy-safe-v1",
+    "config_path": "/home/heyang/projects/SmartGen_GCAD/configs/generation_protocol/source_copy_safe_v1.json",
+    "config_sha256": "57160eac5399f2ed095d889af85d85565ac44bbcb1e8196ed5f12f2c8ec05dd7",
+    "source_denylist_sha256": "c24c34ee00eb026b3ba79c2d5a300da14f7bfc89b0f5d9bfb823deb97a15326c",
+    "maximum_replacement_candidates": 20,
+    "uses_target_behavior": false
+  }
+}

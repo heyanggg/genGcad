@@ -31,6 +31,8 @@ def validate_responses(
     responses_path: str | Path,
     output_dir: str | Path,
     source_fingerprints: set[str] | None = None,
+    source_action_fingerprints: set[str] | None = None,
+    action_only_duplicate_check: bool = False,
     raise_on_failure: bool = True,
 ) -> dict:
     output = Path(output_dir)
@@ -104,12 +106,25 @@ def validate_responses(
                 if issue:
                     failures.append(ValidationFailure(request_id, sequence_id, issue[0], issue[1]))
                     response_valid = False
-            fingerprint = sequence_fingerprint(events)
+            if action_only_duplicate_check or source_action_fingerprints is not None:
+                from .source_copy_safe import action_sequence_fingerprint
+
+                fingerprint = action_sequence_fingerprint(events)
+            else:
+                fingerprint = sequence_fingerprint(events)
             if fingerprint in fingerprints:
                 failures.append(ValidationFailure(request_id, sequence_id, "duplicate", f"duplicates {fingerprints[fingerprint]}"))
                 response_valid = False
             elif source_fingerprints and fingerprint in source_fingerprints:
                 failures.append(ValidationFailure(request_id, sequence_id, "source_copy", "exact source sequence copy"))
+                response_valid = False
+            elif source_action_fingerprints and fingerprint in source_action_fingerprints:
+                failures.append(ValidationFailure(
+                    request_id,
+                    sequence_id,
+                    "source_copy",
+                    "exact source representative device:action sequence copy (day/hour ignored)",
+                ))
                 response_valid = False
             fingerprints[fingerprint] = sequence_id
         if response_valid and len(sequences) == request["requested_sequence_count"]:
@@ -136,6 +151,7 @@ def validate_responses(
         "illegal_action_count": counts["illegal_action"],
         "length_failures": counts["length"],
         "duplicate_count": counts["duplicate"],
+        "source_copy_count": counts["source_copy"],
         "missing_response_count": counts["missing_response"],
         "extra_response_count": counts["extra_response"],
         "repair_count": 0,
@@ -149,6 +165,53 @@ def validate_responses(
     (output / "generation_validation_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     if failures and raise_on_failure:
         raise ValueError(f"generation validation failed with {len(failures)} issue(s)")
+    return report
+
+
+def validate_source_copy_safe(directory: str | Path, raise_on_failure: bool = True) -> dict:
+    import shutil
+
+    from .source_copy_safe import (
+        load_frozen_config,
+        validate_replacement_mapping,
+        verify_source_copy_safe_artifacts,
+    )
+
+    directory = Path(directory)
+    verify_source_copy_safe_artifacts(directory)
+    protocol = json.loads((directory / "source_copy_safe_protocol.json").read_text(encoding="utf-8"))
+    config = load_frozen_config(protocol["config_path"])
+    denylist = json.loads((directory / "source_representative_denylist.json").read_text(encoding="utf-8"))
+    raw_path = directory / "generation_responses_raw.jsonl"
+    initial_raw = directory / "generation_responses_initial_raw.jsonl"
+    if not initial_raw.exists():
+        shutil.copyfile(raw_path, initial_raw)
+    report = validate_responses(
+        directory / "generation_requests.jsonl",
+        raw_path,
+        directory,
+        source_action_fingerprints={item["action_fingerprint"] for item in denylist["entries"]},
+        action_only_duplicate_check=True,
+        raise_on_failure=False,
+    )
+    initial_failures = directory / "generation_failures_initial.jsonl"
+    if not initial_failures.exists():
+        shutil.copyfile(directory / "generation_failures.jsonl", initial_failures)
+    mapping_path = directory / "replacement_mapping.json"
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    validate_replacement_mapping(mapping, config)
+    report.update({
+        "source_copy_safe_protocol": "source-copy-safe-v1",
+        "maximum_replacement_candidates": config["maximum_replacement_candidates"],
+        "actual_replacement_count": len(mapping),
+        "replacement_by_source_semantic_score": False,
+        "replacement_by_target_result": False,
+    })
+    (directory / "generation_validation_report.json").write_text(
+        json.dumps(report, indent=2) + "\n", encoding="utf-8"
+    )
+    if report["failure_count"] and raise_on_failure:
+        raise ValueError(f"source-copy-safe-v1 validation failed with {report['failure_count']} issue(s)")
     return report
 
 

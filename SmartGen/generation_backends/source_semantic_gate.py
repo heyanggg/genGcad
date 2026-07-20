@@ -213,8 +213,17 @@ def require_pre_tof_gates(directory: str | Path) -> None:
             raise ValueError(f"pre-TOF gate failed: {name}")
 
 
-def diagnose_source_semantics(directory: str | Path, dataset: str, source_path: str | Path) -> dict:
+def diagnose_source_semantics(
+    directory: str | Path,
+    dataset: str,
+    source_path: str | Path,
+    *,
+    diagnostic_only: bool = False,
+    formal_gate_status: str | None = None,
+) -> dict:
     directory = Path(directory)
+    if diagnostic_only and formal_gate_status != "failed_upstream":
+        raise ValueError("diagnostic-only source semantics requires formal_gate_status=failed_upstream")
     requests = load_jsonl(directory / "generation_requests.jsonl")
     responses = load_jsonl(directory / "generation_responses_validated.jsonl")
     _assert_source_only_provenance(requests, source_path)
@@ -249,6 +258,16 @@ def diagnose_source_semantics(directory: str | Path, dataset: str, source_path: 
         "target_files_opened": [],
         "uses_target_behavior": False,
     })
+    if diagnostic_only:
+        result.update({
+            "diagnostic_only": True,
+            "formal_gate_status": formal_gate_status,
+            "formal_gate_decision_modified": False,
+        })
+        (directory / "source_semantic_diagnostic_only.json").write_text(
+            json.dumps(result, indent=2), encoding="utf-8"
+        )
+        return result
     (directory / "source_semantic_report.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     (directory / "source_semantic_gate.json").write_text(
         json.dumps(result["gate"] | {"thresholds": result["thresholds"], "metrics": result["metrics"]}, indent=2),

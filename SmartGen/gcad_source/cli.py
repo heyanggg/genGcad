@@ -197,12 +197,19 @@ def command_generate_grouped(args):
         original_gss_path=args.original_gss,
         device_control_path=args.device_control,
         replicate=args.replicate,
+        source_copy_safe_config_path=args.source_copy_safe_config,
     )
     print(json.dumps({"request_count": len(requests), "sequence_count": sum(x["requested_sequence_count"] for x in requests)}, indent=2))
 
 
 def command_generate_validate(args):
-    print(json.dumps(CodexFileBackend().validate(args.directory), indent=2))
+    if args.source_copy_safe:
+        from SmartGen.generation_backends.validation import validate_source_copy_safe
+
+        result = validate_source_copy_safe(args.directory)
+    else:
+        result = CodexFileBackend().validate(args.directory)
+    print(json.dumps(result, indent=2))
 
 
 def command_materialize_authored(args):
@@ -238,6 +245,19 @@ def command_source_semantic_gate(args):
     from SmartGen.generation_backends.source_semantic_gate import diagnose_source_semantics
 
     result = diagnose_source_semantics(args.directory, args.dataset, args.source)
+    print(json.dumps(result, indent=2))
+
+
+def command_source_semantic_diagnostic(args):
+    from SmartGen.generation_backends.source_semantic_gate import diagnose_source_semantics
+
+    result = diagnose_source_semantics(
+        args.directory,
+        args.dataset,
+        args.source,
+        diagnostic_only=True,
+        formal_gate_status="failed_upstream",
+    )
     print(json.dumps(result, indent=2))
 
 
@@ -389,8 +409,10 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--context", required=True); item.add_argument("--threshold", type=float, required=True)
     item.add_argument("--group-plan", required=True); item.add_argument("--target-metadata", required=True)
     item.add_argument("--original-gss", required=True); item.add_argument("--device-control", required=True)
-    item.add_argument("--replicate", type=int, default=1); item.set_defaults(function=command_generate_grouped)
-    item = sub.add_parser("validate"); item.add_argument("--directory", required=True); item.set_defaults(function=command_generate_validate)
+    item.add_argument("--replicate", type=int, default=1)
+    item.add_argument("--source-copy-safe-config"); item.set_defaults(function=command_generate_grouped)
+    item = sub.add_parser("validate"); item.add_argument("--directory", required=True)
+    item.add_argument("--source-copy-safe", action="store_true"); item.set_defaults(function=command_generate_validate)
     item = sub.add_parser("materialize-authored")
     item.add_argument("--directory", required=True); item.add_argument("--plan", required=True)
     item.set_defaults(function=command_materialize_authored)
@@ -401,6 +423,9 @@ def parser() -> argparse.ArgumentParser:
     item = sub.add_parser("gate-source-semantics")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
     item.add_argument("--source", required=True); item.set_defaults(function=command_source_semantic_gate)
+    item = sub.add_parser("diagnose-source-semantics")
+    item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--source", required=True); item.set_defaults(function=command_source_semantic_diagnostic)
     item = sub.add_parser("gate-reconstruction")
     item.add_argument("--directory", required=True); item.add_argument("--diagnostics", required=True)
     item.set_defaults(function=command_reconstruction_gate)

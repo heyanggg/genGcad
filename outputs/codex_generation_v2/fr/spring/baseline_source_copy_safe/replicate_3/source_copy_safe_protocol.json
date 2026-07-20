@@ -1,0 +1,24 @@
+{
+  "version": "source-copy-safe-v1",
+  "status": "frozen_before_generation",
+  "config_path": "/home/heyang/projects/SmartGen_GCAD/configs/generation_protocol/source_copy_safe_v1.json",
+  "config_sha256": "57160eac5399f2ed095d889af85d85565ac44bbcb1e8196ed5f12f2c8ec05dd7",
+  "source_denylist_sha256": "c24c34ee00eb026b3ba79c2d5a300da14f7bfc89b0f5d9bfb823deb97a15326c",
+  "prompt_prohibits_exact_source_copy": true,
+  "exact_source_copy_is_hard_invalidity": true,
+  "allowed_automatic_replacement_categories": [
+    "json_or_markdown",
+    "schema",
+    "illegal_device",
+    "illegal_action",
+    "sequence_count",
+    "missing_response",
+    "duplicate",
+    "source_copy"
+  ],
+  "maximum_replacement_candidates": 20,
+  "reuse_replicate_2_valid_samples": false,
+  "replacement_by_source_semantic_score": false,
+  "replacement_by_target_result": false,
+  "uses_target_behavior": false
+}

@@ -112,3 +112,22 @@ def test_cross_group_duplicate_is_rejected(tmp_path):
     output.joinpath("generation_responses_raw.jsonl").write_text("".join(json.dumps(x) + "\n" for x in records))
     report = validate_responses(output / "generation_requests.jsonl", output / "generation_responses_raw.jsonl", output, raise_on_failure=False)
     assert report["duplicate_count"] >= 1
+
+
+def test_copy_safe_export_freezes_prompt_policy_and_artifact_hashes(tmp_path):
+    source_root, plan, metadata, gss, control = setup_groups(tmp_path)
+    output = tmp_path / "outputs/codex_generation_v2/fr/spring/baseline_source_copy_safe/replicate_3"
+    requests = export_grouped_baseline_requests(
+        output, experiment_id="r3", dataset="fr", source_context="winter", target_context="spring",
+        compression_threshold=0.918, group_plan_path=plan, target_metadata_path=metadata,
+        original_gss_path=gss, device_control_path=control, source_root=source_root,
+        replicate=3, source_copy_safe_config_path="configs/generation_protocol/source_copy_safe_v1.json",
+    )
+    assert all("Source-copy-safe-v1 hard constraint" in item["prompt"] for item in requests)
+    assert all(item["source_copy_safe"]["version"] == "source-copy-safe-v1" for item in requests)
+    checksums = json.loads((output / "pre_generation_checksums.json").read_text())
+    assert checksums["frozen_before_generation"] is True
+    assert checksums["sha256"]["generation_requests.jsonl"]
+    denylist = json.loads((output / "source_representative_denylist.json").read_text())
+    assert denylist["source_representative_count"] == 3
+    assert denylist["uses_target_behavior"] is False

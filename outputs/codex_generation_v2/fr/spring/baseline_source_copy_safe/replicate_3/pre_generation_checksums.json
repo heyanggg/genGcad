@@ -1,0 +1,10 @@
+{
+  "protocol": "source-copy-safe-v1",
+  "frozen_before_generation": true,
+  "sha256": {
+    "generation_requests.jsonl": "76860e910646ab4660ba714eb54f429a54e7a1b1c93169b3ddbf1e4c5dc58eec",
+    "source_copy_safe_protocol.json": "2e9cc381b1b164b8ac723d7a220ad321eb5d2ad318c1a08e4d449bffc39eea47",
+    "source_copy_safe_config": "57160eac5399f2ed095d889af85d85565ac44bbcb1e8196ed5f12f2c8ec05dd7",
+    "source_representative_denylist.json": "c24c34ee00eb026b3ba79c2d5a300da14f7bfc89b0f5d9bfb823deb97a15326c"
+  }
+}

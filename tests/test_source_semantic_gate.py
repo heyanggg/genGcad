@@ -70,3 +70,11 @@ def test_v2_tof_requires_both_passing_zero_target_gates(tmp_path):
         "passed": True, "uses_target_behavior": False,
     }))
     require_pre_tof_gates(tmp_path)
+
+
+def test_diagnostic_only_report_cannot_create_or_replace_formal_gate(tmp_path, monkeypatch):
+    from SmartGen.generation_backends import source_semantic_gate as module
+
+    monkeypatch.setattr(module, "load_jsonl", lambda path: [])
+    with pytest.raises(ValueError, match="failed_upstream"):
+        module.diagnose_source_semantics(tmp_path, "fr", tmp_path / "source.pkl", diagnostic_only=True)

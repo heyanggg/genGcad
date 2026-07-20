@@ -113,6 +113,7 @@ def export_grouped_baseline_requests(
     device_control_path: str | Path,
     source_root: str | Path = "SmartGen/IoT_data",
     replicate: int = 1,
+    source_copy_safe_config_path: str | Path | None = None,
 ) -> list[dict]:
     output = Path(output_dir)
     _assert_v2_output(output)
@@ -122,6 +123,28 @@ def export_grouped_baseline_requests(
     metadata = json.loads(Path(target_metadata_path).read_text(encoding="utf-8"))
     gss = json.loads(Path(original_gss_path).read_text(encoding="utf-8"))
     device_control = Path(device_control_path).read_text(encoding="utf-8")
+    copy_safe = None
+    copy_safe_config_sha = None
+    denylist_sha = None
+    if source_copy_safe_config_path is not None:
+        from .source_copy_safe import (
+            build_source_denylist,
+            load_frozen_config,
+            sha256_file,
+            write_source_denylist,
+        )
+
+        copy_safe_path = Path(source_copy_safe_config_path).resolve()
+        copy_safe = load_frozen_config(copy_safe_path)
+        copy_safe_config_sha = sha256_file(copy_safe_path)
+        denylist = build_source_denylist(
+            plan,
+            dataset=dataset,
+            source_context=source_context,
+            compression_threshold=compression_threshold,
+            source_root=source_root,
+        )
+        _, denylist_sha = write_source_denylist(output, denylist)
     requests = []
     group_manifest = []
     global_batch = 1
@@ -161,6 +184,16 @@ def export_grouped_baseline_requests(
             f"Observed source-group transitions: {json.dumps(semantic_envelope['source_group_transition_vocabulary'])}\n"
             "Return only the required structured data."
         )
+        if copy_safe is not None:
+            diversity += (
+                "\nSource-copy-safe-v1 hard constraint: Do not reproduce, event by event, the complete ordered "
+                "device:action sequence of any source representative. Day or hour changes do not make a copied "
+                "device:action sequence new. An exact source-representative action-sequence copy is a hard generation "
+                "invalidity. Automatic replacement is allowed only for exact source copies, invalid JSON/schema, "
+                "illegal devices or actions, missing requested sequences, or exact duplicates within the generated "
+                "set. Never replace or select an otherwise legal candidate because of a source-semantic score or any "
+                "target result."
+            )
         chunks = _balanced_chunks(int(group["requested_sequence_count"]), 20)
         source_sha = hashlib.sha256(source_path.read_bytes()).hexdigest()
         group_manifest.append({
@@ -224,6 +257,15 @@ def export_grouped_baseline_requests(
                 "data_boundary": boundary_declaration(),
                 "uses_target_behavior": False,
             }
+            if copy_safe is not None:
+                request["source_copy_safe"] = {
+                    "version": copy_safe["version"],
+                    "config_path": str(copy_safe_path),
+                    "config_sha256": copy_safe_config_sha,
+                    "source_denylist_sha256": denylist_sha,
+                    "maximum_replacement_candidates": copy_safe["maximum_replacement_candidates"],
+                    "uses_target_behavior": False,
+                }
             requests.append(request)
             (archive / f"{request_id}.txt").write_text(prompt, encoding="utf-8")
             global_batch += 1
@@ -245,5 +287,49 @@ def export_grouped_baseline_requests(
         "source_semantic_policy": "source_semantic_v1",
         "created_at_utc": datetime.now(timezone.utc).isoformat(),
     }
+    if copy_safe is not None:
+        manifest["source_copy_safe"] = {
+            "version": copy_safe["version"],
+            "config_path": str(copy_safe_path),
+            "config_sha256": copy_safe_config_sha,
+            "source_denylist_sha256": denylist_sha,
+            "maximum_replacement_candidates": copy_safe["maximum_replacement_candidates"],
+            "uses_target_behavior": False,
+        }
     output.joinpath("request_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    if copy_safe is not None:
+        from .source_copy_safe import sha256_file
+
+        protocol = {
+            "version": copy_safe["version"],
+            "status": "frozen_before_generation",
+            "config_path": str(copy_safe_path),
+            "config_sha256": copy_safe_config_sha,
+            "source_denylist_sha256": denylist_sha,
+            "prompt_prohibits_exact_source_copy": True,
+            "exact_source_copy_is_hard_invalidity": True,
+            "allowed_automatic_replacement_categories": list(
+                copy_safe["allowed_automatic_replacement_categories"]
+            ),
+            "maximum_replacement_candidates": copy_safe["maximum_replacement_candidates"],
+            "reuse_replicate_2_valid_samples": False,
+            "replacement_by_source_semantic_score": False,
+            "replacement_by_target_result": False,
+            "uses_target_behavior": False,
+        }
+        protocol_path = output / "source_copy_safe_protocol.json"
+        protocol_path.write_text(json.dumps(protocol, indent=2) + "\n", encoding="utf-8")
+        checksums = {
+            "protocol": "source-copy-safe-v1",
+            "frozen_before_generation": True,
+            "sha256": {
+                "generation_requests.jsonl": sha256_file(output / "generation_requests.jsonl"),
+                "source_copy_safe_protocol.json": sha256_file(protocol_path),
+                "source_copy_safe_config": copy_safe_config_sha,
+                "source_representative_denylist.json": denylist_sha,
+            },
+        }
+        output.joinpath("pre_generation_checksums.json").write_text(
+            json.dumps(checksums, indent=2) + "\n", encoding="utf-8"
+        )
     return requests
