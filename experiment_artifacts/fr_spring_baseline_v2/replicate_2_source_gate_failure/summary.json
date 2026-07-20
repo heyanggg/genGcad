@@ -1,0 +1,22 @@
+{
+  "identity": "prospective replicate-2 source gate failure",
+  "frozen_requests_sha256": "7c0fd1766598b4cfacdbcfac31fc1f672416dbc80c652ed4ddd8f4d9439c6860",
+  "generated_sequence_count": 137,
+  "post_raw_repair_count": 0,
+  "validation_failure_count": 0,
+  "original_generation_distribution_gate_passed": false,
+  "failed_check": "source_exact_copies_zero",
+  "source_exact_copy_count": 3,
+  "failure_sequence_ids": ["r2_0_1_04", "r2_1_1_04", "r2_4_1_14"],
+  "source_semantic_v1_status": "not_run_due_prior_generation_gate_failure",
+  "tof_run": false,
+  "downstream_training_run": false,
+  "reconstruction_health_v1_policy_sha256": "600c1ca86cc7e0b412521b1cc525ddd66fc3e21ff999f938a79ddc029a4a822c",
+  "reconstruction_health_v1_run": false,
+  "target_behavior_read": false,
+  "final_target_evaluation_run": false,
+  "gcad_run": false,
+  "ranking_enabled": false,
+  "tests": {"passed": 75, "skipped": 1, "skip_reason": "CUDA unavailable"},
+  "terminal_decision": "stopped at first generation gate; no regeneration or sample selection"
+}

@@ -29,4 +29,6 @@ The A2 repair uses the 15 official precomputed SPPC source groups, 16 independen
 
 A post-A2 source-only audit found the missing control: only 36.79% of A2 events and 3.08% of adjacent transitions are supported by FR winter behavior, while 38/137 sequences have no source action anchor. `source_semantic_v1` now calibrates coverage by leave-one-source-day-out validation, embeds group anchors in future Prompts, and blocks TOF on failure. See [the semantic-gate design](docs/source_semantic_gate.md).
 
+The prospective source-semantic replicate-2 generated 137 valid records but stopped at the original distribution gate because three short sequences independently matched representatives from other SPPC groups. No post-raw repair, regeneration, source-semantic scoring, TOF, downstream training, or target evaluation followed. See [the frozen failure report](docs/prospective_replicate_2_source_gate_failure.md) and [the unused reconstruction-health policy](docs/reconstruction_health_v1.md).
+
 Detailed design, data roles, provenance, generation protocol, and audit material are under `docs/`. Large run products and checkpoints remain local under `outputs/`; compact, versioned evidence is under `experiment_artifacts/`.
