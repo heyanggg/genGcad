@@ -217,6 +217,19 @@ def command_generate_convert(args):
     print(path)
 
 
+def command_generation_diagnostics(args):
+    from SmartGen.generation_backends.generation_diagnostics import diagnose_grouped_generation
+
+    result = diagnose_grouped_generation(args.directory, args.dataset, args.original_gss)
+    print(json.dumps(result, indent=2))
+
+
+def command_reconstruction_gate(args):
+    from SmartGen.generation_backends.generation_diagnostics import apply_reconstruction_gate
+
+    print(json.dumps(apply_reconstruction_gate(args.directory, args.diagnostics), indent=2))
+
+
 def command_continue(args):
     from SmartGen.security_check import security_check_file
 
@@ -352,6 +365,12 @@ def parser() -> argparse.ArgumentParser:
     item.add_argument("--replicate", type=int, default=1); item.set_defaults(function=command_generate_grouped)
     item = sub.add_parser("validate"); item.add_argument("--directory", required=True); item.set_defaults(function=command_generate_validate)
     item = sub.add_parser("convert"); item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.set_defaults(function=command_generate_convert)
+    item = sub.add_parser("diagnose-generation")
+    item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True)
+    item.add_argument("--original-gss", required=True); item.set_defaults(function=command_generation_diagnostics)
+    item = sub.add_parser("gate-reconstruction")
+    item.add_argument("--directory", required=True); item.add_argument("--diagnostics", required=True)
+    item.set_defaults(function=command_reconstruction_gate)
     item = sub.add_parser("continue-pipeline")
     item.add_argument("--directory", required=True); item.add_argument("--dataset", required=True); item.add_argument("--context", required=True)
     item.add_argument("--tof-epochs", type=int, default=10); item.add_argument("--stable-relation")

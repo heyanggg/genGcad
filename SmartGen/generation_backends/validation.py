@@ -67,6 +67,9 @@ def validate_responses(
         if response.get("schema_version") != SCHEMA_VERSION or response.get("generation_backend") != "codex_agent_file":
             failures.append(ValidationFailure(request_id, None, "schema", "backend or schema_version mismatch"))
             continue
+        if request.get("group_id") is not None and response.get("group_id") != request["group_id"]:
+            failures.append(ValidationFailure(request_id, None, "schema", "response group_id mismatch"))
+            continue
         notes = response.get("generation_notes", {})
         if any(notes.get(key) is not False for key in ("used_target_behavior", "used_target_labels", "copied_from_existing_synthetic_data")):
             failures.append(ValidationFailure(request_id, None, "boundary", "generation notes do not assert source-only generation"))
@@ -141,6 +144,7 @@ def validate_responses(
         "external_api_called": False,
         "api_key_used": False,
         "target_behavior_read": False,
+        "cross_group_duplicate_check": True,
     }
     (output / "generation_validation_report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     if failures and raise_on_failure:

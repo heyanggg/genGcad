@@ -86,6 +86,7 @@ def test_cross_group_duplicate_is_rejected(tmp_path):
         ]}
         records.append({
             "request_id": request["request_id"], "experiment_id": "a2", "method": "baseline_v2",
+            "group_id": request["group_id"],
             "generation_backend": "codex_agent_file", "generation_batch": request["generation_batch"],
             "sequences": [dict(sequence, sequence_id=f"{sequence['sequence_id']}_{i}") for i in range(2)],
             "generation_notes": {"used_target_behavior": False, "used_target_labels": False,
