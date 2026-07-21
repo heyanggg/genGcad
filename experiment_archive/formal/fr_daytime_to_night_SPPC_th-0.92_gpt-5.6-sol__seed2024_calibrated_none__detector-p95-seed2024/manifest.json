@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
-  "status": "verified_candidates",
+  "status": "formal",
   "created_at": "2026-07-21T01:51:28.872833+00:00",
   "reconstructed": false,
   "storage_mode": "copy",
@@ -487,5 +487,6 @@
       "size": 59791706,
       "sha256": "91d7e759a4dce712eb851860b1576b42eb71e42da736a0783818b448a0852763"
     }
-  ]
+  ],
+  "promoted_at": "2026-07-21T06:24:21.552463+00:00"
 }

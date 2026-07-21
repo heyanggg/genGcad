@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "archive_id": "fr_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h2_original__detector-p99-seed2024",
-  "status": "verified_candidates",
+  "status": "formal",
   "created_at": "2026-07-21T06:18:37.210793+00:00",
   "reconstructed": false,
   "storage_mode": "copy",
@@ -780,5 +780,5 @@
       "sha256": "741981364ca4e7103c48629abb1ed05703100400494b22a15d91e5e7768c6488"
     }
   ],
-  "promoted_at": "2026-07-21T06:19:20.744299+00:00"
+  "promoted_at": "2026-07-21T06:24:22.143211+00:00"
 }

@@ -34,6 +34,7 @@ ARCHIVE_ROOT = REPOSITORY_ROOT / "experiment_archive"
 ARCHIVE_STATUSES = {
     "completed",
     "verified_candidates",
+    "formal",
     "diagnostic",
     "failed",
 }

@@ -4,6 +4,7 @@ This directory separates immutable SmartGen-GCAD experiment records from the act
 `SmartGen/` runtime tree and the checked-in upstream baselines.
 
 - `verified_candidates/`: high-scoring single-run candidates awaiting broader validation.
+- `formal/`: accepted, provenance-complete formal single-seed experiments.
 - `completed/`: technically complete runs awaiting research classification.
 - `diagnostic/`: obsolete baselines, prompt/backend/debugging runs; retained to avoid cherry-picking.
 - `failed/`: failed formal runs with enough evidence to diagnose the failure.
@@ -20,7 +21,8 @@ single-run GCAD require/off prompt comparison and its limitations.
 Complete generation+detection runs launched through `SmartGen/main.py` are archived
 automatically under `completed/`. Use `--archive-status diagnostic` for an explicitly
 diagnostic run, `--archive-status verified_candidates` for a pre-designated candidate,
-or `--no-archive` only when no archive should be produced.
+`--archive-status formal` for an already accepted formal run, or `--no-archive` only
+when no archive should be produced.
 
 Useful archive commands, run from the repository root:
 

@@ -1,6 +1,6 @@
 # fr_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h2_original__detector-p99-seed2024
 
-Status: `verified_candidates`
+Status: `formal`
 
 Reconstructed metadata: `false`
 
