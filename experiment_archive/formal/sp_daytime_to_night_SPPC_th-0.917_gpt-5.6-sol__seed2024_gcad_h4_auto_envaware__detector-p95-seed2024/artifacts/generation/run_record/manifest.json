@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-21T07:22:53.204110+00:00",
+  "updated_at": "2026-07-21T07:27:16.792549+00:00",
+  "git_commit": "dcceac73f623a1f428437541ec8d262e2ad3871f",
+  "config": {
+    "dataset": "sp",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "method": "SPPC",
+    "threshold": 0.917,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_gcad_h4_auto_envaware",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "auto",
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_auto_envaware"
+  },
+  "completed_categories": [
+    "0_0",
+    "0_1",
+    "1_0",
+    "1_1",
+    "2_0",
+    "2_1",
+    "3_0",
+    "3_1",
+    "4_0",
+    "4_1",
+    "5_0",
+    "5_1",
+    "6"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/sp/night/sp_night_generation_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware_seq.pkl",
+    "tof_final": "filter_data/sp/night/sp_night_generation_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware_seq_filter_true.pkl",
+    "tof_final_count": 51
+  },
+  "gcad": {
+    "status": "disabled",
+    "artifact_fingerprint": "b7b89769b98ed6c581590b72212b30beaa8b9a4a76494339e81d41b7fd2de0ae",
+    "relationship_count": 0,
+    "path": "artifacts/gcad/sp/daytime/preflight_history4.json",
+    "mode": "auto",
+    "guidance_enabled": false
+  },
+  "categories": [
+    "0_0",
+    "0_1",
+    "1_0",
+    "1_1",
+    "2_0",
+    "2_1",
+    "3_0",
+    "3_1",
+    "4_0",
+    "4_1",
+    "5_0",
+    "5_1",
+    "6"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0_0": "IoT_data/sp/night/sp_night_generation_day_0_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "0_1": "IoT_data/sp/night/sp_night_generation_day_0_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "1_0": "IoT_data/sp/night/sp_night_generation_day_1_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "1_1": "IoT_data/sp/night/sp_night_generation_day_1_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "2_0": "IoT_data/sp/night/sp_night_generation_day_2_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "2_1": "IoT_data/sp/night/sp_night_generation_day_2_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "3_0": "IoT_data/sp/night/sp_night_generation_day_3_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "3_1": "IoT_data/sp/night/sp_night_generation_day_3_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "4_0": "IoT_data/sp/night/sp_night_generation_day_4_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "4_1": "IoT_data/sp/night/sp_night_generation_day_4_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "5_0": "IoT_data/sp/night/sp_night_generation_day_5_0_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "5_1": "IoT_data/sp/night/sp_night_generation_day_5_1_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl",
+    "6": "IoT_data/sp/night/sp_night_generation_day_6_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware.pkl"
+  },
+  "prompt_sha256": {
+    "0_0": "4e41111985b942804cde33aba16482ff2b384418c1c0918c273216459f374830",
+    "0_1": "f41a3de05baa2f0a077d8a1a5c84f54498f071efbe3d024552ebfa5ea779aa0e",
+    "1_0": "32876eb74b27668afe1335c3f870510570043ea9bc48d444cdeba6ae70594a12",
+    "1_1": "261cf04bb2b67247b679c8434cb8ddab1caa8169a29f73f90c5a1464775af722",
+    "2_0": "3e004628e9c34fbe8f1ab8f4cb862a954e7b471cffaaed3a19c76a05865edfdd",
+    "2_1": "cf3f74f175872941638890eb37fe8e107e63fc8bc3d3d7d42fba2774d2acb85a",
+    "3_0": "1c0db7c9046afe1dffbdb4afb3f3afc3c71ae5230cae40e70b3d3b91912fa31b",
+    "3_1": "5e52947cb3f6114df933f676e98fd69c2a40dda37283223d9eb3183cc253340c",
+    "4_0": "b1e7afa4080d74b768a6e284239597c79491fc9425a37ec4ca91d8fdcc27e797",
+    "4_1": "50244c1501f74eeba8f2ecaaa1254aff77169ad136c21381494eff637f638b40",
+    "5_0": "c7d6c49be42b0dffbe36e4c30a3465a08e57e1f284a7b073d8c4cac9a741728a",
+    "5_1": "3eb46d66d93ee10c8abe8931209588cd1e06bb57ee108d2f72a766f8e25fcec8",
+    "6": "2c69dbf61ab4ee442d57ecb9a056572b6d7bd3ad3305859be614c1dc10934b9f"
+  },
+  "environment_adherence": {
+    "target_environment": "night",
+    "behavior_count": 372,
+    "hour_counts": {
+      "0": 99,
+      "1": 112,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 69,
+      "7": 92
+    },
+    "used_for_filtering": false,
+    "preferred_hour_codes": [
+      0,
+      1,
+      6,
+      7
+    ],
+    "preferred_behavior_count": 372,
+    "preferred_behavior_ratio": 1.0
+  },
+  "tof": {
+    "input_count": 52,
+    "first_pass_count": 48,
+    "final_count": 51,
+    "intermediates_preserved": true
+  }
+}

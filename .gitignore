@@ -1,55 +1,44 @@
-# Python caches and test artifacts
+# Python bytecode and cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.coverage
-htmlcov/
-*.log
-*.tmp
 
-# Local virtual environments and editor state
+# Test coverage artifacts
+.coverage
+.coverage.*
+htmlcov/
+
+# Local virtual environments
 .venv/
 venv/
 env/
+
+# Editor and operating-system files
 .idea/
 .vscode/
 .DS_Store
+Thumbs.db
 *.swp
 *~
-exports/
 
-# Local credentials and machine-specific configuration
+# Temporary runtime files
+*.tmp
+*.temp
+*.lock
+
+# Local credentials and machine-specific secrets
 .env
 .env.*
 !.env.example
 *.pem
 *.key
 credentials.json
+secrets.json
+token.json
 
-# Runtime model checkpoints
-*.pt
-*.pth
-SmartGen/IoT_model/
-SmartGen/check_model/
-
-# GCAD cache artifacts (recomputed from TSS output)
-SmartGen/IoT_data/*/*/gcad_hints.json
-SmartGen/artifacts/
-
-# Per-run prompts, responses and resumable manifests
-SmartGen/runs/
-
-# Runtime data is archived through experiment_archive; tracked upstream GPT-4o
-# reference files remain tracked even though these rules cover their directories.
-SmartGen/anomaly_runs/
-SmartGen/filter_data/
-SmartGen/IoT_data/*/*/trn_day_*
-
-# Per-prompt generation responses
-SmartGen/IoT_data/*/*/*_generation_day_*.pkl
-
-# Self-contained experiment archives: keep metadata in Git, heavy artifacts locally.
-experiment_archive/**/artifacts/
-experiment_archive/.*-/
+# Local crash and profiling artifacts
+core
+core.*
+*.prof

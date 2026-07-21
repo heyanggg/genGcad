@@ -1,0 +1,27 @@
+{
+  "dataset": "fr",
+  "environment": "multiple",
+  "method": "SPPC",
+  "generator_model": "gpt-4o",
+  "generation_threshold": 0.915,
+  "validation_percentile": 99,
+  "seed": 2024,
+  "generated_sequence_count": 47,
+  "training_sequence_count": 47,
+  "validation_sequence_count": 47,
+  "normal_test_count": 90,
+  "attack_test_count": 90,
+  "detection_threshold": 0.0007333797577302902,
+  "metrics": {
+    "TP": 90,
+    "TN": 77,
+    "FP": 13,
+    "FN": 0,
+    "FPR": 0.14444444444444443,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 0.8737864077669902,
+    "accuracy": 0.9277777777777778,
+    "f1_score": 0.932642487046632
+  }
+}

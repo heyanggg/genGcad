@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-21T01:27:06.339348+00:00",
+  "updated_at": "2026-07-21T01:29:25.747337+00:00",
+  "git_commit": "1d761a570710f9e5668be28e2549bbce9901b460",
+  "config": {
+    "dataset": "fr",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "method": "SPPC",
+    "threshold": 0.92,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_calibrated_none",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_calibrated_none"
+  },
+  "completed_categories": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none_seq.pkl",
+    "tof_final": "filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none_seq_filter_true.pkl",
+    "tof_final_count": 28
+  },
+  "gcad": {
+    "status": "disabled",
+    "artifact_fingerprint": "e20d022666c56a48d3ffbea04c490c37f9eb8105142b72ed2fbb8f5b3588efc5",
+    "relationship_count": 0,
+    "path": "artifacts/gcad/fr/daytime/gcad_hints.json"
+  },
+  "categories": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0": "IoT_data/fr/night/fr_night_generation_day_0_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "1": "IoT_data/fr/night/fr_night_generation_day_1_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "2": "IoT_data/fr/night/fr_night_generation_day_2_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "3": "IoT_data/fr/night/fr_night_generation_day_3_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "4": "IoT_data/fr/night/fr_night_generation_day_4_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "5": "IoT_data/fr/night/fr_night_generation_day_5_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl",
+    "6": "IoT_data/fr/night/fr_night_generation_day_6_SPPC_th=0.92_gpt-5.6-sol__seed2024_calibrated_none.pkl"
+  },
+  "prompt_sha256": {
+    "0": "a0096e99d48e2e33a083f5ccf53a2a813646ae155e940891beb5f2d41a4bd339",
+    "1": "b866152a321d75a0fb8454b99c61ee31af0aee89daba365c68b6ef8f7faf0a1d",
+    "2": "b27b0921a63db4fa9c0fd7db6a5dff06f928e53e7b312f5c86fadd3fd3ebdbe2",
+    "3": "9bc9193b05c194d773c5aa48f333312f4dd7f323200e9d949398f8371c5ac8b5",
+    "4": "1b500713bd5266558798dd56e2704c38a80c3b58726f8101b6922083d99e1a50",
+    "5": "dd0796b4e9b3ddb402913c6835e3474086cb6f9b4ffcf8a065e0347c37ba9594",
+    "6": "317f39fb8a7ab00b851737544edffba00f52b65586275acd0ea5f036298236c0"
+  },
+  "environment_adherence": {
+    "target_environment": "night",
+    "behavior_count": 199,
+    "hour_counts": {
+      "0": 54,
+      "1": 60,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 40,
+      "7": 45
+    },
+    "used_for_filtering": false,
+    "preferred_hour_codes": [
+      0,
+      1,
+      6,
+      7
+    ],
+    "preferred_behavior_count": 199,
+    "preferred_behavior_ratio": 1.0
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "b7b89769b98ed6c581590b72212b30beaa8b9a4a76494339e81d41b7fd2de0ae",
+  "source": {
+    "path": "IoT_data/sp/daytime/split_trn.pkl",
+    "sha256": "24a0b5275fa8c249d09af4b0b41995fc3be1f88eefefdff33ce7bebbc1a755a8",
+    "dataset": "sp"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [],
+  "status": "disabled",
+  "effective_history": 2,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 1148,
+    "vocabulary_size": 15,
+    "train_windows": 63,
+    "validation_windows": 16,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 15,
+        "accepted": false,
+        "reason": "insufficient_total_windows"
+      },
+      {
+        "history": 3,
+        "total_windows": 32,
+        "train_windows": 26,
+        "validation_windows": 6,
+        "accepted": false,
+        "reason": "insufficient_holdout_windows"
+      },
+      {
+        "history": 2,
+        "total_windows": 79,
+        "train_windows": 63,
+        "validation_windows": 16,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.05749988,
+        "baseline_mse": 0.05872386,
+        "relative_improvement": 0.02084306,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 3
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.05897067,
+        "baseline_mse": 0.05872386,
+        "relative_improvement": -0.00420279,
+        "epochs_trained": 50,
+        "passed_quality_gate": false,
+        "sparse_edges": 0
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.0557866,
+        "baseline_mse": 0.05872386,
+        "relative_improvement": 0.05001825,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 3
+      }
+    ],
+    "accepted_seed_count": 2
+  },
+  "disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
+}

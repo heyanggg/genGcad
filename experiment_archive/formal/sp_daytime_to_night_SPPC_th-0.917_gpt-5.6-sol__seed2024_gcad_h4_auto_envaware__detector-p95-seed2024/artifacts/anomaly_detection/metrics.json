@@ -1,0 +1,27 @@
+{
+  "dataset": "sp",
+  "environment": "night",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_auto_envaware",
+  "generation_threshold": 0.917,
+  "validation_percentile": 95.0,
+  "seed": 2024,
+  "generated_sequence_count": 51,
+  "training_sequence_count": 40,
+  "validation_sequence_count": 11,
+  "normal_test_count": 1706,
+  "attack_test_count": 1706,
+  "detection_threshold": 0.002369719964917749,
+  "metrics": {
+    "TP": 1706,
+    "TN": 1652,
+    "FP": 54,
+    "FN": 0,
+    "FPR": 0.031652989449003514,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 0.9693181818181819,
+    "accuracy": 0.9841735052754983,
+    "f1_score": 0.9844200807847664
+  }
+}

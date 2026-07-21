@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "842d1460e682229299c8c51802dfb98957e0051d4ac844e5b141d4b38e3ad220",
+  "source": {
+    "path": "IoT_data/fr/winter/split_trn.pkl",
+    "sha256": "5ed99cb3c2084e1e8a2917ee81930460638dabea37c43acc66393c5bc8722d76",
+    "dataset": "fr"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [
+    {
+      "source_action": "Blind:windowShade close",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0928839255,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 1.0
+    },
+    {
+      "source_action": "Other:switch on",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0800330333,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.861646
+    },
+    {
+      "source_action": "Other:switch on",
+      "target_action": "Television:setChannel",
+      "typical_lag": 1,
+      "raw_strength": 0.0613910149,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.660943
+    },
+    {
+      "source_action": "Blind:windowShade close",
+      "target_action": "Other:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0576598684,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.620773
+    },
+    {
+      "source_action": "Blind:windowShade close",
+      "target_action": "AirPurifier:setFanSpeed",
+      "typical_lag": 1,
+      "raw_strength": 0.0356343105,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.383643
+    }
+  ],
+  "status": "ready",
+  "effective_history": 4,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 923,
+    "vocabulary_size": 18,
+    "train_windows": 139,
+    "validation_windows": 36,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 175,
+        "train_windows": 139,
+        "validation_windows": 36,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.04530933,
+        "baseline_mse": 0.05048894,
+        "relative_improvement": 0.10258893,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 7
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.0462772,
+        "baseline_mse": 0.05048894,
+        "relative_improvement": 0.08341911,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 7
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.04411038,
+        "baseline_mse": 0.05048894,
+        "relative_improvement": 0.12633588,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 6
+      }
+    ],
+    "accepted_seed_count": 3
+  }
+}

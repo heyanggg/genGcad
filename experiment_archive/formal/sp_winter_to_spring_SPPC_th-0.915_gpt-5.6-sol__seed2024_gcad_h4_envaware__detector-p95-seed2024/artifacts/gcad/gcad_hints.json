@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "14bdee0777699ecf75d8f8ed58c91973a370e11223a557bed5205b4e665d49e0",
+  "source": {
+    "path": "IoT_data/sp/winter/split_trn.pkl",
+    "sha256": "2f8a94b9743986fe8d052b851ea6da1749bfec1a2c39e43684aa68b56b4df633",
+    "dataset": "sp"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [
+    {
+      "source_action": "Light:switch on",
+      "target_action": "Television:setChannel",
+      "typical_lag": 2,
+      "raw_strength": 0.2161377406,
+      "support": 6,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 1.0
+    },
+    {
+      "source_action": "Light:setColor",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.1381630087,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.639236
+    }
+  ],
+  "status": "ready",
+  "effective_history": 4,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 5180,
+    "vocabulary_size": 16,
+    "train_windows": 238,
+    "validation_windows": 59,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 297,
+        "train_windows": 238,
+        "validation_windows": 59,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.02149214,
+        "baseline_mse": 0.04675324,
+        "relative_improvement": 0.54030684,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 3
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.02777121,
+        "baseline_mse": 0.04675324,
+        "relative_improvement": 0.4060046,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 3
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.02529576,
+        "baseline_mse": 0.04675324,
+        "relative_improvement": 0.45895166,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 3
+      }
+    ],
+    "accepted_seed_count": 3
+  }
+}

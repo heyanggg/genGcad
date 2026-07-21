@@ -1,0 +1,27 @@
+{
+  "dataset": "fr",
+  "environment": "spring",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_gcad_require_explore",
+  "generation_threshold": 0.918,
+  "validation_percentile": 95.5,
+  "seed": 2024,
+  "generated_sequence_count": 187,
+  "training_sequence_count": 149,
+  "validation_sequence_count": 38,
+  "normal_test_count": 88,
+  "attack_test_count": 88,
+  "detection_threshold": 0.574917899533904,
+  "metrics": {
+    "TP": 88,
+    "TN": 81,
+    "FP": 7,
+    "FN": 0,
+    "FPR": 0.07954545454545454,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 0.9263157894736842,
+    "accuracy": 0.9602272727272727,
+    "f1_score": 0.9617486338797814
+  }
+}

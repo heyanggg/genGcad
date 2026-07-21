@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-21T07:34:30.023806+00:00",
+  "updated_at": "2026-07-21T07:43:09.543265+00:00",
+  "git_commit": "54225d5d6a8cb56f16c73e5086dbabbeb253cb80",
+  "config": {
+    "dataset": "sp",
+    "original_environment": "single",
+    "target_environment": "multiple",
+    "method": "SPPC",
+    "threshold": 0.915,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_gcad_h4_original",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "require",
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "original",
+    "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_original"
+  },
+  "completed_categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+    "tof_final": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+    "tof_final_count": 83
+  },
+  "gcad": {
+    "status": "ready",
+    "artifact_fingerprint": "116a6cfe13690480613b26985bf471e9fc4454982ae50bb3dd31460736c43d71",
+    "relationship_count": 1,
+    "path": "artifacts/gcad/sp/single/preflight_history4.json",
+    "mode": "require",
+    "guidance_enabled": true
+  },
+  "categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0": "IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "1": "IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "2_0": "IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "2_1": "IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "3": "IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "4": "IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "5": "IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+    "6": "IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl"
+  },
+  "prompt_sha256": {
+    "0": "9e54d996c22eaf83a06f7354a72810997157215bf16eeedfb89f9b297fc97268",
+    "1": "e9a74c7287bcaa451215d271114385b101a177144c380566cac95fa19fd5597c",
+    "2_0": "b23e43e5bb196990fbdda2cfe57be79273cdc9f45b4b944cc1a386610c236cf7",
+    "2_1": "029581515e4d7630fb86ff94964a32eccb935d528a628315ce42cadc57b3079f",
+    "3": "9792a329dd6a1252b1bd35d0e6982115673159085b91d84ba27f6634cbe40398",
+    "4": "d2db324e0224201d3d282c256d6fac338c07781401a076cce485327ee237c20d",
+    "5": "192d45fb9b1396de4ef30f4eb5152823560a53e3f4d6bfc24ee6a1a7086bbf9f",
+    "6": "1d4a7dd5a75c3eba8ecf041bda07628bb3f8b3c07c6859380b61afd027e8f816"
+  },
+  "environment_adherence": {
+    "target_environment": "multiple",
+    "behavior_count": 787,
+    "hour_counts": {
+      "0": 78,
+      "1": 63,
+      "2": 106,
+      "3": 178,
+      "4": 108,
+      "5": 94,
+      "6": 74,
+      "7": 86
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 88,
+    "first_pass_count": 72,
+    "final_count": 83,
+    "intermediates_preserved": true
+  }
+}

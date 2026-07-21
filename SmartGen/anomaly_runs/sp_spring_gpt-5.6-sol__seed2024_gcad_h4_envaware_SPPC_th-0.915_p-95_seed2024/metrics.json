@@ -1,0 +1,27 @@
+{
+  "dataset": "sp",
+  "environment": "spring",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_envaware",
+  "generation_threshold": 0.915,
+  "validation_percentile": 95.0,
+  "seed": 2024,
+  "generated_sequence_count": 205,
+  "training_sequence_count": 164,
+  "validation_sequence_count": 41,
+  "normal_test_count": 728,
+  "attack_test_count": 728,
+  "detection_threshold": 1.1483060121536255,
+  "metrics": {
+    "TP": 723,
+    "TN": 690,
+    "FP": 38,
+    "FN": 5,
+    "FPR": 0.0521978021978022,
+    "FNR": 0.006868131868131868,
+    "recall": 0.9931318681318682,
+    "precision": 0.9500657030223391,
+    "accuracy": 0.970467032967033,
+    "f1_score": 0.9711215580926797
+  }
+}
