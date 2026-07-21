@@ -284,8 +284,10 @@ def test_environment_aware_night_prompt_adds_time_and_shape_constraints(monkeypa
         prompt_profile="environment-aware",
     )
     assert "(18~21), (21~24), (0~3), and (3~6)" in prompt
-    assert "should be rare" in prompt
-    assert "approximate number and length" in prompt
+    assert "3 to 6 distinct subsequences" in prompt
+    assert "5 to 9 behavior quadruples" in prompt
+    assert "occasional plausible morning-transition" in prompt
+    assert "singleton compressed representatives" in prompt
     for forbidden in ("attack", "anomaly", "test label"):
         assert forbidden not in prompt.lower()
 

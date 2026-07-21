@@ -181,18 +181,20 @@ def build_prompt(
 
 def environment_generation_guidance(target_environment):
     common = (
-        "Generation calibration guidance: Match the approximate number and length of the "
-        "compressed original sequences; do not systematically lengthen them or add unrelated "
-        "device actions merely to increase device coverage. Environmental consistency takes "
-        "priority over device coverage. "
+        "Generation calibration guidance: Generate coherent consecutive behavior chains rather "
+        "than copying singleton compressed representatives as singleton outputs. Do not add "
+        "unrelated device actions merely to increase device coverage. Environmental consistency "
+        "takes priority over device coverage. "
     )
     if target_environment == "night":
         return common + (
+            "For this category, generate 3 to 6 distinct subsequences, normally containing 5 to "
+            "9 behavior quadruples each. "
             "For the changed night-active environment, place the main active behaviors in the "
             "available time intervals (18~21), (21~24), (0~3), and (3~6). The daytime intervals "
-            "(6~9), (9~12), (12~15), and (15~18) should be rare and used only for a behavior "
-            "that genuinely requires a daytime exception. Do not make daytime intervals the "
-            "dominant time pattern of any generated sequence."
+            "should not dominate, but retain occasional plausible morning-transition behavior "
+            "in (6~9). Use (9~12), (12~15), and (15~18) only when a behavior genuinely requires "
+            "a daytime exception."
         )
     if target_environment == "spring":
         return common + (
