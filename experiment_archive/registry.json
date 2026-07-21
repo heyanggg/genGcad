@@ -1,19 +1,5 @@
 [
   {
-    "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
-    "status": "completed",
-    "archive_path": "completed/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
-    "dataset": "fr",
-    "original_environment": "daytime",
-    "target_environment": "night",
-    "experiment_seed": 2024,
-    "f1_score": 0.8611898016997168,
-    "accuracy": 0.8713235294117647,
-    "reconstructed": false,
-    "artifact_count": 52,
-    "artifact_bytes": 143430052
-  },
-  {
     "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
     "status": "completed",
     "archive_path": "completed/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
@@ -40,6 +26,20 @@
     "reconstructed": false,
     "artifact_count": 169,
     "artifact_bytes": 144022721
+  },
+  {
+    "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
+    "dataset": "fr",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "experiment_seed": 2024,
+    "f1_score": 0.8611898016997168,
+    "accuracy": 0.8713235294117647,
+    "reconstructed": false,
+    "artifact_count": 52,
+    "artifact_bytes": 143430052
   },
   {
     "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_envaware_none__detector-p95-seed2024",

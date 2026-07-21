@@ -1,6 +1,8 @@
 # fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024
 
-Status: `completed`
+Status: `diagnostic`
+
+Classification: pre-calibration legacy-prompt run retained only for diagnostic provenance.
 Reconstructed metadata: `false`
 Artifacts: `52` files, `143430052` bytes
 F1: `0.8611898016997168`

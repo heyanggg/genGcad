@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
-  "status": "completed",
+  "status": "diagnostic",
+  "classification_reason": "pre-calibration legacy prompt run; retained only as diagnostic provenance",
   "created_at": "2026-07-21T01:52:43.669983+00:00",
   "reconstructed": false,
   "storage_mode": "copy",
@@ -446,5 +447,6 @@
       "size": 59790634,
       "sha256": "a1768451bfe1bc61a63e806a4f1a7608b37ed44332285c361b624a96cd9c7b82"
     }
-  ]
+  ],
+  "promoted_at": "2026-07-21T04:58:12.161751+00:00"
 }

@@ -76,7 +76,7 @@ by Git. `experiment_archive/registry.json` is the summary index.
 
 Statuses have fixed meanings:
 
-- `completed`: completed formal experiment.
+- `completed`: technically complete experiment awaiting research classification.
 - `verified_candidates`: high-scoring candidate; not yet a multi-run conclusion.
 - `diagnostic`: debugging or prompt/backend calibration run.
 - `failed`: failed run retained for diagnosis.

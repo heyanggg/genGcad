@@ -224,6 +224,7 @@ def test_archive_is_checksummed_and_registered(tmp_path):
     promoted = promote_archive("fr_test_seed2024", archive_root=archive_root)
     assert promoted.parent.name == "verified_candidates"
     assert not path.exists()
+    assert "Status: `verified_candidates`" in (promoted / "README.md").read_text()
     assert verify_archive(promoted) == []
     with pytest.raises(ValueError, match="already exists under"):
         archive_files(

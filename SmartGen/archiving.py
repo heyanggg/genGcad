@@ -18,6 +18,7 @@ try:
         SMARTGEN_ROOT,
         ExperimentConfig,
         atomic_write_json,
+        atomic_write_text,
     )
 except ImportError:  # Direct execution from SmartGen/.
     from experiment import (
@@ -25,6 +26,7 @@ except ImportError:  # Direct execution from SmartGen/.
         SMARTGEN_ROOT,
         ExperimentConfig,
         atomic_write_json,
+        atomic_write_text,
     )
 
 
@@ -157,6 +159,17 @@ def promote_archive(
     manifest["status"] = target_status
     manifest["promoted_at"] = datetime.now(timezone.utc).isoformat()
     atomic_write_json(manifest_path, manifest)
+    readme_path = target / "README.md"
+    if readme_path.is_file():
+        readme = readme_path.read_text(encoding="utf-8")
+        readme = re.sub(
+            r"^Status: `[^`]+`$",
+            f"Status: `{target_status}`",
+            readme,
+            count=1,
+            flags=re.MULTILINE,
+        )
+        atomic_write_text(readme_path, readme)
     rebuild_registry(archive_root)
     return target
 

@@ -4,8 +4,8 @@ This directory separates immutable SmartGen-GCAD experiment records from the act
 `SmartGen/` runtime tree and the checked-in upstream baselines.
 
 - `verified_candidates/`: high-scoring single-run candidates awaiting broader validation.
-- `completed/`: completed formal runs that are not promoted candidates.
-- `diagnostic/`: prompt/backend/debugging runs; retained to avoid cherry-picking.
+- `completed/`: technically complete runs awaiting research classification.
+- `diagnostic/`: obsolete baselines, prompt/backend/debugging runs; retained to avoid cherry-picking.
 - `failed/`: failed formal runs with enough evidence to diagnose the failure.
 - `registry.json`: generated summary of every archived run.
 
