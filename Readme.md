@@ -7,6 +7,9 @@ This document contains part of the source code for the paper *"SmartGen: Synthes
 3. Each folder includes a `main.py` file, which serves as the entry point for running the corresponding experiment. The CSV files in the `results` directory contain the recorded outcomes of these experiments.
 4. The original code did not include a usable large-language-model connection. This branch invokes GPT-5.6 through the locally authenticated Codex CLI.
 
+See [`PROJECT_STRUCTURE.md`](PROJECT_STRUCTURE.md) for the active/legacy boundary,
+runtime directory ownership, and the immutable experiment archive layout.
+
 Recommended compression thresholds in SmartGen:
 | Dataset | Original Context | New Context | Compression Threshold | Anomaly Detection Percentage |
 | ------- | ---------------- | ----------- | --------------------- | ---------------------------- |

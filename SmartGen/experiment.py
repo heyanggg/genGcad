@@ -126,7 +126,7 @@ class ExperimentConfig:
             "max",
         }:
             raise ValueError("unsupported Codex reasoning effort")
-        if self.prompt_profile not in {"original", "environment-aware"}:
+        if self.prompt_profile not in {"original", "environment-aware", "legacy"}:
             raise ValueError("unsupported prompt profile")
 
     @property

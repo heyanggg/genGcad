@@ -6,6 +6,7 @@ from pathlib import Path
 
 from baseline1 import Anomaly_detection
 from baseline2 import Train
+from archiving import ARCHIVE_STATUSES, archive_completed_experiment
 from codex_backend import CodexClient
 from dayse import Dayse
 from dictionary import (
@@ -105,6 +106,19 @@ def get_args_parser():
     )
     parser.add_argument("--gcad-output", "--gcad_output", default=None)
     parser.add_argument("--gcad-force", action="store_true")
+    parser.add_argument(
+        "--archive-status",
+        default="completed",
+        choices=sorted(ARCHIVE_STATUSES),
+        help="Archive a complete generation+detection run under this status",
+    )
+    parser.add_argument(
+        "--no-archive",
+        action="store_false",
+        dest="archive_run",
+        help="Do not create the automatic self-contained archive",
+    )
+    parser.set_defaults(archive_run=True)
     return parser
 
 
@@ -476,12 +490,22 @@ def main(argv=None):
         parser.print_help()
         return 0
     config = experiment_config_from_args(args)
+    manifest = None
+    result = None
     if args.need_generate:
         manifest = run_generation(args, config)
         print(f"Generation completed: {manifest['outputs']}")
     if args.need_test:
         result = run_anomaly_detection(args, config)
         print(json.dumps(result, indent=2))
+    if args.archive_run and manifest is not None and result is not None:
+        archive_path = archive_completed_experiment(
+            config,
+            manifest,
+            result,
+            status=args.archive_status,
+        )
+        print(f"Experiment archived: {archive_path}")
     return 0
 
 

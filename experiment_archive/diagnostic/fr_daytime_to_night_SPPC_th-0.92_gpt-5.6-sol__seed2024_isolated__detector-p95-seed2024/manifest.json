@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated__detector-p95-seed2024",
+  "status": "diagnostic",
+  "created_at": "2026-07-21T01:52:44.483922+00:00",
+  "reconstructed": false,
+  "storage_mode": "hardlink",
+  "config": {
+    "dataset": "fr",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "method": "SPPC",
+    "threshold": 0.92,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_isolated",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "codex_reasoning_effort": "medium",
+    "prompt_profile": "original",
+    "artifact_model": "gpt-5.6-sol__seed2024_isolated",
+    "validation_percentile": 95.0
+  },
+  "metrics": {
+    "dataset": "fr",
+    "environment": "night",
+    "method": "SPPC",
+    "generator_model": "gpt-5.6-sol__seed2024_isolated",
+    "generation_threshold": 0.92,
+    "validation_percentile": 95.0,
+    "seed": 2024,
+    "generated_sequence_count": 49,
+    "training_sequence_count": 39,
+    "validation_sequence_count": 10,
+    "normal_test_count": 952,
+    "attack_test_count": 952,
+    "detection_threshold": 0.008504275651648628,
+    "metrics": {
+      "TP": 216,
+      "TN": 942,
+      "FP": 10,
+      "FN": 736,
+      "FPR": 0.01050420168067227,
+      "FNR": 0.773109243697479,
+      "recall": 0.226890756302521,
+      "precision": 0.9557522123893806,
+      "accuracy": 0.6081932773109243,
+      "f1_score": 0.366723259762309
+    },
+    "metrics_path": "anomaly_runs/fr_night_gpt-5.6-sol__seed2024_isolated_SPPC_th-0.92_p-95_seed2024/metrics.json"
+  },
+  "provenance": {
+    "generation_manifest": {
+      "schema_version": 1,
+      "status": "completed",
+      "created_at": "2026-07-21T00:57:53.306733+00:00",
+      "updated_at": "2026-07-21T01:04:37.559047+00:00",
+      "git_commit": "97c5b3c452f2e7b4dc695ec4a8608c9d10547239",
+      "config": {
+        "dataset": "fr",
+        "original_environment": "daytime",
+        "target_environment": "night",
+        "method": "SPPC",
+        "threshold": 0.92,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_isolated",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "codex_reasoning_effort": "medium",
+        "artifact_model": "gpt-5.6-sol__seed2024_isolated"
+      },
+      "completed_categories": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "outputs": {
+        "generated_numeric": "filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+        "tof_final": "filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq_filter_true.pkl",
+        "tof_final_count": 49
+      },
+      "gcad": {
+        "status": "disabled",
+        "artifact_fingerprint": "e20d022666c56a48d3ffbea04c490c37f9eb8105142b72ed2fbb8f5b3588efc5",
+        "relationship_count": 0,
+        "path": "artifacts/gcad/fr/daytime/gcad_hints.json"
+      },
+      "categories": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "category_outputs": {
+        "0": "IoT_data/fr/night/fr_night_generation_day_0_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "1": "IoT_data/fr/night/fr_night_generation_day_1_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "2": "IoT_data/fr/night/fr_night_generation_day_2_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "3": "IoT_data/fr/night/fr_night_generation_day_3_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "4": "IoT_data/fr/night/fr_night_generation_day_4_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "5": "IoT_data/fr/night/fr_night_generation_day_5_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+        "6": "IoT_data/fr/night/fr_night_generation_day_6_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl"
+      },
+      "prompt_sha256": {
+        "0": "edc188d354ef30096f887b68b676d92e143b89275c609adcb09eed44e7eee12f",
+        "1": "0c785a2a41381e5590f6696f20588bade5fe159c4bdef1304a7b911f18406048",
+        "2": "ce92857fe75afec26b781c76ef4fd1a2957af554450c2081183ead0126f984e9",
+        "3": "c7600323c6f360b892ce82190bec85739861d540daa555875defa5e74176def0",
+        "4": "bc24f4ec31f6fa8ac686fc83508c505f16bf9380941de3ab787ecda0e889ab37",
+        "5": "07a21a716712467cb427efad855d06de1abd6efd9376478f1b1721e58e69d273",
+        "6": "cc0170d8071279eca0debb37348f1af6a882dcfc18bffa10071f0a27893c5882"
+      }
+    },
+    "automatic_archive": false
+  },
+  "missing_artifacts": [],
+  "artifact_count": 52,
+  "artifact_bytes": 143437549,
+  "files": [
+    {
+      "path": "artifacts/anomaly_detection/detector.pth",
+      "source": "SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_isolated_SPPC_th-0.92_p-95_seed2024/detector.pth",
+      "size": 59788764,
+      "sha256": "4e308634c48664ddc881efe119a3c5d255e1b300c81594a20426ad88a2cacdf4"
+    },
+    {
+      "path": "artifacts/anomaly_detection/metrics.json",
+      "source": "SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_isolated_SPPC_th-0.92_p-95_seed2024/metrics.json",
+      "size": 690,
+      "sha256": "64d30301108e32bc60783f2c014111325b0a506d736f73328a360a82c00c2e76"
+    },
+    {
+      "path": "artifacts/anomaly_detection/train.pkl",
+      "source": "SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_isolated_SPPC_th-0.92_p-95_seed2024/train.pkl",
+      "size": 3532,
+      "sha256": "d3ae176506787e09715af78cb9a4a98556510b21ded83f257b908b554656581e"
+    },
+    {
+      "path": "artifacts/anomaly_detection/validation.pkl",
+      "source": "SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_isolated_SPPC_th-0.92_p-95_seed2024/validation.pkl",
+      "size": 880,
+      "sha256": "8b6da245ab241cf7782823f965f20622223f43100fd80f90cfcb81433cd6a00d"
+    },
+    {
+      "path": "artifacts/gcad/gcad_hints.json",
+      "source": "SmartGen/artifacts/gcad/fr/daytime/gcad_hints.json",
+      "size": 2585,
+      "sha256": "3ebcbec5a8b68688dcb8dc3a8a4f1fb4f3f777b9ce1c02426eb68d01d731f11d"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_0.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_0_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 4701,
+      "sha256": "2fae0acf8efce3cbb9b9fc25ec4ab831a12e0873d7ea368ed1de5f8e84eb65db"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_1.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_1_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 4208,
+      "sha256": "dd3931debbed58a340572367ef6fb362cfb649270be3c91134381455e0149e49"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_2.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_2_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 4772,
+      "sha256": "80b02887caafb877e6c038b9fbe602aca071f20e8c67b904f3cb6a7d2b832a1e"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_3.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_3_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 5869,
+      "sha256": "021213b51fde83efd91be37a64279c0302a9df9c8b396e851eb549e20a0e9fc4"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_4.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_4_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 6892,
+      "sha256": "33771fdb465b19935375fa1562a47a1401a881ce352189a33283ea4074d0f6e2"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_5.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_5_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 2880,
+      "sha256": "fb1689a7ca522a27da8b76cad7025047e055e9ddd88db58c7f9649ae7f6b3707"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_6.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_6_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 3643,
+      "sha256": "37a1dd550b44fa2c390e76b38be622655114a2613b2d36579a4a1cc4437b8126"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_0.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_0_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 5001,
+      "sha256": "d513fd9aab60d2dec6f8acf8a6ca9f725abcf1d60beece3036c271d556b655b3"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_1.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_1_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 4482,
+      "sha256": "0419347b749a7b32d3b797339de3b982e3913fa43946445cfe44b3b48e21461b"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_2.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_2_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 5064,
+      "sha256": "f1d85b82bdae338fe759dcf3badf224767141eafecabad70351507ec8c13560c"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_3.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_3_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 6249,
+      "sha256": "e4d70f2a65e5aebf146c2ba903f280759b8aa13f09a2f0fcaf73b568a86524df"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_4.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_4_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 7330,
+      "sha256": "22272f6a5feab50cca3392122c4f77184692d0bd386caffa32257af1b0b833ba"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_5.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_5_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 3066,
+      "sha256": "99e4d9dee7cabead8c54e45a1ac36461a8726807931344141981cdf69c0a274b"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_6.pkl",
+      "source": "SmartGen/IoT_data/fr/night/fr_night_generation_day_6_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated.pkl",
+      "size": 3895,
+      "sha256": "fa87cc371bb3f4cf8c4a8c891455a86e4e226bd2ef395511d2c37aaeafb4a10d"
+    },
+    {
+      "path": "artifacts/generation/run_record/manifest.json",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/manifest.json",
+      "size": 2685,
+      "sha256": "69d1394e24a3ffae0f79c9ca11dff7512bb55c4ad505fada64f7cf139af0c1d9"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_0.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_0.txt",
+      "size": 10542,
+      "sha256": "edc188d354ef30096f887b68b676d92e143b89275c609adcb09eed44e7eee12f"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_1.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_1.txt",
+      "size": 10611,
+      "sha256": "0c785a2a41381e5590f6696f20588bade5fe159c4bdef1304a7b911f18406048"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_2.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_2.txt",
+      "size": 11842,
+      "sha256": "ce92857fe75afec26b781c76ef4fd1a2957af554450c2081183ead0126f984e9"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_3.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_3.txt",
+      "size": 10770,
+      "sha256": "c7600323c6f360b892ce82190bec85739861d540daa555875defa5e74176def0"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_4.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_4.txt",
+      "size": 11094,
+      "sha256": "bc24f4ec31f6fa8ac686fc83508c505f16bf9380941de3ab787ecda0e889ab37"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_5.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_5.txt",
+      "size": 10370,
+      "sha256": "07a21a716712467cb427efad855d06de1abd6efd9376478f1b1721e58e69d273"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_6.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/prompts/category_6.txt",
+      "size": 10841,
+      "sha256": "cc0170d8071279eca0debb37348f1af6a882dcfc18bffa10071f0a27893c5882"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_0.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_0.txt",
+      "size": 4984,
+      "sha256": "1341a09c003b9c67378873eaacbc2cd5e94ff69263ef208d977b650dd1fb5f70"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_1.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_1.txt",
+      "size": 4465,
+      "sha256": "9f7f97433b083d91bd854857f6543bed7ea857aa2da4bd95f5120fe213363038"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_2.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_2.txt",
+      "size": 5047,
+      "sha256": "56f85c4ae8a346e2bd3cc5bfccf6c6018e09e5f20c6b66ce5583504fe6c0f55e"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_3.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_3.txt",
+      "size": 6232,
+      "sha256": "cdf40c452571656a5f268fd0fa2f685d05ef416537b0ff111fc76ace70aaf2ec"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_4.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_4.txt",
+      "size": 7313,
+      "sha256": "ae23652a213a438117facc7ab00be25305909ac00a31e0bc3a65ccdc71461146"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_5.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_5.txt",
+      "size": 3049,
+      "sha256": "b3b2c6b3b84192c33db9949ce2a1eff3d7bdcb4cd35e86f76da93d1e46b1590a"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_6.txt",
+      "source": "SmartGen/runs/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_isolated/responses/category_6.txt",
+      "size": 3878,
+      "sha256": "4bf42df07996c9831fa83d8f4c5ee45eca5ee389e64da1eab9cf59ef6e2ffc3d"
+    },
+    {
+      "path": "artifacts/gss/action_transitions.json",
+      "source": "SmartGen/IoT_data/fr/daytime/action_transitions.json",
+      "size": 4136,
+      "sha256": "d91babe4520130379a5e8a2c3b87a6b2e99ca9be0714a37ce537e4408cb0961a"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_0.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_0.pkl",
+      "size": 452,
+      "sha256": "de8bebba9222319107b2472b4618e9a7a28d09fa40a3d375cfeadb06ce2fffe6"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_1.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_1.pkl",
+      "size": 528,
+      "sha256": "7a7c021f9361db746e883f932efc8c3afe37f5418afe10b6f490e8dedae5ba69"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_2.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_2.pkl",
+      "size": 896,
+      "sha256": "9ad5e55386574ff0692f75eec87d6149bd0623b874a6e6022169b35d91396ebe"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_3.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_3.pkl",
+      "size": 1148,
+      "sha256": "39244bc369ec23eba548c5065f59b5e2dd3d6120674f3d0302c10ab527529a48"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_4.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_4.pkl",
+      "size": 1288,
+      "sha256": "3265ab195117f0ea57861dae3b8c261d15061a52f379dd45985dc3a056375200"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_5.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_5.pkl",
+      "size": 220,
+      "sha256": "c6befab981eedb72b64888693dbe2cfc06aa36005e54c62a13a3b90440320686"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_6.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn_day_6.pkl",
+      "size": 288,
+      "sha256": "b00298ca7241d19c354000d7f3c495713329cbf00c5077b7c472a1ddf261fea2"
+    },
+    {
+      "path": "artifacts/source_snapshot/rs_trn.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/rs_trn.pkl",
+      "size": 3320,
+      "sha256": "d733c2c3361d0dceb033316dd6c1960efbffa76439436dffd090f0c469a659d4"
+    },
+    {
+      "path": "artifacts/source_snapshot/rs_vld.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/rs_vld.pkl",
+      "size": 864,
+      "sha256": "852c8fed919397e21d743aa063d2e7eaa8b2e657e54ea432cece66cf416edc1d"
+    },
+    {
+      "path": "artifacts/source_snapshot/split_trn.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/split_trn.pkl",
+      "size": 4724,
+      "sha256": "1faf8ef1c25777430a3eed4b6b8b6f6f3288b40494fe637384c630b36cdd46e0"
+    },
+    {
+      "path": "artifacts/source_snapshot/trn.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/trn.pkl",
+      "size": 4168,
+      "sha256": "49275accc317486a7a8bdf0a27a9415d7a5ba5ca742f46fb51bfa2ecc4fe5ace"
+    },
+    {
+      "path": "artifacts/source_snapshot/vld.pkl",
+      "source": "SmartGen/IoT_data/fr/daytime/vld.pkl",
+      "size": 168,
+      "sha256": "4b3f9ea1e1c35addbf3c371cffa1b0bc42f052faa90c9faf1c83908de33c0874"
+    },
+    {
+      "path": "artifacts/ssc/model.pth",
+      "source": "SmartGen/IoT_model/Transformer_fr_daytime_15epoch.pth",
+      "size": 23632926,
+      "sha256": "b13ff4e77074dad6efd6ec343214117d63fd9ee16cc47a5763bc38927066b4fc"
+    },
+    {
+      "path": "artifacts/tof/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "source": "SmartGen/filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq.pkl",
+      "size": 4396,
+      "sha256": "6c0e9f0075dc2e8432a9589cf2f2698c278ba9b505f33a267321797faf120ce0"
+    },
+    {
+      "path": "artifacts/tof/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq_filter.pkl",
+      "source": "SmartGen/filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq_filter.pkl",
+      "size": 4168,
+      "sha256": "29088b5f8fc122ab27e1ab7cacff3a94edefa80948f34236ae057a4e028bb6d8"
+    },
+    {
+      "path": "artifacts/tof/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq_filter_true.pkl",
+      "source": "SmartGen/filter_data/fr/night/fr_night_generation_SPPC_th=0.92_gpt-5.6-sol__seed2024_isolated_seq_filter_true.pkl",
+      "size": 4396,
+      "sha256": "6c0e9f0075dc2e8432a9589cf2f2698c278ba9b505f33a267321797faf120ce0"
+    },
+    {
+      "path": "artifacts/tof/model.pth",
+      "source": "SmartGen/check_model/best_fr_gpt-5.6-sol__seed2024_isolated_SPPC.pth",
+      "size": 59791237,
+      "sha256": "fceec3ade44c21aa61af27163fdf4b98eaf6c0e71a6f171c91f686b0d8a92b1d"
+    }
+  ]
+}

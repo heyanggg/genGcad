@@ -7,6 +7,13 @@ import numpy as np
 import pytest
 
 from SmartGen.experiment import ExperimentConfig, ExperimentRun
+from SmartGen.archiving import (
+    ArchiveFile,
+    archive_files,
+    promote_archive,
+    rebuild_registry,
+    verify_archive,
+)
 
 
 def make_config(**overrides):
@@ -183,3 +190,55 @@ def test_active_smartgen_pipeline_has_no_unconditional_cuda_calls():
     for filename in ["baseline1.py", "baseline2.py", "security_check.py"]:
         source = (Path("SmartGen") / filename).read_text(encoding="utf-8")
         assert ".cuda()" not in source
+
+
+def test_archive_is_checksummed_and_registered(tmp_path):
+    source_root = tmp_path / "source"
+    source_root.mkdir()
+    artifact = source_root / "result.pkl"
+    artifact.write_bytes(b"immutable-result")
+    archive_root = tmp_path / "archive"
+
+    path = archive_files(
+        "fr_test_seed2024",
+        "completed",
+        {"dataset": "fr", "experiment_seed": 2024},
+        [ArchiveFile(artifact, Path("tof/final.pkl"))],
+        metrics={"metrics": {"f1_score": 0.99, "accuracy": 0.98}},
+        archive_root=archive_root,
+    )
+
+    manifest = json.loads((path / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["artifact_count"] == 1
+    assert manifest["files"][0]["path"] == "artifacts/tof/final.pkl"
+    assert (path / "artifacts/tof/final.pkl").read_bytes() == b"immutable-result"
+    registry = rebuild_registry(archive_root)
+    assert registry[0]["archive_id"] == "fr_test_seed2024"
+    assert registry[0]["f1_score"] == 0.99
+    assert verify_archive(path) == []
+
+    promoted = promote_archive("fr_test_seed2024", archive_root=archive_root)
+    assert promoted.parent.name == "verified_candidates"
+    assert not path.exists()
+    assert verify_archive(promoted) == []
+    with pytest.raises(ValueError, match="already exists under"):
+        archive_files(
+            "fr_test_seed2024",
+            "completed",
+            {"dataset": "fr", "experiment_seed": 2024},
+            [ArchiveFile(artifact, Path("tof/final.pkl"))],
+            archive_root=archive_root,
+        )
+
+
+def test_archive_rejects_unsafe_destination(tmp_path):
+    artifact = tmp_path / "result.pkl"
+    artifact.write_bytes(b"result")
+    with pytest.raises(ValueError, match="safe relative path"):
+        archive_files(
+            "safe-id",
+            "completed",
+            {},
+            [ArchiveFile(artifact, Path("../escape.pkl"))],
+            archive_root=tmp_path / "archive",
+        )
