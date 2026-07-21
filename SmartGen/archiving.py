@@ -262,10 +262,10 @@ def archive_files(
         metric_values = (metrics or {}).get("metrics", {})
         readme = (
             f"# {archive_id}\n\n"
-            f"Status: `{status}`  \n"
-            f"Reconstructed metadata: `{str(reconstructed).lower()}`  \n"
-            f"Artifacts: `{len(records)}` files, `{manifest['artifact_bytes']}` bytes  \n"
-            f"F1: `{metric_values.get('f1_score', 'n/a')}`  \n"
+            f"Status: `{status}`\n\n"
+            f"Reconstructed metadata: `{str(reconstructed).lower()}`\n\n"
+            f"Artifacts: `{len(records)}` files, `{manifest['artifact_bytes']}` bytes\n\n"
+            f"F1: `{metric_values.get('f1_score', 'n/a')}`\n\n"
             f"Accuracy: `{metric_values.get('accuracy', 'n/a')}`\n\n"
             "Heavy artifacts are local and ignored by Git. Use `checksums.sha256` "
             "to verify them. See `manifest.json` for source-to-archive mappings.\n"
