@@ -18,7 +18,7 @@ class CodexClient:
         model: str = "gpt-5.6-sol",
         executable: str = "codex",
         timeout: int = 900,
-        reasoning_effort: str = "medium",
+        reasoning_effort: str = "none",
         working_directory: str | Path | None = None,
     ):
         allowed_efforts = {"none", "low", "medium", "high", "xhigh", "max"}
@@ -34,6 +34,35 @@ class CodexClient:
         self.timeout = timeout
         self.reasoning_effort = reasoning_effort
         self.working_directory = Path(working_directory or Path(__file__).resolve().parent)
+
+    @property
+    def generation_protocol(self) -> dict[str, object]:
+        """Describe the effective, auditable Codex generation settings.
+
+        The original SmartGen request used temperature=0, top_p=0, seed=2024 and
+        max_tokens=8040. Codex CLI does not expose those request fields, so they
+        must not be represented as active controls in an experiment manifest.
+        """
+        return {
+            "transport": "codex_cli",
+            "model": self.model,
+            "reasoning_effort": self.reasoning_effort,
+            "ephemeral": True,
+            "ignore_user_config": True,
+            "ignore_rules": True,
+            "sandbox": "read-only",
+            "original_smartgen_sampling_request": {
+                "temperature": 0,
+                "top_p": 0,
+                "seed": 2024,
+                "max_tokens": 8040,
+            },
+            "sampling_controls_applied": False,
+            "sampling_controls_reason": (
+                "Codex CLI does not recognize temperature, top_p, seed, or max_tokens "
+                "as configuration fields"
+            ),
+        }
 
     def generate(self, prompt: str) -> str:
         command = [

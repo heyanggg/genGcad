@@ -86,8 +86,17 @@ def get_args_parser():
     parser.add_argument("--codex-timeout", "--codex_timeout", default=900, type=int)
     parser.add_argument(
         "--codex-reasoning-effort", "--codex_reasoning_effort",
-        default="medium",
+        default="none",
         choices=["none", "low", "medium", "high", "xhigh", "max"],
+    )
+    parser.add_argument(
+        "--prompt-profile", "--prompt_profile",
+        default="environment-aware",
+        choices=["original", "environment-aware"],
+        help=(
+            "Use the byte-equivalent upstream prompt or add explicit environment and "
+            "sequence-shape constraints for GPT-5.6"
+        ),
     )
     parser.add_argument("--gcad-history", "--gcad_history", default=4, type=int)
     parser.add_argument("--gcad-epochs", "--gcad_epochs", default=50, type=int)
@@ -133,32 +142,34 @@ def build_prompt(
     user_sequence,
     action_transition,
     gcad_relationships,
+    target_environment=None,
+    prompt_profile="original",
 ):
-    relationships = gcad_relationships.get("lagged_behavior_relations", [])
-    if gcad_relationships.get("status") != "ready" or not relationships:
-        return compose_smartgen_prompt(
-            device_control_dict,
-            sentence,
-            user_sequence,
-            action_transition,
-        )
+    guidance_parts = []
+    if prompt_profile == "environment-aware":
+        guidance_parts.append(environment_generation_guidance(target_environment))
+    elif prompt_profile != "original":
+        raise ValueError(f"unsupported prompt profile: {prompt_profile!r}")
 
-    gcad_guidance = {
-        "lag_unit": gcad_relationships.get(
-            "lag_unit", "subsequent_behavior_positions"
-        ),
-        "directional_relationships": relationships,
-    }
-    additional_guidance = (
-        " Directional behavior relationship guidance: "
-        "The following relationships were extracted from historical normal behavior sequences. "
-        "When a source behavior occurs, the corresponding target behavior is often influenced "
-        "within the indicated number of subsequent behavior positions. "
-        "Use these relationships as soft guidance. Preserve them when they are compatible with "
-        "the new environmental context, but do not force every relationship to appear in every "
-        "generated sequence. "
-        f"{json.dumps(gcad_guidance, ensure_ascii=False)} "
-    )
+    relationships = gcad_relationships.get("lagged_behavior_relations", [])
+    if gcad_relationships.get("status") == "ready" and relationships:
+        gcad_guidance = {
+            "lag_unit": gcad_relationships.get(
+                "lag_unit", "subsequent_behavior_positions"
+            ),
+            "directional_relationships": relationships,
+        }
+        guidance_parts.append(
+            "Directional behavior relationship guidance: "
+            "The following relationships were extracted from historical normal behavior "
+            "sequences. When a source behavior occurs, the corresponding target behavior is "
+            "often influenced within the indicated number of subsequent behavior positions. "
+            "Use these relationships as soft guidance. Preserve them when they are compatible "
+            "with the new environmental context, but do not force every relationship to appear "
+            "in every generated sequence. "
+            f"{json.dumps(gcad_guidance, ensure_ascii=False)}"
+        )
+    additional_guidance = "".join(f" {item} " for item in guidance_parts if item)
     return compose_smartgen_prompt(
         device_control_dict,
         sentence,
@@ -166,6 +177,60 @@ def build_prompt(
         action_transition,
         additional_guidance,
     )
+
+
+def environment_generation_guidance(target_environment):
+    common = (
+        "Generation calibration guidance: Match the approximate number and length of the "
+        "compressed original sequences; do not systematically lengthen them or add unrelated "
+        "device actions merely to increase device coverage. Environmental consistency takes "
+        "priority over device coverage. "
+    )
+    if target_environment == "night":
+        return common + (
+            "For the changed night-active environment, place the main active behaviors in the "
+            "available time intervals (18~21), (21~24), (0~3), and (3~6). The daytime intervals "
+            "(6~9), (9~12), (12~15), and (15~18) should be rare and used only for a behavior "
+            "that genuinely requires a daytime exception. Do not make daytime intervals the "
+            "dominant time pattern of any generated sequence."
+        )
+    if target_environment == "spring":
+        return common + (
+            "For the changed warm spring environment, prefer behavior changes that are plausible "
+            "for warmer weather and avoid retaining winter-specific heating behavior unless the "
+            "individual sequence provides a clear reason."
+        )
+    if target_environment == "multiple":
+        return common + (
+            "For the changed multiple-resident environment, represent plausible variation or "
+            "overlap between household routines while keeping each subsequence internally coherent."
+        )
+    raise ValueError(f"unsupported target environment: {target_environment!r}")
+
+
+def summarize_environment_adherence(sequences, target_environment):
+    """Report prompt adherence without filtering or using anomaly labels."""
+    hour_counts = {str(index): 0 for index in range(len(hour_dict))}
+    behavior_count = 0
+    for sequence in sequences:
+        for index in range(1, len(sequence), 4):
+            hour = int(sequence[index])
+            hour_counts[str(hour)] = hour_counts.get(str(hour), 0) + 1
+            behavior_count += 1
+    summary = {
+        "target_environment": target_environment,
+        "behavior_count": behavior_count,
+        "hour_counts": hour_counts,
+        "used_for_filtering": False,
+    }
+    if target_environment == "night":
+        night_count = sum(hour_counts[str(index)] for index in (0, 1, 6, 7))
+        summary["preferred_hour_codes"] = [0, 1, 6, 7]
+        summary["preferred_behavior_count"] = night_count
+        summary["preferred_behavior_ratio"] = (
+            night_count / behavior_count if behavior_count else 0.0
+        )
+    return summary
 
 
 def environment_sentence(original_environment, target_environment):
@@ -200,6 +265,7 @@ def experiment_config_from_args(args):
         gcad_history=args.gcad_history,
         gcad_epochs=args.gcad_epochs,
         codex_reasoning_effort=args.codex_reasoning_effort,
+        prompt_profile=args.prompt_profile,
     )
 
 
@@ -311,6 +377,8 @@ def run_generation(args, config):
                 user_sequence,
                 action_transition,
                 gcad_relationships,
+                target_environment=args.new_env,
+                prompt_profile=args.prompt_profile,
             )
             atomic_write_text(run.prompt_path(category_name), prompt)
             output_path = target_dir / (
@@ -331,6 +399,7 @@ def run_generation(args, config):
                         timeout=args.codex_timeout,
                         reasoning_effort=args.codex_reasoning_effort,
                     )
+                    run.update(generation_backend=codex_client.generation_protocol)
                 response = codex_client.generate(prompt)
                 atomic_pickle_dump(output_path, response)
             atomic_write_text(run.response_path(category_name), response + "\n")
@@ -353,6 +422,15 @@ def run_generation(args, config):
             all_categories,
             dictionaries,
         )
+        generated_numeric_path = filter_dir / (
+            f"{args.dataset}_{args.new_env}_generation_{args.method}_th={args.threshold}_"
+            f"{artifact_model}_seq.pkl"
+        )
+        with generated_numeric_path.open("rb") as handle:
+            generated_numeric = pickle.load(handle)
+        adherence = summarize_environment_adherence(
+            generated_numeric, args.new_env
+        )
         tof_result = security_check(
             args.dataset,
             args.new_env,
@@ -365,13 +443,11 @@ def run_generation(args, config):
         run.update(
             status="completed",
             outputs={
-                "generated_numeric": str(
-                    filter_dir
-                    / f"{args.dataset}_{args.new_env}_generation_{args.method}_th={args.threshold}_{artifact_model}_seq.pkl"
-                ),
+                "generated_numeric": str(generated_numeric_path),
                 "tof_final": tof_result["output_path"],
                 "tof_final_count": tof_result["final_count"],
             },
+            environment_adherence=adherence,
         )
         return run.manifest
     except Exception as exc:

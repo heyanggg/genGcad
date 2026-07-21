@@ -183,7 +183,15 @@ def test_codex_client_invokes_gpt56_without_exchange_files(monkeypatch, tmp_path
     assert captured["command"][captured["command"].index("--sandbox") + 1] == "read-only"
     assert "--ignore-user-config" in captured["command"]
     assert "--ignore-rules" in captured["command"]
-    assert 'model_reasoning_effort="medium"' in captured["command"]
+    assert 'model_reasoning_effort="none"' in captured["command"]
+    protocol = client.generation_protocol
+    assert protocol["sampling_controls_applied"] is False
+    assert protocol["original_smartgen_sampling_request"] == {
+        "temperature": 0,
+        "top_p": 0,
+        "seed": 2024,
+        "max_tokens": 8040,
+    }
 
 
 def test_codex_client_rejects_unparseable_output(monkeypatch, tmp_path):
@@ -258,6 +266,40 @@ def test_disabled_gcad_uses_byte_equivalent_original_smartgen_prompt(monkeypatch
         assert actual == expected
         assert "GCAD" not in actual
         assert "Directional behavior relationship guidance" not in actual
+
+
+def test_environment_aware_night_prompt_adds_time_and_shape_constraints(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import build_prompt
+
+    prompt = build_prompt(
+        "devices",
+        "environment",
+        [["sequence"]],
+        {},
+        {"status": "disabled", "lagged_behavior_relations": []},
+        target_environment="night",
+        prompt_profile="environment-aware",
+    )
+    assert "(18~21), (21~24), (0~3), and (3~6)" in prompt
+    assert "should be rare" in prompt
+    assert "approximate number and length" in prompt
+    for forbidden in ("attack", "anomaly", "test label"):
+        assert forbidden not in prompt.lower()
+
+
+def test_environment_adherence_is_measurement_only(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import summarize_environment_adherence
+
+    sequences = [[0, 7, 1, 2, 0, 0, 1, 2], [0, 2, 1, 2]]
+    summary = summarize_environment_adherence(sequences, "night")
+    assert summary["preferred_behavior_ratio"] == pytest.approx(2 / 3)
+    assert summary["used_for_filtering"] is False
 
 
 def test_main_boolean_arguments_parse_false(monkeypatch):

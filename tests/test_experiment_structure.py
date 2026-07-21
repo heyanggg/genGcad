@@ -22,7 +22,8 @@ def make_config(**overrides):
         "gcad_seeds": (2024, 2025, 2026),
         "gcad_history": 4,
         "gcad_epochs": 50,
-        "codex_reasoning_effort": "medium",
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "environment-aware",
     }
     values.update(overrides)
     return ExperimentConfig(**values)

@@ -81,12 +81,18 @@ python SmartGen/main.py \
   --new-env spring \
   --threshold 0.918 \
   --run-id run1 \
-  --experiment-seed 2024
+  --experiment-seed 2024 \
+  --prompt-profile environment-aware \
+  --codex-reasoning-effort none
 ```
 
 The artifact label for this example is `gpt-5.6-sol__run1`. GCAD still uses its three internal stability seeds, while `--experiment-seed` controls SSC, TOF, the GCAD holdout split, and anomaly-detector training. The anomaly detector writes its split, checkpoint and `metrics.json` under `SmartGen/anomaly_runs/` instead of overwriting target-domain source data.
 
-By default, GCAD writes `SmartGen/artifacts/gcad/<dataset>/<original_environment>/gcad_hints.json`. The artifact includes a source-data hash and extraction configuration, so an unchanged result is reused instead of retrained. Pass `--gcad-force` to rebuild it. The original `action_transitions.json` is only read and is never reranked or overwritten by GCAD. Only the compact relationship list—not training diagnostics—is sent to the model, and it is labeled as soft predictive guidance. Codex runs with a read-only sandbox, explicit `medium` reasoning effort, the current Codex login, and user/project CLI configuration disabled for experiment isolation; no prompt/response exchange directory or OpenAI Python SDK is required.
+By default, GCAD writes `SmartGen/artifacts/gcad/<dataset>/<original_environment>/gcad_hints.json`. The artifact includes a source-data hash and extraction configuration, so an unchanged result is reused instead of retrained. Pass `--gcad-force` to rebuild it. The original `action_transitions.json` is only read and is never reranked or overwritten by GCAD. Only the compact relationship list—not training diagnostics—is sent to the model, and it is labeled as soft predictive guidance.
+
+The default `environment-aware` prompt profile adds explicit target-environment and sequence-shape constraints while retaining the full upstream prompt. For strict prompt comparison, pass `--prompt-profile original`; when GCAD is disabled, that mode is byte-equivalent to upstream SmartGen. Every run records prompt hashes and a non-filtering environment-adherence summary in its manifest.
+
+Codex runs with a read-only sandbox, explicit `none` reasoning effort, the current Codex login, and user/project CLI configuration disabled for experiment isolation. Upstream SmartGen requested `temperature=0`, `top_p=0`, `seed=2024`, and `max_tokens=8040`; the current Codex CLI rejects all four as unknown configuration fields. The run manifest therefore records those values as the upstream request and explicitly marks them as not applied instead of pretending they were fixed. The model slug, reasoning effort, prompt profile, experiment seed, exact prompt hashes, and outputs remain recorded and reproducible within the controls the Codex CLI actually exposes.
 
 ## Verified experiment
 

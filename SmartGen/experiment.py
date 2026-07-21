@@ -97,6 +97,7 @@ class ExperimentConfig:
     gcad_history: int
     gcad_epochs: int
     codex_reasoning_effort: str
+    prompt_profile: str
 
     def __post_init__(self) -> None:
         if self.dataset not in {"fr", "sp", "us"}:
@@ -125,6 +126,8 @@ class ExperimentConfig:
             "max",
         }:
             raise ValueError("unsupported Codex reasoning effort")
+        if self.prompt_profile not in {"original", "environment-aware"}:
+            raise ValueError("unsupported prompt profile")
 
     @property
     def artifact_model(self) -> str:
@@ -149,7 +152,7 @@ class ExperimentRun:
         self.responses = self.root / "responses"
         self.manifest_path = self.root / "manifest.json"
         self.manifest = {
-            "schema_version": 1,
+            "schema_version": 2,
             "status": "created",
             "created_at": datetime.now(timezone.utc).isoformat(),
             "updated_at": datetime.now(timezone.utc).isoformat(),
