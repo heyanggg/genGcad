@@ -1,6 +1,7 @@
 # fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy
 
-Status: `verified_candidates`
+Status: `diagnostic`
+Classification: superseded reconstructed legacy result; retained only for provenance.
 Reconstructed metadata: `true`
 Artifacts: `136` files, `143659259` bytes
 F1: `0.9942857142857142`

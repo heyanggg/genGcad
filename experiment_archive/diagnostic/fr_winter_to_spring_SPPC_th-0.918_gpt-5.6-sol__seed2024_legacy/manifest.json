@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy",
-  "status": "verified_candidates",
+  "status": "diagnostic",
+  "classification_reason": "superseded reconstructed legacy result; exact prompts, original manifest, and auditable GCAD state are unavailable",
   "created_at": "2026-07-21T01:51:28.324041+00:00",
   "reconstructed": true,
   "storage_mode": "copy",
@@ -883,5 +884,6 @@
       "size": 59789964,
       "sha256": "c69af480b7de660fb69daffc1e4f943a13bceb4c63a8bbbc35b768018b9d87e6"
     }
-  ]
+  ],
+  "promoted_at": "2026-07-21T05:42:26.189576+00:00"
 }

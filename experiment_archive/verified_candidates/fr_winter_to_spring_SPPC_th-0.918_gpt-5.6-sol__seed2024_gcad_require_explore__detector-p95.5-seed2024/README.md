@@ -1,6 +1,8 @@
 # fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024
 
-Status: `completed`
+Status: `verified_candidates`
+
+Classification: sole formal FR winter-to-spring record; explicit GCAD guidance and complete provenance.
 
 Reconstructed metadata: `false`
 

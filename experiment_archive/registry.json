@@ -1,33 +1,5 @@
 [
   {
-    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
-    "status": "completed",
-    "archive_path": "completed/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
-    "dataset": "fr",
-    "original_environment": "winter",
-    "target_environment": "spring",
-    "experiment_seed": 2024,
-    "f1_score": 0.9,
-    "accuracy": 0.9090909090909091,
-    "reconstructed": false,
-    "artifact_count": 169,
-    "artifact_bytes": 144012820
-  },
-  {
-    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024",
-    "status": "completed",
-    "archive_path": "completed/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024",
-    "dataset": "fr",
-    "original_environment": "winter",
-    "target_environment": "spring",
-    "experiment_seed": 2024,
-    "f1_score": 0.9617486338797814,
-    "accuracy": 0.9602272727272727,
-    "reconstructed": false,
-    "artifact_count": 169,
-    "artifact_bytes": 144022721
-  },
-  {
     "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
     "status": "diagnostic",
     "archive_path": "diagnostic/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024__detector-p95-seed2024",
@@ -98,6 +70,76 @@
     "artifact_bytes": 143431453
   },
   {
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_fixedprep_medium_gcad_off__detector-p95.5-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_fixedprep_medium_gcad_off__detector-p95.5-seed2024",
+    "dataset": "fr",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.8108108108108107,
+    "accuracy": 0.8011363636363636,
+    "reconstructed": false,
+    "artifact_count": 168,
+    "artifact_bytes": 143711861
+  },
+  {
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_fixedprep_medium_gcad_require__detector-p95.5-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_fixedprep_medium_gcad_require__detector-p95.5-seed2024",
+    "dataset": "fr",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.6795366795366795,
+    "accuracy": 0.5284090909090909,
+    "reconstructed": false,
+    "artifact_count": 165,
+    "artifact_bytes": 143721290
+  },
+  {
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_frozen_original_medium_gcad_require__detector-p95.5-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_frozen_original_medium_gcad_require__detector-p95.5-seed2024",
+    "dataset": "fr",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.8669950738916257,
+    "accuracy": 0.8465909090909091,
+    "reconstructed": false,
+    "artifact_count": 248,
+    "artifact_bytes": 144162671
+  },
+  {
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024",
+    "dataset": "fr",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.9,
+    "accuracy": 0.9090909090909091,
+    "reconstructed": false,
+    "artifact_count": 169,
+    "artifact_bytes": 144012820
+  },
+  {
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy",
+    "dataset": "fr",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.9942857142857142,
+    "accuracy": 0.9943181818181818,
+    "reconstructed": true,
+    "artifact_count": 136,
+    "artifact_bytes": 143659259
+  },
+  {
     "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
     "status": "verified_candidates",
     "archive_path": "verified_candidates/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
@@ -112,17 +154,17 @@
     "artifact_bytes": 143368002
   },
   {
-    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy",
+    "archive_id": "fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024",
     "status": "verified_candidates",
-    "archive_path": "verified_candidates/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_legacy",
+    "archive_path": "verified_candidates/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024",
     "dataset": "fr",
     "original_environment": "winter",
     "target_environment": "spring",
     "experiment_seed": 2024,
-    "f1_score": 0.9942857142857142,
-    "accuracy": 0.9943181818181818,
-    "reconstructed": true,
-    "artifact_count": 136,
-    "artifact_bytes": 143659259
+    "f1_score": 0.9617486338797814,
+    "accuracy": 0.9602272727272727,
+    "reconstructed": false,
+    "artifact_count": 169,
+    "artifact_bytes": 144022721
   }
 ]

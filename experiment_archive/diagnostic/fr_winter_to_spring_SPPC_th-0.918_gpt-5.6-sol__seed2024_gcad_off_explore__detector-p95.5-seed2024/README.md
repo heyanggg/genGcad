@@ -1,6 +1,8 @@
 # fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_off_explore__detector-p95.5-seed2024
 
-Status: `completed`
+Status: `diagnostic`
+
+Classification: GCAD-off ablation control; not a formal SmartGen-GCAD result.
 
 Reconstructed metadata: `false`
 
