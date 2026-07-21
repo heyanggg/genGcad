@@ -40,6 +40,8 @@ class CodexClient:
             self.executable,
             "exec",
             "--ephemeral",
+            "--ignore-user-config",
+            "--ignore-rules",
             "--sandbox",
             "read-only",
             "--color",

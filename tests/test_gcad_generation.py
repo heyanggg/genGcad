@@ -181,6 +181,8 @@ def test_codex_client_invokes_gpt56_without_exchange_files(monkeypatch, tmp_path
     assert captured["input"] == "prompt"
     assert captured["command"][captured["command"].index("--model") + 1] == "gpt-5.6-sol"
     assert captured["command"][captured["command"].index("--sandbox") + 1] == "read-only"
+    assert "--ignore-user-config" in captured["command"]
+    assert "--ignore-rules" in captured["command"]
     assert 'model_reasoning_effort="medium"' in captured["command"]
 
 
