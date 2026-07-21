@@ -7,6 +7,7 @@ __pycache__/
 .coverage
 htmlcov/
 *.log
+*.tmp
 
 # Local virtual environments and editor state
 .venv/
@@ -34,6 +35,10 @@ SmartGen/check_model/
 
 # GCAD cache artifacts (recomputed from TSS output)
 SmartGen/IoT_data/*/*/gcad_hints.json
+SmartGen/artifacts/
+
+# Per-run prompts, responses and resumable manifests
+SmartGen/runs/
 
 # Per-prompt generation responses; retain merged/final experiment datasets
 SmartGen/IoT_data/*/*/*_generation_day_*.pkl

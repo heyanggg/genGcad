@@ -1,7 +1,9 @@
 import argparse
+import json
 import os
 import pickle
 import random
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -96,9 +98,6 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
 
     for epoch in range(num_epochs):
         total_loss = 0
-        total_loss_all = 0
-        loss_vector = {}
-        number_vector = {}
         for batch in train_loader:
             src, padding_mask, mask_v = batch
             src = src.to(device)
@@ -106,7 +105,7 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -127,7 +126,7 @@ def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentag
     val_loader = make_data(new_env, vocab_size, data_file=vld_file, batch_size=1)
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
     losses = []
     model.to(device)
@@ -139,7 +138,7 @@ def find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentag
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -187,7 +186,7 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
 
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
     losses = []
     predictions = []
@@ -200,7 +199,7 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -248,8 +247,26 @@ def evaluate(new_env, vocab_size, test_file1, test_file3, model_name, seq_len, t
     return TP, TN, FP, FN, FPR, FNR, recall, precision, accuracy, f1_score
 
 
-def Anomaly_detection(dataset, new_env, thres, method, model, percentage):
-    model_name = f"check_model/best_{dataset}_{model}_{method}.pth"
+def _json_native(value):
+    return value.item() if isinstance(value, np.generic) else value
+
+
+def Anomaly_detection(
+    dataset,
+    new_env,
+    thres,
+    method,
+    model,
+    percentage,
+    seed=2024,
+    output_root="anomaly_runs",
+):
+    run_dir = Path(output_root) / (
+        f"{dataset}_{new_env}_{model}_{method}_th-{format(thres, 'g')}_"
+        f"p-{format(percentage, 'g')}_seed{seed}"
+    )
+    run_dir.mkdir(parents=True, exist_ok=True)
+    model_name = run_dir / "detector.pth"
     vocab_size = vocab_dic[dataset]
     epochs = 15
     seq_len = 10
@@ -257,10 +274,18 @@ def Anomaly_detection(dataset, new_env, thres, method, model, percentage):
     if new_env == 'multiple':
         vld_file = data_file
         train_file = data_file
+        with open(data_file, 'rb') as file:
+            all_sequences = pickle.load(file)
+        training_count = len(all_sequences)
+        validation_count = len(all_sequences)
     else:
-        train_file = f'IoT_data/{dataset}/{new_env}/trn.pkl'
-        vld_file = f"IoT_data/{dataset}/{new_env}/rs_vld.pkl"
-        split_random(data_file, train_file, vld_file)
+        train_file = run_dir / "train.pkl"
+        vld_file = run_dir / "validation.pkl"
+        training, validation = split_random(
+            data_file, train_file, vld_file, seed=seed
+        )
+        training_count = len(training)
+        validation_count = len(validation)
     if new_env == 'spring':
         test_file1 = f"attack/{dataset}/labeled_{dataset}_spring_attack_heater.pkl"
     elif new_env == 'night':
@@ -269,9 +294,46 @@ def Anomaly_detection(dataset, new_env, thres, method, model, percentage):
         test_file1 = f"attack/{dataset}/labeled_{dataset}_multiple_attack_tv.pkl"
 
     test_file3 = f"IoT_data/{dataset}/{new_env}/split_test.pkl"
-    setup_seed(2024)
+    setup_seed(seed)
     train(new_env, vocab_size, epochs, train_file, model_name, seq_len)
     threshold = find_threshold(new_env, vocab_size, vld_file, model_name, seq_len, percentage=percentage)
-    TP, TN, FP, FN, FPR, FNR, recall, precision, accuracy, f1_score = evaluate(new_env, vocab_size, test_file1,
-                                                                               test_file3, model_name, seq_len,
-                                                                               threshold=threshold)
+    metrics = evaluate(
+        new_env,
+        vocab_size,
+        test_file1,
+        test_file3,
+        model_name,
+        seq_len,
+        threshold=threshold,
+    )
+    metric_names = (
+        "TP", "TN", "FP", "FN", "FPR", "FNR", "recall", "precision", "accuracy", "f1_score"
+    )
+    with open(test_file1, "rb") as file:
+        attack_count = len(pickle.load(file))
+    with open(test_file3, "rb") as file:
+        normal_count = len(pickle.load(file))
+    result = {
+        "dataset": dataset,
+        "environment": new_env,
+        "method": method,
+        "generator_model": model,
+        "generation_threshold": thres,
+        "validation_percentile": percentage,
+        "seed": seed,
+        "generated_sequence_count": training_count + (
+            0 if new_env == "multiple" else validation_count
+        ),
+        "training_sequence_count": training_count,
+        "validation_sequence_count": validation_count,
+        "normal_test_count": normal_count,
+        "attack_test_count": attack_count,
+        "detection_threshold": _json_native(threshold),
+        "metrics": {
+            name: _json_native(value) for name, value in zip(metric_names, metrics)
+        },
+    }
+    metrics_path = run_dir / "metrics.json"
+    metrics_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    result["metrics_path"] = str(metrics_path)
+    return result

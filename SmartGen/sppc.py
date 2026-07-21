@@ -8,7 +8,7 @@ import torch.nn as nn
 from sklearn.metrics.pairwise import cosine_similarity
 from torch.utils.data import DataLoader
 
-from models1 import TransformerAutoencoder, TimeSeriesDataset1
+from models1 import TimeSeriesDataset1
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -83,28 +83,30 @@ class TransformerAutoencoder(nn.Module):
     def forward(self, src, src_key_padding_mask=None):
         src_emb = self.embedding(src)
         memory = self.encoder(src_emb, src_key_padding_mask=src_key_padding_mask)
-        tgt_emb = src_emb
 
         return memory
 
 
-def SPPC_select(dataset, ori_env, vocab_size, threshold):
-    setup_seed(2024)
+def SPPC_select(dataset, ori_env, vocab_size, threshold, seed=2024):
+    setup_seed(seed)
     num_epochs = 15
     for day in range(7):
 
         model = TransformerAutoencoder(vocab_size, d_model=256, nhead=4, num_encoder_layers=2, num_decoder_layers=2)
         model = model.to(device)
         model_name = f"IoT_model/Transformer_{dataset}_{ori_env}_{num_epochs}epoch.pth"
-        model.load_state_dict(torch.load(model_name))
+        model.load_state_dict(torch.load(model_name, map_location=device))
         day_select_file = f'IoT_data/{dataset}/{ori_env}/trn_day_{day}.pkl'
 
         with open(day_select_file, 'rb') as file2:
             text_collection = pickle.load(file2)
-        print(len(text_collection))
+        output_file = f'IoT_data/{dataset}/{ori_env}/trn_day_{day}_SPPC_th={threshold}.pkl'
+        if not text_collection:
+            with open(output_file, 'wb') as f3:
+                pickle.dump([], f3)
+            print(f'Day {day}: no source sequences; SPPC output is empty.')
+            continue
         train_loader = make_data(vocab_size, data_file=day_select_file, batch_size=len(text_collection))
-        criterion = nn.CrossEntropyLoss()
-        optimizer = torch.optim.Adam(model.parameters())
 
         for batch in train_loader:
             src, padding_mask, _ = batch
@@ -128,10 +130,9 @@ def SPPC_select(dataset, ori_env, vocab_size, threshold):
 
         deduplicated_collection = [text_collection[i] for i in unique_indices]
 
-        print(deduplicated_collection)
-        print(len(deduplicated_collection))
+        print(f'Day {day}: SPPC retained {len(deduplicated_collection)}/{len(text_collection)} sequences.')
 
-        with open(f'IoT_data/{dataset}/{ori_env}/trn_day_{day}_SPPC_th={threshold}.pkl', 'wb') as f3:
+        with open(output_file, 'wb') as f3:
             pickle.dump(deduplicated_collection, f3)
 
 
@@ -139,6 +140,13 @@ def similarity_select(dataset, ori_env, threshold):
     for day in range(7):
         with open(f'IoT_data/{dataset}/{ori_env}/trn_day_{day}.pkl', 'rb') as file3:
             text_collection = pickle.load(file3)
+
+        output_file = f'IoT_data/{dataset}/{ori_env}/trn_day_{day}_similarity_th={threshold}.pkl'
+        if not text_collection:
+            with open(output_file, 'wb') as f3:
+                pickle.dump([], f3)
+            print(f'Day {day}: no source sequences; similarity output is empty.')
+            continue
 
         simi_pad(text_collection)
         similarity_matrix = cosine_similarity(text_collection)
@@ -154,8 +162,10 @@ def similarity_select(dataset, ori_env, threshold):
                         to_remove.add(j)
 
         deduplicated_collection = [text_collection[i] for i in unique_indices]
-        print(deduplicated_collection)
-        print(len(deduplicated_collection))
+        print(
+            f'Day {day}: similarity selection retained '
+            f'{len(deduplicated_collection)}/{len(text_collection)} sequences.'
+        )
 
-        with open(f'IoT_data/{dataset}/{ori_env}/trn_day_{day}_similarity_th={threshold}.pkl', 'wb') as f3:
+        with open(output_file, 'wb') as f3:
             pickle.dump(deduplicated_collection, f3)

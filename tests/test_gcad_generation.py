@@ -169,11 +169,16 @@ def test_codex_client_invokes_gpt56_without_exchange_files(monkeypatch, tmp_path
     def fake_run(command, **kwargs):
         captured["command"] = command
         captured.update(kwargs)
-        return subprocess.CompletedProcess(command, 0, "prefix <seq [['ok']] seq> suffix", "")
+        return subprocess.CompletedProcess(
+            command,
+            0,
+            "prefix <seq [['day', 'hour', 'device', 'action']] seq> suffix",
+            "",
+        )
 
     monkeypatch.setattr("SmartGen.codex_backend.subprocess.run", fake_run)
     client = CodexClient(working_directory=tmp_path)
-    assert client.generate("prompt") == "<seq [['ok']] seq>"
+    assert client.generate("prompt") == "<seq [['day', 'hour', 'device', 'action']] seq>"
     assert captured["input"] == "prompt"
     assert captured["command"][captured["command"].index("--model") + 1] == "gpt-5.6-sol"
     assert captured["command"][captured["command"].index("--sandbox") + 1] == "read-only"
@@ -187,6 +192,18 @@ def test_codex_client_rejects_unparseable_output(monkeypatch, tmp_path):
         lambda command, **kwargs: subprocess.CompletedProcess(command, 0, "not a sequence", ""),
     )
     with pytest.raises(CodexGenerationError):
+        CodexClient(working_directory=tmp_path).generate("prompt")
+
+
+def test_codex_client_rejects_non_quadruplet_sequence(monkeypatch, tmp_path):
+    monkeypatch.setattr("SmartGen.codex_backend.shutil.which", lambda _: "/usr/bin/codex")
+    monkeypatch.setattr(
+        "SmartGen.codex_backend.subprocess.run",
+        lambda command, **kwargs: subprocess.CompletedProcess(
+            command, 0, "<seq [['incomplete']] seq>", ""
+        ),
+    )
+    with pytest.raises(CodexGenerationError, match="quadruplets"):
         CodexClient(working_directory=tmp_path).generate("prompt")
 
 

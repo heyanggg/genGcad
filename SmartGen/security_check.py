@@ -2,6 +2,7 @@ import argparse
 import os
 import pickle
 import random
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -156,19 +157,8 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
 
     train_loader = make_data(new_env, vocab_size, data_file=train_file)
 
-    best_val_loss = 1000
-    stop_count = 0
-    early_stop_count = 10
-
-    last_loss_vector = {}
-    last_number_vector = {}
-    res = []
     for epoch in range(num_epochs):
         total_loss = 0
-        total_loss_all = 0
-
-        loss_vector = {}
-        number_vector = {}
         for batch in train_loader:
             src, padding_mask, mask_v = batch
             src = src.to(device)
@@ -176,7 +166,7 @@ def train(new_env, vocab_size, epochs, train_file, model_name, seq_len):
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -208,19 +198,8 @@ def train_check(new_env, vocab_size, epochs, train_file, add_file, model_name, s
 
     train_loader = make_data_check(new_env, vocab_size, train_file, add_file)
 
-    best_val_loss = 1000
-    stop_count = 0
-    early_stop_count = 10
-
-    last_loss_vector = {}
-    last_number_vector = {}
-    res = []
     for epoch in range(num_epochs):
         total_loss = 0
-        total_loss_all = 0
-
-        loss_vector = {}
-        number_vector = {}
         for batch in train_loader:
             src, padding_mask, mask_v = batch
             src = src.to(device)
@@ -228,7 +207,7 @@ def train_check(new_env, vocab_size, epochs, train_file, add_file, model_name, s
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v
@@ -251,7 +230,7 @@ def vld_check(new_env, vocab_size, vld_file, model_name, seq_len):
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
 
     losses = []
@@ -264,7 +243,7 @@ def vld_check(new_env, vocab_size, vld_file, model_name, seq_len):
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -283,7 +262,7 @@ def check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len
     model = TransformerAutoencoder(vocab_size, d_model=512, nhead=8, num_encoder_layers=2, num_decoder_layers=2)
 
     criterion = nn.CrossEntropyLoss(reduction='none')
-    model.load_state_dict(torch.load(model_name))
+    model.load_state_dict(torch.load(model_name, map_location=device))
     model.eval()
 
     losses = []
@@ -295,7 +274,7 @@ def check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len
         padding_mask = padding_mask.to(device)
 
         output = model(src, src_key_padding_mask=padding_mask)
-        src = src.cuda().long()
+        src = src.to(device).long()
 
         loss = criterion(output.view(-1, vocab_size), src.view(-1))
         loss = loss.reshape(-1, seq_len) * mask_v
@@ -316,13 +295,22 @@ def check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len
     with open(save_file, 'wb') as file4:
         pickle.dump(reversed_sequence, file4)
 
-    print(
-        f'The reversed_sequences ： {reversed_sequence}. \n The number of original generated sequences is {l_g}. \n The number of reversed sequences is {l_r}.')
+    print(f'First security pass retained {l_r}/{l_g} generated sequences.')
 
     return reversed_sequence, outlier_sequence
 
 
-def security_check(dataset, new_env, thres, method, model):
+def security_check(
+    dataset,
+    new_env,
+    thres,
+    method,
+    model,
+    seed=2024,
+    keep_intermediates=False,
+):
+    os.makedirs("check_model", exist_ok=True)
+    os.makedirs(f"filter_data/{dataset}/{new_env}", exist_ok=True)
     model_name = f"check_model/best_{dataset}_{model}_{method}.pth"
     vocab_size = vocab_dic[dataset]
     epochs = 10
@@ -330,18 +318,22 @@ def security_check(dataset, new_env, thres, method, model):
     data_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq.pkl'
     save_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter.pkl'
 
-    setup_seed(2024)
+    setup_seed(seed)
     train(new_env, vocab_size, epochs, data_file, model_name, seq_len)
     reversed_sequence, outlier_sequence = check_outlier(new_env, vocab_size, data_file, save_file, model_name, seq_len)
+    first_pass_count = len(reversed_sequence)
 
     outlier_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter_out'
+    outlier_prefix = Path(outlier_file)
+    for stale_file in outlier_prefix.parent.glob(f'{outlier_prefix.name}_*.pkl'):
+        stale_file.unlink()
     flag = save_outliers(outlier_sequence, outlier_file)
 
     if flag == 1:
         print('============================NEED FIND TRUE OUTLIER================================ \n')
         trn_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter_trn.pkl'
         vld_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter_vld.pkl'
-        split_random(save_file, trn_file, vld_file)
+        split_random(save_file, trn_file, vld_file, seed=seed)
 
         train(new_env, vocab_size, epochs, trn_file, model_name, seq_len)
         standard_loss = vld_check(new_env, vocab_size, vld_file, model_name, seq_len)
@@ -351,10 +343,10 @@ def security_check(dataset, new_env, thres, method, model):
             train_check(new_env, vocab_size, epochs, trn_file, add_file, model_name, seq_len)
             new_loss = vld_check(new_env, vocab_size, vld_file, model_name, seq_len)
             if new_loss <= standard_loss:
-                print(f'-------------------------------------------- THIS ONE NEED REVERSE: {outlier_sequence[i]}')
+                print(f'Outlier candidate {i}: restored after validation.')
                 reversed_sequence = reversed_sequence + [outlier_sequence[i]]
             else:
-                print(f'--------------------------------------------- THIS ONE NEED OUT: {outlier_sequence[i]}.')
+                print(f'Outlier candidate {i}: rejected after validation.')
 
     true_save_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter_true.pkl'
     with open(data_file, 'rb') as file:
@@ -366,5 +358,18 @@ def security_check(dataset, new_env, thres, method, model):
         with open(true_save_file, 'wb') as file9:
             pickle.dump(reversed_sequence, file9)
 
-    print(
-        f'The true reversed sequences ： {reversed_sequence}. \n The true number of reversed sequences is {len(reversed_sequence)}.')
+    print(f'Final security filter retained {len(reversed_sequence)}/{len(sequences)} sequences.')
+    if not keep_intermediates:
+        for scratch_path in [trn_file, vld_file] if flag == 1 else []:
+            if os.path.exists(scratch_path):
+                os.remove(scratch_path)
+        for i in range(len(outlier_sequence)):
+            scratch_path = f'{outlier_file}_{i}.pkl'
+            if os.path.exists(scratch_path):
+                os.remove(scratch_path)
+    return {
+        "input_count": len(sequences),
+        "first_pass_count": first_pass_count,
+        "final_count": len(reversed_sequence),
+        "output_path": true_save_file,
+    }

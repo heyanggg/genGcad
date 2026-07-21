@@ -23,29 +23,19 @@ def Extract(dataset, new_env, threshold, method, model, all_categories):
                 max_length = content_length
                 longest_match = content
 
-        if longest_match == None:
-            print("Not Found")
-            seq = None
-            with open(
-                    f'IoT_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_day_{day}_{method}_th={threshold}_{model}_seq.pkl',
-                    'wb') as f3:
-                pickle.dump(seq, f3)
+        if longest_match is None:
+            raise ValueError(f"Generated category {day} does not contain a sequence list.")
         else:
             extracted_content = longest_match
             try:
                 text_sequence = ast.literal_eval(extracted_content)
-                print("解析成功:", text_sequence)
+                print(f"Category {day}: parsed {len(text_sequence)} generated sequences.")
                 with open(
                         f'IoT_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_day_{day}_{method}_th={threshold}_{model}_seq.pkl',
                         'wb') as f3:
                     pickle.dump(text_sequence, f3)
             except (ValueError, SyntaxError) as e:
-                print("解析失败:", e)
-                seq = None
-                with open(
-                        f'IoT_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_day_{day}_{method}_th={threshold}_{model}_seq.pkl',
-                        'wb') as f3:
-                    pickle.dump(seq, f3)
+                raise ValueError(f"Generated category {day} is not a valid sequence list.") from e
 
 
 def Extract_increase(dataset, new_env, threshold, method, model, all_categories):
@@ -68,7 +58,7 @@ def Extract_increase(dataset, new_env, threshold, method, model, all_categories)
                 max_length = content_length
                 longest_match = content
 
-        if longest_match == None:
+        if longest_match is None:
             print("Not Found")
             seq = None
             with open(
@@ -113,7 +103,7 @@ def Extract_filter(dataset, new_env, threshold, method, model, all_categories):
                 max_length = content_length
                 longest_match = content
 
-        if longest_match == None:
+        if longest_match is None:
             print("Not Found")
             seq = None
             with open(

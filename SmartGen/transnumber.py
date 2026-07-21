@@ -21,7 +21,7 @@ def Transnum(dataset, new_env, threshold, method, model, all_categories, diction
                 f'IoT_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_day_{day}_{method}_th={threshold}_{model}_seq.pkl',
                 'rb') as file:
             sequences = pickle.load(file)
-        if sequences != None:
+        if sequences is not None:
             text_sequence += sequences
 
     number_sequence = []
@@ -47,12 +47,8 @@ def Transnum(dataset, new_env, threshold, method, model, all_categories, diction
 
     behavior_sequence = remove_quadruplets(number_sequence)
 
-    print(behavior_sequence)
-    print(len(behavior_sequence))
+    print(f'Converted {len(behavior_sequence)} generated sequences to numeric form.')
 
-    with open(f'IoT_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq.pkl',
-              'wb') as f3:
-        pickle.dump(behavior_sequence, f3)
     with open(f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq.pkl',
               'wb') as f3:
         pickle.dump(behavior_sequence, f3)
@@ -65,7 +61,7 @@ def Transnum_increase(dataset, new_env, threshold, method, model, all_categories
                 f'increase_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq_day_{day}_seq_increase.pkl',
                 'rb') as file:
             sequences = pickle.load(file)
-        if sequences != None:
+        if sequences is not None:
             text_sequence += sequences
 
     number_sequence = []
@@ -91,8 +87,7 @@ def Transnum_increase(dataset, new_env, threshold, method, model, all_categories
 
     behavior_sequence = remove_quadruplets(number_sequence)
 
-    print(behavior_sequence)
-    print(len(behavior_sequence))
+    print(f'Converted {len(behavior_sequence)} generated sequences to numeric form.')
 
     with open(
             f'increase_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq_seq_increase.pkl',
@@ -107,7 +102,7 @@ def Transnum_filter(dataset, new_env, threshold, method, model, all_categories, 
                 f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq_day_{day}_seq_filter.pkl',
                 'rb') as file:
             sequences = pickle.load(file)
-        if sequences != None:
+        if sequences is not None:
             text_sequence += sequences
 
     number_sequence = []
@@ -133,8 +128,7 @@ def Transnum_filter(dataset, new_env, threshold, method, model, all_categories, 
 
     behavior_sequence = remove_quadruplets(number_sequence)
 
-    print(behavior_sequence)
-    print(len(behavior_sequence))
+    print(f'Converted {len(behavior_sequence)} generated sequences to numeric form.')
 
     with open(
             f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={threshold}_{model}_seq_seq_filter.pkl',

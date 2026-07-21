@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import shutil
 import subprocess
 from pathlib import Path
@@ -69,9 +70,45 @@ class CodexClient:
             detail = completed.stderr.strip() or completed.stdout.strip() or "unknown Codex error"
             raise CodexGenerationError(f"Codex generation failed: {detail}")
 
-        response = completed.stdout.strip()
+        sequence_block = self.extract_sequence_block(completed.stdout)
+        self.parse_sequence_block(sequence_block)
+        return sequence_block
+
+    @staticmethod
+    def extract_sequence_block(response: str) -> str:
+        response = response.strip()
         start = response.find("<seq")
         end = response.rfind("seq>")
         if start < 0 or end < start:
             raise CodexGenerationError("Codex response does not contain the required <seq ... seq> block.")
         return response[start : end + len("seq>")]
+
+    @staticmethod
+    def parse_sequence_block(sequence_block: str) -> list[list[str]]:
+        content = sequence_block[len("<seq") : -len("seq>")].strip()
+        try:
+            sequences = ast.literal_eval(content)
+        except (SyntaxError, ValueError) as exc:
+            raise CodexGenerationError("The <seq ... seq> block is not a Python list.") from exc
+        if not isinstance(sequences, list) or any(
+            not isinstance(sequence, list)
+            or not sequence
+            or len(sequence) % 4 != 0
+            or any(not isinstance(item, str) for item in sequence)
+            for sequence in sequences
+        ):
+            raise CodexGenerationError(
+                "Each generated sequence must be a non-empty list of text quadruplets."
+            )
+        return sequences
+
+    @classmethod
+    def is_valid_response(cls, response: object) -> bool:
+        if not isinstance(response, str):
+            return False
+        try:
+            sequence_block = cls.extract_sequence_block(response)
+            cls.parse_sequence_block(sequence_block)
+        except CodexGenerationError:
+            return False
+        return True

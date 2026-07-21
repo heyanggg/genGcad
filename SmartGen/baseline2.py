@@ -1,14 +1,13 @@
 import random
 import os
 import pickle
-import random
 
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 
-from models1 import TransformerAutoencoder, TimeSeriesDataset1
+from models1 import TimeSeriesDataset1
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -85,8 +84,8 @@ class TransformerAutoencoder(nn.Module):
         return self.output_layer(output)
 
 
-def Train(dataset, ori_env, vocab_size):
-    setup_seed(2024)
+def Train(dataset, ori_env, vocab_size, seed=2024):
+    setup_seed(seed)
 
     num_epochs = 15
     seq_len = 40
@@ -99,6 +98,7 @@ def Train(dataset, ori_env, vocab_size):
 
     criterion = nn.CrossEntropyLoss(reduction='none')
     optimizer = torch.optim.Adam(model.parameters())
+    os.makedirs("IoT_model", exist_ok=True)
     model_name = f"IoT_model/Transformer_{dataset}_{ori_env}_{num_epochs}epoch.pth"
 
     for epoch in range(num_epochs):
@@ -110,7 +110,7 @@ def Train(dataset, ori_env, vocab_size):
             padding_mask = padding_mask.to(device)
 
             output = model(src, src_key_padding_mask=padding_mask)
-            src = src.cuda().long()
+            src = src.to(device).long()
 
             loss = criterion(output.view(-1, vocab_size), src.view(-1))
             loss = loss.reshape(-1, seq_len) * mask_v

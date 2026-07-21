@@ -65,20 +65,21 @@ class LinkAnalyzer:
             print()
 
 
-def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name):
+def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name, verbose=False):
     analyzer = LinkAnalyzer(actions)
     analyzer.fit_sequences(sequences)
 
     top_transitions = analyzer.get_top_transitions(top_n=5)
 
-    print("The top 5 most commonly followed actions after each action: ")
-    for num, transitions in top_transitions.items():
-        if not transitions:
-            print(f"Actions {analyzer.index_to_number[num]} are usually not followed by any other actions")
-        else:
-            print(f"Actions {analyzer.index_to_number[num]} most common action afterwards: ")
-            for next_num, count in transitions:
-                print(f"  -> {analyzer.index_to_number[next_num]}: {count} times")
+    if verbose:
+        print("The top 5 most commonly followed actions after each action: ")
+        for num, transitions in top_transitions.items():
+            if not transitions:
+                print(f"Actions {analyzer.index_to_number[num]} are usually not followed by any other actions")
+            else:
+                print(f"Actions {analyzer.index_to_number[num]} most common action afterwards: ")
+                for next_num, count in transitions:
+                    print(f"  -> {analyzer.index_to_number[next_num]}: {count} times")
 
     transition_results = {}
 
@@ -106,7 +107,8 @@ def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name)
     with open(file_name, 'w', encoding='utf-8') as f:
         json.dump(transition_results, f, ensure_ascii=False, indent=4)
 
-    analyzer.print_transition_matrix()
+    if verbose:
+        analyzer.print_transition_matrix()
 
 
 def ATM(dataset, ori_env, actions):
@@ -122,6 +124,4 @@ def ATM(dataset, ori_env, actions):
     file_name = f'IoT_data/{dataset}/{ori_env}/action_transitions.json'
     analyze_link(sequences, actions, file_name)
 
-    with open(file_name, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        print(json.dumps(data, ensure_ascii=False, indent=2))
+    print(f'Wrote GSS transition guidance to {file_name}.')
