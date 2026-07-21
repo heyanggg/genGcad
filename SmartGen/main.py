@@ -188,13 +188,12 @@ def environment_generation_guidance(target_environment):
     )
     if target_environment == "night":
         return common + (
-            "For this category, generate 3 to 6 distinct subsequences, normally containing 5 to "
-            "9 behavior quadruples each. "
+            "For this category, generate 3 to 4 distinct subsequences, normally containing 5 to "
+            "8 behavior quadruples each. "
             "For the changed night-active environment, place the main active behaviors in the "
             "available time intervals (18~21), (21~24), (0~3), and (3~6). The daytime intervals "
-            "should not dominate, but retain occasional plausible morning-transition behavior "
-            "in (6~9). Use (9~12), (12~15), and (15~18) only when a behavior genuinely requires "
-            "a daytime exception."
+            "(6~9), (9~12), (12~15), and (15~18) should be rare and used only when a behavior "
+            "genuinely requires a daytime exception."
         )
     if target_environment == "spring":
         return common + (
