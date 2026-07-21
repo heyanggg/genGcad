@@ -1,4 +1,3 @@
-import json
 import pickle
 import subprocess
 import sys
@@ -211,7 +210,7 @@ def test_main_adds_gcad_as_soft_guidance_without_reranking_gss(monkeypatch):
     smartgen = str(Path("SmartGen").resolve())
     monkeypatch.syspath_prepend(smartgen)
     sys.modules.pop("main", None)
-    from main import build_prompt
+    from main import build_prompt, compose_smartgen_prompt
 
     gss = {"a:on": {"transitions": [{"next_action": "b:on", "count": 4}]}}
     gcad = {"status": "ready", "lagged_behavior_relations": [{
@@ -219,14 +218,44 @@ def test_main_adds_gcad_as_soft_guidance_without_reranking_gss(monkeypatch):
         "typical_lag": 2
     }]}
     prompt = build_prompt("devices", "environment", [["sequence"]], gss, gcad)
-    assert json.dumps(gss, ensure_ascii=False) in prompt
+    original_prompt = compose_smartgen_prompt(
+        "devices", "environment", [["sequence"]], gss
+    )
+    assert f"User's behavior habits: {gss}" in prompt
     assert '"source_action": "a:on"' in prompt
     assert "artifact_fingerprint" not in prompt
-    assert "Immediate transition patterns" in prompt
-    assert "Lagged directional dependency patterns" in prompt
+    assert "Directional behavior relationship guidance" in prompt
     assert "soft guidance" in prompt
-    assert "Do not force every pattern" in prompt
+    assert "do not force every relationship" in prompt
+    assert prompt.replace(
+        prompt[prompt.index(" Directional behavior relationship guidance:") : prompt.index("Your task:")],
+        "",
+    ) == original_prompt
     assert "rerank" not in Path("SmartGen/main.py").read_text(encoding="utf-8").lower()
+
+
+def test_disabled_gcad_uses_byte_equivalent_original_smartgen_prompt(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import build_prompt, compose_smartgen_prompt
+
+    args = (
+        "devices",
+        "environment",
+        [["Monday", "(0~3)", "Light", "Light:switch on"]],
+        {"Light:switch on": {"transitions": []}},
+    )
+    expected = compose_smartgen_prompt(*args)
+    for gcad in [
+        {"status": "disabled", "lagged_behavior_relations": []},
+        {"status": "ready", "lagged_behavior_relations": []},
+        {},
+    ]:
+        actual = build_prompt(*args, gcad)
+        assert actual == expected
+        assert "GCAD" not in actual
+        assert "Directional behavior relationship guidance" not in actual
 
 
 def test_main_boolean_arguments_parse_false(monkeypatch):

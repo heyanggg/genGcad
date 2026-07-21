@@ -99,43 +99,20 @@ def get_args_parser():
     return parser
 
 
-def build_prompt(
+def compose_smartgen_prompt(
     device_control_dict,
     sentence,
     user_sequence,
     action_transition,
-    gcad_relationships,
+    additional_guidance="",
 ):
-    gcad_guidance = {
-        "status": gcad_relationships.get("status", "unknown"),
-        "lag_unit": gcad_relationships.get(
-            "lag_unit", "subsequent_behavior_positions"
-        ),
-        "directional_relationships": gcad_relationships.get(
-            "lagged_behavior_relations", []
-        ),
-    }
-    historical_guidance = (
-        "Historical behavior guidance contains two kinds of patterns: "
-        "1. Immediate transition patterns: These describe actions that frequently occur directly "
-        "after another action. "
-        f"{json.dumps(action_transition, ensure_ascii=False)} "
-        "2. Lagged directional dependency patterns (GCAD-derived): These are validated predictive "
-        "dependencies, not proof of real-world causality. A source action may help predict a "
-        "target action after the indicated number of subsequent behavior positions. "
-        f"{json.dumps(gcad_guidance, ensure_ascii=False)} "
-        "Use both kinds of patterns as soft guidance. Immediate transition patterns mainly guide "
-        "adjacent actions. Lagged dependency patterns may be satisfied after intermediate actions. "
-        "Do not force every pattern to appear in every sequence. Adapt the behaviors when they "
-        "conflict with the new environment. "
-    )
     return (
         "You're an IoT expert. And you are very knowledgeable about user behavior and habits in smart homes. Now, the user would like to ask you about the possible changes in user behavior sequence after the change of environment. "
         "The user will provide you with the user's previous life environment and the changed environment, the user's previous behavior sequence, and a set of devices and device states. And the user hope that you can use your knowledge and the set to generate possible user behavior sequences after the change based on the original sequences."
         "Each user behavior sequence consists of some quadruples containing the number of weeks, hours, devices."
         f"The set of the possible device and device states: {device_control_dict}"
-        f"{sentence} The user's compressed original sequences of behavior: {user_sequence}. "
-        f"{historical_guidance}"
+        f"{sentence} The user's compressed original sequences of behavior: {user_sequence}. User's behavior habits: {action_transition}"
+        f"{additional_guidance}"
         "Your task: First, select the possible new device states from the set of devices and device states which are also possible new user behaviors. "
         "The second step is to reasonably add possible new user behaviors to the original user behavior sequences. The third step is to reasonably continue and expand the sequence based on user behavior habits."
         "Requirements:"
@@ -147,6 +124,47 @@ def build_prompt(
         "6.The final generated behavior sequences set is in the format of <seq [['...'], ['...'], ['...']] seq>. For example, the sequences set can be like <seq [['Sunday', '(21~24)', 'Blind', 'Blind:windowShade open', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement charging', 'Sunday', '(21~24)', 'Camera', 'Camera:notification', 'Sunday', '(21~24)', 'Blind', 'Blind:windowShade close', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning', 'Sunday', '(21~24)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning'], ['Friday', '(0~3)', 'Blind', 'Blind:windowShade open', 'Friday', '(0~3)', 'RobotCleaner', 'RobotCleaner:setRobotCleanerMovement cleaning', 'Friday', '(0~3)', 'Camera', 'Camera:notification', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade close', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade open', 'Friday', '(0~3)', 'Camera', 'Camera:notification', 'Friday', '(0~3)', 'Blind', 'Blind:windowShade close']] seq>"
         "Note that each [...] subsequence represents the user's behavior over a period of time. There is no direct correlation between subsequences. At the same time, the final sequence is strictly generated in the format of <seq [['......'], ['......'], ['......']] seq> without line breaks or inconsistent formats."
         "Please think step by step, and return the final generated user behavior sequence set."
+    )
+
+
+def build_prompt(
+    device_control_dict,
+    sentence,
+    user_sequence,
+    action_transition,
+    gcad_relationships,
+):
+    relationships = gcad_relationships.get("lagged_behavior_relations", [])
+    if gcad_relationships.get("status") != "ready" or not relationships:
+        return compose_smartgen_prompt(
+            device_control_dict,
+            sentence,
+            user_sequence,
+            action_transition,
+        )
+
+    gcad_guidance = {
+        "lag_unit": gcad_relationships.get(
+            "lag_unit", "subsequent_behavior_positions"
+        ),
+        "directional_relationships": relationships,
+    }
+    additional_guidance = (
+        " Directional behavior relationship guidance: "
+        "The following relationships were extracted from historical normal behavior sequences. "
+        "When a source behavior occurs, the corresponding target behavior is often influenced "
+        "within the indicated number of subsequent behavior positions. "
+        "Use these relationships as soft guidance. Preserve them when they are compatible with "
+        "the new environmental context, but do not force every relationship to appear in every "
+        "generated sequence. "
+        f"{json.dumps(gcad_guidance, ensure_ascii=False)} "
+    )
+    return compose_smartgen_prompt(
+        device_control_dict,
+        sentence,
+        user_sequence,
+        action_transition,
+        additional_guidance,
     )
 
 

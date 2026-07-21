@@ -32,7 +32,7 @@ The adapted GCAD stages are:
 4. Integrate lag scores, apply `max(0, A - Aᵀ)`, and sparsify the graph.
 5. Repeat with three model seeds and retain only relationships stable across at least two seeds.
 
-The predictor must outperform a held-out frequency baseline. If the data are too small, validation fails, or no edge is stable, GCAD writes a disabled artifact with an empty relationship list; SmartGen then continues with the original GSS guidance. A successful relationship records its raw and normalized strength, lag, support, and seed stability. GCAD anomaly scoring is intentionally not included.
+The predictor must outperform a held-out frequency baseline. If the data are too small, validation fails, or no edge is stable, GCAD writes a disabled artifact with an empty relationship list; SmartGen then uses a byte-equivalent copy of the original prompt without any GCAD text. GCAD guidance is appended only when the artifact is ready and contains stable relationships. A successful relationship records its raw and normalized strength, lag, support, and seed stability. GCAD anomaly scoring is intentionally not included.
 
 The GCAD/Codex integration is concentrated in three files:
 
