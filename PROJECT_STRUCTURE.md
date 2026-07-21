@@ -76,6 +76,7 @@ by Git. `experiment_archive/registry.json` is the summary index.
 
 Statuses have fixed meanings:
 
+- `formal`: accepted, provenance-complete formal single-seed experiment.
 - `completed`: technically complete experiment awaiting research classification.
 - `verified_candidates`: high-scoring candidate; not yet a multi-run conclusion.
 - `diagnostic`: debugging or prompt/backend calibration run.
@@ -112,3 +113,20 @@ parameter_study/
 ```
 
 They are reference baselines/studies, not SmartGen-GCAD run output.
+
+## Retention policy
+
+The repository keeps three classes of assets:
+
+1. Upstream SmartGen source, reference baselines/studies, and the nine GPT-4o outputs
+   at the recommended dataset/environment thresholds.
+2. Active SmartGen-GCAD source and the runtime files referenced by accepted formal
+   manifests.
+3. Self-contained heavy artifacts for accepted runs under
+   `experiment_archive/formal/`.
+
+Prompt calibration attempts, failed/diagnostic runs, non-recommended threshold
+sweeps in the active runtime tree, and duplicate preprocessing snapshots are not
+part of the maintained project. Runtime files may be cleaned only after resolving
+the formal manifest `files[].source` entries as a keep-list and verifying every
+formal archive checksum.

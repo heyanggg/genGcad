@@ -95,18 +95,26 @@ By default, GCAD writes `SmartGen/artifacts/gcad/<dataset>/<original_environment
 
 GCAD prompt participation is explicit: `--gcad-mode auto` uses stable relationships when available, `--gcad-mode off` extracts/records GCAD but suppresses its prompt guidance for ablation, and `--gcad-mode require` stops the run unless stable relationships are available. The selected mode and whether guidance was actually enabled are recorded in both the run manifest and experiment archive.
 
-The default `environment-aware` prompt profile adds explicit target-environment and sequence-shape constraints while retaining the full upstream prompt. Night-sequence shape bounds are calibrated from the checked-in GPT-4o generation artifacts across the original neighboring thresholds, without reading anomaly labels or test metrics. For strict prompt comparison, pass `--prompt-profile original`; when GCAD is disabled, that mode is byte-equivalent to upstream SmartGen. Every run records prompt hashes and a non-filtering environment-adherence summary in its manifest.
+The default `environment-aware` prompt profile adds explicit target-environment and sequence-shape constraints while retaining the full upstream prompt. Night-sequence shape bounds were calibrated from the original GPT-4o generation artifacts without reading anomaly labels or test metrics. For strict prompt comparison, pass `--prompt-profile original`; when GCAD is disabled, that mode is byte-equivalent to upstream SmartGen. Every run records prompt hashes and a non-filtering environment-adherence summary in its manifest.
 
 Codex runs with a read-only sandbox, explicit `none` reasoning effort, the current Codex login, and user/project CLI configuration disabled for experiment isolation. Upstream SmartGen requested `temperature=0`, `top_p=0`, `seed=2024`, and `max_tokens=8040`; the current Codex CLI rejects all four as unknown configuration fields. The run manifest therefore records those values as the upstream request and explicitly marks them as not applied instead of pretending they were fixed. The model slug, reasoning effort, prompt profile, experiment seed, exact prompt hashes, and outputs remain recorded and reproducible within the controls the Codex CLI actually exposes.
 
-## Verified experiment
+## Formal single-seed experiments
 
-The legacy `FR / winter → spring / SPPC / threshold 0.918 / seed 2024` generation run completed end to end before run IDs were introduced. GCAD retained five relationships stable across all three internal seeds, all 16 Codex generation groups parsed successfully, and TOF retained 204 valid sequences.
+Accepted runs live under [`experiment_archive/formal/`](experiment_archive/formal/).
+The registry and every archive manifest contain the exact configuration, metrics,
+prompt/response provenance, GCAD state, TOF counts, and checksums.
 
-The original SmartGen anomaly detector was then trained with 163 generated sequences and validated with 41. On 88 normal and 88 attack samples it produced `TP=87`, `TN=88`, `FP=0`, and `FN=1` (`accuracy=0.9943`, `F1=0.9943`). The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json).
+| Dataset | Change | GCAD | F1 | Accuracy |
+| --- | --- | --- | ---: | ---: |
+| FR | winter → spring | require, ready | 0.961749 | 0.960227 |
+| FR | daytime → night | auto, disabled | 0.971924 | 0.971113 |
+| FR | single → multiple | require, ready | 0.994475 | 0.994444 |
+| SP | winter → spring | require, ready | 0.971122 | 0.970467 |
+| SP | daytime → night | auto, disabled | 0.984420 | 0.984174 |
+| SP | single → multiple | require, ready | 0.913295 | 0.905063 |
 
-The `FR / daytime → night / SPPC / threshold 0.92 / seed 2024` run also completed end to end. Only one of three GCAD predictor seeds passed the held-out quality gate, so the stability filter correctly disabled GCAD guidance and generation continued with the original GSS fallback. All seven Codex groups parsed successfully, producing 49 numeric sequences, of which TOF retained 48. The anomaly detector used 38 training and 10 validation sequences; on 952 normal and 952 attack samples it produced `TP=760`, `TN=899`, `FP=53`, and `FN=192` (`accuracy=0.8713`, `F1=0.8612`). The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_SPPC_th-0.92_p-95_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_SPPC_th-0.92_p-95_seed2024/metrics.json).
-
-After calibrating the Codex migration controls and night output shape from the checked-in GPT-4o artifacts, the isolated `seed2024_calibrated_none` run generated exactly 28 sequences and TOF retained all 28. With `reasoning=none` and the `environment-aware` prompt profile, the unchanged detector produced `TP=952`, `TN=897`, `FP=55`, and `FN=0` (`accuracy=0.9711`, `F1=0.9719`). GCAD remained correctly disabled for this small source split, so this improvement is attributable to the generation migration rather than GCAD. The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_calibrated_none_SPPC_th-0.92_p-95_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_calibrated_none_SPPC_th-0.92_p-95_seed2024/metrics.json).
+Historical calibration and failed prompt experiments are intentionally not kept in
+the active tree. They remain recoverable from Git history when they were tracked.
 
 

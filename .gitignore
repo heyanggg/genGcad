@@ -18,6 +18,7 @@ env/
 .DS_Store
 *.swp
 *~
+exports/
 
 # Local credentials and machine-specific configuration
 .env
@@ -40,28 +41,15 @@ SmartGen/artifacts/
 # Per-run prompts, responses and resumable manifests
 SmartGen/runs/
 
-# Per-prompt generation responses; retain merged/final experiment datasets
+# Runtime data is archived through experiment_archive; tracked upstream GPT-4o
+# reference files remain tracked even though these rules cover their directories.
+SmartGen/anomaly_runs/
+SmartGen/filter_data/
+SmartGen/IoT_data/*/*/trn_day_*
+
+# Per-prompt generation responses
 SmartGen/IoT_data/*/*/*_generation_day_*.pkl
-
-# TOF security-check scratch files; retain *_seq_filter_true.pkl
-SmartGen/filter_data/*/*/*_seq_filter_out_*.pkl
-SmartGen/filter_data/*/*/*_seq_filter_trn.pkl
-SmartGen/filter_data/*/*/*_seq_filter_vld.pkl
-
-# Anomaly-detector reproducibility scratch data; retain metrics.json
-SmartGen/anomaly_runs/**/train.pkl
-SmartGen/anomaly_runs/**/validation.pkl
 
 # Self-contained experiment archives: keep metadata in Git, heavy artifacts locally.
 experiment_archive/**/artifacts/
 experiment_archive/.*-/
-
-# Superseded local diagnostics are preserved in experiment_archive/diagnostic/.
-SmartGen/anomaly_runs/*seed2024_promptfix*/
-SmartGen/anomaly_runs/*seed2024_isolated*/
-SmartGen/anomaly_runs/*seed2024_envaware_none*/
-SmartGen/anomaly_runs/*seed2024_envaware_v2_none*/
-SmartGen/filter_data/*/*/*seed2024_promptfix*
-SmartGen/filter_data/*/*/*seed2024_isolated*
-SmartGen/filter_data/*/*/*seed2024_envaware_none*
-SmartGen/filter_data/*/*/*seed2024_envaware_v2_none*
