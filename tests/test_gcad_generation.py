@@ -313,6 +313,35 @@ def test_main_boolean_arguments_parse_false(monkeypatch):
     args = get_args_parser().parse_args(["--need_generate", "False", "--need_test", "False"])
     assert args.need_generate is False
     assert args.need_test is False
+    assert args.gcad_mode == "auto"
+
+
+def test_gcad_mode_can_disable_or_require_guidance(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import select_gcad_guidance
+
+    ready = {
+        "status": "ready",
+        "lagged_behavior_relations": [{"source_action": "a", "target_action": "b"}],
+    }
+    assert select_gcad_guidance(ready, "auto") is ready
+    assert select_gcad_guidance(ready, "require") is ready
+    disabled = select_gcad_guidance(ready, "off")
+    assert disabled["status"] == "disabled"
+    assert disabled["lagged_behavior_relations"] == []
+    assert ready["lagged_behavior_relations"]
+
+    with pytest.raises(RuntimeError, match="required but is unavailable"):
+        select_gcad_guidance(
+            {
+                "status": "disabled",
+                "disabled_reason": "quality_gate_failed",
+                "lagged_behavior_relations": [],
+            },
+            "require",
+        )
 
 
 def test_main_trains_gcad_from_tss_output_before_ssc():

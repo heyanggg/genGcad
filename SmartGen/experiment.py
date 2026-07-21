@@ -96,6 +96,7 @@ class ExperimentConfig:
     gcad_seeds: tuple[int, ...]
     gcad_history: int
     gcad_epochs: int
+    gcad_mode: str
     codex_reasoning_effort: str
     prompt_profile: str
 
@@ -117,6 +118,8 @@ class ExperimentConfig:
             raise ValueError("at least one GCAD seed is required")
         if len(set(self.gcad_seeds)) != len(self.gcad_seeds):
             raise ValueError("GCAD seeds must be unique")
+        if self.gcad_mode not in {"auto", "off", "require"}:
+            raise ValueError("unsupported GCAD mode")
         if self.codex_reasoning_effort not in {
             "none",
             "low",

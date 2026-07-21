@@ -107,6 +107,15 @@ def get_args_parser():
     parser.add_argument("--gcad-output", "--gcad_output", default=None)
     parser.add_argument("--gcad-force", action="store_true")
     parser.add_argument(
+        "--gcad-mode", "--gcad_mode",
+        default="auto",
+        choices=["auto", "off", "require"],
+        help=(
+            "auto uses stable GCAD guidance when available; off suppresses it; "
+            "require fails unless stable relationships are available"
+        ),
+    )
+    parser.add_argument(
         "--archive-status",
         default="completed",
         choices=sorted(ARCHIVE_STATUSES),
@@ -191,6 +200,29 @@ def build_prompt(
         action_transition,
         additional_guidance,
     )
+
+
+def select_gcad_guidance(gcad_relationships, mode):
+    relationships = gcad_relationships.get("lagged_behavior_relations", [])
+    ready = gcad_relationships.get("status") == "ready" and bool(relationships)
+    if mode == "auto":
+        return gcad_relationships
+    if mode == "off":
+        return {
+            "status": "disabled",
+            "disabled_reason": "disabled_by_experiment_configuration",
+            "lagged_behavior_relations": [],
+        }
+    if mode == "require":
+        if not ready:
+            reason = gcad_relationships.get(
+                "disabled_reason", "no_stable_directional_relationships"
+            )
+            raise RuntimeError(
+                f"GCAD guidance was required but is unavailable: {reason}"
+            )
+        return gcad_relationships
+    raise ValueError(f"unsupported GCAD mode: {mode!r}")
 
 
 def environment_generation_guidance(target_environment):
@@ -279,6 +311,7 @@ def experiment_config_from_args(args):
         gcad_seeds=tuple(args.gcad_seeds),
         gcad_history=args.gcad_history,
         gcad_epochs=args.gcad_epochs,
+        gcad_mode=args.gcad_mode,
         codex_reasoning_effort=args.codex_reasoning_effort,
         prompt_profile=args.prompt_profile,
     )
@@ -319,6 +352,9 @@ def run_generation(args, config):
             split_seed=args.experiment_seed,
             force=args.gcad_force,
         )
+        prompt_gcad_relationships = select_gcad_guidance(
+            gcad_relationships, args.gcad_mode
+        )
         run.update(
             status="compressing",
             gcad={
@@ -328,6 +364,15 @@ def run_generation(args, config):
                     gcad_relationships.get("lagged_behavior_relations", [])
                 ),
                 "path": str(gcad_output),
+                "mode": args.gcad_mode,
+                "guidance_enabled": (
+                    prompt_gcad_relationships.get("status") == "ready"
+                    and bool(
+                        prompt_gcad_relationships.get(
+                            "lagged_behavior_relations", []
+                        )
+                    )
+                ),
             },
         )
 
@@ -391,7 +436,7 @@ def run_generation(args, config):
                 sentence,
                 user_sequence,
                 action_transition,
-                gcad_relationships,
+                prompt_gcad_relationships,
                 target_environment=args.new_env,
                 prompt_profile=args.prompt_profile,
             )

@@ -29,6 +29,7 @@ def make_config(**overrides):
         "gcad_seeds": (2024, 2025, 2026),
         "gcad_history": 4,
         "gcad_epochs": 50,
+        "gcad_mode": "auto",
         "codex_reasoning_effort": "none",
         "prompt_profile": "environment-aware",
     }
@@ -56,6 +57,8 @@ def test_experiment_config_rejects_invalid_or_duplicate_gcad_settings():
         make_config(gcad_history=0)
     with pytest.raises(ValueError, match="threshold"):
         make_config(threshold=1.1)
+    with pytest.raises(ValueError, match="GCAD mode"):
+        make_config(gcad_mode="sometimes")
 
 
 def test_run_manifest_records_resumable_categories(tmp_path):

@@ -89,6 +89,14 @@ python SmartGen/archiving.py verify
 python SmartGen/archiving.py promote <archive-id>
 ```
 
+GCAD ablations must use an explicit prompt mode:
+
+```bash
+--gcad-mode auto       # use stable guidance when available
+--gcad-mode off        # suppress GCAD guidance
+--gcad-mode require    # fail if stable guidance is unavailable
+```
+
 ## Upstream SmartGen material
 
 The following top-level directories are retained from upstream SmartGen and are not
