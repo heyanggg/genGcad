@@ -1,0 +1,798 @@
+{
+  "schema_version": 1,
+  "archive_id": "sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024",
+  "status": "formal",
+  "created_at": "2026-07-21T07:43:22.893675+00:00",
+  "reconstructed": false,
+  "storage_mode": "copy",
+  "config": {
+    "dataset": "sp",
+    "original_environment": "single",
+    "target_environment": "multiple",
+    "method": "SPPC",
+    "threshold": 0.915,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_gcad_h4_original",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "require",
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "original",
+    "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+    "validation_percentile": 99.0
+  },
+  "metrics": {
+    "dataset": "sp",
+    "environment": "multiple",
+    "method": "SPPC",
+    "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+    "generation_threshold": 0.915,
+    "validation_percentile": 99.0,
+    "seed": 2024,
+    "generated_sequence_count": 83,
+    "training_sequence_count": 83,
+    "validation_sequence_count": 83,
+    "normal_test_count": 158,
+    "attack_test_count": 158,
+    "detection_threshold": 0.0006041320459917165,
+    "metrics": {
+      "TP": 158,
+      "TN": 128,
+      "FP": 30,
+      "FN": 0,
+      "FPR": 0.189873417721519,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.8404255319148937,
+      "accuracy": 0.9050632911392406,
+      "f1_score": 0.9132947976878613
+    },
+    "metrics_path": "anomaly_runs/sp_multiple_gpt-5.6-sol__seed2024_gcad_h4_original_SPPC_th-0.915_p-99_seed2024/metrics.json"
+  },
+  "provenance": {
+    "generation_manifest": {
+      "schema_version": 2,
+      "status": "completed",
+      "created_at": "2026-07-21T07:34:30.023806+00:00",
+      "updated_at": "2026-07-21T07:43:09.543265+00:00",
+      "git_commit": "54225d5d6a8cb56f16c73e5086dbabbeb253cb80",
+      "config": {
+        "dataset": "sp",
+        "original_environment": "single",
+        "target_environment": "multiple",
+        "method": "SPPC",
+        "threshold": 0.915,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_gcad_h4_original",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "gcad_mode": "require",
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "original",
+        "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_original"
+      },
+      "completed_categories": [
+        "0",
+        "1",
+        "2_0",
+        "2_1",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "outputs": {
+        "generated_numeric": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+        "tof_final": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+        "tof_final_count": 83
+      },
+      "gcad": {
+        "status": "ready",
+        "artifact_fingerprint": "116a6cfe13690480613b26985bf471e9fc4454982ae50bb3dd31460736c43d71",
+        "relationship_count": 1,
+        "path": "artifacts/gcad/sp/single/preflight_history4.json",
+        "mode": "require",
+        "guidance_enabled": true
+      },
+      "categories": [
+        "0",
+        "1",
+        "2_0",
+        "2_1",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "generation_backend": {
+        "transport": "codex_cli",
+        "model": "gpt-5.6-sol",
+        "reasoning_effort": "none",
+        "ephemeral": true,
+        "ignore_user_config": true,
+        "ignore_rules": true,
+        "sandbox": "read-only",
+        "original_smartgen_sampling_request": {
+          "temperature": 0,
+          "top_p": 0,
+          "seed": 2024,
+          "max_tokens": 8040
+        },
+        "sampling_controls_applied": false,
+        "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+      },
+      "category_outputs": {
+        "0": "IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "1": "IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "2_0": "IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "2_1": "IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "3": "IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "4": "IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "5": "IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+        "6": "IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl"
+      },
+      "prompt_sha256": {
+        "0": "9e54d996c22eaf83a06f7354a72810997157215bf16eeedfb89f9b297fc97268",
+        "1": "e9a74c7287bcaa451215d271114385b101a177144c380566cac95fa19fd5597c",
+        "2_0": "b23e43e5bb196990fbdda2cfe57be79273cdc9f45b4b944cc1a386610c236cf7",
+        "2_1": "029581515e4d7630fb86ff94964a32eccb935d528a628315ce42cadc57b3079f",
+        "3": "9792a329dd6a1252b1bd35d0e6982115673159085b91d84ba27f6634cbe40398",
+        "4": "d2db324e0224201d3d282c256d6fac338c07781401a076cce485327ee237c20d",
+        "5": "192d45fb9b1396de4ef30f4eb5152823560a53e3f4d6bfc24ee6a1a7086bbf9f",
+        "6": "1d4a7dd5a75c3eba8ecf041bda07628bb3f8b3c07c6859380b61afd027e8f816"
+      },
+      "environment_adherence": {
+        "target_environment": "multiple",
+        "behavior_count": 787,
+        "hour_counts": {
+          "0": 78,
+          "1": 63,
+          "2": 106,
+          "3": 178,
+          "4": 108,
+          "5": 94,
+          "6": 74,
+          "7": 86
+        },
+        "used_for_filtering": false
+      },
+      "tof": {
+        "input_count": 88,
+        "first_pass_count": 72,
+        "final_count": 83,
+        "intermediates_preserved": true
+      }
+    },
+    "automatic_archive": true
+  },
+  "missing_artifacts": [],
+  "artifact_count": 102,
+  "artifact_bytes": 144046478,
+  "files": [
+    {
+      "path": "artifacts/anomaly_detection/detector.pth",
+      "source": "SmartGen/anomaly_runs/sp_multiple_gpt-5.6-sol__seed2024_gcad_h4_original_SPPC_th-0.915_p-99_seed2024/detector.pth",
+      "size": 59837980,
+      "sha256": "573be047ad20b966f3bb0f9cd2c16d0ea2637b31c3811c59dad12fa32cbd7c18"
+    },
+    {
+      "path": "artifacts/anomaly_detection/metrics.json",
+      "source": "SmartGen/anomaly_runs/sp_multiple_gpt-5.6-sol__seed2024_gcad_h4_original_SPPC_th-0.915_p-99_seed2024/metrics.json",
+      "size": 672,
+      "sha256": "0f3e1f7d12c5231f0d241d37dc6c051100a1cb69d482128df26b473ca99fac9c"
+    },
+    {
+      "path": "artifacts/gcad/gcad_hints.json",
+      "source": "SmartGen/artifacts/gcad/sp/single/preflight_history4.json",
+      "size": 2353,
+      "sha256": "b5a8fb9bbe2f50997b87e11ed642b61d8f4417f70cd75d8c232ba6c60577fdc8"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_0.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 5129,
+      "sha256": "b267456e6147cf8f5e2ddcde1b377ba84c054a01198fd4595730d82deb2698ab"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_1.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 6661,
+      "sha256": "924dd1cd744f21b9b6677c3e2ba922099040a796a00c5c9548276b0d32fee2b7"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_2_0.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 7685,
+      "sha256": "975d9b2323f91c9ece9ec5d07637935d4710263468117ea55e52133953c50139"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_2_1.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 4705,
+      "sha256": "57398270b00ad65b155c3808b45e07607c287e2cf229f5d2076c22f318b4bd8d"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_3.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 6479,
+      "sha256": "9342a6a6cf9d4ed7ae7625264a2ab95d83df26d3b7f35ea554e2454c6c123d3e"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_4.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 6624,
+      "sha256": "7fe6a16752a05156cf5f7fa460f28aa092bb9397342ccf1c253a618dee6d1934"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_5.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 5197,
+      "sha256": "1a4b5048c087953e364a04db74634ad812d6d9dd98bb40094ad5cb189555b6de"
+    },
+    {
+      "path": "artifacts/generation/parsed_categories/category_6.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 4903,
+      "sha256": "394e97d4e4e8beee502a36f10507e7eee6a0732d388f1eae05d1b1a64d5dfc00"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_0.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 5469,
+      "sha256": "94374164f8734b065979ec37d466eec9b0d509251f4e86def8f6a6543a9547ae"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_1.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 7099,
+      "sha256": "fba950d01375361d73bcbeadf3ae4783068b8149d08aad3042fda352e78666ce"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_2_0.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 8183,
+      "sha256": "5f9a21af1cdc323914d2e501751b5c85245076ab7813ced6f6939a5746946e67"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_2_1.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 5019,
+      "sha256": "a54a9d345edc4114fd38c6fcdbae9f5f49897319680da3adfbea6ca033fcd801"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_3.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 6895,
+      "sha256": "cabc743d37b46a8cf8ceed69686b1df51db11366780996cf63866056434d1d1c"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_4.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 7052,
+      "sha256": "9bfdeed6179ae38b26526578f58efaaa51039dd785b37895c02e2296c550266d"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_5.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 5513,
+      "sha256": "eb8f103bfc5fd2d3329029c3809d37e1e51017e13aa42ad83c31e436a7e142c3"
+    },
+    {
+      "path": "artifacts/generation/raw_categories/category_6.pkl",
+      "source": "SmartGen/IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original.pkl",
+      "size": 5225,
+      "sha256": "3a8f775798a8c994336f107090b66f7ba8d340c30f92df03b1c64608214217f1"
+    },
+    {
+      "path": "artifacts/generation/run_record/manifest.json",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/manifest.json",
+      "size": 4132,
+      "sha256": "0b93472579f6dc603d7f86fa5675e62d4236e1caf39878d542f06e26294838ec"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_0.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_0.txt",
+      "size": 20059,
+      "sha256": "9e54d996c22eaf83a06f7354a72810997157215bf16eeedfb89f9b297fc97268"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_1.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_1.txt",
+      "size": 19947,
+      "sha256": "e9a74c7287bcaa451215d271114385b101a177144c380566cac95fa19fd5597c"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_2_0.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_2_0.txt",
+      "size": 21654,
+      "sha256": "b23e43e5bb196990fbdda2cfe57be79273cdc9f45b4b944cc1a386610c236cf7"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_2_1.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_2_1.txt",
+      "size": 17382,
+      "sha256": "029581515e4d7630fb86ff94964a32eccb935d528a628315ce42cadc57b3079f"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_3.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_3.txt",
+      "size": 20026,
+      "sha256": "9792a329dd6a1252b1bd35d0e6982115673159085b91d84ba27f6634cbe40398"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_4.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_4.txt",
+      "size": 20840,
+      "sha256": "d2db324e0224201d3d282c256d6fac338c07781401a076cce485327ee237c20d"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_5.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_5.txt",
+      "size": 19830,
+      "sha256": "192d45fb9b1396de4ef30f4eb5152823560a53e3f4d6bfc24ee6a1a7086bbf9f"
+    },
+    {
+      "path": "artifacts/generation/run_record/prompts/category_6.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/prompts/category_6.txt",
+      "size": 18662,
+      "sha256": "1d4a7dd5a75c3eba8ecf041bda07628bb3f8b3c07c6859380b61afd027e8f816"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_0.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_0.txt",
+      "size": 5452,
+      "sha256": "23642647d4851c818a4d2d6ef936f32cda183a57877243e096ad5b6a64bdc48f"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_1.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_1.txt",
+      "size": 7082,
+      "sha256": "57b4abbbc3ce346d73fd54de5ebb1cf2d20d5cc3993d80ad9ae4278f1fe89514"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_2_0.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_2_0.txt",
+      "size": 8166,
+      "sha256": "146567958cdd10cde3decddccc3be5240b2988447d66a2dea20163f04435588c"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_2_1.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_2_1.txt",
+      "size": 5002,
+      "sha256": "75d6409a32fbef137c49592bb98c57d2128d234ef98a2c47ae1272af64b28396"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_3.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_3.txt",
+      "size": 6878,
+      "sha256": "876aa0d376f816fdfd3a92c696b9761297cf576a48ab3014ffb19d2c79d188b2"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_4.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_4.txt",
+      "size": 7035,
+      "sha256": "d9cae6c99c962334accbf287d2da5c1bc4e1bed66609c88132f20aee6dca1189"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_5.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_5.txt",
+      "size": 5496,
+      "sha256": "bd905da981659d3eb08cb2f15e3294b71216c591b8d4227b8ac83b20a02d2eaa"
+    },
+    {
+      "path": "artifacts/generation/run_record/responses/category_6.txt",
+      "source": "SmartGen/runs/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original/responses/category_6.txt",
+      "size": 5208,
+      "sha256": "568ee286ec51e1970c401690ebd36466721c378e679f7c4cb5c27df2e5d91dd7"
+    },
+    {
+      "path": "artifacts/gss/action_transitions.json",
+      "source": "SmartGen/IoT_data/sp/single/action_transitions.json",
+      "size": 14458,
+      "sha256": "5c64603fff2465341692a7ae899903f735b9ffac9db180479ceebcbdb6bde6fd"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_0.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_0.pkl",
+      "size": 12788,
+      "sha256": "ab6cf3b91707de7899645c366fd6b1e9548f4a13284ce8c753df3699ceff5d05"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_1.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1.pkl",
+      "size": 12620,
+      "sha256": "97efc24d291fc2017cba9dbda5ebf18177abeff6dcf4c490bb08a4120f2a8e00"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_2.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2.pkl",
+      "size": 14512,
+      "sha256": "ef43214d47319d08b56d314919f98951e6376a6a33b0b4fbb1fc1dd2dd8b32ac"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_3.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3.pkl",
+      "size": 12028,
+      "sha256": "ed4ac92c168619977e5397b0d60bfeb6a0b11085a754ae87c98c9fca4e361ecd"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_4.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4.pkl",
+      "size": 12056,
+      "sha256": "3c5833c6bf8081bfc17ca492a2cc206e19cb6377272a6cc546379844f4774b3e"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_5.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_5.pkl",
+      "size": 13012,
+      "sha256": "ffb8871e3b79821c1d2e39e1c1126d4074eedb35b60475e936dfae96394cab52"
+    },
+    {
+      "path": "artifacts/source_snapshot/day_groups/trn_day_6.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_6.pkl",
+      "size": 10124,
+      "sha256": "22f1dc74966e845d08b42156c5971d04c9661485cfb96912ade3f40a05e495b8"
+    },
+    {
+      "path": "artifacts/source_snapshot/rs_trn.pkl",
+      "source": "SmartGen/IoT_data/sp/single/rs_trn.pkl",
+      "size": 61400,
+      "sha256": "928a6bd6e86d6c12cd61fbfd928d327b83c04563a01b4df3767eb30ec6acf638"
+    },
+    {
+      "path": "artifacts/source_snapshot/rs_vld.pkl",
+      "source": "SmartGen/IoT_data/sp/single/rs_vld.pkl",
+      "size": 14908,
+      "sha256": "86992929c6d6083d9faee2edf0002b40cdaec89ada1c5a62ece2ad9f9036f158"
+    },
+    {
+      "path": "artifacts/source_snapshot/split_trn.pkl",
+      "source": "SmartGen/IoT_data/sp/single/split_trn.pkl",
+      "size": 87063,
+      "sha256": "247d3cd78e69c033bfd930c8e945ae8cc194f5c29a31acdb8cadf8b9459819b0"
+    },
+    {
+      "path": "artifacts/source_snapshot/trn.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn.pkl",
+      "size": 76301,
+      "sha256": "6d1e21e7ae5f52f4c39dd87ef1e132014cca384598157b9986dae642be8d2f1e"
+    },
+    {
+      "path": "artifacts/source_snapshot/vld.pkl",
+      "source": "SmartGen/IoT_data/sp/single/vld.pkl",
+      "size": 10184,
+      "sha256": "c76c9171e837704f7869607fe80783960ab95bc2aa2af53c83fc8c648ab87b68"
+    },
+    {
+      "path": "artifacts/ssc/model.pth",
+      "source": "SmartGen/IoT_model/Transformer_sp_single_15epoch.pth",
+      "size": 23657499,
+      "sha256": "3e09856a336c1dee6f4f2feec15d5da32033f8f03198054aa9ecf183356c789a"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_0_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_0_SPPC_th=0.915.pkl",
+      "size": 520,
+      "sha256": "cbaa18c0368ffeba5ac2d4981ab933784c8414f05fb95e873f030f043fc2d894"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_0_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_0_SPPC_th=0.915_text.pkl",
+      "size": 990,
+      "sha256": "d71e87684ff9904b168d9ed55b03970949c211f89c823c4076ee3c866971235d"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_0_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_0_SPPC_th=0.915.pkl",
+      "size": 664,
+      "sha256": "b9c79ed4998035a4b86d5132c2826099bfcd5a98a91cca91e5e27bee0d6bf89b"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_0_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_0_SPPC_th=0.915_text.pkl",
+      "size": 1229,
+      "sha256": "df90683735f4b638bfb7c93720d3f22687775dc2188a53f823c9f11d30f6361f"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_1_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_1_SPPC_th=0.915.pkl",
+      "size": 368,
+      "sha256": "6ffcc2aec6e04e022abd7adab6ab86416743e753cb32137de531dda5c5152c1f"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_1_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_1_SPPC_th=0.915_text.pkl",
+      "size": 708,
+      "sha256": "a1562d6fb66562df861fb6065e2c2dab41a2acd57b9bf375b4c83627e4596632"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_SPPC_th=0.915.pkl",
+      "size": 516,
+      "sha256": "c1de9872622575725e4c7905cc7aa883c591d6129f3529e87327e3263e28cf36"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_1_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_1_SPPC_th=0.915_text.pkl",
+      "size": 1027,
+      "sha256": "eb3bccbd40959e86d27e00a8e9a1ad0ff73b7174b587f28e10e903c78d8e6f4a"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_0_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_0_SPPC_th=0.915.pkl",
+      "size": 744,
+      "sha256": "74a5c2cb577079bcd48536ffe48d82f0ed1328ba9b637128f2a59ead90c2b8d8"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_0_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_0_SPPC_th=0.915_text.pkl",
+      "size": 1362,
+      "sha256": "96a2a81d8f07ad4c2c16bb725dc545fdba406f82a1103163dd04ac3729d4c074"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_1_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_1_SPPC_th=0.915.pkl",
+      "size": 27,
+      "sha256": "c1fe63e0913966363a6df8637d6ef47176e97fc7b42da28a36aaf6f1be58c41d"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_1_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_1_SPPC_th=0.915_text.pkl",
+      "size": 77,
+      "sha256": "b387fc6a1be7173c2dd02b6bc54e6150f49c20493190326b47df85eab992efbc"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_SPPC_th=0.915.pkl",
+      "size": 756,
+      "sha256": "66b172146168f3e8d22ee2f564fb61e10bf463a5afeeb5ce23c6d0c34f4f4823"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_2_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_2_SPPC_th=0.915_text.pkl",
+      "size": 826,
+      "sha256": "4e7dca1c797158409b2a57749538b0dd1b1f78bf33cfc329b4bcc95f102115f0"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_0_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_0_SPPC_th=0.915.pkl",
+      "size": 528,
+      "sha256": "320340c85e43392b22ae2aaebb3e1b75461be2b7a1c4e189a5aa33c8a2d78ec7"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_0_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_0_SPPC_th=0.915_text.pkl",
+      "size": 1018,
+      "sha256": "89263a85a3db798f4b02bfc34b4f64c0dbcaec85e7dbc46dc4608c0256f4be12"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_1_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_1_SPPC_th=0.915.pkl",
+      "size": 152,
+      "sha256": "777666681eeab74d77681ba5e9f80e2f04028d0e0f8e8aec5bc78193ca6f76ea"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_1_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_1_SPPC_th=0.915_text.pkl",
+      "size": 352,
+      "sha256": "f343c7003e61ac6d04598a9ee31e329770eec4693a2c21dfee401cb9e117b488"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_SPPC_th=0.915.pkl",
+      "size": 508,
+      "sha256": "90a2e7ae121c6b2daddf1bb4639b733e5ab46059dabc302253986653b5a6939b"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_3_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_3_SPPC_th=0.915_text.pkl",
+      "size": 989,
+      "sha256": "d6e85060f1d21a1887b37e11f8ef667a2b7ea01591910c3029d576f2f9a0e1e6"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_0_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_0_SPPC_th=0.915.pkl",
+      "size": 536,
+      "sha256": "883d22772eda1ac6d82ebf18b8184373b3bba6f81d4e09a5aacbf9cc88c57fe1"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_0_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_0_SPPC_th=0.915_text.pkl",
+      "size": 1042,
+      "sha256": "2dae49f27f77a000e2f99add31e709218396974bcc9057a5c1df9ff935e1f6ce"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_1_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_1_SPPC_th=0.915.pkl",
+      "size": 112,
+      "sha256": "8f11d9e9ed77155be4025191fe35e67c2e340ad12949f3ba4a8096b4a7d3fd27"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_1_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_1_SPPC_th=0.915_text.pkl",
+      "size": 339,
+      "sha256": "8724ed063cc716efcb3f5c13e21bb80e81ee7c98244e6ec35d32f36de1d29706"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_SPPC_th=0.915.pkl",
+      "size": 636,
+      "sha256": "7ccd409e97ae2300c649437696edc3eb6122cff838eaff27787cf4abb262b217"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_4_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_4_SPPC_th=0.915_text.pkl",
+      "size": 1124,
+      "sha256": "9bdb9b04fddd21f0ba4de0e174d3f833385a79e8416f6a429bd4ce99e7c2d067"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_5_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_5_SPPC_th=0.915.pkl",
+      "size": 440,
+      "sha256": "9b5c5ddb64bd04ca63293ec58624b134e196b70a799d45db37129d3e34145c72"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_5_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_5_SPPC_th=0.915_text.pkl",
+      "size": 966,
+      "sha256": "2caadcfafdd0310125dae5dd63911220b02423e16ad1cf35ead7538264c8e4c3"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_6_SPPC_th=0.915.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_6_SPPC_th=0.915.pkl",
+      "size": 280,
+      "sha256": "b130bed5a0a2325f7db059837dd6b753939fc51c0e1e558973037df28767751a"
+    },
+    {
+      "path": "artifacts/ssc/selected_sequences/trn_day_6_SPPC_th=0.915_text.pkl",
+      "source": "SmartGen/IoT_data/sp/single/trn_day_6_SPPC_th=0.915_text.pkl",
+      "size": 634,
+      "sha256": "77258e12ca54b491163e8c6254c2f95d3328b4dbefce361fa9c7542e2373d78a"
+    },
+    {
+      "path": "artifacts/tof/model.pth",
+      "source": "SmartGen/check_model/best_sp_gpt-5.6-sol__seed2024_gcad_h4_original_SPPC.pth",
+      "size": 59840989,
+      "sha256": "33307695d09b4ce5827a3cc8c08f2d897ee1f1247a6a8b3d6f5a69c12baaae34"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq.pkl",
+      "size": 6664,
+      "sha256": "3b829fafc9bd7b0ba23b93167723fe4117a09945a7916ff25ec283d2e2595034"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter.pkl",
+      "size": 5496,
+      "sha256": "27ef746e10cde07f29549e864114ad7cbf472de47b47b5cc7fb31cca66a86b19"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_0.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_0.pkl",
+      "size": 67,
+      "sha256": "fbeda3b2b9f0ef833b9a1cbc49848f00e365b2405f6b1461610d272aeaaa661e"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_1.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_1.pkl",
+      "size": 83,
+      "sha256": "8c1e42843c6d732495ebab6a5dc24937605382ad0391b4b02a26d8674397742d"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_10.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_10.pkl",
+      "size": 67,
+      "sha256": "323d368aaa104bf45a1b6a77804da2b0da82826dff94daf695a17bb1b66930a5"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_11.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_11.pkl",
+      "size": 67,
+      "sha256": "8a5bb8cae6d26aafbccb76bc9e2502d7ec5f7ec9bdf8c55dcf10b397e1147c23"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_12.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_12.pkl",
+      "size": 75,
+      "sha256": "d3de258e4e9e75463608222e5b27ae04f8fe39aa1ba6db5086d1732d4f34101d"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_13.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_13.pkl",
+      "size": 75,
+      "sha256": "0dc7e0e1d67c94ac1ac30136fd77d02a6f9dbf7e60ca95aab87ba376ae1dd6df"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_14.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_14.pkl",
+      "size": 107,
+      "sha256": "999186ec7e1df4426004e0e03c01f7fa97d389e4740c4d844824db52a2f85e23"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_15.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_15.pkl",
+      "size": 115,
+      "sha256": "d54f06522c1989ce4c896e61dafda13f846f0fbb24f4d10df97154ccb78d6fd5"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_2.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_2.pkl",
+      "size": 131,
+      "sha256": "56fef95be5b37745ab61f98a8c48239b0ef5e63a43837dd6b59ac22322f3263b"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_3.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_3.pkl",
+      "size": 131,
+      "sha256": "ccd68d5dc9faec10a35ec6c55ff425b96157bde20a3a7a1abd4e8cf57a3b57cc"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_4.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_4.pkl",
+      "size": 91,
+      "sha256": "c6f0e6bb132a1111d4f47cbb26ec24c5510ff1bc328b949dce8765ef214b9c6e"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_5.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_5.pkl",
+      "size": 83,
+      "sha256": "16b04b8798a41d9e8fb54e32232b5bc228a798cf8f331ed5aaae6a60c5944ce8"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_6.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_6.pkl",
+      "size": 91,
+      "sha256": "0703d11b20e94c180c892800e11940fbe057575d05cc33d9ea08b11048c57602"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_7.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_7.pkl",
+      "size": 83,
+      "sha256": "8e3aed2437b3950a47aa5f25c7fa143c38f3fc6f2cf60c614fabb5a481b71161"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_8.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_8.pkl",
+      "size": 67,
+      "sha256": "65498a21016600a24f68616d83d49cc3379b9c8bbe2c55f95545400276bb05cc"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_9.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_out_9.pkl",
+      "size": 75,
+      "sha256": "7731a163b6f92a55bfee1f0f64816dd643711c11e686b3f6b59dc46a21021548"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_trn.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_trn.pkl",
+      "size": 4268,
+      "sha256": "3a38e5562ceae4a7458209443174a7db74f67cca1ebb240fbef16d8c3ab4f324"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+      "size": 6292,
+      "sha256": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333"
+    },
+    {
+      "path": "artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_vld.pkl",
+      "source": "SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_vld.pkl",
+      "size": 1244,
+      "sha256": "0a991ca7579823d1871edf2c918a4df5b245d44dc39fd80d4de4f88a9ff3b318"
+    }
+  ],
+  "promoted_at": "2026-07-21T07:44:25.639868+00:00"
+}

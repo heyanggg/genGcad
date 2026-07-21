@@ -224,6 +224,20 @@
     "artifact_bytes": 143758422
   },
   {
+    "archive_id": "sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024",
+    "status": "formal",
+    "archive_path": "formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024",
+    "dataset": "sp",
+    "original_environment": "single",
+    "target_environment": "multiple",
+    "experiment_seed": 2024,
+    "f1_score": 0.9132947976878613,
+    "accuracy": 0.9050632911392406,
+    "reconstructed": false,
+    "artifact_count": 102,
+    "artifact_bytes": 144046478
+  },
+  {
     "archive_id": "sp_winter_to_spring_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
     "status": "formal",
     "archive_path": "formal/sp_winter_to_spring_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
