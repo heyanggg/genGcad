@@ -397,6 +397,11 @@ def archive_completed_experiment(
             "generation_manifest": generation_manifest,
             "automatic_archive": automatic_archive,
         },
+        missing_artifacts=(
+            ["tof_candidate_scratch_files_not_preserved"]
+            if generation_manifest.get("tof", {}).get("intermediates_preserved") is False
+            else []
+        ),
         storage_mode=storage_mode,
         archive_root=archive_root,
     )

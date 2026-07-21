@@ -9,6 +9,7 @@ import pytest
 from SmartGen.experiment import ExperimentConfig, ExperimentRun
 from SmartGen.archiving import (
     ArchiveFile,
+    archive_completed_experiment,
     archive_files,
     promote_archive,
     rebuild_registry,
@@ -245,3 +246,26 @@ def test_archive_rejects_unsafe_destination(tmp_path):
             [ArchiveFile(artifact, Path("../escape.pkl"))],
             archive_root=tmp_path / "archive",
         )
+
+
+def test_completed_archive_records_missing_tof_scratch_files(monkeypatch):
+    captured = {}
+    monkeypatch.setattr(
+        "SmartGen.archiving.collect_current_experiment_files",
+        lambda *args: [],
+    )
+
+    def capture_archive(*args, **kwargs):
+        captured.update(kwargs)
+        return Path("archive")
+
+    monkeypatch.setattr("SmartGen.archiving.archive_files", capture_archive)
+    archive_completed_experiment(
+        make_config(),
+        {"tof": {"intermediates_preserved": False}},
+        {"validation_percentile": 95.5, "seed": 2024},
+    )
+
+    assert captured["missing_artifacts"] == [
+        "tof_candidate_scratch_files_not_preserved"
+    ]

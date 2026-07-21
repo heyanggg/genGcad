@@ -280,6 +280,10 @@ def summarize_environment_adherence(sequences, target_environment):
     return summary
 
 
+def should_preserve_tof_intermediates(args):
+    return bool(args.keep_intermediates or args.archive_run)
+
+
 def environment_sentence(original_environment, target_environment):
     if target_environment == "spring":
         return (
@@ -498,7 +502,7 @@ def run_generation(args, config):
             args.method,
             artifact_model,
             seed=args.experiment_seed,
-            keep_intermediates=args.keep_intermediates,
+            keep_intermediates=should_preserve_tof_intermediates(args),
         )
         run.update(
             status="completed",
@@ -508,6 +512,12 @@ def run_generation(args, config):
                 "tof_final_count": tof_result["final_count"],
             },
             environment_adherence=adherence,
+            tof={
+                "input_count": tof_result["input_count"],
+                "first_pass_count": tof_result["first_pass_count"],
+                "final_count": tof_result["final_count"],
+                "intermediates_preserved": should_preserve_tof_intermediates(args),
+            },
         )
         return run.manifest
     except Exception as exc:

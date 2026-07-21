@@ -14,6 +14,9 @@ Its `artifacts/` directory is a local, self-contained snapshot and is intentiona
 ignored by Git because model checkpoints are large. Back up the heavy artifacts using
 Git LFS, a GitHub Release, or external storage before treating the archive as durable.
 
+See [`EXPLORATORY_GCAD_ABLATION.md`](EXPLORATORY_GCAD_ABLATION.md) for the first
+single-run GCAD require/off prompt comparison and its limitations.
+
 Complete generation+detection runs launched through `SmartGen/main.py` are archived
 automatically under `completed/`. Use `--archive-status diagnostic` for an explicitly
 diagnostic run, `--archive-status verified_candidates` for a pre-designated candidate,

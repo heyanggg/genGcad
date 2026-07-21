@@ -308,12 +308,17 @@ def test_main_boolean_arguments_parse_false(monkeypatch):
     smartgen = str(Path("SmartGen").resolve())
     monkeypatch.syspath_prepend(smartgen)
     sys.modules.pop("main", None)
-    from main import get_args_parser
+    from main import get_args_parser, should_preserve_tof_intermediates
 
     args = get_args_parser().parse_args(["--need_generate", "False", "--need_test", "False"])
     assert args.need_generate is False
     assert args.need_test is False
     assert args.gcad_mode == "auto"
+    assert should_preserve_tof_intermediates(args) is True
+    no_archive = get_args_parser().parse_args(["--no-archive"])
+    assert should_preserve_tof_intermediates(no_archive) is False
+    keep = get_args_parser().parse_args(["--no-archive", "--keep-intermediates"])
+    assert should_preserve_tof_intermediates(keep) is True
 
 
 def test_gcad_mode_can_disable_or_require_guidance(monkeypatch):
