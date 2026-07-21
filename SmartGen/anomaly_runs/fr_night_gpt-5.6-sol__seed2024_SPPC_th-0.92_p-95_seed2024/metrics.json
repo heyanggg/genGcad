@@ -1,0 +1,27 @@
+{
+  "dataset": "fr",
+  "environment": "night",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024",
+  "generation_threshold": 0.92,
+  "validation_percentile": 95.0,
+  "seed": 2024,
+  "generated_sequence_count": 48,
+  "training_sequence_count": 38,
+  "validation_sequence_count": 10,
+  "normal_test_count": 952,
+  "attack_test_count": 952,
+  "detection_threshold": 0.0004853024598560296,
+  "metrics": {
+    "TP": 760,
+    "TN": 899,
+    "FP": 53,
+    "FN": 192,
+    "FPR": 0.05567226890756303,
+    "FNR": 0.20168067226890757,
+    "recall": 0.7983193277310925,
+    "precision": 0.9348093480934809,
+    "accuracy": 0.8713235294117647,
+    "f1_score": 0.8611898016997168
+  }
+}

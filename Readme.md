@@ -94,4 +94,6 @@ The legacy `FR / winter → spring / SPPC / threshold 0.918 / seed 2024` generat
 
 The original SmartGen anomaly detector was then trained with 163 generated sequences and validated with 41. On 88 normal and 88 attack samples it produced `TP=87`, `TN=88`, `FP=0`, and `FN=1` (`accuracy=0.9943`, `F1=0.9943`). The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_spring_gpt-5.6-sol_seed2024/metrics.json).
 
+The `FR / daytime → night / SPPC / threshold 0.92 / seed 2024` run also completed end to end. Only one of three GCAD predictor seeds passed the held-out quality gate, so the stability filter correctly disabled GCAD guidance and generation continued with the original GSS fallback. All seven Codex groups parsed successfully, producing 49 numeric sequences, of which TOF retained 48. The anomaly detector used 38 training and 10 validation sequences; on 952 normal and 952 attack samples it produced `TP=760`, `TN=899`, `FP=53`, and `FN=192` (`accuracy=0.8713`, `F1=0.8612`). The machine-readable metrics are in [`SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_SPPC_th-0.92_p-95_seed2024/metrics.json`](SmartGen/anomaly_runs/fr_night_gpt-5.6-sol__seed2024_SPPC_th-0.92_p-95_seed2024/metrics.json).
+
 
