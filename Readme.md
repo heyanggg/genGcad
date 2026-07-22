@@ -113,6 +113,9 @@ prompt/response provenance, GCAD state, TOF counts, and checksums.
 | SP | winter → spring | require, ready | 0.971122 | 0.970467 |
 | SP | daytime → night | auto, disabled | 0.984420 | 0.984174 |
 | SP | single → multiple | require, ready | 0.913295 | 0.905063 |
+| US | winter → spring | require, ready | 0.922889 | 0.916446 |
+| US | daytime → night | require, ready | 0.889882 | 0.876256 |
+| US | single → multiple | require, ready | 0.941746 | 0.938143 |
 
 Historical calibration and failed prompt experiments are intentionally not kept in
 the active tree. They remain recoverable from Git history when they were tracked.
