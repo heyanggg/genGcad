@@ -290,8 +290,10 @@ def environment_generation_guidance(target_environment):
             "8 behavior quadruples each. "
             "For the changed night-active environment, place the main active behaviors in the "
             "available time intervals (18~21), (21~24), (0~3), and (3~6). The daytime intervals "
-            "(6~9), (9~12), (12~15), and (15~18) should be rare and used only when a behavior "
-            "genuinely requires a daytime exception."
+            "should remain a small minority rather than disappearing completely: across the "
+            "complete response, normally place about 5 percent of plausible transitional "
+            "exceptions in (6~9) or (9~12). The later daytime intervals (12~15) and (15~18) "
+            "should remain rare and be used only when a behavior genuinely requires them."
         )
     if target_environment == "spring":
         return common + (
