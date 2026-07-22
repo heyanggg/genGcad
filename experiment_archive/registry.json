@@ -82,5 +82,19 @@
     "reconstructed": false,
     "artifact_count": 198,
     "artifact_bytes": 144517303
+  },
+  {
+    "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "status": "formal",
+    "archive_path": "formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.9228886168910648,
+    "accuracy": 0.916445623342175,
+    "reconstructed": false,
+    "artifact_count": 123,
+    "artifact_bytes": 146662290
   }
 ]
