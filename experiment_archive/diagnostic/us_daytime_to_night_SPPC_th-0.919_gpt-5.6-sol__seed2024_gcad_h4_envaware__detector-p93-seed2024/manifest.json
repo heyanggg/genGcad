@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "archive_id": "us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
-  "status": "formal",
+  "status": "diagnostic",
   "created_at": "2026-07-22T01:52:35.546368+00:00",
   "reconstructed": false,
   "storage_mode": "copy",
@@ -1160,5 +1160,5 @@
       "sha256": "e9858a5a7fdb9ac0ca27b5685a5e11bc1d3ed4c278472d34c97be9cc4aef649b"
     }
   ],
-  "promoted_at": "2026-07-22T01:53:03.510031+00:00"
+  "promoted_at": "2026-07-22T03:37:48.709499+00:00"
 }

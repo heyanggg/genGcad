@@ -1,6 +1,6 @@
 # us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024
 
-Status: `formal`
+Status: `diagnostic`
 
 Reconstructed metadata: `false`
 

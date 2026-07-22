@@ -1,5 +1,19 @@
 [
   {
+    "archive_id": "us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "dataset": "us",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "experiment_seed": 2024,
+    "f1_score": 0.8898824731732243,
+    "accuracy": 0.8762561010623026,
+    "reconstructed": false,
+    "artifact_count": 155,
+    "artifact_bytes": 144631120
+  },
+  {
     "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
     "status": "diagnostic",
     "archive_path": "diagnostic/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
@@ -98,18 +112,18 @@
     "artifact_bytes": 144517303
   },
   {
-    "archive_id": "us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "archive_id": "us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_balanced11_night5pct__detector-p93-seed2024",
     "status": "formal",
-    "archive_path": "formal/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "archive_path": "formal/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_balanced11_night5pct__detector-p93-seed2024",
     "dataset": "us",
     "original_environment": "daytime",
     "target_environment": "night",
     "experiment_seed": 2024,
-    "f1_score": 0.8898824731732243,
-    "accuracy": 0.8762561010623026,
+    "f1_score": 0.9035871045860452,
+    "accuracy": 0.9085558426643698,
     "reconstructed": false,
-    "artifact_count": 155,
-    "artifact_bytes": 144631120
+    "artifact_count": 154,
+    "artifact_bytes": 144603348
   },
   {
     "archive_id": "us_single_to_multiple_SPPC_th-0.913_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024",
