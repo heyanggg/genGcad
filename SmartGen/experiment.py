@@ -97,6 +97,8 @@ class ExperimentConfig:
     gcad_history: int
     gcad_epochs: int
     gcad_mode: str
+    gcad_prompt_max_relationships: int
+    gcad_prompt_max_per_target: int
     codex_reasoning_effort: str
     prompt_profile: str
 
@@ -120,6 +122,10 @@ class ExperimentConfig:
             raise ValueError("GCAD seeds must be unique")
         if self.gcad_mode not in {"auto", "off", "require"}:
             raise ValueError("unsupported GCAD mode")
+        if self.gcad_prompt_max_relationships <= 0:
+            raise ValueError("GCAD prompt relationship limit must be positive")
+        if self.gcad_prompt_max_per_target <= 0:
+            raise ValueError("GCAD per-target prompt relationship limit must be positive")
         if self.codex_reasoning_effort not in {
             "none",
             "low",

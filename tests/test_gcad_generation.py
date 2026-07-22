@@ -292,6 +292,60 @@ def test_environment_aware_night_prompt_adds_time_and_shape_constraints(monkeypa
         assert forbidden not in prompt.lower()
 
 
+def test_environment_aware_spring_prompt_bounds_sequence_shape(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import build_prompt
+
+    prompt = build_prompt(
+        "devices",
+        "environment",
+        [["sequence"]],
+        {},
+        {"status": "disabled", "lagged_behavior_relations": []},
+        target_environment="spring",
+        prompt_profile="environment-aware",
+    )
+    assert "4 to 6 behavior quadruples" in prompt
+    assert "do not lengthen a chain" in prompt
+    for forbidden in ("attack", "anomaly", "test label"):
+        assert forbidden not in prompt.lower()
+
+
+def test_prompt_gcad_relationships_are_bounded_and_target_balanced(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    from main import limit_prompt_gcad_relationships
+
+    relationships = [
+        {"source_action": f"source-{index}", "target_action": "light:off"}
+        for index in range(10)
+    ] + [
+        {"source_action": f"source-{index}", "target_action": "tv:off"}
+        for index in range(10, 20)
+    ]
+    artifact = {"status": "ready", "lagged_behavior_relations": relationships}
+    selected = limit_prompt_gcad_relationships(
+        artifact, max_relationships=6, max_per_target=3
+    )
+    assert len(selected["lagged_behavior_relations"]) == 6
+    assert [
+        item["target_action"] for item in selected["lagged_behavior_relations"]
+    ].count("light:off") == 3
+    assert [
+        item["target_action"] for item in selected["lagged_behavior_relations"]
+    ].count("tv:off") == 3
+    assert len(artifact["lagged_behavior_relations"]) == 20
+    assert selected["prompt_selection"] == {
+        "artifact_relationship_count": 20,
+        "prompt_relationship_count": 6,
+        "max_relationships": 6,
+        "max_per_target": 3,
+    }
+
+
 def test_environment_adherence_is_measurement_only(monkeypatch):
     smartgen = str(Path("SmartGen").resolve())
     monkeypatch.syspath_prepend(smartgen)

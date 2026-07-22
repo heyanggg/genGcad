@@ -31,6 +31,8 @@ def make_config(**overrides):
         "gcad_history": 4,
         "gcad_epochs": 50,
         "gcad_mode": "auto",
+        "gcad_prompt_max_relationships": 12,
+        "gcad_prompt_max_per_target": 4,
         "codex_reasoning_effort": "none",
         "prompt_profile": "environment-aware",
     }
@@ -60,6 +62,10 @@ def test_experiment_config_rejects_invalid_or_duplicate_gcad_settings():
         make_config(threshold=1.1)
     with pytest.raises(ValueError, match="GCAD mode"):
         make_config(gcad_mode="sometimes")
+    with pytest.raises(ValueError, match="relationship limit"):
+        make_config(gcad_prompt_max_relationships=0)
+    with pytest.raises(ValueError, match="per-target"):
+        make_config(gcad_prompt_max_per_target=0)
 
 
 def test_run_manifest_records_resumable_categories(tmp_path):

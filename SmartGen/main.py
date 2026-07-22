@@ -116,6 +116,18 @@ def get_args_parser():
         ),
     )
     parser.add_argument(
+        "--gcad-prompt-max-relationships", "--gcad_prompt_max_relationships",
+        default=12,
+        type=int,
+        help="Maximum number of balanced GCAD relationships included in a generation prompt",
+    )
+    parser.add_argument(
+        "--gcad-prompt-max-per-target", "--gcad_prompt_max_per_target",
+        default=4,
+        type=int,
+        help="Maximum prompt relationships sharing the same GCAD target action",
+    )
+    parser.add_argument(
         "--archive-status",
         default="completed",
         choices=sorted(ARCHIVE_STATUSES),
@@ -225,6 +237,37 @@ def select_gcad_guidance(gcad_relationships, mode):
     raise ValueError(f"unsupported GCAD mode: {mode!r}")
 
 
+def limit_prompt_gcad_relationships(
+    gcad_relationships,
+    max_relationships=12,
+    max_per_target=4,
+):
+    """Bound prompt dosage while retaining the complete archived GCAD graph."""
+    if max_relationships <= 0 or max_per_target <= 0:
+        raise ValueError("GCAD prompt relationship limits must be positive")
+    relationships = gcad_relationships.get("lagged_behavior_relations", [])
+    selected = []
+    target_counts = {}
+    for relationship in relationships:
+        target = relationship.get("target_action")
+        if target_counts.get(target, 0) >= max_per_target:
+            continue
+        selected.append(relationship)
+        target_counts[target] = target_counts.get(target, 0) + 1
+        if len(selected) >= max_relationships:
+            break
+    return {
+        **gcad_relationships,
+        "lagged_behavior_relations": selected,
+        "prompt_selection": {
+            "artifact_relationship_count": len(relationships),
+            "prompt_relationship_count": len(selected),
+            "max_relationships": max_relationships,
+            "max_per_target": max_per_target,
+        },
+    }
+
+
 def environment_generation_guidance(target_environment):
     common = (
         "Generation calibration guidance: Generate coherent consecutive behavior chains rather "
@@ -243,6 +286,9 @@ def environment_generation_guidance(target_environment):
         )
     if target_environment == "spring":
         return common + (
+            "For this category, generate distinct subsequences normally containing 4 to 6 "
+            "behavior quadruples each. Preserve the target-domain sequence-length distribution "
+            "and do not lengthen a chain merely to include more directional relationships. "
             "For the changed warm spring environment, prefer behavior changes that are plausible "
             "for warmer weather and avoid retaining winter-specific heating behavior unless the "
             "individual sequence provides a clear reason."
@@ -316,6 +362,8 @@ def experiment_config_from_args(args):
         gcad_history=args.gcad_history,
         gcad_epochs=args.gcad_epochs,
         gcad_mode=args.gcad_mode,
+        gcad_prompt_max_relationships=args.gcad_prompt_max_relationships,
+        gcad_prompt_max_per_target=args.gcad_prompt_max_per_target,
         codex_reasoning_effort=args.codex_reasoning_effort,
         prompt_profile=args.prompt_profile,
     )
@@ -359,6 +407,12 @@ def run_generation(args, config):
         prompt_gcad_relationships = select_gcad_guidance(
             gcad_relationships, args.gcad_mode
         )
+        prompt_gcad_relationships = limit_prompt_gcad_relationships(
+            prompt_gcad_relationships,
+            max_relationships=args.gcad_prompt_max_relationships,
+            max_per_target=args.gcad_prompt_max_per_target,
+        )
+        prompt_selection = prompt_gcad_relationships["prompt_selection"]
         run.update(
             status="compressing",
             gcad={
@@ -367,6 +421,16 @@ def run_generation(args, config):
                 "relationship_count": len(
                     gcad_relationships.get("lagged_behavior_relations", [])
                 ),
+                "artifact_relationship_count": prompt_selection[
+                    "artifact_relationship_count"
+                ],
+                "prompt_relationship_count": prompt_selection[
+                    "prompt_relationship_count"
+                ],
+                "prompt_relationship_limits": {
+                    "max_relationships": prompt_selection["max_relationships"],
+                    "max_per_target": prompt_selection["max_per_target"],
+                },
                 "path": str(gcad_output),
                 "mode": args.gcad_mode,
                 "guidance_enabled": (
