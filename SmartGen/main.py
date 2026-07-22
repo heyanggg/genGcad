@@ -2,6 +2,7 @@ import argparse
 import hashlib
 import json
 import pickle
+import shutil
 from pathlib import Path
 
 from baseline1 import Anomaly_detection
@@ -76,6 +77,14 @@ def get_args_parser():
     parser.add_argument("--percentage", default=95.5, type=float)
     parser.add_argument("--need-test", "--need_test", default=False, type=parse_bool)
     parser.add_argument("--need-generate", "--need_generate", default=False, type=parse_bool)
+    parser.add_argument(
+        "--reuse-sppc-selection-dir",
+        default=None,
+        help=(
+            "Directory containing archived trn_day_<0-6>_SPPC selection files to "
+            "reuse verbatim; source paths and SHA-256 values are recorded in the manifest"
+        ),
+    )
     parser.add_argument("--no-resume", action="store_false", dest="resume")
     parser.set_defaults(resume=True)
     parser.add_argument(
@@ -446,19 +455,60 @@ def run_generation(args, config):
 
         Dayse(args.dataset, args.ori_env)
         if args.method == "SPPC":
-            Train(
-                args.dataset,
-                args.ori_env,
-                VOCABULARY_SIZE[args.dataset],
-                seed=args.experiment_seed,
-            )
-            SPPC_select(
-                args.dataset,
-                args.ori_env,
-                VOCABULARY_SIZE[args.dataset],
-                args.threshold,
-                seed=args.experiment_seed,
-            )
+            if args.reuse_sppc_selection_dir:
+                selection_dir = Path(args.reuse_sppc_selection_dir).resolve()
+                selection_files = {}
+                for day in range(7):
+                    filename = (
+                        f"trn_day_{day}_SPPC_th={args.threshold}.pkl"
+                    )
+                    source = selection_dir / filename
+                    if not source.is_file():
+                        raise FileNotFoundError(
+                            f"cannot reuse missing SPPC selection: {source}"
+                        )
+                    destination = (
+                        Path("IoT_data") / args.dataset / args.ori_env / filename
+                    )
+                    shutil.copy2(source, destination)
+                    selection_files[filename] = hashlib.sha256(
+                        source.read_bytes()
+                    ).hexdigest()
+                run.update(
+                    compression={
+                        "method": "SPPC",
+                        "training_mode": "reused_archived_selection",
+                        "selection_source_dir": str(selection_dir),
+                        "selection_sha256": selection_files,
+                    }
+                )
+            else:
+                Train(
+                    args.dataset,
+                    args.ori_env,
+                    VOCABULARY_SIZE[args.dataset],
+                    seed=args.experiment_seed,
+                )
+                model_path = Path("IoT_model") / (
+                    f"Transformer_{args.dataset}_{args.ori_env}_15epoch.pth"
+                )
+                run.update(
+                    compression={
+                        "method": "SPPC",
+                        "training_mode": "trained",
+                        "checkpoint_path": str(model_path),
+                        "checkpoint_sha256": hashlib.sha256(
+                            model_path.read_bytes()
+                        ).hexdigest(),
+                    }
+                )
+                SPPC_select(
+                    args.dataset,
+                    args.ori_env,
+                    VOCABULARY_SIZE[args.dataset],
+                    args.threshold,
+                    seed=args.experiment_seed,
+                )
         elif args.method == "similarity":
             similarity_select(args.dataset, args.ori_env, args.threshold)
 

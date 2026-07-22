@@ -93,9 +93,9 @@ The artifact label for this example is `gpt-5.6-sol__run1`. GCAD still uses its 
 
 By default, GCAD writes `SmartGen/artifacts/gcad/<dataset>/<original_environment>/gcad_hints.json`. The artifact includes a source-data hash and extraction configuration, so an unchanged result is reused instead of retrained. Pass `--gcad-force` to rebuild it. The original `action_transitions.json` is only read and is never reranked or overwritten by GCAD. Only the compact relationship list—not training diagnostics—is sent to the model, and it is labeled as soft predictive guidance.
 
-GCAD prompt participation is explicit: `--gcad-mode auto` uses stable relationships when available, `--gcad-mode off` extracts/records GCAD but suppresses its prompt guidance for ablation, and `--gcad-mode require` stops the run unless stable relationships are available. The selected mode and whether guidance was actually enabled are recorded in both the run manifest and experiment archive.
+GCAD prompt participation is explicit: `--gcad-mode auto` uses stable relationships when available, `--gcad-mode off` extracts/records GCAD but suppresses its prompt guidance for ablation, and `--gcad-mode require` stops the run unless stable relationships are available. The complete graph remains archived, while prompt guidance is balanced to at most 12 relationships and at most 4 relationships per target action by default. The selected mode, graph/prompt counts, and whether guidance was actually enabled are recorded in both the run manifest and experiment archive.
 
-The default `environment-aware` prompt profile adds explicit target-environment and sequence-shape constraints while retaining the full upstream prompt. Night-sequence shape bounds were calibrated from the original GPT-4o generation artifacts without reading anomaly labels or test metrics. For strict prompt comparison, pass `--prompt-profile original`; when GCAD is disabled, that mode is byte-equivalent to upstream SmartGen. Every run records prompt hashes and a non-filtering environment-adherence summary in its manifest.
+The default `environment-aware` prompt profile adds explicit target-environment and sequence-shape constraints while retaining the full upstream prompt. Night-sequence shape bounds were calibrated from the original GPT-4o generation artifacts without reading anomaly labels or test metrics; spring subsequences are normally constrained to 4–6 behavior quadruples to avoid GCAD-driven overlength. For strict prompt comparison, pass `--prompt-profile original`; when GCAD is disabled, that mode is byte-equivalent to upstream SmartGen. Every run records prompt hashes and a non-filtering environment-adherence summary in its manifest.
 
 Codex runs with a read-only sandbox, explicit `none` reasoning effort, the current Codex login, and user/project CLI configuration disabled for experiment isolation. Upstream SmartGen requested `temperature=0`, `top_p=0`, `seed=2024`, and `max_tokens=8040`; the current Codex CLI rejects all four as unknown configuration fields. The run manifest therefore records those values as the upstream request and explicitly marks them as not applied instead of pretending they were fixed. The model slug, reasoning effort, prompt profile, experiment seed, exact prompt hashes, and outputs remain recorded and reproducible within the controls the Codex CLI actually exposes.
 
@@ -113,7 +113,7 @@ prompt/response provenance, GCAD state, TOF counts, and checksums.
 | SP | winter → spring | require, ready | 0.971122 | 0.970467 |
 | SP | daytime → night | auto, disabled | 0.984420 | 0.984174 |
 | SP | single → multiple | require, ready | 0.913295 | 0.905063 |
-| US | winter → spring | require, ready | 0.922889 | 0.916446 |
+| US | winter → spring | require, ready | 0.953375 | 0.952586 |
 | US | daytime → night | require, ready | 0.889882 | 0.876256 |
 | US | single → multiple | require, ready | 0.941746 | 0.938143 |
 

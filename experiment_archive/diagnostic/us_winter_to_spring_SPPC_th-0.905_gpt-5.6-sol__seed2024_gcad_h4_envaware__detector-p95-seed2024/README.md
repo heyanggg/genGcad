@@ -1,6 +1,6 @@
 # us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024
 
-Status: `formal`
+Status: `diagnostic`
 
 Reconstructed metadata: `false`
 

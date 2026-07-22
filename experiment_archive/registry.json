@@ -1,5 +1,19 @@
 [
   {
+    "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "status": "diagnostic",
+    "archive_path": "diagnostic/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "experiment_seed": 2024,
+    "f1_score": 0.9228886168910648,
+    "accuracy": 0.916445623342175,
+    "reconstructed": false,
+    "artifact_count": 123,
+    "artifact_bytes": 146662290
+  },
+  {
     "archive_id": "fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
     "status": "formal",
     "archive_path": "formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
@@ -112,17 +126,17 @@
     "artifact_bytes": 146627856
   },
   {
-    "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024",
     "status": "formal",
-    "archive_path": "formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
+    "archive_path": "formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024",
     "dataset": "us",
     "original_environment": "winter",
     "target_environment": "spring",
     "experiment_seed": 2024,
-    "f1_score": 0.9228886168910648,
-    "accuracy": 0.916445623342175,
+    "f1_score": 0.9533746331920444,
+    "accuracy": 0.9525862068965517,
     "reconstructed": false,
-    "artifact_count": 123,
-    "artifact_bytes": 146662290
+    "artifact_count": 127,
+    "artifact_bytes": 146523537
   }
 ]

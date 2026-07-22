@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
-  "status": "formal",
+  "status": "diagnostic",
   "created_at": "2026-07-22T01:42:59.303284+00:00",
   "reconstructed": false,
   "storage_mode": "copy",
@@ -932,5 +932,5 @@
       "sha256": "c3a0de206f0f82cde277e882d6ead52a941324e93e8aaafaec7559c6b83a1ae2"
     }
   ],
-  "promoted_at": "2026-07-22T01:43:32.742057+00:00"
+  "promoted_at": "2026-07-22T03:14:47.552840+00:00"
 }
