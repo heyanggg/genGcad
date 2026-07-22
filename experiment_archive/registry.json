@@ -84,6 +84,20 @@
     "artifact_bytes": 144517303
   },
   {
+    "archive_id": "us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "status": "formal",
+    "archive_path": "formal/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p93-seed2024",
+    "dataset": "us",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "experiment_seed": 2024,
+    "f1_score": 0.8898824731732243,
+    "accuracy": 0.8762561010623026,
+    "reconstructed": false,
+    "artifact_count": 155,
+    "artifact_bytes": 144631120
+  },
+  {
     "archive_id": "us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
     "status": "formal",
     "archive_path": "formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024",
