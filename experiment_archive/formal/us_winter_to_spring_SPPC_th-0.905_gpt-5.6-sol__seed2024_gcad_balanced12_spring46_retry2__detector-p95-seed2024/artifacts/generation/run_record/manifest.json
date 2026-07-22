@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-22T03:01:49.266214+00:00",
+  "updated_at": "2026-07-22T03:10:48.072997+00:00",
+  "git_commit": "0fa31d96c440384d0a3960d2eb5708c9d35fcd41",
+  "config": {
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "method": "SPPC",
+    "threshold": 0.905,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_gcad_balanced12_spring46_retry2",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "require",
+    "gcad_prompt_max_relationships": 12,
+    "gcad_prompt_max_per_target": 4,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2"
+  },
+  "completed_categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2_seq.pkl",
+    "tof_final": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2_seq_filter_true.pkl",
+    "tof_final_count": 84
+  },
+  "gcad": {
+    "status": "ready",
+    "artifact_fingerprint": "483e832414088a79400ba9923f5830516ed6a038f09abfd25bf822dd754df14f",
+    "relationship_count": 44,
+    "artifact_relationship_count": 44,
+    "prompt_relationship_count": 12,
+    "prompt_relationship_limits": {
+      "max_relationships": 12,
+      "max_per_target": 4
+    },
+    "path": "artifacts/gcad/us/winter/preflight_history4.json",
+    "mode": "require",
+    "guidance_enabled": true
+  },
+  "compression": {
+    "method": "SPPC",
+    "training_mode": "reused_archived_selection",
+    "selection_source_dir": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware__detector-p95-seed2024/artifacts/ssc/selected_sequences",
+    "selection_sha256": {
+      "trn_day_0_SPPC_th=0.905.pkl": "eb287a0d741a25cd3ad0dddf231e464a3326ce8c26f8c9ecfe18e847861c2a38",
+      "trn_day_1_SPPC_th=0.905.pkl": "4c2c592aaba9048caa97d160f5762aca52d6288b16c00702d17047bfd27e2667",
+      "trn_day_2_SPPC_th=0.905.pkl": "8d487b65c565e612272beb5f973b0ecbabca7dc690f2b00286aa258def9a5dd2",
+      "trn_day_3_SPPC_th=0.905.pkl": "c882068f8badfdf6d727c3144766f0278aa940aafdfc6ba3d109194d8f8cc5ef",
+      "trn_day_4_SPPC_th=0.905.pkl": "40bb8749d0e56a1e03363e15a6aae424e35dddf93c1aa2d5c93924089bcd23e2",
+      "trn_day_5_SPPC_th=0.905.pkl": "a1dbc4a808ff71ea08b88b629c29dac4d3f2cf9b9491e5b968ab0bec2f2881cf",
+      "trn_day_6_SPPC_th=0.905.pkl": "aafcf4a0fd8077518bc0890169aea540a8d0fcb12faa054ee37c33da6d68b128"
+    }
+  },
+  "categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0_0": "IoT_data/us/spring/us_spring_generation_day_0_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "0_1": "IoT_data/us/spring/us_spring_generation_day_0_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "1": "IoT_data/us/spring/us_spring_generation_day_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "2": "IoT_data/us/spring/us_spring_generation_day_2_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "3_0": "IoT_data/us/spring/us_spring_generation_day_3_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "3_1": "IoT_data/us/spring/us_spring_generation_day_3_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "4": "IoT_data/us/spring/us_spring_generation_day_4_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "5_0": "IoT_data/us/spring/us_spring_generation_day_5_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "5_1": "IoT_data/us/spring/us_spring_generation_day_5_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "6_0": "IoT_data/us/spring/us_spring_generation_day_6_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl",
+    "6_1": "IoT_data/us/spring/us_spring_generation_day_6_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2.pkl"
+  },
+  "prompt_sha256": {
+    "0_0": "a194860d5ed6d8b9217e61933859af7bb70c599fbf647c93f65e75a868e89505",
+    "0_1": "5cdbc83605cb675ade0de22dc3eef18eb8a692daa6e06c75de4c52fb26f7b067",
+    "1": "2c5d751688f8b46376f4109b7dae0a29aad9e7e3bb174a790bc2a2e3e34c6865",
+    "2": "fc33bc4f5524f31f5fd367daaa3d1c008d7e8d12e520cc4e79c17a289b2eba6c",
+    "3_0": "02ee76ab399cea873283f6a31c8a3adf6b715172a0f5cff605544c468fd264f5",
+    "3_1": "a0dff282fb70075a34a89f6b4d203efaf2174b2b7b07c155d6a21d2580f5d9dc",
+    "4": "a950953a701bf9a44cdeaa420ab048d49d098e2e4b6c7eff609e15b819a39290",
+    "5_0": "89eb42e4150616916df0cd2f94d450809567f8034ff7c379de7d594a24640a8c",
+    "5_1": "f485bb5526c9da62af653c8ecd6a43cbd12d61f40d232314292c63ac1b2fd924",
+    "6_0": "0156f3feba36c165577201aba16d693c11b6bb0c9addd3670be275388204c0cc",
+    "6_1": "bd9f4e2322f8cd6249e2728f3efd8f643a813e22ebc1e0fc3d76591acfa2b7b3"
+  },
+  "environment_adherence": {
+    "target_environment": "spring",
+    "behavior_count": 469,
+    "hour_counts": {
+      "0": 34,
+      "1": 6,
+      "2": 46,
+      "3": 69,
+      "4": 83,
+      "5": 73,
+      "6": 79,
+      "7": 79
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 89,
+    "first_pass_count": 80,
+    "final_count": 84,
+    "intermediates_preserved": true
+  }
+}

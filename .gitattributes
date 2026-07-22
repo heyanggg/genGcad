@@ -35,3 +35,4 @@ SmartGen/check_model/best_fr_gpt-5.6-sol__seed2024_gcad_h2_original_SPPC.pth fil
 SmartGen/check_model/best_sp_gpt-5.6-sol__seed2024_gcad_h4_original_SPPC.pth filter=lfs diff=lfs merge=lfs -text
 SmartGen/check_model/best_sp_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware_SPPC.pth filter=lfs diff=lfs merge=lfs -text
 SmartGen/check_model/best_sp_gpt-5.6-sol__seed2024_gcad_h4_envaware_SPPC.pth filter=lfs diff=lfs merge=lfs -text
+experiment_archive/**/artifacts/**/*.pth filter=lfs diff=lfs merge=lfs -text

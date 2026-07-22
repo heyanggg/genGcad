@@ -1,0 +1,256 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "fe5d5b2d9a5cb745369c1ff325b0bd33edfe4dbddfee7ffb2b2609717c26fea5",
+  "source": {
+    "path": "IoT_data/us/single/split_trn.pkl",
+    "sha256": "7b412ed3763aa80aa2c9b484e1f8a27e061743aeb5dfc05bd04fe58f197ff75e",
+    "dataset": "us"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [
+    {
+      "source_action": "Television:setChannel",
+      "target_action": "Television:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2057958308,
+      "support": 7,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 1.0
+    },
+    {
+      "source_action": "Television:setChannel",
+      "target_action": "Television:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.1862317475,
+      "support": 10,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.904935
+    },
+    {
+      "source_action": "Light:switch off",
+      "target_action": "Television:switch on",
+      "typical_lag": 2,
+      "raw_strength": 0.1543287613,
+      "support": 46,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.749912
+    },
+    {
+      "source_action": "Switch:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.1433464152,
+      "support": 3,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.696547
+    },
+    {
+      "source_action": "Television:setChannel",
+      "target_action": "Light:switch off",
+      "typical_lag": 2,
+      "raw_strength": 0.1409178898,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.684746
+    },
+    {
+      "source_action": "Light:setColor",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.139692785,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.678793
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 2,
+      "raw_strength": 0.1375938341,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.668594
+    },
+    {
+      "source_action": "Television:volumeDown",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.1355493741,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.658659
+    },
+    {
+      "source_action": "Fan:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.130887256,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.636005
+    },
+    {
+      "source_action": "Switch:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.1299126565,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.63127
+    },
+    {
+      "source_action": "Television:volumeDown",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.1246436125,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.605666
+    },
+    {
+      "source_action": "Switch:switch on",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.1178302043,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.572559
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Television:switch on",
+      "typical_lag": 1,
+      "raw_strength": 0.1072363397,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.521081
+    },
+    {
+      "source_action": "Light:setLevel",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.1046376457,
+      "support": 11,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.508454
+    },
+    {
+      "source_action": "Fan:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0985102745,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.47868
+    },
+    {
+      "source_action": "Television:volumeDown",
+      "target_action": "Television:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0879354837,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.427295
+    }
+  ],
+  "status": "ready",
+  "effective_history": 4,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 22897,
+    "vocabulary_size": 35,
+    "train_windows": 1346,
+    "validation_windows": 338,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 1684,
+        "train_windows": 1346,
+        "validation_windows": 338,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.01260674,
+        "baseline_mse": 0.02320278,
+        "relative_improvement": 0.45667103,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 16
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.01232063,
+        "baseline_mse": 0.02320278,
+        "relative_improvement": 0.46900199,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 16
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.01220151,
+        "baseline_mse": 0.02320278,
+        "relative_improvement": 0.47413585,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 16
+      }
+    ],
+    "accepted_seed_count": 3
+  }
+}

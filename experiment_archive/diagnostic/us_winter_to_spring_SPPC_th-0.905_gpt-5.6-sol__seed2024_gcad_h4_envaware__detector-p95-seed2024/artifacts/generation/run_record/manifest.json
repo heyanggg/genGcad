@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-22T01:33:38.804682+00:00",
+  "updated_at": "2026-07-22T01:42:06.367186+00:00",
+  "git_commit": "8af879015cac86184ec1cf12a63306fbd499c230",
+  "config": {
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "method": "SPPC",
+    "threshold": 0.905,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_gcad_h4_envaware",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "require",
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_envaware"
+  },
+  "completed_categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware_seq.pkl",
+    "tof_final": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware_seq_filter_true.pkl",
+    "tof_final_count": 103
+  },
+  "gcad": {
+    "status": "ready",
+    "artifact_fingerprint": "483e832414088a79400ba9923f5830516ed6a038f09abfd25bf822dd754df14f",
+    "relationship_count": 44,
+    "path": "artifacts/gcad/us/winter/preflight_history4.json",
+    "mode": "require",
+    "guidance_enabled": true
+  },
+  "categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0_0": "IoT_data/us/spring/us_spring_generation_day_0_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "0_1": "IoT_data/us/spring/us_spring_generation_day_0_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "1": "IoT_data/us/spring/us_spring_generation_day_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "2": "IoT_data/us/spring/us_spring_generation_day_2_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "3_0": "IoT_data/us/spring/us_spring_generation_day_3_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "3_1": "IoT_data/us/spring/us_spring_generation_day_3_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "4": "IoT_data/us/spring/us_spring_generation_day_4_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "5_0": "IoT_data/us/spring/us_spring_generation_day_5_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "5_1": "IoT_data/us/spring/us_spring_generation_day_5_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "6_0": "IoT_data/us/spring/us_spring_generation_day_6_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl",
+    "6_1": "IoT_data/us/spring/us_spring_generation_day_6_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_h4_envaware.pkl"
+  },
+  "prompt_sha256": {
+    "0_0": "a49e3702fa0ca7d8c205bcabfb6d08a20974b8a98018943714aaad1ad34b263a",
+    "0_1": "a91bbb93ee77f0d3814591009068b50dca467da047131ce3ca928967a2bc97ae",
+    "1": "112533d66762080506c31a44edbf184e78d7d689d9c133e3234554ae93760bb5",
+    "2": "41c41bdf9ed0f16222797c28e233cfbff235c38e4371ed3bf1c024c527faa24c",
+    "3_0": "8656c063f1a12d895aa5f87c244636b77ffc256622f995d65e1db4df10d51f78",
+    "3_1": "767cadfc51a3905d99bd4be9504cb0f5e8f1baca2ea4a6538c495da4bb9b3c0f",
+    "4": "4d22537b37cfd133ea71a73fb27eb411bfdcd3d375f335d5a9f342e09c6da366",
+    "5_0": "344d03b0a0619ef5e4ffb7e2d70ebfb4431be06baf5ebb4d10a71c903f559a0a",
+    "5_1": "d83c839d45320b357f270a71880616c059f5bdff66fe8c467258398d93885669",
+    "6_0": "95256586f41441ed9f32575cb0350c40b149e19097d1a6908a8099d39c52e424",
+    "6_1": "84a01586b8998cc9999ab4601bc6b6f33f3dcfa62c46a65069c11b912192f7f0"
+  },
+  "environment_adherence": {
+    "target_environment": "spring",
+    "behavior_count": 786,
+    "hour_counts": {
+      "0": 60,
+      "1": 36,
+      "2": 78,
+      "3": 93,
+      "4": 146,
+      "5": 130,
+      "6": 133,
+      "7": 110
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 104,
+    "first_pass_count": 93,
+    "final_count": 103,
+    "intermediates_preserved": true
+  }
+}

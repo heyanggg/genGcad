@@ -1,0 +1,27 @@
+{
+  "dataset": "us",
+  "environment": "multiple",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+  "generation_threshold": 0.913,
+  "validation_percentile": 99.0,
+  "seed": 2024,
+  "generated_sequence_count": 297,
+  "training_sequence_count": 297,
+  "validation_sequence_count": 297,
+  "normal_test_count": 3209,
+  "attack_test_count": 3209,
+  "detection_threshold": 8.947730384534247e-05,
+  "metrics": {
+    "TP": 3209,
+    "TN": 2812,
+    "FP": 397,
+    "FN": 0,
+    "FPR": 0.12371455282019321,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 0.8899057127010538,
+    "accuracy": 0.9381427235899034,
+    "f1_score": 0.9417461482024945
+  }
+}

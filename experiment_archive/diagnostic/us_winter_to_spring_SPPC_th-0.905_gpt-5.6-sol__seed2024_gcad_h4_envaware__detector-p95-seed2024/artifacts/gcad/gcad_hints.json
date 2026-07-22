@@ -1,0 +1,564 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "483e832414088a79400ba9923f5830516ed6a038f09abfd25bf822dd754df14f",
+  "source": {
+    "path": "IoT_data/us/winter/split_trn.pkl",
+    "sha256": "7363d0bd39baf96b73313e0982fcffcddaf560aabf42fcd71d1a79fedf1a2927",
+    "dataset": "us"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [
+    {
+      "source_action": "GarageDoor:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.8698979257,
+      "support": 15,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 1.0
+    },
+    {
+      "source_action": "Other:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.7208688214,
+      "support": 10,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.828682
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.477783147,
+      "support": 9,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.54924
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.4658296204,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.535499
+    },
+    {
+      "source_action": "ClothingCareMachine:dryerOperatingState setMachineState run",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.4577781505,
+      "support": 6,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.526244
+    },
+    {
+      "source_action": "Switch:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.4398853797,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.505675
+    },
+    {
+      "source_action": "Light:setLevel",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.4324043781,
+      "support": 5,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.497075
+    },
+    {
+      "source_action": "Other:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.430269695,
+      "support": 9,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.494621
+    },
+    {
+      "source_action": "NetworkAudio:audioMute mute",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.4236056759,
+      "support": 34,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.48696
+    },
+    {
+      "source_action": "Switch:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.4073584876,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.468283
+    },
+    {
+      "source_action": "SmartLock:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.4025953394,
+      "support": 8,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.462808
+    },
+    {
+      "source_action": "GarageDoor:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3950767579,
+      "support": 11,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.454165
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3852086491,
+      "support": 10,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.442821
+    },
+    {
+      "source_action": "AirPurifier:notification",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3719711242,
+      "support": 12,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.427603
+    },
+    {
+      "source_action": "Television:volumeDown",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3665927883,
+      "support": 5,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.42142
+    },
+    {
+      "source_action": "Dishwasher:setStop",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3642797682,
+      "support": 6,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.418762
+    },
+    {
+      "source_action": "ClothingCareMachine:dryerOperatingState setMachineState run",
+      "target_action": "Light:switch on",
+      "typical_lag": 1,
+      "raw_strength": 0.3596874519,
+      "support": 8,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.413482
+    },
+    {
+      "source_action": "NetworkAudio:mediaPlayback play",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.358025009,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.411571
+    },
+    {
+      "source_action": "Television:volumeDown",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3574376902,
+      "support": 6,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.410896
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 1,
+      "raw_strength": 0.3391640725,
+      "support": 33,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.38989
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3383862469,
+      "support": 33,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.388995
+    },
+    {
+      "source_action": "Heater:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3380462567,
+      "support": 8,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.388605
+    },
+    {
+      "source_action": "Television:setChannel",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3365873453,
+      "support": 18,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.386927
+    },
+    {
+      "source_action": "Other:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.335712751,
+      "support": 12,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.385922
+    },
+    {
+      "source_action": "AirPurifier:switch off",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3355562391,
+      "support": 9,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.385742
+    },
+    {
+      "source_action": "Other:switch off",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.335387669,
+      "support": 9,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.385548
+    },
+    {
+      "source_action": "GarageDoor:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3322013986,
+      "support": 12,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.381885
+    },
+    {
+      "source_action": "AirPurifier:notification",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.329412713,
+      "support": 10,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.37868
+    },
+    {
+      "source_action": "AirPurifier:switch off",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3262111629,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.374999
+    },
+    {
+      "source_action": "Dishwasher:setStop",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.3210201039,
+      "support": 8,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.369032
+    },
+    {
+      "source_action": "Heater:switch off",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3102814327,
+      "support": 14,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.356687
+    },
+    {
+      "source_action": "RobotCleaner:setRobotCleanerMovement cleaning",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.3036475829,
+      "support": 17,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.349061
+    },
+    {
+      "source_action": "Dryer:notification",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.300228879,
+      "support": 8,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.345131
+    },
+    {
+      "source_action": "AirPurifier:switch off",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2911597194,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.334706
+    },
+    {
+      "source_action": "Dryer:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.289971183,
+      "support": 40,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.333339
+    },
+    {
+      "source_action": "Heater:switch off",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2878426736,
+      "support": 8,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.330892
+    },
+    {
+      "source_action": "Heater:switch on",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.2866890815,
+      "support": 20,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.329566
+    },
+    {
+      "source_action": "Television:audioMute unmute",
+      "target_action": "Light:switch on",
+      "typical_lag": 2,
+      "raw_strength": 0.2827493914,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.325037
+    },
+    {
+      "source_action": "Heater:switch on",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2733559121,
+      "support": 20,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.314239
+    },
+    {
+      "source_action": "NetworkAudio:mediaPlayback play",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2676089193,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.307633
+    },
+    {
+      "source_action": "Light:setLevel",
+      "target_action": "Light:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.2534220331,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.291324
+    },
+    {
+      "source_action": "Dryer:notification",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.2525771175,
+      "support": 9,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.290353
+    },
+    {
+      "source_action": "NetworkAudio:switch on",
+      "target_action": "Light:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.2291086201,
+      "support": 6,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.263374
+    },
+    {
+      "source_action": "Other:switch on",
+      "target_action": "Television:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.2214798694,
+      "support": 10,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.254604
+    }
+  ],
+  "status": "ready",
+  "effective_history": 4,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 29657,
+    "vocabulary_size": 75,
+    "train_windows": 3466,
+    "validation_windows": 868,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 4334,
+        "train_windows": 3466,
+        "validation_windows": 868,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.00843166,
+        "baseline_mse": 0.01227197,
+        "relative_improvement": 0.31293371,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 50
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.00850876,
+        "baseline_mse": 0.01227197,
+        "relative_improvement": 0.30665053,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 50
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.00858304,
+        "baseline_mse": 0.01227197,
+        "relative_improvement": 0.30059798,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 50
+      }
+    ],
+    "accepted_seed_count": 3
+  }
+}
