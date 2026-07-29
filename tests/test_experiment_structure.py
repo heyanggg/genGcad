@@ -164,6 +164,65 @@ def test_anomaly_detection_uses_isolated_run_directory(tmp_path, monkeypatch):
     assert result["seed"] == 2025
 
 
+def test_multiple_anomaly_detection_uses_disjoint_train_and_validation(
+    tmp_path, monkeypatch
+):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("baseline1", None)
+    import baseline1
+
+    monkeypatch.chdir(tmp_path)
+    final_data = (
+        tmp_path
+        / "filter_data/sp/multiple/"
+        "sp_multiple_generation_SPPC_th=0.915_model_seq_filter_true.pkl"
+    )
+    final_data.parent.mkdir(parents=True)
+    sequences = [[index, 0, 1, 2] for index in range(10)]
+    with final_data.open("wb") as handle:
+        pickle.dump(sequences, handle)
+
+    test_file = tmp_path / "IoT_data/sp/multiple/split_test.pkl"
+    test_file.parent.mkdir(parents=True)
+    with test_file.open("wb") as handle:
+        pickle.dump([[0, 0, 1, 2]], handle)
+    attack_file = tmp_path / "attack/sp/labeled_sp_multiple_attack_tv.pkl"
+    attack_file.parent.mkdir(parents=True)
+    with attack_file.open("wb") as handle:
+        pickle.dump([([0, 0, 1, 2], 1)], handle)
+
+    monkeypatch.setattr(baseline1, "train", lambda *args, **kwargs: None)
+    monkeypatch.setattr(baseline1, "find_threshold", lambda *args, **kwargs: 0.5)
+    monkeypatch.setattr(
+        baseline1,
+        "evaluate",
+        lambda *args, **kwargs: (
+            np.int64(1), np.int64(1), np.int64(0), np.int64(0),
+            0.0, 0.0, 1.0, 1.0, 1.0, 1.0,
+        ),
+    )
+    result = baseline1.Anomaly_detection(
+        "sp", "multiple", 0.915, "SPPC", "model", 99, seed=2024
+    )
+
+    run_dir = (
+        tmp_path
+        / "anomaly_runs/sp_multiple_model_SPPC_th-0.915_p-99_seed2024"
+    )
+    with (run_dir / "train.pkl").open("rb") as handle:
+        training = pickle.load(handle)
+    with (run_dir / "validation.pkl").open("rb") as handle:
+        validation = pickle.load(handle)
+    assert len(training) == 8
+    assert len(validation) == 2
+    assert {tuple(item) for item in training}.isdisjoint(
+        {tuple(item) for item in validation}
+    )
+    assert result["training_sequence_count"] == 8
+    assert result["validation_sequence_count"] == 2
+
+
 def test_security_filter_removes_stale_candidate_files(tmp_path, monkeypatch):
     smartgen = str(Path("SmartGen").resolve())
     monkeypatch.syspath_prepend(smartgen)

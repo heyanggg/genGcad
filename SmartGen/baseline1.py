@@ -284,21 +284,13 @@ def Anomaly_detection(
     epochs = 15
     seq_len = 10
     data_file = f'filter_data/{dataset}/{new_env}/{dataset}_{new_env}_generation_{method}_th={thres}_{model}_seq_filter_true.pkl'
-    if new_env == 'multiple':
-        vld_file = data_file
-        train_file = data_file
-        with open(data_file, 'rb') as file:
-            all_sequences = pickle.load(file)
-        training_count = len(all_sequences)
-        validation_count = len(all_sequences)
-    else:
-        train_file = run_dir / "train.pkl"
-        vld_file = run_dir / "validation.pkl"
-        training, validation = split_random(
-            data_file, train_file, vld_file, seed=seed
-        )
-        training_count = len(training)
-        validation_count = len(validation)
+    train_file = run_dir / "train.pkl"
+    vld_file = run_dir / "validation.pkl"
+    training, validation = split_random(
+        data_file, train_file, vld_file, seed=seed
+    )
+    training_count = len(training)
+    validation_count = len(validation)
     if new_env == 'spring':
         test_file1 = f"attack/{dataset}/labeled_{dataset}_spring_attack_heater.pkl"
     elif new_env == 'night':
@@ -334,9 +326,7 @@ def Anomaly_detection(
         "generation_threshold": thres,
         "validation_percentile": percentage,
         "seed": seed,
-        "generated_sequence_count": training_count + (
-            0 if new_env == "multiple" else validation_count
-        ),
+        "generated_sequence_count": training_count + validation_count,
         "training_sequence_count": training_count,
         "validation_sequence_count": validation_count,
         "normal_test_count": normal_count,

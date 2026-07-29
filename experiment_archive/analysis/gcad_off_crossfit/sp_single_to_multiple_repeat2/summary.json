@@ -1,0 +1,633 @@
+{
+  "config": {
+    "schema_version": 1,
+    "name": "sp_single_to_multiple_gcad_on_off_repeat2_crossfit5",
+    "dataset": "sp",
+    "environment": "multiple",
+    "on_sequence_count": 83,
+    "off_sequence_count": 110,
+    "balanced_sample_count": 83,
+    "train_ratio": 0.8,
+    "calibration_folds": 5,
+    "mad_multiplier": 3.5,
+    "percentile": 99.0,
+    "epochs": 15,
+    "seeds": [
+      2024
+    ],
+    "inputs": {
+      "on": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+        "sha256": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333"
+      },
+      "off": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original_repeat2__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original_repeat2_seq_filter_true.pkl",
+        "sha256": "8c7ea2317f2f5a75cd020d15d55804889c8c1a3252734041da2998a0f0e53d02"
+      },
+      "normal": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/sp/multiple/split_test.pkl",
+        "sha256": "428cc7aa0d16b618abc7a69f3f107626a087e49e041ff3f551223789a72d1e28"
+      },
+      "attack": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/attack/sp/labeled_sp_multiple_attack_tv.pkl",
+        "sha256": "8e96aee61946cd9f581638cd067faaf23cbda98ab59aa912ccf087fefaa59bd8"
+      }
+    }
+  },
+  "on": {
+    "runs": [
+      {
+        "mode": "on",
+        "seed": 2024,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              75,
+              76,
+              79
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              67,
+              73,
+              74,
+              77,
+              78,
+              80,
+              82
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              54,
+              55,
+              60,
+              62,
+              65,
+              66
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 156,
+          "FP": 2,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.4936708860759494,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.8224843775036053,
+          "auprc": 0.7379769020630875,
+          "threshold": 1.869689905643451
+        },
+        "robust_mad_metrics": {
+          "TP": 158,
+          "TN": 84,
+          "FP": 74,
+          "FN": 0,
+          "f1": 0.8102564102564103,
+          "accuracy": 0.7658227848101266,
+          "precision": 0.6810344827586207,
+          "recall": 1.0,
+          "auroc": 0.8098261496555039,
+          "auprc": 0.7261306895860833,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.4936708860759494,
+        "std": 0.0,
+        "min": 0.4936708860759494,
+        "max": 0.4936708860759494
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.8224843775036053,
+        "std": 0.0,
+        "min": 0.8224843775036053,
+        "max": 0.8224843775036053
+      },
+      "auprc": {
+        "mean": 0.7379769020630875,
+        "std": 0.0,
+        "min": 0.7379769020630875,
+        "max": 0.7379769020630875
+      },
+      "threshold": {
+        "mean": 1.869689905643451,
+        "std": 0.0,
+        "min": 1.869689905643451,
+        "max": 1.869689905643451
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.8102564102564103,
+        "std": 0.0,
+        "min": 0.8102564102564103,
+        "max": 0.8102564102564103
+      },
+      "accuracy": {
+        "mean": 0.7658227848101266,
+        "std": 0.0,
+        "min": 0.7658227848101266,
+        "max": 0.7658227848101266
+      },
+      "precision": {
+        "mean": 0.6810344827586207,
+        "std": 0.0,
+        "min": 0.6810344827586207,
+        "max": 0.6810344827586207
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "auroc": {
+        "mean": 0.8098261496555039,
+        "std": 0.0,
+        "min": 0.8098261496555039,
+        "max": 0.8098261496555039
+      },
+      "auprc": {
+        "mean": 0.7261306895860833,
+        "std": 0.0,
+        "min": 0.7261306895860833,
+        "max": 0.7261306895860833
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "off": {
+    "runs": [
+      {
+        "mode": "off",
+        "seed": 2024,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              75,
+              76,
+              79
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              67,
+              73,
+              74,
+              77,
+              78,
+              80,
+              82
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              54,
+              55,
+              60,
+              62,
+              65,
+              66
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.5704214068258292,
+          "auprc": 0.601789385322682,
+          "threshold": 4.033552412986753
+        },
+        "robust_mad_metrics": {
+          "TP": 0,
+          "TN": 106,
+          "FP": 52,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.33544303797468356,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.5640922929017785,
+          "auprc": 0.5988299693199173,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.5,
+        "std": 0.0,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.5704214068258292,
+        "std": 0.0,
+        "min": 0.5704214068258292,
+        "max": 0.5704214068258292
+      },
+      "auprc": {
+        "mean": 0.601789385322682,
+        "std": 0.0,
+        "min": 0.601789385322682,
+        "max": 0.601789385322682
+      },
+      "threshold": {
+        "mean": 4.033552412986753,
+        "std": 0.0,
+        "min": 4.033552412986753,
+        "max": 4.033552412986753
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.33544303797468356,
+        "std": 0.0,
+        "min": 0.33544303797468356,
+        "max": 0.33544303797468356
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.5640922929017785,
+        "std": 0.0,
+        "min": 0.5640922929017785,
+        "max": 0.5640922929017785
+      },
+      "auprc": {
+        "mean": 0.5988299693199173,
+        "std": 0.0,
+        "min": 0.5988299693199173,
+        "max": 0.5988299693199173
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "accuracy": {
+      "values": [
+        -0.006329113924050611
+      ],
+      "mean": -0.006329113924050611,
+      "std": 0.0
+    },
+    "precision": {
+      "values": [
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "recall": {
+      "values": [
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "auroc": {
+      "values": [
+        0.25206297067777605
+      ],
+      "mean": 0.25206297067777605,
+      "std": 0.0
+    },
+    "auprc": {
+      "values": [
+        0.13618751674040552
+      ],
+      "mean": 0.13618751674040552,
+      "std": 0.0
+    },
+    "threshold": {
+      "values": [
+        -2.1638625073433015
+      ],
+      "mean": -2.1638625073433015,
+      "std": 0.0
+    }
+  },
+  "robust_mad_paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.8102564102564103
+      ],
+      "mean": 0.8102564102564103,
+      "std": 0.0
+    },
+    "accuracy": {
+      "values": [
+        0.430379746835443
+      ],
+      "mean": 0.430379746835443,
+      "std": 0.0
+    },
+    "precision": {
+      "values": [
+        0.6810344827586207
+      ],
+      "mean": 0.6810344827586207,
+      "std": 0.0
+    },
+    "recall": {
+      "values": [
+        1.0
+      ],
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "auroc": {
+      "values": [
+        0.2457338567537254
+      ],
+      "mean": 0.2457338567537254,
+      "std": 0.0
+    },
+    "auprc": {
+      "values": [
+        0.127300720266166
+      ],
+      "mean": 0.127300720266166,
+      "std": 0.0
+    },
+    "threshold": {
+      "values": [
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    }
+  }
+}

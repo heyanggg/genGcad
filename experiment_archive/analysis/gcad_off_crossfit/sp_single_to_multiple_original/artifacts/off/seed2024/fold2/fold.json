@@ -1,0 +1,24 @@
+{
+  "fold": 2,
+  "training_sequence_count": 66,
+  "validation_sequence_count": 17,
+  "validation_indices": [
+    7,
+    10,
+    13,
+    18,
+    26,
+    32,
+    38,
+    40,
+    43,
+    45,
+    53,
+    56,
+    57,
+    63,
+    70,
+    71,
+    81
+  ]
+}

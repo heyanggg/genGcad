@@ -1,0 +1,1283 @@
+{
+  "config": {
+    "schema_version": 1,
+    "name": "sp_single_to_multiple_gcad_on_off_crossfit5",
+    "dataset": "sp",
+    "environment": "multiple",
+    "on_sequence_count": 83,
+    "off_sequence_count": 110,
+    "balanced_sample_count": 83,
+    "train_ratio": 0.8,
+    "calibration_folds": 5,
+    "percentile": 99.0,
+    "epochs": 15,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "inputs": {
+      "on": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+        "sha256": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333"
+      },
+      "off": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original_seq_filter_true.pkl",
+        "sha256": "42edab15f5aba33d8fc5466171d39690dc0d2fd633226521321a9c323bc55a96"
+      },
+      "normal": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/sp/multiple/split_test.pkl",
+        "sha256": "428cc7aa0d16b618abc7a69f3f107626a087e49e041ff3f551223789a72d1e28"
+      },
+      "attack": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/attack/sp/labeled_sp_multiple_attack_tv.pkl",
+        "sha256": "8e96aee61946cd9f581638cd067faaf23cbda98ab59aa912ccf087fefaa59bd8"
+      }
+    },
+    "mad_multiplier": 3.5
+  },
+  "on": {
+    "runs": [
+      {
+        "mode": "on",
+        "seed": 2024,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              75,
+              76,
+              79
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              67,
+              73,
+              74,
+              77,
+              78,
+              80,
+              82
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              54,
+              55,
+              60,
+              62,
+              65,
+              66
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 156,
+          "FP": 2,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.4936708860759494,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.8224843775036053,
+          "auprc": 0.7379769020630875,
+          "threshold": 1.869689905643451
+        },
+        "robust_mad_metrics": {
+          "TP": 158,
+          "TN": 84,
+          "FP": 74,
+          "FN": 0,
+          "f1": 0.8102564102564103,
+          "accuracy": 0.7658227848101266,
+          "precision": 0.6810344827586207,
+          "recall": 1.0,
+          "auroc": 0.8098261496555039,
+          "auprc": 0.7261306895860833,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "on",
+        "seed": 2025,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              14,
+              20,
+              34,
+              35,
+              43,
+              46,
+              48,
+              55,
+              59,
+              61,
+              66,
+              74,
+              79,
+              80,
+              81,
+              82
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              2,
+              4,
+              6,
+              11,
+              19,
+              29,
+              30,
+              44,
+              49,
+              50,
+              65,
+              68,
+              71,
+              73,
+              77,
+              78
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              7,
+              8,
+              9,
+              18,
+              21,
+              24,
+              38,
+              39,
+              47,
+              52,
+              54,
+              56,
+              63,
+              69,
+              70,
+              75
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              13,
+              15,
+              26,
+              27,
+              28,
+              31,
+              33,
+              36,
+              37,
+              41,
+              42,
+              51,
+              53,
+              57,
+              58,
+              60
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              3,
+              10,
+              12,
+              16,
+              17,
+              22,
+              23,
+              25,
+              32,
+              40,
+              45,
+              62,
+              64,
+              67,
+              72,
+              76
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.9194239705175452,
+          "auprc": 0.8489753987988905,
+          "threshold": 1.4099070954322803
+        },
+        "robust_mad_metrics": {
+          "TP": 158,
+          "TN": 75,
+          "FP": 83,
+          "FN": 0,
+          "f1": 0.7919799498746868,
+          "accuracy": 0.7373417721518988,
+          "precision": 0.6556016597510373,
+          "recall": 1.0,
+          "auroc": 0.9384113122896972,
+          "auprc": 0.8761975844895037,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "on",
+        "seed": 2026,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              8,
+              10,
+              16,
+              18,
+              21,
+              32,
+              42,
+              49,
+              58,
+              60,
+              61,
+              62,
+              71,
+              72,
+              73,
+              79,
+              82
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              11,
+              12,
+              13,
+              14,
+              22,
+              23,
+              30,
+              43,
+              44,
+              45,
+              46,
+              55,
+              59,
+              63,
+              67,
+              80
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              3,
+              19,
+              24,
+              31,
+              34,
+              35,
+              36,
+              37,
+              39,
+              40,
+              50,
+              53,
+              57,
+              65,
+              70,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              9,
+              15,
+              17,
+              20,
+              25,
+              33,
+              38,
+              41,
+              47,
+              48,
+              52,
+              64,
+              66,
+              74,
+              76
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              1,
+              2,
+              6,
+              7,
+              26,
+              27,
+              28,
+              29,
+              51,
+              54,
+              56,
+              68,
+              69,
+              75,
+              77,
+              78
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.9241507771190515,
+          "auprc": 0.8629844263759585,
+          "threshold": 1.20248725414276
+        },
+        "robust_mad_metrics": {
+          "TP": 158,
+          "TN": 63,
+          "FP": 95,
+          "FN": 0,
+          "f1": 0.7688564476885644,
+          "accuracy": 0.6993670886075949,
+          "precision": 0.6245059288537549,
+          "recall": 1.0,
+          "auroc": 0.9114925492709501,
+          "auprc": 0.8460488976640731,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.4978902953586498,
+        "std": 0.0036541156277824292,
+        "min": 0.4936708860759494,
+        "max": 0.5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.888686375046734,
+        "std": 0.057381303873189626,
+        "min": 0.8224843775036053,
+        "max": 0.9241507771190515
+      },
+      "auprc": {
+        "mean": 0.8166455757459788,
+        "std": 0.06848819882054638,
+        "min": 0.7379769020630875,
+        "max": 0.8629844263759585
+      },
+      "threshold": {
+        "mean": 1.4940280850728305,
+        "std": 0.34146317549037014,
+        "min": 1.20248725414276,
+        "max": 1.869689905643451
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.7903642692732205,
+        "std": 0.02074721771730429,
+        "min": 0.7688564476885644,
+        "max": 0.8102564102564103
+      },
+      "accuracy": {
+        "mean": 0.7341772151898734,
+        "std": 0.0333406764330783,
+        "min": 0.6993670886075949,
+        "max": 0.7658227848101266
+      },
+      "precision": {
+        "mean": 0.6537140237878043,
+        "std": 0.02831151230137834,
+        "min": 0.6245059288537549,
+        "max": 0.6810344827586207
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "auroc": {
+        "mean": 0.8865766704053838,
+        "std": 0.06781693576937967,
+        "min": 0.8098261496555039,
+        "max": 0.9384113122896972
+      },
+      "auprc": {
+        "mean": 0.81612572391322,
+        "std": 0.0793824003289228,
+        "min": 0.7261306895860833,
+        "max": 0.8761975844895037
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "off": {
+    "runs": [
+      {
+        "mode": "off",
+        "seed": 2024,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              75,
+              76,
+              79
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              67,
+              73,
+              74,
+              77,
+              78,
+              80,
+              82
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              54,
+              55,
+              60,
+              62,
+              65,
+              66
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.49359077070982216,
+          "auprc": 0.5943687358051262,
+          "threshold": 2.656263589859004
+        },
+        "robust_mad_metrics": {
+          "TP": 0,
+          "TN": 95,
+          "FP": 63,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.30063291139240506,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.48942477167120657,
+          "auprc": 0.5819061753104057,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "off",
+        "seed": 2025,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              14,
+              20,
+              34,
+              35,
+              43,
+              46,
+              48,
+              55,
+              59,
+              61,
+              66,
+              74,
+              79,
+              80,
+              81,
+              82
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              2,
+              4,
+              6,
+              11,
+              19,
+              29,
+              30,
+              44,
+              49,
+              50,
+              65,
+              68,
+              71,
+              73,
+              77,
+              78
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              7,
+              8,
+              9,
+              18,
+              21,
+              24,
+              38,
+              39,
+              47,
+              52,
+              54,
+              56,
+              63,
+              69,
+              70,
+              75
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              13,
+              15,
+              26,
+              27,
+              28,
+              31,
+              33,
+              36,
+              37,
+              41,
+              42,
+              51,
+              53,
+              57,
+              58,
+              60
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              3,
+              10,
+              12,
+              16,
+              17,
+              22,
+              23,
+              25,
+              32,
+              40,
+              45,
+              62,
+              64,
+              67,
+              72,
+              76
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.16772151898734178,
+          "auprc": 0.50981469647597,
+          "threshold": 1.5706246590614206
+        },
+        "robust_mad_metrics": {
+          "TP": 0,
+          "TN": 93,
+          "FP": 65,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.29430379746835444,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.18037974683544306,
+          "auprc": 0.5133910765644095,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "off",
+        "seed": 2026,
+        "balanced_sample_count": 83,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 83,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              8,
+              10,
+              16,
+              18,
+              21,
+              32,
+              42,
+              49,
+              58,
+              60,
+              61,
+              62,
+              71,
+              72,
+              73,
+              79,
+              82
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              11,
+              12,
+              13,
+              14,
+              22,
+              23,
+              30,
+              43,
+              44,
+              45,
+              46,
+              55,
+              59,
+              63,
+              67,
+              80
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 66,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              3,
+              19,
+              24,
+              31,
+              34,
+              35,
+              36,
+              37,
+              39,
+              40,
+              50,
+              53,
+              57,
+              65,
+              70,
+              81
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              4,
+              9,
+              15,
+              17,
+              20,
+              25,
+              33,
+              38,
+              41,
+              47,
+              48,
+              52,
+              64,
+              66,
+              74,
+              76
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              1,
+              2,
+              6,
+              7,
+              26,
+              27,
+              28,
+              29,
+              51,
+              54,
+              56,
+              68,
+              69,
+              75,
+              77,
+              78
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 0,
+          "TN": 158,
+          "FP": 0,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.2791019067457138,
+          "auprc": 0.5128515318952506,
+          "threshold": 1.6642472386360085
+        },
+        "robust_mad_metrics": {
+          "TP": 0,
+          "TN": 113,
+          "FP": 45,
+          "FN": 158,
+          "f1": 0.0,
+          "accuracy": 0.3575949367088608,
+          "precision": 0.0,
+          "recall": 0.0,
+          "auroc": 0.2921206537413876,
+          "auprc": 0.5155840873784637,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.5,
+        "std": 0.0,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.3134713988142926,
+        "std": 0.16563103209643837,
+        "min": 0.16772151898734178,
+        "max": 0.49359077070982216
+      },
+      "auprc": {
+        "mean": 0.5390116547254489,
+        "std": 0.04796467879166315,
+        "min": 0.50981469647597,
+        "max": 0.5943687358051262
+      },
+      "threshold": {
+        "mean": 1.9637118291854776,
+        "std": 0.6015914334168588,
+        "min": 1.5706246590614206,
+        "max": 2.656263589859004
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "accuracy": {
+        "mean": 0.31751054852320676,
+        "std": 0.034858041438519644,
+        "min": 0.29430379746835444,
+        "max": 0.3575949367088608
+      },
+      "precision": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "recall": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "auroc": {
+        "mean": 0.3206417240826791,
+        "std": 0.15648416991502398,
+        "min": 0.18037974683544306,
+        "max": 0.48942477167120657
+      },
+      "auprc": {
+        "mean": 0.5369604464177596,
+        "std": 0.0389395844016865,
+        "min": 0.5133910765644095,
+        "max": 0.5819061753104057
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "accuracy": {
+      "values": [
+        -0.006329113924050611,
+        0.0,
+        0.0
+      ],
+      "mean": -0.002109704641350204,
+      "std": 0.003654115627782429
+    },
+    "precision": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "recall": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "auroc": {
+      "values": [
+        0.3288936067937831,
+        0.7517024515302034,
+        0.6450488703733377
+      ],
+      "mean": 0.5752149762324414,
+      "std": 0.21988499124541908
+    },
+    "auprc": {
+      "values": [
+        0.14360816625796136,
+        0.3391607023229205,
+        0.35013289448070795
+      ],
+      "mean": 0.2776339210205299,
+      "std": 0.11619928766969263
+    },
+    "threshold": {
+      "values": [
+        -0.7865736842155528,
+        -0.16071756362914025,
+        -0.4617599844932485
+      ],
+      "mean": -0.4696837441126472,
+      "std": 0.3130032913465098
+    }
+  },
+  "robust_mad_paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.8102564102564103,
+        0.7919799498746868,
+        0.7688564476885644
+      ],
+      "mean": 0.7903642692732205,
+      "std": 0.02074721771730429
+    },
+    "accuracy": {
+      "values": [
+        0.4651898734177215,
+        0.44303797468354433,
+        0.3417721518987341
+      ],
+      "mean": 0.41666666666666663,
+      "std": 0.06579945220991858
+    },
+    "precision": {
+      "values": [
+        0.6810344827586207,
+        0.6556016597510373,
+        0.6245059288537549
+      ],
+      "mean": 0.6537140237878043,
+      "std": 0.02831151230137834
+    },
+    "recall": {
+      "values": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "auroc": {
+      "values": [
+        0.32040137798429735,
+        0.7580315654542542,
+        0.6193718955295625
+      ],
+      "mean": 0.5659349463227047,
+      "std": 0.2236552612876559
+    },
+    "auprc": {
+      "values": [
+        0.14422451427567762,
+        0.36280650792509417,
+        0.33046481028560937
+      ],
+      "mean": 0.2791652774954604,
+      "std": 0.11797564806053863
+    },
+    "threshold": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    }
+  }
+}

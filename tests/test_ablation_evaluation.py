@@ -2,8 +2,11 @@ import numpy as np
 import pytest
 
 from SmartGen.ablation_evaluation import (
+    balanced_cross_validation_splits,
     balanced_train_validation_split,
     calculate_metrics,
+    robust_mad_threshold,
+    robust_standardize,
     sha256_file,
     summarize_runs,
     write_checksums,
@@ -37,6 +40,31 @@ def test_balanced_split_rejects_invalid_requests():
         )
 
 
+def test_cross_validation_splits_cover_each_selected_sequence_once():
+    selected, folds = balanced_cross_validation_splits(
+        [[index] for index in range(12)],
+        sample_count=10,
+        folds=5,
+        seed=2024,
+    )
+    assert len(selected) == 10
+    validation_indices = [
+        index for _, validation in folds for index in validation
+    ]
+    assert sorted(validation_indices) == list(range(10))
+    for training, validation in folds:
+        assert set(training).isdisjoint(validation)
+        assert len(training) == 8
+        assert len(validation) == 2
+
+
+def test_cross_validation_rejects_too_many_folds():
+    with pytest.raises(ValueError, match="exceeds"):
+        balanced_cross_validation_splits(
+            [[1], [2]], sample_count=2, folds=3, seed=2024
+        )
+
+
 def test_metrics_include_threshold_free_and_thresholded_results():
     metrics = calculate_metrics(
         np.asarray([0.1, 0.2]),
@@ -48,6 +76,23 @@ def test_metrics_include_threshold_free_and_thresholded_results():
     assert metrics["f1"] == 1.0
     assert metrics["auroc"] == 1.0
     assert metrics["auprc"] == 1.0
+
+
+def test_robust_mad_threshold_is_not_controlled_by_single_extreme_score():
+    threshold = robust_mad_threshold(
+        np.asarray([1.0, 2.0, 3.0, 100.0]), multiplier=3.5
+    )
+    assert threshold == pytest.approx(2.5 + 3.5 * 1.4826)
+    assert threshold < 100.0
+
+
+def test_robust_standardize_uses_calibration_fold_scale():
+    standardized = robust_standardize(
+        np.asarray([1.0, 2.0, 3.0, 100.0]),
+        np.asarray([2.5, 2.5 + 3.5 * 1.4826]),
+    )
+    assert standardized[0] == pytest.approx(0.0)
+    assert standardized[1] == pytest.approx(3.5)
 
 
 def test_run_summary_uses_sample_standard_deviation():

@@ -33,6 +33,7 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
+from sklearn.model_selection import KFold
 from torch.utils.data import DataLoader
 
 try:
@@ -110,6 +111,31 @@ def balanced_train_validation_split(
     split_index = int(sample_count * train_ratio)
     split_index = min(max(split_index, 1), sample_count - 1)
     return selected[:split_index], selected[split_index:]
+
+
+def balanced_cross_validation_splits(
+    sequences: list[list[int]],
+    *,
+    sample_count: int,
+    folds: int,
+    seed: int,
+) -> tuple[list[list[int]], list[tuple[list[int], list[int]]]]:
+    if sample_count > len(sequences):
+        raise ValueError("sample_count exceeds available sequences")
+    if folds < 2:
+        raise ValueError("cross-validation requires at least two folds")
+    if folds > sample_count:
+        raise ValueError("fold count exceeds balanced sample count")
+
+    indices = list(range(len(sequences)))
+    random.Random(seed).shuffle(indices)
+    selected = [list(sequences[index]) for index in indices[:sample_count]]
+    splitter = KFold(n_splits=folds, shuffle=True, random_state=seed)
+    fold_indices = [
+        (training.tolist(), validation.tolist())
+        for training, validation in splitter.split(selected)
+    ]
+    return selected, fold_indices
 
 
 def pad_sequences(sequences: list[list[int]], vocab_size: int) -> np.ndarray:
@@ -192,10 +218,12 @@ def calculate_metrics(
     }
 
 
-def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
+def summarize_runs(
+    runs: list[dict[str, Any]], metric_key: str = "metrics"
+) -> dict[str, dict[str, float]]:
     summary = {}
     for name in METRIC_NAMES:
-        values = [float(run["metrics"][name]) for run in runs]
+        values = [float(run[metric_key][name]) for run in runs]
         summary[name] = {
             "mean": mean(values),
             "std": stdev(values) if len(values) > 1 else 0.0,
@@ -203,6 +231,28 @@ def summarize_runs(runs: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
             "max": max(values),
         }
     return summary
+
+
+def robust_mad_threshold(scores: np.ndarray, multiplier: float = 3.5) -> float:
+    """Return a label-free robust upper threshold using scaled median deviation."""
+    if multiplier <= 0:
+        raise ValueError("MAD multiplier must be positive")
+    median = float(np.median(scores))
+    mad = float(np.median(np.abs(scores - median)))
+    return median + multiplier * 1.4826 * mad
+
+
+def robust_standardize(
+    calibration_scores: np.ndarray, scores: np.ndarray
+) -> np.ndarray:
+    """Put scores on a fold-local robust deviation scale."""
+    center = float(np.median(calibration_scores))
+    scale = float(
+        1.4826 * np.median(np.abs(calibration_scores - center))
+    )
+    if scale <= 1e-12:
+        scale = max(float(np.std(calibration_scores)), 1e-12)
+    return (scores - center) / scale
 
 
 def atomic_json(path: Path, value: Any) -> None:
@@ -303,6 +353,209 @@ def evaluate_mode(
     return runs
 
 
+def evaluate_mode_crossfit(
+    mode: str,
+    sequences: list[list[int]],
+    *,
+    environment: str,
+    vocab_size: int,
+    sample_count: int,
+    percentile: float,
+    seeds: list[int],
+    epochs: int,
+    folds: int,
+    mad_multiplier: float,
+    normal_sequences: list[list[int]],
+    attack_sequences: list[list[int]],
+    output_dir: Path,
+) -> list[dict[str, Any]]:
+    """Calibrate on out-of-fold generated scores and ensemble fold detectors."""
+    runs = []
+    for seed in seeds:
+        run_dir = output_dir / "artifacts" / mode / f"seed{seed}"
+        run_dir.mkdir(parents=True, exist_ok=True)
+        selected, fold_indices = balanced_cross_validation_splits(
+            sequences,
+            sample_count=sample_count,
+            folds=folds,
+            seed=seed,
+        )
+        oof_scores = np.full(sample_count, np.nan, dtype=float)
+        normal_fold_scores = []
+        attack_fold_scores = []
+        normal_fold_robust_scores = []
+        attack_fold_robust_scores = []
+        fold_records = []
+        for fold_index, (training_indices, validation_indices) in enumerate(
+            fold_indices
+        ):
+            fold_dir = run_dir / f"fold{fold_index}"
+            fold_dir.mkdir(parents=True, exist_ok=True)
+            training = [selected[index] for index in training_indices]
+            validation = [selected[index] for index in validation_indices]
+            train_path = fold_dir / "train.pkl"
+            validation_path = fold_dir / "validation.pkl"
+            model_path = fold_dir / "detector.pth"
+            write_pickle(train_path, training)
+            write_pickle(validation_path, validation)
+
+            baseline1.setup_seed(seed * 100 + fold_index)
+            baseline1.train(
+                environment,
+                vocab_size,
+                epochs,
+                train_path,
+                model_path,
+                10,
+            )
+            validation_scores = score_sequences(
+                environment, vocab_size, validation, model_path
+            )
+            oof_scores[np.asarray(validation_indices)] = validation_scores
+            normal_scores = score_sequences(
+                environment, vocab_size, normal_sequences, model_path
+            )
+            attack_scores = score_sequences(
+                environment, vocab_size, attack_sequences, model_path
+            )
+            normal_fold_scores.append(normal_scores)
+            attack_fold_scores.append(attack_scores)
+            normal_fold_robust_scores.append(
+                robust_standardize(validation_scores, normal_scores)
+            )
+            attack_fold_robust_scores.append(
+                robust_standardize(validation_scores, attack_scores)
+            )
+            np.savez_compressed(
+                fold_dir / "scores.npz",
+                validation=validation_scores,
+                normal=normal_scores,
+                attack=attack_scores,
+            )
+            fold_record = {
+                "fold": fold_index,
+                "training_sequence_count": len(training),
+                "validation_sequence_count": len(validation),
+                "validation_indices": validation_indices,
+            }
+            atomic_json(fold_dir / "fold.json", fold_record)
+            fold_records.append(fold_record)
+
+        if np.isnan(oof_scores).any():
+            raise RuntimeError("cross-validation did not score every selected sequence")
+        normal_scores = np.mean(np.stack(normal_fold_scores), axis=0)
+        attack_scores = np.mean(np.stack(attack_fold_scores), axis=0)
+        normal_robust_scores = np.mean(
+            np.stack(normal_fold_robust_scores), axis=0
+        )
+        attack_robust_scores = np.mean(
+            np.stack(attack_fold_robust_scores), axis=0
+        )
+        threshold = float(np.percentile(oof_scores, percentile))
+        metrics = calculate_metrics(normal_scores, attack_scores, threshold)
+        robust_metrics = calculate_metrics(
+            normal_robust_scores, attack_robust_scores, mad_multiplier
+        )
+        np.savez_compressed(
+            run_dir / "ensemble_scores.npz",
+            calibration_oof=oof_scores,
+            normal=normal_scores,
+            attack=attack_scores,
+            robust_normal=normal_robust_scores,
+            robust_attack=attack_robust_scores,
+        )
+        result = {
+            "mode": mode,
+            "seed": seed,
+            "balanced_sample_count": sample_count,
+            "calibration_method": "k_fold_out_of_fold",
+            "calibration_folds": folds,
+            "calibration_score_count": len(oof_scores),
+            "test_score_aggregation": "mean_across_fold_detectors",
+            "folds": fold_records,
+            "metrics": metrics,
+            "robust_mad_metrics": robust_metrics,
+        }
+        atomic_json(run_dir / "metrics.json", result)
+        runs.append(result)
+    return runs
+
+
+def add_robust_mad_to_crossfit_output(
+    output_dir: Path, multiplier: float = 3.5
+) -> dict[str, Any]:
+    """Add robust label-free threshold metrics to saved cross-fit scores."""
+    summary_path = output_dir / "summary.json"
+    result = json.loads(summary_path.read_text(encoding="utf-8"))
+    if int(result["config"].get("calibration_folds", 1)) < 2:
+        raise ValueError("saved output is not a cross-fit evaluation")
+    result["config"]["mad_multiplier"] = multiplier
+    for mode in ("on", "off"):
+        for run in result[mode]["runs"]:
+            run_dir = output_dir / "artifacts" / mode / f"seed{run['seed']}"
+            normal_robust_scores = []
+            attack_robust_scores = []
+            for fold_dir in sorted(run_dir.glob("fold*")):
+                with np.load(fold_dir / "scores.npz") as fold_scores:
+                    normal_robust_scores.append(
+                        robust_standardize(
+                            fold_scores["validation"], fold_scores["normal"]
+                        )
+                    )
+                    attack_robust_scores.append(
+                        robust_standardize(
+                            fold_scores["validation"], fold_scores["attack"]
+                        )
+                    )
+            normal_robust = np.mean(
+                np.stack(normal_robust_scores), axis=0
+            )
+            attack_robust = np.mean(
+                np.stack(attack_robust_scores), axis=0
+            )
+            with np.load(run_dir / "ensemble_scores.npz") as scores:
+                calibration_oof = scores["calibration_oof"]
+                normal = scores["normal"]
+                attack = scores["attack"]
+                run["robust_mad_metrics"] = calculate_metrics(
+                    normal_robust, attack_robust, multiplier
+                )
+            np.savez_compressed(
+                run_dir / "ensemble_scores.npz",
+                calibration_oof=calibration_oof,
+                normal=normal,
+                attack=attack,
+                robust_normal=normal_robust,
+                robust_attack=attack_robust,
+            )
+            atomic_json(run_dir / "metrics.json", run)
+        result[mode]["robust_mad_summary"] = summarize_runs(
+            result[mode]["runs"], "robust_mad_metrics"
+        )
+    robust_deltas = {
+        name: [
+            float(on_run["robust_mad_metrics"][name])
+            - float(off_run["robust_mad_metrics"][name])
+            for on_run, off_run in zip(
+                result["on"]["runs"], result["off"]["runs"]
+            )
+        ]
+        for name in METRIC_NAMES
+    }
+    result["robust_mad_paired_on_minus_off"] = {
+        name: {
+            "values": values,
+            "mean": mean(values),
+            "std": stdev(values) if len(values) > 1 else 0.0,
+        }
+        for name, values in robust_deltas.items()
+    }
+    atomic_json(output_dir / "config.json", result["config"])
+    atomic_json(summary_path, result)
+    write_checksums(output_dir)
+    return result
+
+
 def get_args_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Balanced repeated detector evaluation for an on/off ablation"
@@ -319,6 +572,24 @@ def get_args_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--seeds", type=int, nargs="+", default=[2024, 2025, 2026])
     parser.add_argument("--train-ratio", type=float, default=0.8)
+    parser.add_argument(
+        "--calibration-folds",
+        type=int,
+        default=1,
+        help=(
+            "Use k-fold out-of-fold calibration and average fold detector test "
+            "scores when greater than one; one preserves the holdout protocol"
+        ),
+    )
+    parser.add_argument(
+        "--mad-multiplier",
+        type=float,
+        default=3.5,
+        help=(
+            "Fixed multiplier for the label-free median + multiplier * 1.4826 "
+            "* MAD threshold reported by cross-fit evaluation"
+        ),
+    )
     parser.add_argument("--percentile", type=float, required=True)
     parser.add_argument("--epochs", type=int, default=15)
     return parser
@@ -330,6 +601,10 @@ def main(argv: list[str] | None = None) -> int:
         raise ValueError("detector seeds must be unique")
     if not 0 <= args.percentile <= 100:
         raise ValueError("percentile must be between zero and one hundred")
+    if args.calibration_folds < 1:
+        raise ValueError("calibration folds must be positive")
+    if args.mad_multiplier <= 0:
+        raise ValueError("MAD multiplier must be positive")
 
     smartgen_root = Path(__file__).resolve().parent
     normal_path = args.normal_data or (
@@ -367,6 +642,8 @@ def main(argv: list[str] | None = None) -> int:
         "off_sequence_count": len(off_sequences),
         "balanced_sample_count": sample_count,
         "train_ratio": args.train_ratio,
+        "calibration_folds": args.calibration_folds,
+        "mad_multiplier": args.mad_multiplier,
         "percentile": args.percentile,
         "epochs": args.epochs,
         "seeds": args.seeds,
@@ -381,7 +658,6 @@ def main(argv: list[str] | None = None) -> int:
         "environment": args.environment,
         "vocab_size": baseline1.vocab_dic[args.dataset],
         "sample_count": sample_count,
-        "train_ratio": args.train_ratio,
         "percentile": args.percentile,
         "seeds": args.seeds,
         "epochs": args.epochs,
@@ -389,8 +665,15 @@ def main(argv: list[str] | None = None) -> int:
         "attack_sequences": attack_sequences,
         "output_dir": output_dir,
     }
-    on_runs = evaluate_mode("on", on_sequences, **common)
-    off_runs = evaluate_mode("off", off_sequences, **common)
+    if args.calibration_folds == 1:
+        common["train_ratio"] = args.train_ratio
+        on_runs = evaluate_mode("on", on_sequences, **common)
+        off_runs = evaluate_mode("off", off_sequences, **common)
+    else:
+        common["folds"] = args.calibration_folds
+        common["mad_multiplier"] = args.mad_multiplier
+        on_runs = evaluate_mode_crossfit("on", on_sequences, **common)
+        off_runs = evaluate_mode_crossfit("off", off_sequences, **common)
     paired_deltas = {
         name: [
             float(on_run["metrics"][name]) - float(off_run["metrics"][name])
@@ -398,10 +681,12 @@ def main(argv: list[str] | None = None) -> int:
         ]
         for name in METRIC_NAMES
     }
+    on_result = {"runs": on_runs, "summary": summarize_runs(on_runs)}
+    off_result = {"runs": off_runs, "summary": summarize_runs(off_runs)}
     result = {
         "config": config,
-        "on": {"runs": on_runs, "summary": summarize_runs(on_runs)},
-        "off": {"runs": off_runs, "summary": summarize_runs(off_runs)},
+        "on": on_result,
+        "off": off_result,
         "paired_on_minus_off": {
             name: {
                 "values": values,
@@ -411,6 +696,29 @@ def main(argv: list[str] | None = None) -> int:
             for name, values in paired_deltas.items()
         },
     }
+    if args.calibration_folds > 1:
+        on_result["robust_mad_summary"] = summarize_runs(
+            on_runs, "robust_mad_metrics"
+        )
+        off_result["robust_mad_summary"] = summarize_runs(
+            off_runs, "robust_mad_metrics"
+        )
+        robust_deltas = {
+            name: [
+                float(on_run["robust_mad_metrics"][name])
+                - float(off_run["robust_mad_metrics"][name])
+                for on_run, off_run in zip(on_runs, off_runs)
+            ]
+            for name in METRIC_NAMES
+        }
+        result["robust_mad_paired_on_minus_off"] = {
+            name: {
+                "values": values,
+                "mean": mean(values),
+                "std": stdev(values) if len(values) > 1 else 0.0,
+            }
+            for name, values in robust_deltas.items()
+        }
     atomic_json(output_dir / "summary.json", result)
     write_checksums(output_dir)
     print(json.dumps(result, indent=2, ensure_ascii=False))
