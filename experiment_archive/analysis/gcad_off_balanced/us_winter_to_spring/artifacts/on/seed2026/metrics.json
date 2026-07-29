@@ -1,0 +1,20 @@
+{
+  "mode": "on",
+  "seed": 2026,
+  "balanced_sample_count": 84,
+  "training_sequence_count": 67,
+  "validation_sequence_count": 17,
+  "metrics": {
+    "TP": 3016,
+    "TN": 2808,
+    "FP": 208,
+    "FN": 0,
+    "f1": 0.9666666666666666,
+    "accuracy": 0.9655172413793104,
+    "precision": 0.9354838709677419,
+    "recall": 1.0,
+    "auroc": 0.9645167748137256,
+    "auprc": 0.9296728573898426,
+    "threshold": 0.22070048823952595
+  }
+}

@@ -12,7 +12,20 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, confu
 from torch import optim
 from torch.utils.data import DataLoader
 
-from models1 import TransformerAutoencoder, TimeSeriesDataset2, TimeSeriesDataset3, TimeSeriesDataset4
+try:
+    from .models1 import (
+        TransformerAutoencoder,
+        TimeSeriesDataset2,
+        TimeSeriesDataset3,
+        TimeSeriesDataset4,
+    )
+except ImportError:
+    from models1 import (
+        TransformerAutoencoder,
+        TimeSeriesDataset2,
+        TimeSeriesDataset3,
+        TimeSeriesDataset4,
+    )
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 vocab_dic = {"an": 141, "fr": 223, "us": 269, "sp": 235}
