@@ -1,0 +1,27 @@
+{
+  "dataset": "sp",
+  "environment": "multiple",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_original",
+  "generation_threshold": 0.915,
+  "validation_percentile": 99.0,
+  "seed": 2024,
+  "generated_sequence_count": 110,
+  "training_sequence_count": 110,
+  "validation_sequence_count": 110,
+  "normal_test_count": 158,
+  "attack_test_count": 158,
+  "detection_threshold": 0.0008950124192051565,
+  "metrics": {
+    "TP": 0,
+    "TN": 141,
+    "FP": 17,
+    "FN": 158,
+    "FPR": 0.10759493670886076,
+    "FNR": 1.0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "accuracy": 0.4462025316455696,
+    "f1_score": 0
+  }
+}

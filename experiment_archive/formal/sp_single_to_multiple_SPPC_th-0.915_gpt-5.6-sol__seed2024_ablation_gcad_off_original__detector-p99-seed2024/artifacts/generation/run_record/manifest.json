@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-29T16:41:32.168819+00:00",
+  "updated_at": "2026-07-29T16:52:03.771670+00:00",
+  "git_commit": "d7df1c2f1034f5b42d702254c3590ff471791c2f",
+  "config": {
+    "dataset": "sp",
+    "original_environment": "single",
+    "target_environment": "multiple",
+    "method": "SPPC",
+    "threshold": 0.915,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_ablation_gcad_off_original",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "off",
+    "gcad_prompt_max_relationships": 12,
+    "gcad_prompt_max_per_target": 4,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "original",
+    "artifact_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_original"
+  },
+  "completed_categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original_seq.pkl",
+    "tof_final": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original_seq_filter_true.pkl",
+    "tof_final_count": 110
+  },
+  "gcad": {
+    "status": "ready",
+    "artifact_fingerprint": "116a6cfe13690480613b26985bf471e9fc4454982ae50bb3dd31460736c43d71",
+    "relationship_count": 1,
+    "artifact_relationship_count": 0,
+    "prompt_relationship_count": 0,
+    "prompt_relationship_limits": {
+      "max_relationships": 12,
+      "max_per_target": 4
+    },
+    "path": "artifacts/gcad/sp/single/preflight_history4.json",
+    "mode": "off",
+    "guidance_enabled": false
+  },
+  "compression": {
+    "method": "SPPC",
+    "training_mode": "reused_archived_selection",
+    "selection_source_dir": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/ssc/selected_sequences",
+    "selection_sha256": {
+      "trn_day_0_SPPC_th=0.915.pkl": "cbaa18c0368ffeba5ac2d4981ab933784c8414f05fb95e873f030f043fc2d894",
+      "trn_day_1_SPPC_th=0.915.pkl": "c1de9872622575725e4c7905cc7aa883c591d6129f3529e87327e3263e28cf36",
+      "trn_day_2_SPPC_th=0.915.pkl": "66b172146168f3e8d22ee2f564fb61e10bf463a5afeeb5ce23c6d0c34f4f4823",
+      "trn_day_3_SPPC_th=0.915.pkl": "90a2e7ae121c6b2daddf1bb4639b733e5ab46059dabc302253986653b5a6939b",
+      "trn_day_4_SPPC_th=0.915.pkl": "7ccd409e97ae2300c649437696edc3eb6122cff838eaff27787cf4abb262b217",
+      "trn_day_5_SPPC_th=0.915.pkl": "9b5c5ddb64bd04ca63293ec58624b134e196b70a799d45db37129d3e34145c72",
+      "trn_day_6_SPPC_th=0.915.pkl": "b130bed5a0a2325f7db059837dd6b753939fc51c0e1e558973037df28767751a"
+    }
+  },
+  "categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0": "IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "1": "IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "2_0": "IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "2_1": "IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "3": "IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "4": "IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "5": "IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl",
+    "6": "IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_original.pkl"
+  },
+  "prompt_sha256": {
+    "0": "4eda244f7d61e79fb505db03f09cfa9afcf4306d06aae76e5a3cfeaf0aae2d0a",
+    "1": "d77a881c3e08d7efb59c89976b107fbf77fef8b2bad90d5615ba9c0170fa5478",
+    "2_0": "093c0af230eccf0323c4f8aac6572842dab7870d428fae17d02929d9c2234ef4",
+    "2_1": "38c9abf5f21d8b4a6c283e785eeb1253bfc1cf03b25b317f31e808b24a101bf2",
+    "3": "3455ce50ae0a1603506e493980048f7c42708162500abe55459ba9cc2cea2b4a",
+    "4": "de5ad6ecf9f0d8299c51b8ab59a0d51f3c08a22fbc2c6fe77458a8884a78e2b9",
+    "5": "70f8bb57e9f527452c6eed461b50f7d0f2cb0e27d95291a1ed15e34a63f3042c",
+    "6": "defecebc5008f96c72ca27431ac10fb78aba38be0b3d2772cc00017e54f3b673"
+  },
+  "environment_adherence": {
+    "target_environment": "multiple",
+    "behavior_count": 946,
+    "hour_counts": {
+      "0": 96,
+      "1": 64,
+      "2": 104,
+      "3": 151,
+      "4": 163,
+      "5": 108,
+      "6": 147,
+      "7": 113
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 115,
+    "first_pass_count": 98,
+    "final_count": 110,
+    "intermediates_preserved": true
+  }
+}

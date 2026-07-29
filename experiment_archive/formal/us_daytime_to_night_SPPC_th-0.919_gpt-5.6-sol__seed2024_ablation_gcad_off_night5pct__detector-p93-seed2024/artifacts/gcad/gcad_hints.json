@@ -1,0 +1,289 @@
+{
+  "schema_version": 2,
+  "method": "GCAD-derived lagged directional dependencies",
+  "artifact_fingerprint": "48b9df8689840e74d715abb262216fa73c89422f310cec803fb1f5021848aa39",
+  "source": {
+    "path": "IoT_data/us/daytime/split_trn.pkl",
+    "sha256": "0ac2e56e5aae29dc884843238fb5379b9ff3f445880bdbb198b620b2e4b73072",
+    "dataset": "us"
+  },
+  "config": {
+    "requested_history": 4,
+    "epochs": 50,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "split_seed": 2024,
+    "validation_ratio": 0.2,
+    "min_total_windows": 30,
+    "min_validation_windows": 8,
+    "min_relative_improvement": 0.0,
+    "min_support": 3,
+    "sparsity_quantile": 0.75,
+    "top_k_per_source": 3,
+    "max_relationships": 50,
+    "stable_seed_fraction": 0.6666666666666666
+  },
+  "lagged_behavior_relations": [
+    {
+      "source_action": "AirPurifier:switch off",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.1341321594,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 1.0
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.1311318183,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.977631
+    },
+    {
+      "source_action": "AirPurifier:notification",
+      "target_action": "Camera:notification",
+      "typical_lag": 1,
+      "raw_strength": 0.1041618661,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.776561
+    },
+    {
+      "source_action": "NetworkAudio:audioMute mute",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0886286613,
+      "support": 17,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.660756
+    },
+    {
+      "source_action": "AirPurifier:switch off",
+      "target_action": "NetworkAudio:audioMute mute",
+      "typical_lag": 4,
+      "raw_strength": 0.0877593662,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.654275
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0875861359,
+      "support": 14,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.652984
+    },
+    {
+      "source_action": "RobotCleaner:setRobotCleanerMovement cleaning",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0834292296,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.621993
+    },
+    {
+      "source_action": "Dryer:switch on",
+      "target_action": "Camera:notification",
+      "typical_lag": 1,
+      "raw_strength": 0.082537145,
+      "support": 19,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.615342
+    },
+    {
+      "source_action": "Dryer:notification",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0820642393,
+      "support": 3,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.611816
+    },
+    {
+      "source_action": "Dryer:notification",
+      "target_action": "RobotCleaner:setRobotCleanerMovement charging",
+      "typical_lag": 3,
+      "raw_strength": 0.0811488639,
+      "support": 4,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.604992
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0796062092,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.593491
+    },
+    {
+      "source_action": "AirPurifier:notification",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 2,
+      "raw_strength": 0.0793966908,
+      "support": 7,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.591929
+    },
+    {
+      "source_action": "RobotCleaner:setRobotCleanerMovement cleaning",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0752069481,
+      "support": 3,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.560693
+    },
+    {
+      "source_action": "Dryer:notification",
+      "target_action": "Camera:notification",
+      "typical_lag": 2,
+      "raw_strength": 0.0734412411,
+      "support": 6,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.547529
+    },
+    {
+      "source_action": "SmartPlug:switch on",
+      "target_action": "Camera:notification",
+      "typical_lag": 4,
+      "raw_strength": 0.0700757185,
+      "support": 10,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.522438
+    },
+    {
+      "source_action": "Refrigerator:setCoolTemperature",
+      "target_action": "Switch:switch off",
+      "typical_lag": 4,
+      "raw_strength": 0.0684037678,
+      "support": 4,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.509973
+    },
+    {
+      "source_action": "Dishwasher:setStop",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0674451011,
+      "support": 3,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.502826
+    },
+    {
+      "source_action": "SmartPlug:switch on",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 4,
+      "raw_strength": 0.0670258776,
+      "support": 8,
+      "stable_seeds": 3,
+      "total_seeds": 3,
+      "stability": 1.0,
+      "strength": 0.4997
+    },
+    {
+      "source_action": "Switch:switch off",
+      "target_action": "Dryer:switch on",
+      "typical_lag": 1,
+      "raw_strength": 0.0667830553,
+      "support": 13,
+      "stable_seeds": 2,
+      "total_seeds": 3,
+      "stability": 0.666667,
+      "strength": 0.49789
+    }
+  ],
+  "status": "ready",
+  "effective_history": 4,
+  "lag_unit": "subsequent_behavior_positions",
+  "diagnostics": {
+    "sequence_count": 1334,
+    "vocabulary_size": 44,
+    "train_windows": 581,
+    "validation_windows": 150,
+    "split_method": "sequence_holdout",
+    "history_candidates": [
+      {
+        "history": 4,
+        "total_windows": 731,
+        "train_windows": 581,
+        "validation_windows": 150,
+        "accepted": true
+      }
+    ],
+    "seed_runs": [
+      {
+        "seed": 2024,
+        "validation_mse": 0.01915564,
+        "baseline_mse": 0.02067344,
+        "relative_improvement": 0.07341756,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 19
+      },
+      {
+        "seed": 2025,
+        "validation_mse": 0.01867708,
+        "baseline_mse": 0.02067344,
+        "relative_improvement": 0.09656611,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 19
+      },
+      {
+        "seed": 2026,
+        "validation_mse": 0.01899292,
+        "baseline_mse": 0.02067344,
+        "relative_improvement": 0.08128874,
+        "epochs_trained": 50,
+        "passed_quality_gate": true,
+        "sparse_edges": 19
+      }
+    ],
+    "accepted_seed_count": 3
+  }
+}

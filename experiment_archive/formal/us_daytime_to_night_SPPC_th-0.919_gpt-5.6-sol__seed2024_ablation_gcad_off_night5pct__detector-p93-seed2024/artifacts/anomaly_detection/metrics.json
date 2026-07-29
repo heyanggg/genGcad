@@ -1,0 +1,27 @@
+{
+  "dataset": "us",
+  "environment": "night",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct",
+  "generation_threshold": 0.919,
+  "validation_percentile": 93.0,
+  "seed": 2024,
+  "generated_sequence_count": 63,
+  "training_sequence_count": 50,
+  "validation_sequence_count": 13,
+  "normal_test_count": 3483,
+  "attack_test_count": 3483,
+  "detection_threshold": 0.24150510519742976,
+  "metrics": {
+    "TP": 3483,
+    "TN": 3483,
+    "FP": 0,
+    "FN": 0,
+    "FPR": 0.0,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 1.0,
+    "accuracy": 1.0,
+    "f1_score": 1.0
+  }
+}

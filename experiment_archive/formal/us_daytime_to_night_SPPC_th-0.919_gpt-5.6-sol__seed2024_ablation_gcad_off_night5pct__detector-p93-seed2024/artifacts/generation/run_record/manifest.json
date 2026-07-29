@@ -1,0 +1,189 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-29T16:30:54.169315+00:00",
+  "updated_at": "2026-07-29T16:37:48.426173+00:00",
+  "git_commit": "d7df1c2f1034f5b42d702254c3590ff471791c2f",
+  "config": {
+    "dataset": "us",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "method": "SPPC",
+    "threshold": 0.919,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_ablation_gcad_off_night5pct",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "off",
+    "gcad_prompt_max_relationships": 12,
+    "gcad_prompt_max_per_target": 4,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct"
+  },
+  "completed_categories": [
+    "0_0",
+    "0_1",
+    "1_0",
+    "1_1",
+    "2_0",
+    "2_1",
+    "2_2",
+    "3_0",
+    "3_1",
+    "3_2",
+    "4_0",
+    "4_1",
+    "4_2",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1",
+    "6_2"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/us/night/us_night_generation_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct_seq.pkl",
+    "tof_final": "filter_data/us/night/us_night_generation_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct_seq_filter_true.pkl",
+    "tof_final_count": 63
+  },
+  "gcad": {
+    "status": "ready",
+    "artifact_fingerprint": "48b9df8689840e74d715abb262216fa73c89422f310cec803fb1f5021848aa39",
+    "relationship_count": 19,
+    "artifact_relationship_count": 0,
+    "prompt_relationship_count": 0,
+    "prompt_relationship_limits": {
+      "max_relationships": 12,
+      "max_per_target": 4
+    },
+    "path": "artifacts/gcad/us/daytime/preflight_history4.json",
+    "mode": "off",
+    "guidance_enabled": false
+  },
+  "compression": {
+    "method": "SPPC",
+    "training_mode": "reused_archived_selection",
+    "selection_source_dir": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_gcad_balanced11_night5pct__detector-p93-seed2024/artifacts/ssc/selected_sequences",
+    "selection_sha256": {
+      "trn_day_0_SPPC_th=0.919.pkl": "3a89c9397df38d3f16e6d19a6c2637a47e1401775c786db908e00570476db078",
+      "trn_day_1_SPPC_th=0.919.pkl": "9b46e102ecbb87ff41286ed017b2278e49024faeba105e6c85a04ce6bb646be7",
+      "trn_day_2_SPPC_th=0.919.pkl": "a41b3625bb760a7d1ff1b2e6faf3c17cc6e8c47ff344d81e69f8302729f4faf5",
+      "trn_day_3_SPPC_th=0.919.pkl": "1f2d0e7062871552d95f15fe51687bc3d69b00d2c44b85ced447fb23303a9b9d",
+      "trn_day_4_SPPC_th=0.919.pkl": "d727eb6a7fdc95c45538310c6647247ca05e4df34d161e63a6492f689cc9f67c",
+      "trn_day_5_SPPC_th=0.919.pkl": "3700d138c9aa3f3d431fd0624a231f3f35c09c096fa23c5c1078d50e8139b769",
+      "trn_day_6_SPPC_th=0.919.pkl": "7377ddc2ee8a5aa4491c6df43bee5328ed578ffb1091f35069e58e09877c3558"
+    }
+  },
+  "categories": [
+    "0_0",
+    "0_1",
+    "1_0",
+    "1_1",
+    "2_0",
+    "2_1",
+    "2_2",
+    "3_0",
+    "3_1",
+    "3_2",
+    "4_0",
+    "4_1",
+    "4_2",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1",
+    "6_2"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0_0": "IoT_data/us/night/us_night_generation_day_0_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "0_1": "IoT_data/us/night/us_night_generation_day_0_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "1_0": "IoT_data/us/night/us_night_generation_day_1_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "1_1": "IoT_data/us/night/us_night_generation_day_1_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "2_0": "IoT_data/us/night/us_night_generation_day_2_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "2_1": "IoT_data/us/night/us_night_generation_day_2_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "2_2": "IoT_data/us/night/us_night_generation_day_2_2_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "3_0": "IoT_data/us/night/us_night_generation_day_3_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "3_1": "IoT_data/us/night/us_night_generation_day_3_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "3_2": "IoT_data/us/night/us_night_generation_day_3_2_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "4_0": "IoT_data/us/night/us_night_generation_day_4_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "4_1": "IoT_data/us/night/us_night_generation_day_4_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "4_2": "IoT_data/us/night/us_night_generation_day_4_2_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "5_0": "IoT_data/us/night/us_night_generation_day_5_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "5_1": "IoT_data/us/night/us_night_generation_day_5_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "6_0": "IoT_data/us/night/us_night_generation_day_6_0_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "6_1": "IoT_data/us/night/us_night_generation_day_6_1_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl",
+    "6_2": "IoT_data/us/night/us_night_generation_day_6_2_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_night5pct.pkl"
+  },
+  "prompt_sha256": {
+    "0_0": "688f91c96c9d9388c6596721a83fcf323209d800ecbecae6414356a22deeb594",
+    "0_1": "43f2853d5c49701b9918009e561969ae565f62f2169e45b1dc0837555288258f",
+    "1_0": "b6544bbdcf557e3d42b65f1d1f2ce998b91a00c5a7cd6cf4f6d542087f99fe9c",
+    "1_1": "b04a3caae39f08e3637b5de6eaff285832841e847611cab05f65e6f6726b6198",
+    "2_0": "972f1d761312f90ef740dbaf4159c0200e40be9566f193d00f5d4a1a172ea875",
+    "2_1": "32f3dd9fe1ab9034d943ccf8f0570de2b8aa402477925d3a1763603aa322b9a2",
+    "2_2": "2a71506e72dda8afa0dccf8fd538db6069213e663e038e00a8bd5dce6b73c351",
+    "3_0": "a811ddace1794f08e507f85f3aa6223c9e877f2595992e5afd19446860db2072",
+    "3_1": "696d64cff20f8ef646d04b641c4f0ae29cc85926a15b7ae0b1cd74f571231be6",
+    "3_2": "91113f683462da7fbebb659ea400e3ce31b8fb4663615fa5581ccc2bce6b324b",
+    "4_0": "b774a135a5c4ad10e4f7f6b4794fad805ef5f4a141aef9068405d2e6447bca19",
+    "4_1": "e48f0306ec7964f9d8a547ceb0379fa5f04df9eff56670b31db302cbf1f689f9",
+    "4_2": "5e700acf0b2869f437b13a8383485190b7bc1a0bd7a3600d7f7135bfe19152a3",
+    "5_0": "e94e2337f420ca04e3c3f59c9b65c8752d2ecc3cc8d5c395240dfdc75c2d0dcb",
+    "5_1": "ca162cdd047aae14f749d6f99b67c97570366da2ebd2d722fba57763f5c1e460",
+    "6_0": "f44bb306081372091d352fefb8f6a6186bc0970e14f8c77bdd06e0f9c2d5ecbf",
+    "6_1": "2a3eedea125abc627d612f1196f0ef90b4b0d3d8b390755dad63ba18bba06451",
+    "6_2": "61c41b1a0901eb967b5cf517709f2ca700e44cff3d5d730886e8db7fd40e6d7f"
+  },
+  "environment_adherence": {
+    "target_environment": "night",
+    "behavior_count": 534,
+    "hour_counts": {
+      "0": 154,
+      "1": 159,
+      "2": 20,
+      "3": 3,
+      "4": 0,
+      "5": 0,
+      "6": 77,
+      "7": 121
+    },
+    "used_for_filtering": false,
+    "preferred_hour_codes": [
+      0,
+      1,
+      6,
+      7
+    ],
+    "preferred_behavior_count": 511,
+    "preferred_behavior_ratio": 0.9569288389513109
+  },
+  "tof": {
+    "input_count": 72,
+    "first_pass_count": 63,
+    "final_count": 63,
+    "intermediates_preserved": true
+  }
+}
