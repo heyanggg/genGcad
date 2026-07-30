@@ -1,0 +1,132 @@
+{
+  "mode": "on",
+  "seed": 2025,
+  "balanced_sample_count": 60,
+  "calibration_method": "k_fold_out_of_fold",
+  "calibration_folds": 5,
+  "calibration_score_count": 60,
+  "test_score_aggregation": "mean_across_fold_detectors",
+  "folds": [
+    {
+      "fold": 0,
+      "training_sequence_count": 48,
+      "validation_sequence_count": 12,
+      "validation_indices": [
+        2,
+        6,
+        7,
+        8,
+        34,
+        38,
+        39,
+        42,
+        47,
+        48,
+        52,
+        58
+      ]
+    },
+    {
+      "fold": 1,
+      "training_sequence_count": 48,
+      "validation_sequence_count": 12,
+      "validation_indices": [
+        4,
+        5,
+        15,
+        21,
+        24,
+        29,
+        31,
+        35,
+        43,
+        44,
+        51,
+        53
+      ]
+    },
+    {
+      "fold": 2,
+      "training_sequence_count": 48,
+      "validation_sequence_count": 12,
+      "validation_indices": [
+        1,
+        9,
+        11,
+        13,
+        26,
+        27,
+        28,
+        41,
+        46,
+        49,
+        54,
+        57
+      ]
+    },
+    {
+      "fold": 3,
+      "training_sequence_count": 48,
+      "validation_sequence_count": 12,
+      "validation_indices": [
+        0,
+        16,
+        17,
+        20,
+        23,
+        25,
+        33,
+        36,
+        40,
+        45,
+        50,
+        55
+      ]
+    },
+    {
+      "fold": 4,
+      "training_sequence_count": 48,
+      "validation_sequence_count": 12,
+      "validation_indices": [
+        3,
+        10,
+        12,
+        14,
+        18,
+        19,
+        22,
+        30,
+        32,
+        37,
+        56,
+        59
+      ]
+    }
+  ],
+  "metrics": {
+    "TP": 2985,
+    "TN": 1943,
+    "FP": 1540,
+    "FN": 498,
+    "f1": 0.7455044955044955,
+    "accuracy": 0.7074361182888315,
+    "precision": 0.6596685082872928,
+    "recall": 0.8570198105081827,
+    "auroc": 0.9362479947514234,
+    "auprc": 0.9545731350892108,
+    "threshold": 0.022698587765917228
+  },
+  "robust_mad_metrics": {
+    "TP": 3483,
+    "TN": 572,
+    "FP": 2911,
+    "FN": 0,
+    "f1": 0.7052748810367521,
+    "accuracy": 0.5821131208728108,
+    "precision": 0.544729433844229,
+    "recall": 1.0,
+    "auroc": 0.934934366826147,
+    "auprc": 0.9539259020433776,
+    "threshold": 3.5
+  }
+}

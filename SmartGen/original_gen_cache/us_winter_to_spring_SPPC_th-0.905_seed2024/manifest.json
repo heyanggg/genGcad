@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "cache_kind": "original_smartgen_pre_llm_sppc_selection",
+  "created_at": "2026-07-30T03:26:36.802109+00:00",
+  "source_provenance": {
+    "mode": "fresh_original_gen_upstream_execution",
+    "source_directory": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/us/winter",
+    "gcad_module_executed": false,
+    "llm_generation_executed": false,
+    "experiment_archive_used": false
+  },
+  "config": {
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "method": "SPPC",
+    "threshold": 0.905,
+    "experiment_seed": 2024,
+    "split_interval_threshold_hours": 9,
+    "split_total_threshold_hours": 24
+  },
+  "input_sha256": {
+    "trn.pkl": "1069591bb71b831409023f4edc419ec5565cdaa75defd87c3e289d992edf13a3"
+  },
+  "preprocessing_code_sha256": {
+    "baseline2.py": "fd8b422eef5e00218289dce725813807bccc8b3e8e8adc69eaf26ddcc4df3ecc",
+    "dayse.py": "4668b95ebd62a7975b8138dfaf3f2a9cc006b5f8b479d27a9ef1ae91717f3605",
+    "dictionary.py": "d7889e880c7203b23f9b728d1041eb30fd4bf883b092f2d91e3fe3614682b70c",
+    "models1.py": "205c42dcd620187d033ba6cd4044cc8b9a06b7eec5e56b59e90225d70f2b7cd7",
+    "split.py": "49fdeb128c02f66fe302abeefced956326da56f5a62e6a8fca809c61d726b863",
+    "sppc.py": "f589609cb198cf927dab1e86a49f5e87b0024b70785621c835d30d2a86734679"
+  },
+  "checkpoint": {
+    "path": "model.pth",
+    "sha256": "e45297deaee8f0c290c4ac41a73bbb69c7ec07db435277a1d15ef30f5cb2cd0d"
+  },
+  "selection_sha256": {
+    "trn_day_0_SPPC_th=0.905.pkl": "eb287a0d741a25cd3ad0dddf231e464a3326ce8c26f8c9ecfe18e847861c2a38",
+    "trn_day_1_SPPC_th=0.905.pkl": "4c2c592aaba9048caa97d160f5762aca52d6288b16c00702d17047bfd27e2667",
+    "trn_day_2_SPPC_th=0.905.pkl": "8d487b65c565e612272beb5f973b0ecbabca7dc690f2b00286aa258def9a5dd2",
+    "trn_day_3_SPPC_th=0.905.pkl": "c882068f8badfdf6d727c3144766f0278aa940aafdfc6ba3d109194d8f8cc5ef",
+    "trn_day_4_SPPC_th=0.905.pkl": "40bb8749d0e56a1e03363e15a6aae424e35dddf93c1aa2d5c93924089bcd23e2",
+    "trn_day_5_SPPC_th=0.905.pkl": "a1dbc4a808ff71ea08b88b629c29dac4d3f2cf9b9491e5b968ab0bec2f2881cf",
+    "trn_day_6_SPPC_th=0.905.pkl": "aafcf4a0fd8077518bc0890169aea540a8d0fcb12faa054ee37c33da6d68b128"
+  }
+}

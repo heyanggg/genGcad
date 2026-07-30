@@ -10,6 +10,9 @@
 - 旧的 3 组 GCAD-off 都复用了 on 归档的 SSC 文件，不符合本项目现在采用的定义“off 必须完全跳过 GCAD 并独立执行原 SmartGen 的 SSC 路径”。这些旧 off 及其多 seed 分析已全部降为 `diagnostic`，不得再作为正式消融结论。
 - SP single→multiple 已按正确定义重跑：清单明确记录 `pipeline_mode=original_smartgen_without_gcad`、`gcad.module_executed=false`、`compression.training_mode=trained`。单 seed F1 为 **0.908046**，对应 on 为 **0.913295**。
 - 正确 SP off 的5折三检测器 seed结果仍显示显著划分敏感性：单次80/20检测 F1 为0.9080，但5折稳健 F1为0；其连续分数 AUROC为 **0.4063±0.2036**，on为 **0.8866±0.0678**。因此既不能用旧的极端 `0 vs 0.913`，也不能只用新单次的 `0.908 vs 0.913` 下结论。
+- US winter→spring 与 daytime→night 已按严格定义完成正式 off。两组均从独立重跑的原 Gen SSC 缓存读取，清单记录 `compression.training_mode=reused_original_gen_cache`、缓存绝对路径、输入/预处理指纹和全部 SSC SHA-256；缓存入口硬性拒绝 `experiment_archive` 来源。
+- US winter→spring 单次 on/off F1 为 **0.953375/0.966639**，on−off 为 **−0.013264**；daytime→night 为 **0.903587/0.923006**，on−off 为 **−0.019418**。因此这两次单次生成都不能作为“GCAD 必然提升 F1”的证据。
+- 5折三检测器 seed进一步显示指标和划分敏感性：winter 的 p95 F1 on−off 为 **+0.0272**，但 AUROC/AUPRC 为 **−0.0190/−0.0291**；night 的 p93 F1、AUROC、AUPRC on−off 均为负。当前最准确的结论是：三项严格 off 已补齐，但现有单次 LLM 生成不足以证明 GCAD 有稳定正向收益。
 
 ## 2. 正式主实验汇总
 
@@ -51,7 +54,7 @@
 
 可以直接这样回答：
 
-> 当前完整方案优于历史 Gen，能证明 SmartGen_GCAD 整体方案有效；但不能仅凭这一点把增益归因给 GCAD。此前三组 off 复用了 on 的 SSC 归档，不符合现采用的严格 off 定义，已经撤销正式资格。正确 SP off 的单次 F1 与 on 接近，但5折连续分数明显弱于 on，说明存在正向信号，同时也存在很强的生成与检测划分敏感性。应先按同一定义重跑 US 两组 off，并补充独立 LLM 生成重复，再用 shuffled-GCAD 排除“只是多了一段提示词”的解释。
+> 当前完整方案优于历史 Gen，能证明 SmartGen_GCAD 整体方案有效；但不能仅凭这一点把增益归因给 GCAD。三组严格 off 均已完成：SP 的5折连续分数支持 on，但 US winter 的 F1 与 AUROC/AUPRC 方向冲突，US night 则多数协议下 off 更高。现有证据说明结果对单次 LLM 生成、检测划分和阈值敏感，尚不能证明 GCAD 有稳定正向收益。下一步必须补充 on/off 独立 LLM 生成重复，再决定是否对有稳定信号的任务做 shuffled-GCAD。
 
 “比 Gen 高”回答的是：
 
@@ -194,7 +197,90 @@ anomaly if mean(z_fold) >= 3.5
 - 正式单 seed：`experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original__detector-p99-seed2024/`
 - 多 seed 5折：`experiment_archive/analysis/gcad_off_crossfit_fresh_ssc/`
 
-### 6.4 历史原 Gen 为什么不为0
+### 6.4 已完成：US 两组严格 off 与5折三检测器 seed
+
+新增安全入口为 `--reuse-original-gen-selection-dir`，与旧的
+`--reuse-sppc-selection-dir` 完全分开。其规则为：
+
+- 仅允许 `gcad-mode=off` 使用；
+- 拒绝 `experiment_archive` 下的任何路径；
+- 严格核对 dataset、ori/new environment、SPPC threshold、seed、`trn.pkl`
+  SHA-256 和 Split/Dayse/SSC 预处理代码 SHA-256；
+- 逐文件核对7个 SSC 选择文件和 checkpoint；
+- 运行清单记录缓存绝对路径、manifest SHA-256、全部选择文件 SHA-256，
+  并写成 `compression.training_mode=reused_original_gen_cache`；
+- 两个缓存均由本轮独立执行 Split→Dayse→SSC训练→SPPC选择创建，
+  未执行 GCAD，也未执行 LLM。
+
+#### 正式单次 seed=2024
+
+既有 on 检测器没有重训，只重新读取原模型补算连续分数；重新计算的
+F1和混淆矩阵与正式归档逐项完全一致。
+
+| 任务 | 模式 | F1 | Accuracy | Precision | Recall | AUROC | AUPRC | TOF 输入→首轮→最终 |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| US winter→spring | on | 0.953375 | 0.952586 | 0.937781 | 0.969496 | 0.969231 | 0.949433 | 89→80→84 |
+| US winter→spring | 严格 off | 0.966639 | 0.967009 | 0.977620 | 0.955902 | 0.990190 | 0.983109 | 109→97→104 |
+| US daytime→night | on | 0.903587 | 0.908556 | 0.955506 | 0.857020 | 0.941749 | 0.958546 | 72→62→68 |
+| US daytime→night | 严格 off | 0.923006 | 0.928510 | 1.000000 | 0.857020 | 0.884811 | 0.936206 | 72→57→60 |
+
+| 任务 | ΔF1 | ΔAccuracy | ΔAUROC | ΔAUPRC |
+|---|---:|---:|---:|---:|
+| US winter→spring，on−off | -0.013264 | -0.014423 | -0.020959 | -0.033676 |
+| US daytime→night，on−off | -0.019418 | -0.019954 | +0.056938 | +0.022341 |
+
+| 任务 | 模式 | TP | TN | FP | FN |
+|---|---|---:|---:|---:|---:|
+| US winter→spring | on | 2924 | 2822 | 194 | 92 |
+| US winter→spring | 严格 off | 2883 | 2950 | 66 | 133 |
+| US daytime→night | on | 2985 | 3344 | 139 | 498 |
+| US daytime→night | 严格 off | 2985 | 3483 | 0 | 498 |
+
+单次 winter 的 off 在 F1和连续排序指标上均更高。单次 night 的 off F1
+更高，但 on 的 AUROC/AUPRC 更高，说明阈值指标与连续排序发生冲突。
+这些结果均按原协议保留，没有调阈值、删样本或挑 seed。
+
+#### 5折三检测器 seed
+
+两侧取相同生成序列数，使用 seed 2024、2025、2026；每个 seed 做5折
+外推校准，每条校准分数均来自未训练过该序列的模型。以下先报告与正式
+任务一致的 p95/p93：
+
+| 任务 | 模式 | F1 | AUROC | AUPRC |
+|---|---|---:|---:|---:|
+| US winter→spring | on | 0.8804 ± 0.0437 | 0.9682 ± 0.0053 | 0.9424 ± 0.0181 |
+| US winter→spring | 严格 off | 0.8533 ± 0.0351 | 0.9871 ± 0.0005 | 0.9715 ± 0.0008 |
+| US daytime→night | on | 0.8160 ± 0.0699 | 0.9672 ± 0.0319 | 0.9756 ± 0.0229 |
+| US daytime→night | 严格 off | 0.9355 ± 0.0937 | 0.9801 ± 0.0342 | 0.9859 ± 0.0242 |
+
+配对 on−off：
+
+| 任务 | ΔF1 | ΔAUROC | ΔAUPRC |
+|---|---:|---:|---:|
+| US winter→spring | +0.0272 | -0.0190 | -0.0291 |
+| US daytime→night | -0.1195 | -0.0128 | -0.0103 |
+
+固定 MAD=3.5 的稳健阈值结果：
+
+| 任务 | 模式 | 稳健 F1 | AUROC | AUPRC |
+|---|---|---:|---:|---:|
+| US winter→spring | on | 0.8957 ± 0.0376 | 0.9688 ± 0.0055 | 0.9441 ± 0.0189 |
+| US winter→spring | 严格 off | 0.8159 ± 0.0056 | 0.9882 ± 0.0006 | 0.9755 ± 0.0019 |
+| US daytime→night | on | 0.7573 ± 0.0524 | 0.9752 ± 0.0352 | 0.9817 ± 0.0245 |
+| US daytime→night | 严格 off | 0.7842 ± 0.0808 | 0.9801 ± 0.0344 | 0.9860 ± 0.0243 |
+
+winter 在两种阈值下 F1支持 on，但 AUROC/AUPRC 一致支持 off；night
+多数指标支持 off，且不同 seed 波动明显。它们只能称为“多 seed 异常
+检测”，不能称为 LLM 多 seed或独立生成重复。
+
+正式与分析归档：
+
+- `experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46__detector-p95-seed2024/`
+- `experiment_archive/formal/us_daytime_to_night_SPPC_th-0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct__detector-p93-seed2024/`
+- `experiment_archive/analysis/gcad_off_crossfit_original_gen_cache_us/`
+- `experiment_archive/analysis/gcad_off_single_run_continuous_us/`
+
+### 6.5 历史原 Gen 为什么不为0
 
 历史原 Gen 的 SP multiple 最终数据共89条，生成后端为 `gpt-4o-2024-11-20`，使用 OpenAI API 的 `temperature=0`、`top_p=0`、`seed=2024` 和 `max_tokens=8040`。当前严格 off 虽然走原 SmartGen 模块路径，但生成模型为 GPT-5.6 Sol，且通过 Codex CLI 调用，不能应用上述四个采样字段，所以两者不是同一份生成基线。
 
@@ -210,19 +296,19 @@ anomaly if mean(z_fold) >= 3.5
 
 完整结果位于 `experiment_archive/analysis/gcad_on_vs_historical_original_gen_crossfit/`。
 
-### 6.5 采样参数如何真正应用
+### 6.6 采样参数如何真正应用
 
 当前 Codex CLI 只实际应用模型和 `reasoning_effort=none`，不接受 `temperature`、`top_p`、请求级 `seed` 或 `max_tokens`。实验清单已经把这四项标记为“原 Gen 请求值，但未应用”，不再伪装成生效参数。
 
 要真正应用这些参数，需要增加 OpenAI API 后端并使用具备对应模型权限的 API key。API层可以设置 `temperature`、`top_p` 和输出 token 上限；Chat Completions 的 `seed` 只是 best-effort，并不保证完全确定。当前环境没有 `OPENAI_API_KEY`，因此还不能实际运行和验证该后端。即使传输方式本身不应改变实验逻辑，生成模型、采样字段是否生效会直接影响复现性。
 
-### 6.6 下一优先项：其余严格 off 与 LLM 独立生成重复
+### 6.7 下一优先项：LLM 独立生成重复
 
-SP off 已按严格定义重跑；US spring、US night 的旧 off 已降为诊断性，必须先按严格定义重跑。随后 on/off 两侧仍需按预先固定次数补充独立生成，不能把检测器 seed 当作生成重复。
+SP、US spring、US night 三组 off 均已按严格定义重跑。on/off 两侧仍需按预先固定次数补充独立生成，不能把检测器 seed 当作生成重复。
 
 当前生成后端不保证完全可由 seed 决定，因此应称为“独立重复运行”，不能暗示 LLM 输出严格确定性。需报告每个任务的 on−off 分布、均值 ± 标准差，以及 bootstrap 置信区间或配对检验。
 
-### 6.7 后置项：随机关系负对照
+### 6.8 后置项：随机关系负对照
 
 至少在 US winter→spring 上加入 `shuffled-GCAD`：
 
@@ -232,9 +318,11 @@ SP off 已按严格定义重跑；US spring、US night 的旧 off 已降为诊�
 
 这个对照相当于安慰剂：它检验真实关系的语义是否有效，而不是仅仅因为提示词变长或多了若干格式化关系。它不是为了保证 shuffled 结果更差；若 `real GCAD` 没有稳定优于 shuffled，就不能把提升归因给关系正确性。
 
-本轮没有启动 shuffled，因为 on/off 尚未经过生成重复，且 US spring 的 AUROC/AUPRC 方向与 F1 相反。应先稳定 on/off，再选择确有正向信号的任务做 shuffled。
+本轮没有启动 shuffled，因为 on/off 尚未经过独立 LLM 生成重复，且 US
+spring 的 AUROC/AUPRC 与 F1 方向冲突、US night 多数协议不支持 on。
+应先稳定 on/off，再选择确有正向信号的任务做 shuffled。
 
-### 6.8 机制证据
+### 6.9 机制证据
 
 除下游 F1 外，建议报告：
 
@@ -257,19 +345,22 @@ GCAD 找到稳定且非平凡的关系
 ## 7. 主实验现状中的限制
 
 - 当前正式矩阵是单 seed/单次生成，能够作为主结果，但不足以估计生成波动。
-- US night、US spring 的旧 off 不符合严格定义，必须重跑后才能恢复正式 on/off 结论。
+- US night、US spring 的旧 off 不符合严格定义，现已降级为 diagnostic；
+  新的严格 off 已正式归档，但目前只有一次 LLM 生成。
 - `experiment-seed=2024` 控制 SSC、TOF、GCAD holdout 和异常检测器，但 Codex CLI 不应用 temperature、top_p、generation seed 和 max_tokens；因此相同调用次数也会产生不同数量和内容的序列。
 - FR daytime→night、SP daytime→night 因门控未启用 GCAD，只能说明系统在无可靠关系时可安全退化，不能作为“GCAD 带来提升”的证据。
 - FR winter→spring 缺少可选的 TOF candidate scratch 中间文件，但正式复现所需的核心产物、指标与清单完整。
 
 ## 8. 推荐执行顺序
 
-1. SP multiple 的严格 off、正式单 seed、5折三检测器 seed与历史原 Gen同协议分析均已完成。
-2. 下一步按严格定义重跑 US winter→spring off，再重跑 US daytime→night off。
-3. 为 on/off 补充预先固定的独立 LLM 生成重复。
-4. 若真实关系在重复后仍有正向信号，再做 shuffled-GCAD 强负对照。
-4. 生成重复后，优先选择持续出现正向信号的任务做 shuffled-GCAD；不预先假定一定是 US spring。
-5. 同步计算关系遵守率，证明 GCAD 提示确实改变了生成序列中的滞后关系。
-6. 最后再考虑 history、关系上限或稀疏阈值等参数敏感性。
+1. SP、US winter→spring、US daytime→night 三组严格 off、正式单 seed和
+   5折三检测器 seed分析均已完成。
+2. 下一步为 on/off 预先固定次数并补充独立 LLM 生成重复。
+3. 生成重复后，优先选择持续出现正向信号的任务做 shuffled-GCAD；
+   不预先假定一定是 US spring。
+4. 同步计算关系遵守率，证明 GCAD 提示确实改变了生成序列中的滞后关系。
+5. 最后再考虑 history、关系上限或稀疏阈值等参数敏感性。
 
-因此，主实验无需推倒重跑；GCAD-off 的检测评估问题已经纠正。当前最重要的是增加独立生成重复，而不是先做 shuffled，也不是人为消除 0 或 1。
+因此，主实验无需推倒重跑；三组严格 GCAD-off 已补齐。当前最重要的是
+增加独立 LLM 生成重复，而不是先做 shuffled，也不是人为消除不符合
+预期的结果。

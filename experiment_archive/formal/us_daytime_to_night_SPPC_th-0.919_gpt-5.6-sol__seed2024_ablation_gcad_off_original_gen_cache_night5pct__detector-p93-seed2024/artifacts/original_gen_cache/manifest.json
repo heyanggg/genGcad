@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "cache_kind": "original_smartgen_pre_llm_sppc_selection",
+  "created_at": "2026-07-30T03:39:51.854509+00:00",
+  "source_provenance": {
+    "mode": "fresh_original_gen_upstream_execution",
+    "source_directory": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/us/daytime",
+    "gcad_module_executed": false,
+    "llm_generation_executed": false,
+    "experiment_archive_used": false
+  },
+  "config": {
+    "dataset": "us",
+    "original_environment": "daytime",
+    "target_environment": "night",
+    "method": "SPPC",
+    "threshold": 0.919,
+    "experiment_seed": 2024,
+    "split_interval_threshold_hours": 9,
+    "split_total_threshold_hours": 24
+  },
+  "input_sha256": {
+    "trn.pkl": "7f172ac9db2c3d6024f4345b96a47a44d07d582056498b5ad3dd8f8909823d81"
+  },
+  "preprocessing_code_sha256": {
+    "baseline2.py": "fd8b422eef5e00218289dce725813807bccc8b3e8e8adc69eaf26ddcc4df3ecc",
+    "dayse.py": "4668b95ebd62a7975b8138dfaf3f2a9cc006b5f8b479d27a9ef1ae91717f3605",
+    "dictionary.py": "d7889e880c7203b23f9b728d1041eb30fd4bf883b092f2d91e3fe3614682b70c",
+    "models1.py": "205c42dcd620187d033ba6cd4044cc8b9a06b7eec5e56b59e90225d70f2b7cd7",
+    "split.py": "49fdeb128c02f66fe302abeefced956326da56f5a62e6a8fca809c61d726b863",
+    "sppc.py": "f589609cb198cf927dab1e86a49f5e87b0024b70785621c835d30d2a86734679"
+  },
+  "checkpoint": {
+    "path": "model.pth",
+    "sha256": "ca3dc4c8a96d9b93ada39cc97f099016c6254e3cd6ec8e75a7f313c0500a2691"
+  },
+  "selection_sha256": {
+    "trn_day_0_SPPC_th=0.919.pkl": "3a89c9397df38d3f16e6d19a6c2637a47e1401775c786db908e00570476db078",
+    "trn_day_1_SPPC_th=0.919.pkl": "9b46e102ecbb87ff41286ed017b2278e49024faeba105e6c85a04ce6bb646be7",
+    "trn_day_2_SPPC_th=0.919.pkl": "a41b3625bb760a7d1ff1b2e6faf3c17cc6e8c47ff344d81e69f8302729f4faf5",
+    "trn_day_3_SPPC_th=0.919.pkl": "1f2d0e7062871552d95f15fe51687bc3d69b00d2c44b85ced447fb23303a9b9d",
+    "trn_day_4_SPPC_th=0.919.pkl": "d727eb6a7fdc95c45538310c6647247ca05e4df34d161e63a6492f689cc9f67c",
+    "trn_day_5_SPPC_th=0.919.pkl": "3700d138c9aa3f3d431fd0624a231f3f35c09c096fa23c5c1078d50e8139b769",
+    "trn_day_6_SPPC_th=0.919.pkl": "7377ddc2ee8a5aa4491c6df43bee5328ed578ffb1091f35069e58e09877c3558"
+  }
+}

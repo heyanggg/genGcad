@@ -1,0 +1,1783 @@
+Epoch [1/15] - Train Loss: 6.3489
+Epoch [2/15] - Train Loss: 3.9741
+Epoch [3/15] - Train Loss: 1.1166
+Epoch [4/15] - Train Loss: 0.7865
+Epoch [5/15] - Train Loss: 0.2226
+Epoch [6/15] - Train Loss: 0.0571
+Epoch [7/15] - Train Loss: 0.0276
+Epoch [8/15] - Train Loss: 0.0104
+Epoch [9/15] - Train Loss: 0.0053
+Epoch [10/15] - Train Loss: 0.0031
+Epoch [11/15] - Train Loss: 0.0021
+Epoch [12/15] - Train Loss: 0.0016
+Epoch [13/15] - Train Loss: 0.0014
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0007
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+/home/heyang/miniconda3/envs/d2l/lib/python3.9/site-packages/torch/nn/modules/transformer.py:502: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. (Triggered internally at /opt/conda/conda-bld/pytorch_1729647380992/work/aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(
+Epoch [1/15] - Train Loss: 6.2203
+Epoch [2/15] - Train Loss: 4.1631
+Epoch [3/15] - Train Loss: 2.9288
+Epoch [4/15] - Train Loss: 2.0016
+Epoch [5/15] - Train Loss: 0.8793
+Epoch [6/15] - Train Loss: 0.2626
+Epoch [7/15] - Train Loss: 0.1355
+Epoch [8/15] - Train Loss: 0.0577
+Epoch [9/15] - Train Loss: 0.0189
+Epoch [10/15] - Train Loss: 0.0097
+Epoch [11/15] - Train Loss: 0.0054
+Epoch [12/15] - Train Loss: 0.0034
+Epoch [13/15] - Train Loss: 0.0019
+Epoch [14/15] - Train Loss: 0.0014
+Epoch [15/15] - Train Loss: 0.0012
+Finished Training
+Epoch [1/15] - Train Loss: 6.4557
+Epoch [2/15] - Train Loss: 4.6296
+Epoch [3/15] - Train Loss: 2.3088
+Epoch [4/15] - Train Loss: 0.8666
+Epoch [5/15] - Train Loss: 0.4579
+Epoch [6/15] - Train Loss: 0.1319
+Epoch [7/15] - Train Loss: 0.0525
+Epoch [8/15] - Train Loss: 0.0247
+Epoch [9/15] - Train Loss: 0.0092
+Epoch [10/15] - Train Loss: 0.0039
+Epoch [11/15] - Train Loss: 0.0026
+Epoch [12/15] - Train Loss: 0.0017
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0007
+Finished Training
+Epoch [1/15] - Train Loss: 5.7714
+Epoch [2/15] - Train Loss: 4.3746
+Epoch [3/15] - Train Loss: 2.4471
+Epoch [4/15] - Train Loss: 1.1700
+Epoch [5/15] - Train Loss: 0.3497
+Epoch [6/15] - Train Loss: 0.1596
+Epoch [7/15] - Train Loss: 0.0651
+Epoch [8/15] - Train Loss: 0.0221
+Epoch [9/15] - Train Loss: 0.0122
+Epoch [10/15] - Train Loss: 0.0048
+Epoch [11/15] - Train Loss: 0.0021
+Epoch [12/15] - Train Loss: 0.0014
+Epoch [13/15] - Train Loss: 0.0011
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 6.4853
+Epoch [2/15] - Train Loss: 3.9273
+Epoch [3/15] - Train Loss: 2.8494
+Epoch [4/15] - Train Loss: 1.4156
+Epoch [5/15] - Train Loss: 0.3057
+Epoch [6/15] - Train Loss: 0.0839
+Epoch [7/15] - Train Loss: 0.0409
+Epoch [8/15] - Train Loss: 0.0213
+Epoch [9/15] - Train Loss: 0.0079
+Epoch [10/15] - Train Loss: 0.0035
+Epoch [11/15] - Train Loss: 0.0023
+Epoch [12/15] - Train Loss: 0.0016
+Epoch [13/15] - Train Loss: 0.0011
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0007
+Finished Training
+Epoch [1/15] - Train Loss: 6.1374
+Epoch [2/15] - Train Loss: 3.7732
+Epoch [3/15] - Train Loss: 1.3536
+Epoch [4/15] - Train Loss: 0.4164
+Epoch [5/15] - Train Loss: 0.1461
+Epoch [6/15] - Train Loss: 0.0335
+Epoch [7/15] - Train Loss: 0.0196
+Epoch [8/15] - Train Loss: 0.0090
+Epoch [9/15] - Train Loss: 0.0045
+Epoch [10/15] - Train Loss: 0.0026
+Epoch [11/15] - Train Loss: 0.0016
+Epoch [12/15] - Train Loss: 0.0011
+Epoch [13/15] - Train Loss: 0.0008
+Epoch [14/15] - Train Loss: 0.0006
+Epoch [15/15] - Train Loss: 0.0005
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+Epoch [1/15] - Train Loss: 6.0665
+Epoch [2/15] - Train Loss: 3.9578
+Epoch [3/15] - Train Loss: 2.8691
+Epoch [4/15] - Train Loss: 1.0955
+Epoch [5/15] - Train Loss: 0.2698
+Epoch [6/15] - Train Loss: 0.1009
+Epoch [7/15] - Train Loss: 0.0346
+Epoch [8/15] - Train Loss: 0.0143
+Epoch [9/15] - Train Loss: 0.0080
+Epoch [10/15] - Train Loss: 0.0045
+Epoch [11/15] - Train Loss: 0.0023
+Epoch [12/15] - Train Loss: 0.0016
+Epoch [13/15] - Train Loss: 0.0010
+Epoch [14/15] - Train Loss: 0.0009
+Epoch [15/15] - Train Loss: 0.0008
+Finished Training
+Epoch [1/15] - Train Loss: 6.0311
+Epoch [2/15] - Train Loss: 4.4641
+Epoch [3/15] - Train Loss: 1.2149
+Epoch [4/15] - Train Loss: 0.4944
+Epoch [5/15] - Train Loss: 0.2030
+Epoch [6/15] - Train Loss: 0.1023
+Epoch [7/15] - Train Loss: 0.0268
+Epoch [8/15] - Train Loss: 0.0201
+Epoch [9/15] - Train Loss: 0.0066
+Epoch [10/15] - Train Loss: 0.0054
+Epoch [11/15] - Train Loss: 0.0037
+Epoch [12/15] - Train Loss: 0.0023
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0009
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 5.5402
+Epoch [2/15] - Train Loss: 5.1417
+Epoch [3/15] - Train Loss: 2.7539
+Epoch [4/15] - Train Loss: 1.3568
+Epoch [5/15] - Train Loss: 0.3059
+Epoch [6/15] - Train Loss: 0.1030
+Epoch [7/15] - Train Loss: 0.0474
+Epoch [8/15] - Train Loss: 0.0235
+Epoch [9/15] - Train Loss: 0.0079
+Epoch [10/15] - Train Loss: 0.0046
+Epoch [11/15] - Train Loss: 0.0030
+Epoch [12/15] - Train Loss: 0.0023
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0009
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.9393
+Epoch [2/15] - Train Loss: 3.5751
+Epoch [3/15] - Train Loss: 0.8635
+Epoch [4/15] - Train Loss: 0.3059
+Epoch [5/15] - Train Loss: 0.1074
+Epoch [6/15] - Train Loss: 0.0261
+Epoch [7/15] - Train Loss: 0.0095
+Epoch [8/15] - Train Loss: 0.0057
+Epoch [9/15] - Train Loss: 0.0034
+Epoch [10/15] - Train Loss: 0.0021
+Epoch [11/15] - Train Loss: 0.0015
+Epoch [12/15] - Train Loss: 0.0011
+Epoch [13/15] - Train Loss: 0.0009
+Epoch [14/15] - Train Loss: 0.0006
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.7849
+Epoch [2/15] - Train Loss: 4.1686
+Epoch [3/15] - Train Loss: 2.1615
+Epoch [4/15] - Train Loss: 1.3257
+Epoch [5/15] - Train Loss: 0.4885
+Epoch [6/15] - Train Loss: 0.1652
+Epoch [7/15] - Train Loss: 0.0702
+Epoch [8/15] - Train Loss: 0.0233
+Epoch [9/15] - Train Loss: 0.0087
+Epoch [10/15] - Train Loss: 0.0050
+Epoch [11/15] - Train Loss: 0.0027
+Epoch [12/15] - Train Loss: 0.0014
+Epoch [13/15] - Train Loss: 0.0011
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0008
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+Epoch [1/15] - Train Loss: 7.0299
+Epoch [2/15] - Train Loss: 3.9561
+Epoch [3/15] - Train Loss: 1.3820
+Epoch [4/15] - Train Loss: 1.2035
+Epoch [5/15] - Train Loss: 0.3740
+Epoch [6/15] - Train Loss: 0.1636
+Epoch [7/15] - Train Loss: 0.0543
+Epoch [8/15] - Train Loss: 0.0248
+Epoch [9/15] - Train Loss: 0.0125
+Epoch [10/15] - Train Loss: 0.0044
+Epoch [11/15] - Train Loss: 0.0020
+Epoch [12/15] - Train Loss: 0.0013
+Epoch [13/15] - Train Loss: 0.0009
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 6.0292
+Epoch [2/15] - Train Loss: 3.8980
+Epoch [3/15] - Train Loss: 1.8214
+Epoch [4/15] - Train Loss: 0.4832
+Epoch [5/15] - Train Loss: 0.2003
+Epoch [6/15] - Train Loss: 0.0714
+Epoch [7/15] - Train Loss: 0.0276
+Epoch [8/15] - Train Loss: 0.0084
+Epoch [9/15] - Train Loss: 0.0058
+Epoch [10/15] - Train Loss: 0.0037
+Epoch [11/15] - Train Loss: 0.0022
+Epoch [12/15] - Train Loss: 0.0015
+Epoch [13/15] - Train Loss: 0.0011
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 6.1489
+Epoch [2/15] - Train Loss: 4.1176
+Epoch [3/15] - Train Loss: 2.0199
+Epoch [4/15] - Train Loss: 0.5448
+Epoch [5/15] - Train Loss: 0.2544
+Epoch [6/15] - Train Loss: 0.1394
+Epoch [7/15] - Train Loss: 0.0610
+Epoch [8/15] - Train Loss: 0.0164
+Epoch [9/15] - Train Loss: 0.0081
+Epoch [10/15] - Train Loss: 0.0064
+Epoch [11/15] - Train Loss: 0.0029
+Epoch [12/15] - Train Loss: 0.0018
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0008
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 5.1439
+Epoch [2/15] - Train Loss: 2.9851
+Epoch [3/15] - Train Loss: 1.7977
+Epoch [4/15] - Train Loss: 0.4866
+Epoch [5/15] - Train Loss: 0.1447
+Epoch [6/15] - Train Loss: 0.0478
+Epoch [7/15] - Train Loss: 0.0196
+Epoch [8/15] - Train Loss: 0.0091
+Epoch [9/15] - Train Loss: 0.0057
+Epoch [10/15] - Train Loss: 0.0028
+Epoch [11/15] - Train Loss: 0.0017
+Epoch [12/15] - Train Loss: 0.0011
+Epoch [13/15] - Train Loss: 0.0008
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0005
+Finished Training
+Epoch [1/15] - Train Loss: 4.6689
+Epoch [2/15] - Train Loss: 2.7220
+Epoch [3/15] - Train Loss: 1.4553
+Epoch [4/15] - Train Loss: 0.6543
+Epoch [5/15] - Train Loss: 0.2426
+Epoch [6/15] - Train Loss: 0.0991
+Epoch [7/15] - Train Loss: 0.0509
+Epoch [8/15] - Train Loss: 0.0346
+Epoch [9/15] - Train Loss: 0.0117
+Epoch [10/15] - Train Loss: 0.0055
+Epoch [11/15] - Train Loss: 0.0035
+Epoch [12/15] - Train Loss: 0.0021
+Epoch [13/15] - Train Loss: 0.0016
+Epoch [14/15] - Train Loss: 0.0011
+Epoch [15/15] - Train Loss: 0.0008
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+Epoch [1/15] - Train Loss: 5.4422
+Epoch [2/15] - Train Loss: 3.6940
+Epoch [3/15] - Train Loss: 1.0475
+Epoch [4/15] - Train Loss: 0.4329
+Epoch [5/15] - Train Loss: 0.2122
+Epoch [6/15] - Train Loss: 0.0705
+Epoch [7/15] - Train Loss: 0.0240
+Epoch [8/15] - Train Loss: 0.0138
+Epoch [9/15] - Train Loss: 0.0073
+Epoch [10/15] - Train Loss: 0.0041
+Epoch [11/15] - Train Loss: 0.0021
+Epoch [12/15] - Train Loss: 0.0014
+Epoch [13/15] - Train Loss: 0.0011
+Epoch [14/15] - Train Loss: 0.0008
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.7750
+Epoch [2/15] - Train Loss: 3.2943
+Epoch [3/15] - Train Loss: 1.1270
+Epoch [4/15] - Train Loss: 0.7411
+Epoch [5/15] - Train Loss: 0.2211
+Epoch [6/15] - Train Loss: 0.0887
+Epoch [7/15] - Train Loss: 0.0226
+Epoch [8/15] - Train Loss: 0.0116
+Epoch [9/15] - Train Loss: 0.0080
+Epoch [10/15] - Train Loss: 0.0037
+Epoch [11/15] - Train Loss: 0.0017
+Epoch [12/15] - Train Loss: 0.0012
+Epoch [13/15] - Train Loss: 0.0010
+Epoch [14/15] - Train Loss: 0.0006
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 5.4110
+Epoch [2/15] - Train Loss: 2.7958
+Epoch [3/15] - Train Loss: 1.4298
+Epoch [4/15] - Train Loss: 0.4924
+Epoch [5/15] - Train Loss: 0.2433
+Epoch [6/15] - Train Loss: 0.0822
+Epoch [7/15] - Train Loss: 0.0473
+Epoch [8/15] - Train Loss: 0.0129
+Epoch [9/15] - Train Loss: 0.0103
+Epoch [10/15] - Train Loss: 0.0070
+Epoch [11/15] - Train Loss: 0.0026
+Epoch [12/15] - Train Loss: 0.0015
+Epoch [13/15] - Train Loss: 0.0013
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0009
+Finished Training
+Epoch [1/15] - Train Loss: 5.8462
+Epoch [2/15] - Train Loss: 3.5939
+Epoch [3/15] - Train Loss: 1.6456
+Epoch [4/15] - Train Loss: 0.6059
+Epoch [5/15] - Train Loss: 0.1901
+Epoch [6/15] - Train Loss: 0.0659
+Epoch [7/15] - Train Loss: 0.0298
+Epoch [8/15] - Train Loss: 0.0112
+Epoch [9/15] - Train Loss: 0.0062
+Epoch [10/15] - Train Loss: 0.0034
+Epoch [11/15] - Train Loss: 0.0020
+Epoch [12/15] - Train Loss: 0.0015
+Epoch [13/15] - Train Loss: 0.0010
+Epoch [14/15] - Train Loss: 0.0008
+Epoch [15/15] - Train Loss: 0.0007
+Finished Training
+Epoch [1/15] - Train Loss: 4.8461
+Epoch [2/15] - Train Loss: 2.7129
+Epoch [3/15] - Train Loss: 1.1462
+Epoch [4/15] - Train Loss: 0.5998
+Epoch [5/15] - Train Loss: 0.2405
+Epoch [6/15] - Train Loss: 0.0813
+Epoch [7/15] - Train Loss: 0.0183
+Epoch [8/15] - Train Loss: 0.0179
+Epoch [9/15] - Train Loss: 0.0067
+Epoch [10/15] - Train Loss: 0.0032
+Epoch [11/15] - Train Loss: 0.0025
+Epoch [12/15] - Train Loss: 0.0022
+Epoch [13/15] - Train Loss: 0.0014
+Epoch [14/15] - Train Loss: 0.0009
+Epoch [15/15] - Train Loss: 0.0007
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+Epoch [1/15] - Train Loss: 5.3909
+Epoch [2/15] - Train Loss: 3.2620
+Epoch [3/15] - Train Loss: 1.0401
+Epoch [4/15] - Train Loss: 0.3282
+Epoch [5/15] - Train Loss: 0.1445
+Epoch [6/15] - Train Loss: 0.0350
+Epoch [7/15] - Train Loss: 0.0147
+Epoch [8/15] - Train Loss: 0.0070
+Epoch [9/15] - Train Loss: 0.0046
+Epoch [10/15] - Train Loss: 0.0026
+Epoch [11/15] - Train Loss: 0.0021
+Epoch [12/15] - Train Loss: 0.0015
+Epoch [13/15] - Train Loss: 0.0009
+Epoch [14/15] - Train Loss: 0.0008
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 5.3457
+Epoch [2/15] - Train Loss: 3.2171
+Epoch [3/15] - Train Loss: 0.8734
+Epoch [4/15] - Train Loss: 0.2904
+Epoch [5/15] - Train Loss: 0.1192
+Epoch [6/15] - Train Loss: 0.0366
+Epoch [7/15] - Train Loss: 0.0147
+Epoch [8/15] - Train Loss: 0.0084
+Epoch [9/15] - Train Loss: 0.0043
+Epoch [10/15] - Train Loss: 0.0028
+Epoch [11/15] - Train Loss: 0.0019
+Epoch [12/15] - Train Loss: 0.0014
+Epoch [13/15] - Train Loss: 0.0009
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.7551
+Epoch [2/15] - Train Loss: 3.2465
+Epoch [3/15] - Train Loss: 1.1075
+Epoch [4/15] - Train Loss: 0.3976
+Epoch [5/15] - Train Loss: 0.2201
+Epoch [6/15] - Train Loss: 0.0714
+Epoch [7/15] - Train Loss: 0.0194
+Epoch [8/15] - Train Loss: 0.0198
+Epoch [9/15] - Train Loss: 0.0048
+Epoch [10/15] - Train Loss: 0.0036
+Epoch [11/15] - Train Loss: 0.0029
+Epoch [12/15] - Train Loss: 0.0019
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0008
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.8375
+Epoch [2/15] - Train Loss: 1.7904
+Epoch [3/15] - Train Loss: 0.7023
+Epoch [4/15] - Train Loss: 0.2519
+Epoch [5/15] - Train Loss: 0.0630
+Epoch [6/15] - Train Loss: 0.0203
+Epoch [7/15] - Train Loss: 0.0065
+Epoch [8/15] - Train Loss: 0.0052
+Epoch [9/15] - Train Loss: 0.0029
+Epoch [10/15] - Train Loss: 0.0022
+Epoch [11/15] - Train Loss: 0.0012
+Epoch [12/15] - Train Loss: 0.0007
+Epoch [13/15] - Train Loss: 0.0007
+Epoch [14/15] - Train Loss: 0.0005
+Epoch [15/15] - Train Loss: 0.0004
+Finished Training
+Epoch [1/15] - Train Loss: 4.9660
+Epoch [2/15] - Train Loss: 3.0436
+Epoch [3/15] - Train Loss: 1.7135
+Epoch [4/15] - Train Loss: 0.7635
+Epoch [5/15] - Train Loss: 0.3225
+Epoch [6/15] - Train Loss: 0.0923
+Epoch [7/15] - Train Loss: 0.0315
+Epoch [8/15] - Train Loss: 0.0153
+Epoch [9/15] - Train Loss: 0.0077
+Epoch [10/15] - Train Loss: 0.0036
+Epoch [11/15] - Train Loss: 0.0028
+Epoch [12/15] - Train Loss: 0.0021
+Epoch [13/15] - Train Loss: 0.0015
+Epoch [14/15] - Train Loss: 0.0010
+Epoch [15/15] - Train Loss: 0.0008
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/ablation_evaluation.py:169: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_path, map_location=baseline1.device))
+Epoch [1/15] - Train Loss: 6.3307
+Epoch [2/15] - Train Loss: 5.0994
+Epoch [3/15] - Train Loss: 1.9180
+Epoch [4/15] - Train Loss: 0.9797
+Epoch [5/15] - Train Loss: 0.4552
+Epoch [6/15] - Train Loss: 0.1852
+Epoch [7/15] - Train Loss: 0.0858
+Epoch [8/15] - Train Loss: 0.0359
+Epoch [9/15] - Train Loss: 0.0113
+Epoch [10/15] - Train Loss: 0.0064
+Epoch [11/15] - Train Loss: 0.0036
+Epoch [12/15] - Train Loss: 0.0023
+Epoch [13/15] - Train Loss: 0.0019
+Epoch [14/15] - Train Loss: 0.0012
+Epoch [15/15] - Train Loss: 0.0009
+Finished Training
+Epoch [1/15] - Train Loss: 4.7147
+Epoch [2/15] - Train Loss: 2.3132
+Epoch [3/15] - Train Loss: 1.3761
+Epoch [4/15] - Train Loss: 0.3486
+Epoch [5/15] - Train Loss: 0.1566
+Epoch [6/15] - Train Loss: 0.0575
+Epoch [7/15] - Train Loss: 0.0297
+Epoch [8/15] - Train Loss: 0.0077
+Epoch [9/15] - Train Loss: 0.0043
+Epoch [10/15] - Train Loss: 0.0031
+Epoch [11/15] - Train Loss: 0.0020
+Epoch [12/15] - Train Loss: 0.0014
+Epoch [13/15] - Train Loss: 0.0010
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 5.7507
+Epoch [2/15] - Train Loss: 3.5722
+Epoch [3/15] - Train Loss: 0.9720
+Epoch [4/15] - Train Loss: 0.3409
+Epoch [5/15] - Train Loss: 0.1304
+Epoch [6/15] - Train Loss: 0.0380
+Epoch [7/15] - Train Loss: 0.0152
+Epoch [8/15] - Train Loss: 0.0074
+Epoch [9/15] - Train Loss: 0.0050
+Epoch [10/15] - Train Loss: 0.0028
+Epoch [11/15] - Train Loss: 0.0017
+Epoch [12/15] - Train Loss: 0.0013
+Epoch [13/15] - Train Loss: 0.0007
+Epoch [14/15] - Train Loss: 0.0006
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+Epoch [1/15] - Train Loss: 4.9332
+Epoch [2/15] - Train Loss: 2.6780
+Epoch [3/15] - Train Loss: 1.3951
+Epoch [4/15] - Train Loss: 0.3218
+Epoch [5/15] - Train Loss: 0.1355
+Epoch [6/15] - Train Loss: 0.0471
+Epoch [7/15] - Train Loss: 0.0196
+Epoch [8/15] - Train Loss: 0.0133
+Epoch [9/15] - Train Loss: 0.0051
+Epoch [10/15] - Train Loss: 0.0029
+Epoch [11/15] - Train Loss: 0.0020
+Epoch [12/15] - Train Loss: 0.0012
+Epoch [13/15] - Train Loss: 0.0009
+Epoch [14/15] - Train Loss: 0.0007
+Epoch [15/15] - Train Loss: 0.0006
+Finished Training
+{
+  "config": {
+    "schema_version": 1,
+    "name": "us_winter_to_spring_strict_off_original_gen_cache_crossfit",
+    "dataset": "us",
+    "environment": "spring",
+    "on_sequence_count": 84,
+    "off_sequence_count": 104,
+    "balanced_sample_count": 84,
+    "train_ratio": 0.8,
+    "calibration_folds": 5,
+    "mad_multiplier": 3.5,
+    "percentile": 95.0,
+    "epochs": 15,
+    "seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "inputs": {
+      "on": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/tof/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2_seq_filter_true.pkl",
+        "sha256": "1f20e7660a751e57931c4543e51ffd298c1133217e210df5b6df77f342819f45"
+      },
+      "off": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46__detector-p95-seed2024/artifacts/tof/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46_seq_filter_true.pkl",
+        "sha256": "865c0a102753fae76a85a9206186f75abdf53b980917e8ed8266ba8e40fc5d08"
+      },
+      "normal": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/us/spring/split_test.pkl",
+        "sha256": "3118c547ce0feb9ddc8858287cddf9fb0e2619e13323ec8c4b8d1a97666abbef"
+      },
+      "attack": {
+        "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/attack/us/labeled_us_spring_attack_heater.pkl",
+        "sha256": "421ddbd0ec3009b0c111b7d7f1d356aa4625033c8c2d963500b8f5975d761bfc"
+      }
+    }
+  },
+  "on": {
+    "runs": [
+      {
+        "mode": "on",
+        "seed": 2024,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              76,
+              77,
+              80
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              82
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              54,
+              67,
+              73,
+              75,
+              78,
+              79,
+              81,
+              83
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              55,
+              60,
+              62,
+              65,
+              66,
+              74
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2628,
+          "TN": 2827,
+          "FP": 189,
+          "FN": 388,
+          "f1": 0.9010800617178124,
+          "accuracy": 0.90434350132626,
+          "precision": 0.9329073482428115,
+          "recall": 0.8713527851458885,
+          "auroc": 0.9621653128495944,
+          "auprc": 0.9224664340724094,
+          "threshold": 1.8962024331092826
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 2486,
+          "FP": 530,
+          "FN": 0,
+          "f1": 0.9192319414812558,
+          "accuracy": 0.9121352785145889,
+          "precision": 0.85053581500282,
+          "recall": 1.0,
+          "auroc": 0.9625997773149744,
+          "auprc": 0.9235770217187943,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "on",
+        "seed": 2025,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              14,
+              20,
+              34,
+              35,
+              43,
+              46,
+              48,
+              55,
+              59,
+              61,
+              66,
+              74,
+              79,
+              80,
+              81,
+              83
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              2,
+              4,
+              6,
+              11,
+              19,
+              29,
+              30,
+              44,
+              49,
+              50,
+              65,
+              68,
+              71,
+              73,
+              77,
+              78
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              7,
+              8,
+              9,
+              18,
+              21,
+              24,
+              38,
+              39,
+              47,
+              52,
+              54,
+              56,
+              63,
+              69,
+              70,
+              75
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              13,
+              15,
+              26,
+              27,
+              28,
+              31,
+              33,
+              36,
+              37,
+              41,
+              42,
+              51,
+              53,
+              57,
+              58,
+              60,
+              72
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              3,
+              10,
+              12,
+              16,
+              17,
+              22,
+              23,
+              25,
+              32,
+              40,
+              45,
+              62,
+              64,
+              67,
+              76,
+              82
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2678,
+          "TN": 2824,
+          "FP": 192,
+          "FN": 338,
+          "f1": 0.9099558273870201,
+          "accuracy": 0.9121352785145889,
+          "precision": 0.9331010452961672,
+          "recall": 0.8879310344827587,
+          "auroc": 0.9719361460363473,
+          "auprc": 0.9576600856117474,
+          "threshold": 1.8824712157249446
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 1971,
+          "FP": 1045,
+          "FN": 0,
+          "f1": 0.8523385615373746,
+          "accuracy": 0.8267572944297082,
+          "precision": 0.7426742181728638,
+          "recall": 1.0,
+          "auroc": 0.9729402954358364,
+          "auprc": 0.9607972938991212,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "on",
+        "seed": 2026,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              8,
+              10,
+              16,
+              18,
+              21,
+              32,
+              42,
+              49,
+              59,
+              61,
+              62,
+              63,
+              70,
+              72,
+              73,
+              80,
+              83
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              11,
+              12,
+              13,
+              14,
+              22,
+              23,
+              30,
+              43,
+              44,
+              45,
+              46,
+              55,
+              60,
+              64,
+              68,
+              81
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              3,
+              19,
+              24,
+              31,
+              34,
+              35,
+              36,
+              37,
+              39,
+              40,
+              50,
+              53,
+              57,
+              66,
+              71,
+              82
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              4,
+              9,
+              15,
+              17,
+              20,
+              25,
+              33,
+              38,
+              41,
+              47,
+              48,
+              52,
+              58,
+              65,
+              67,
+              75,
+              78
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              1,
+              2,
+              6,
+              7,
+              26,
+              27,
+              28,
+              29,
+              51,
+              54,
+              56,
+              69,
+              74,
+              76,
+              77,
+              79
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2245,
+          "TN": 2869,
+          "FP": 147,
+          "FN": 771,
+          "f1": 0.8302514792899408,
+          "accuracy": 0.8478116710875332,
+          "precision": 0.9385451505016722,
+          "recall": 0.7443633952254642,
+          "auroc": 0.9703872670250265,
+          "auprc": 0.9470397795969803,
+          "threshold": 2.8201027870178184
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 2459,
+          "FP": 557,
+          "FN": 0,
+          "f1": 0.9154651692214296,
+          "accuracy": 0.9076591511936339,
+          "precision": 0.8441085922194235,
+          "recall": 1.0,
+          "auroc": 0.9708498749375568,
+          "auprc": 0.9478758761060475,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.8804291227982578,
+        "std": 0.04368113706268964,
+        "min": 0.8302514792899408,
+        "max": 0.9099558273870201
+      },
+      "accuracy": {
+        "mean": 0.8880968169761273,
+        "std": 0.035104809960846195,
+        "min": 0.8478116710875332,
+        "max": 0.9121352785145889
+      },
+      "precision": {
+        "mean": 0.9348511813468836,
+        "std": 0.0032005367869338127,
+        "min": 0.9329073482428115,
+        "max": 0.9385451505016722
+      },
+      "recall": {
+        "mean": 0.8345490716180372,
+        "std": 0.07854171985358017,
+        "min": 0.7443633952254642,
+        "max": 0.8879310344827587
+      },
+      "auroc": {
+        "mean": 0.9681629086369894,
+        "std": 0.005251487691089182,
+        "min": 0.9621653128495944,
+        "max": 0.9719361460363473
+      },
+      "auprc": {
+        "mean": 0.9423887664270457,
+        "std": 0.018051931193040452,
+        "min": 0.9224664340724094,
+        "max": 0.9576600856117474
+      },
+      "threshold": {
+        "mean": 2.199592145284015,
+        "std": 0.537421835210839,
+        "min": 1.8824712157249446,
+        "max": 2.8201027870178184
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.8956785574133533,
+        "std": 0.037580760705602234,
+        "min": 0.8523385615373746,
+        "max": 0.9192319414812558
+      },
+      "accuracy": {
+        "mean": 0.882183908045977,
+        "std": 0.048053002525063025,
+        "min": 0.8267572944297082,
+        "max": 0.9121352785145889
+      },
+      "precision": {
+        "mean": 0.8124395417983691,
+        "std": 0.06050394684320576,
+        "min": 0.7426742181728638,
+        "max": 0.85053581500282
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "auroc": {
+        "mean": 0.9687966492294559,
+        "std": 0.005467483937632913,
+        "min": 0.9625997773149744,
+        "max": 0.9729402954358364
+      },
+      "auprc": {
+        "mean": 0.944083397241321,
+        "std": 0.01889773365377318,
+        "min": 0.9235770217187943,
+        "max": 0.9607972938991212
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "off": {
+    "runs": [
+      {
+        "mode": "off",
+        "seed": 2024,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              3,
+              6,
+              14,
+              15,
+              16,
+              17,
+              19,
+              23,
+              24,
+              25,
+              34,
+              47,
+              48,
+              52,
+              58,
+              59,
+              64
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              2,
+              9,
+              12,
+              21,
+              35,
+              44,
+              46,
+              49,
+              50,
+              61,
+              68,
+              69,
+              72,
+              76,
+              77,
+              80
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              7,
+              10,
+              13,
+              18,
+              26,
+              32,
+              38,
+              40,
+              43,
+              45,
+              53,
+              56,
+              57,
+              63,
+              70,
+              71,
+              82
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              4,
+              5,
+              20,
+              22,
+              29,
+              31,
+              33,
+              42,
+              51,
+              54,
+              67,
+              73,
+              75,
+              78,
+              79,
+              81,
+              83
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              0,
+              8,
+              11,
+              27,
+              28,
+              30,
+              36,
+              37,
+              39,
+              41,
+              55,
+              60,
+              62,
+              65,
+              66,
+              74
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2102,
+          "TN": 2962,
+          "FP": 54,
+          "FN": 914,
+          "f1": 0.8128383604021655,
+          "accuracy": 0.8395225464190982,
+          "precision": 0.9749536178107606,
+          "recall": 0.696949602122016,
+          "auroc": 0.9867298699596845,
+          "auprc": 0.9707847185819487,
+          "threshold": 2.633051621913908
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 1713,
+          "FP": 1303,
+          "FN": 0,
+          "f1": 0.8223585548738923,
+          "accuracy": 0.7839854111405835,
+          "precision": 0.698309793933781,
+          "recall": 1.0,
+          "auroc": 0.9874445046401509,
+          "auprc": 0.9745225100992917,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "off",
+        "seed": 2025,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              1,
+              14,
+              20,
+              34,
+              35,
+              43,
+              46,
+              48,
+              55,
+              59,
+              61,
+              66,
+              74,
+              79,
+              80,
+              81,
+              83
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              2,
+              4,
+              6,
+              11,
+              19,
+              29,
+              30,
+              44,
+              49,
+              50,
+              65,
+              68,
+              71,
+              73,
+              77,
+              78
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              7,
+              8,
+              9,
+              18,
+              21,
+              24,
+              38,
+              39,
+              47,
+              52,
+              54,
+              56,
+              63,
+              69,
+              70,
+              75
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              13,
+              15,
+              26,
+              27,
+              28,
+              31,
+              33,
+              36,
+              37,
+              41,
+              42,
+              51,
+              53,
+              57,
+              58,
+              60,
+              72
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              3,
+              10,
+              12,
+              16,
+              17,
+              22,
+              23,
+              25,
+              32,
+              40,
+              45,
+              62,
+              64,
+              67,
+              76,
+              82
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2396,
+          "TN": 2959,
+          "FP": 57,
+          "FN": 620,
+          "f1": 0.8762113731943683,
+          "accuracy": 0.8877652519893899,
+          "precision": 0.9767631471667346,
+          "recall": 0.7944297082228117,
+          "auroc": 0.9876798212363416,
+          "auprc": 0.9722843611315223,
+          "threshold": 2.1709974527359006
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 1629,
+          "FP": 1387,
+          "FN": 0,
+          "f1": 0.8130475805364604,
+          "accuracy": 0.7700596816976127,
+          "precision": 0.6849875085169203,
+          "recall": 1.0,
+          "auroc": 0.9886640173715426,
+          "auprc": 0.9743653106090665,
+          "threshold": 3.5
+        }
+      },
+      {
+        "mode": "off",
+        "seed": 2026,
+        "balanced_sample_count": 84,
+        "calibration_method": "k_fold_out_of_fold",
+        "calibration_folds": 5,
+        "calibration_score_count": 84,
+        "test_score_aggregation": "mean_across_fold_detectors",
+        "folds": [
+          {
+            "fold": 0,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              8,
+              10,
+              16,
+              18,
+              21,
+              32,
+              42,
+              49,
+              59,
+              61,
+              62,
+              63,
+              70,
+              72,
+              73,
+              80,
+              83
+            ]
+          },
+          {
+            "fold": 1,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              5,
+              11,
+              12,
+              13,
+              14,
+              22,
+              23,
+              30,
+              43,
+              44,
+              45,
+              46,
+              55,
+              60,
+              64,
+              68,
+              81
+            ]
+          },
+          {
+            "fold": 2,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              0,
+              3,
+              19,
+              24,
+              31,
+              34,
+              35,
+              36,
+              37,
+              39,
+              40,
+              50,
+              53,
+              57,
+              66,
+              71,
+              82
+            ]
+          },
+          {
+            "fold": 3,
+            "training_sequence_count": 67,
+            "validation_sequence_count": 17,
+            "validation_indices": [
+              4,
+              9,
+              15,
+              17,
+              20,
+              25,
+              33,
+              38,
+              41,
+              47,
+              48,
+              52,
+              58,
+              65,
+              67,
+              75,
+              78
+            ]
+          },
+          {
+            "fold": 4,
+            "training_sequence_count": 68,
+            "validation_sequence_count": 16,
+            "validation_indices": [
+              1,
+              2,
+              6,
+              7,
+              26,
+              27,
+              28,
+              29,
+              51,
+              54,
+              56,
+              69,
+              74,
+              76,
+              77,
+              79
+            ]
+          }
+        ],
+        "metrics": {
+          "TP": 2367,
+          "TN": 2962,
+          "FP": 54,
+          "FN": 649,
+          "f1": 0.8707007540923303,
+          "accuracy": 0.8834549071618037,
+          "precision": 0.9776951672862454,
+          "recall": 0.7848143236074271,
+          "auroc": 0.9870089957890367,
+          "auprc": 0.971504238300945,
+          "threshold": 2.4321812152862523
+        },
+        "robust_mad_metrics": {
+          "TP": 3016,
+          "TN": 1622,
+          "FP": 1394,
+          "FN": 0,
+          "f1": 0.8122811742526259,
+          "accuracy": 0.7688992042440318,
+          "precision": 0.6839002267573696,
+          "recall": 1.0,
+          "auroc": 0.9883737880728071,
+          "auprc": 0.977653610768668,
+          "threshold": 3.5
+        }
+      }
+    ],
+    "summary": {
+      "f1": {
+        "mean": 0.8532501625629547,
+        "std": 0.035105940325449336,
+        "min": 0.8128383604021655,
+        "max": 0.8762113731943683
+      },
+      "accuracy": {
+        "mean": 0.8702475685234307,
+        "std": 0.026695786289543198,
+        "min": 0.8395225464190982,
+        "max": 0.8877652519893899
+      },
+      "precision": {
+        "mean": 0.9764706440879135,
+        "std": 0.0013939841892835676,
+        "min": 0.9749536178107606,
+        "max": 0.9776951672862454
+      },
+      "recall": {
+        "mean": 0.7587312113174183,
+        "std": 0.053720008669075114,
+        "min": 0.696949602122016,
+        "max": 0.7944297082228117
+      },
+      "auroc": {
+        "mean": 0.9871395623283542,
+        "std": 0.0004882494986148313,
+        "min": 0.9867298699596845,
+        "max": 0.9876798212363416
+      },
+      "auprc": {
+        "mean": 0.9715244393381387,
+        "std": 0.0007500253366058101,
+        "min": 0.9707847185819487,
+        "max": 0.9722843611315223
+      },
+      "threshold": {
+        "mean": 2.41207676331202,
+        "std": 0.23168222969313554,
+        "min": 2.1709974527359006,
+        "max": 2.633051621913908
+      }
+    },
+    "robust_mad_summary": {
+      "f1": {
+        "mean": 0.8158957698876595,
+        "std": 0.005610038946538781,
+        "min": 0.8122811742526259,
+        "max": 0.8223585548738923
+      },
+      "accuracy": {
+        "mean": 0.774314765694076,
+        "std": 0.00839510062441836,
+        "min": 0.7688992042440318,
+        "max": 0.7839854111405835
+      },
+      "precision": {
+        "mean": 0.6890658430693569,
+        "std": 0.008023933953745975,
+        "min": 0.6839002267573696,
+        "max": 0.698309793933781
+      },
+      "recall": {
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "auroc": {
+        "mean": 0.9881607700281668,
+        "std": 0.0006370520708807092,
+        "min": 0.9874445046401509,
+        "max": 0.9886640173715426
+      },
+      "auprc": {
+        "mean": 0.9755138104923421,
+        "std": 0.0018547875449374533,
+        "min": 0.9743653106090665,
+        "max": 0.977653610768668
+      },
+      "threshold": {
+        "mean": 3.5,
+        "std": 0.0,
+        "min": 3.5,
+        "max": 3.5
+      }
+    }
+  },
+  "paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.0882417013156469,
+        0.03374445419265182,
+        -0.04044927480238947
+      ],
+      "mean": 0.027178960235303085,
+      "std": 0.06459621596294352
+    },
+    "accuracy": {
+      "values": [
+        0.06482095490716178,
+        0.02437002652519893,
+        -0.03564323607427056
+      ],
+      "mean": 0.017849248452696715,
+      "std": 0.05054852942857534
+    },
+    "precision": {
+      "values": [
+        -0.0420462695679491,
+        -0.043662101870567405,
+        -0.039150016784573194
+      ],
+      "mean": -0.0416194627410299,
+      "std": 0.0022861213892620565
+    },
+    "recall": {
+      "values": [
+        0.1744031830238726,
+        0.093501326259947,
+        -0.04045092838196285
+      ],
+      "mean": 0.07581786030061892,
+      "std": 0.1085131375606144
+    },
+    "auroc": {
+      "values": [
+        -0.02456455711009009,
+        -0.01574367519999431,
+        -0.016621728764010135
+      ],
+      "mean": -0.018976653691364847,
+      "std": 0.004859140148017052
+    },
+    "auprc": {
+      "values": [
+        -0.048318284509539344,
+        -0.014624275519774854,
+        -0.024464458703964742
+      ],
+      "mean": -0.02913567291109298,
+      "std": 0.017325898016473492
+    },
+    "threshold": {
+      "values": [
+        -0.7368491888046254,
+        -0.28852623701095603,
+        0.38792157173156605
+      ],
+      "mean": -0.2124846180280051,
+      "std": 0.5662279238985409
+    }
+  },
+  "robust_mad_paired_on_minus_off": {
+    "f1": {
+      "values": [
+        0.09687338660736344,
+        0.039290981000914216,
+        0.1031839949688037
+      ],
+      "mean": 0.07978278752569379,
+      "std": 0.03520860322709503
+    },
+    "accuracy": {
+      "values": [
+        0.12814986737400536,
+        0.056697612732095504,
+        0.13875994694960214
+      ],
+      "mean": 0.107869142351901,
+      "std": 0.04463224764531916
+    },
+    "precision": {
+      "values": [
+        0.15222602106903904,
+        0.05768670965594358,
+        0.16020836546205386
+      ],
+      "mean": 0.12337369872901216,
+      "std": 0.0570264399696864
+    },
+    "recall": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "auroc": {
+      "values": [
+        -0.024844727325176508,
+        -0.01572372193570626,
+        -0.017523913135250258
+      ],
+      "mean": -0.01936412079871101,
+      "std": 0.004830937591418573
+    },
+    "auprc": {
+      "values": [
+        -0.050945488380497395,
+        -0.01356801670994534,
+        -0.02977773466262046
+      ],
+      "mean": -0.03143041325102106,
+      "std": 0.01874346171357225
+    },
+    "threshold": {
+      "values": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean": 0.0,
+      "std": 0.0
+    }
+  }
+}

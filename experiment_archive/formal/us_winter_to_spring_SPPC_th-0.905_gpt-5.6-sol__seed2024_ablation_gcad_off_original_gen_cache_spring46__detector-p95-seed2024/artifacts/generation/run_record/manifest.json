@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-30T03:28:21.155534+00:00",
+  "updated_at": "2026-07-30T03:37:59.136531+00:00",
+  "git_commit": "fdebde068f560e91721e9aacc58912165bb1ef76",
+  "config": {
+    "dataset": "us",
+    "original_environment": "winter",
+    "target_environment": "spring",
+    "method": "SPPC",
+    "threshold": 0.905,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_ablation_gcad_off_original_gen_cache_spring46",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "off",
+    "gcad_prompt_max_relationships": 12,
+    "gcad_prompt_max_per_target": 4,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "environment-aware",
+    "artifact_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46"
+  },
+  "completed_categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46_seq.pkl",
+    "tof_final": "filter_data/us/spring/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46_seq_filter_true.pkl",
+    "tof_final_count": 104
+  },
+  "pipeline_mode": "original_smartgen_without_gcad",
+  "gcad": {
+    "status": "skipped",
+    "disabled_reason": "gcad_module_not_executed_for_baseline",
+    "artifact_fingerprint": null,
+    "relationship_count": 0,
+    "artifact_relationship_count": 0,
+    "prompt_relationship_count": 0,
+    "prompt_relationship_limits": {
+      "max_relationships": 12,
+      "max_per_target": 4
+    },
+    "path": null,
+    "mode": "off",
+    "module_executed": false,
+    "guidance_enabled": false
+  },
+  "compression": {
+    "method": "SPPC",
+    "training_mode": "reused_original_gen_cache",
+    "selection_source_dir": "/home/heyang/projects/SmartGen_GCAD/SmartGen/original_gen_cache/us_winter_to_spring_SPPC_th-0.905_seed2024",
+    "cache_manifest_path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/original_gen_cache/us_winter_to_spring_SPPC_th-0.905_seed2024/manifest.json",
+    "cache_manifest_sha256": "247cf0f4dbdfae29edf31c588b6383e2ed8f7a712385e96f0e05fd310e30a730",
+    "selection_sha256": {
+      "trn_day_0_SPPC_th=0.905.pkl": "eb287a0d741a25cd3ad0dddf231e464a3326ce8c26f8c9ecfe18e847861c2a38",
+      "trn_day_1_SPPC_th=0.905.pkl": "4c2c592aaba9048caa97d160f5762aca52d6288b16c00702d17047bfd27e2667",
+      "trn_day_2_SPPC_th=0.905.pkl": "8d487b65c565e612272beb5f973b0ecbabca7dc690f2b00286aa258def9a5dd2",
+      "trn_day_3_SPPC_th=0.905.pkl": "c882068f8badfdf6d727c3144766f0278aa940aafdfc6ba3d109194d8f8cc5ef",
+      "trn_day_4_SPPC_th=0.905.pkl": "40bb8749d0e56a1e03363e15a6aae424e35dddf93c1aa2d5c93924089bcd23e2",
+      "trn_day_5_SPPC_th=0.905.pkl": "a1dbc4a808ff71ea08b88b629c29dac4d3f2cf9b9491e5b968ab0bec2f2881cf",
+      "trn_day_6_SPPC_th=0.905.pkl": "aafcf4a0fd8077518bc0890169aea540a8d0fcb12faa054ee37c33da6d68b128"
+    },
+    "checkpoint_sha256": "e45297deaee8f0c290c4ac41a73bbb69c7ec07db435277a1d15ef30f5cb2cd0d",
+    "validated_input_sha256": {
+      "trn.pkl": "1069591bb71b831409023f4edc419ec5565cdaa75defd87c3e289d992edf13a3"
+    },
+    "validated_preprocessing_code_sha256": {
+      "baseline2.py": "fd8b422eef5e00218289dce725813807bccc8b3e8e8adc69eaf26ddcc4df3ecc",
+      "dayse.py": "4668b95ebd62a7975b8138dfaf3f2a9cc006b5f8b479d27a9ef1ae91717f3605",
+      "dictionary.py": "d7889e880c7203b23f9b728d1041eb30fd4bf883b092f2d91e3fe3614682b70c",
+      "models1.py": "205c42dcd620187d033ba6cd4044cc8b9a06b7eec5e56b59e90225d70f2b7cd7",
+      "split.py": "49fdeb128c02f66fe302abeefced956326da56f5a62e6a8fca809c61d726b863",
+      "sppc.py": "f589609cb198cf927dab1e86a49f5e87b0024b70785621c835d30d2a86734679"
+    }
+  },
+  "categories": [
+    "0_0",
+    "0_1",
+    "1",
+    "2",
+    "3_0",
+    "3_1",
+    "4",
+    "5_0",
+    "5_1",
+    "6_0",
+    "6_1"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0_0": "IoT_data/us/spring/us_spring_generation_day_0_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "0_1": "IoT_data/us/spring/us_spring_generation_day_0_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "1": "IoT_data/us/spring/us_spring_generation_day_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "2": "IoT_data/us/spring/us_spring_generation_day_2_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "3_0": "IoT_data/us/spring/us_spring_generation_day_3_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "3_1": "IoT_data/us/spring/us_spring_generation_day_3_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "4": "IoT_data/us/spring/us_spring_generation_day_4_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "5_0": "IoT_data/us/spring/us_spring_generation_day_5_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "5_1": "IoT_data/us/spring/us_spring_generation_day_5_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "6_0": "IoT_data/us/spring/us_spring_generation_day_6_0_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl",
+    "6_1": "IoT_data/us/spring/us_spring_generation_day_6_1_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46.pkl"
+  },
+  "prompt_sha256": {
+    "0_0": "b52bb11773ff34cc88e8356b1287f95661fd4adcfaa7d30c1132a759adc59d02",
+    "0_1": "b8047c14cdbcd4f0ad30584ac307920de08cdce52528a805e720437a6d9efb0e",
+    "1": "a80c05ee19f38233f9b6bee325a39d5205714aefc6f77be6b407a0dca214acd7",
+    "2": "2fa6af2ee3f925e2a667c0153b6a52efae0713223a570c3ccb65a2988b9e6fac",
+    "3_0": "89d9924dd17e1458731fb856025d7255ba76250e9577ced022a834b28571d3be",
+    "3_1": "19b8c11ee444bfc78fdcc1155bfed33e7b2983a819773dd8b212790f249e0d1c",
+    "4": "0e3feb07af0348b3358ebea77bd8dcccd788cdbd629a9c188f3969d348a56997",
+    "5_0": "753f06fc9c1d1d2a7c96f5de4c164232b05063e025c89a3a53de2d4f6e148cf1",
+    "5_1": "042ad8d910add334f0dc8e0dea3e70ad8640d89fbfd30d3016752becb92b91c7",
+    "6_0": "d902c70d4c947df53bd0559e526137d4e994892185a87a6b808ebae08865f845",
+    "6_1": "c18bea72081fbba8ada2bd538aeed983ceaa65abef0e9985f7215e34de268ce8"
+  },
+  "environment_adherence": {
+    "target_environment": "spring",
+    "behavior_count": 569,
+    "hour_counts": {
+      "0": 44,
+      "1": 17,
+      "2": 50,
+      "3": 67,
+      "4": 104,
+      "5": 96,
+      "6": 99,
+      "7": 92
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 109,
+    "first_pass_count": 97,
+    "final_count": 104,
+    "intermediates_preserved": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "name": "us_winter_to_spring_strict_off_original_gen_cache_crossfit",
+  "dataset": "us",
+  "environment": "spring",
+  "on_sequence_count": 84,
+  "off_sequence_count": 104,
+  "balanced_sample_count": 84,
+  "train_ratio": 0.8,
+  "calibration_folds": 5,
+  "mad_multiplier": 3.5,
+  "percentile": 95.0,
+  "epochs": 15,
+  "seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "inputs": {
+    "on": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/tof/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2_seq_filter_true.pkl",
+      "sha256": "1f20e7660a751e57931c4543e51ffd298c1133217e210df5b6df77f342819f45"
+    },
+    "off": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46__detector-p95-seed2024/artifacts/tof/us_spring_generation_SPPC_th=0.905_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_spring46_seq_filter_true.pkl",
+      "sha256": "865c0a102753fae76a85a9206186f75abdf53b980917e8ed8266ba8e40fc5d08"
+    },
+    "normal": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/us/spring/split_test.pkl",
+      "sha256": "3118c547ce0feb9ddc8858287cddf9fb0e2619e13323ec8c4b8d1a97666abbef"
+    },
+    "attack": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/attack/us/labeled_us_spring_attack_heater.pkl",
+      "sha256": "421ddbd0ec3009b0c111b7d7f1d356aa4625033c8c2d963500b8f5975d761bfc"
+    }
+  }
+}

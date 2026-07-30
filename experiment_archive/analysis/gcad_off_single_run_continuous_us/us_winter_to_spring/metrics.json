@@ -1,0 +1,32 @@
+{
+  "task": "us_winter_to_spring",
+  "source_archive": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024",
+  "detector_retrained": false,
+  "detection_threshold": 1.335315418243408,
+  "archived_threshold_metrics": {
+    "TP": 2924,
+    "TN": 2822,
+    "FP": 194,
+    "FN": 92,
+    "FPR": 0.0643236074270557,
+    "FNR": 0.03050397877984085,
+    "recall": 0.9694960212201591,
+    "precision": 0.9377806286080821,
+    "accuracy": 0.9525862068965517,
+    "f1_score": 0.9533746331920444
+  },
+  "recomputed_threshold_metrics": {
+    "TP": 2924,
+    "TN": 2822,
+    "FP": 194,
+    "FN": 92,
+    "FPR": 0.0643236074270557,
+    "FNR": 0.03050397877984085,
+    "recall": 0.9694960212201591,
+    "precision": 0.9377806286080821,
+    "accuracy": 0.9525862068965517,
+    "f1_score": 0.9533746331920444
+  },
+  "auroc": 0.9692305823406905,
+  "auprc": 0.9494328530377726
+}

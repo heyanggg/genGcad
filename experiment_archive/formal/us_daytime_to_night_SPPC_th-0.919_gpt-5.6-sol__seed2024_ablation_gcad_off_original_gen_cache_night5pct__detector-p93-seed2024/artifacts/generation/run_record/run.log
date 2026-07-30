@@ -1,0 +1,325 @@
+Class 0: 216
+Class 1: 162
+Class 2: 228
+Class 3: 188
+Class 4: 197
+Class 5: 178
+Class 6: 195
+Wrote GSS transition guidance to IoT_data/us/daytime/action_transitions.json.
+Day 0_0: translated 30 source sequences to text.
+Day 0_1: translated 23 source sequences to text.
+Day 1_0: translated 30 source sequences to text.
+Day 1_1: translated 29 source sequences to text.
+Day 2_0: translated 30 source sequences to text.
+Day 2_1: translated 30 source sequences to text.
+Day 2_2: translated 9 source sequences to text.
+Day 3_0: translated 30 source sequences to text.
+Day 3_1: translated 30 source sequences to text.
+Day 3_2: translated 7 source sequences to text.
+Day 4_0: translated 30 source sequences to text.
+Day 4_1: translated 30 source sequences to text.
+Day 4_2: translated 3 source sequences to text.
+Day 5_0: translated 30 source sequences to text.
+Day 5_1: translated 26 source sequences to text.
+Day 6_0: translated 30 source sequences to text.
+Day 6_1: translated 30 source sequences to text.
+Day 6_2: translated 23 source sequences to text.
+Category 0_0: parsed 4 generated sequences.
+Category 0_1: parsed 4 generated sequences.
+Category 1_0: parsed 4 generated sequences.
+Category 1_1: parsed 4 generated sequences.
+Category 2_0: parsed 4 generated sequences.
+Category 2_1: parsed 4 generated sequences.
+Category 2_2: parsed 4 generated sequences.
+Category 3_0: parsed 4 generated sequences.
+Category 3_1: parsed 4 generated sequences.
+Category 3_2: parsed 4 generated sequences.
+Category 4_0: parsed 4 generated sequences.
+Category 4_1: parsed 4 generated sequences.
+Category 4_2: parsed 4 generated sequences.
+Category 5_0: parsed 4 generated sequences.
+Category 5_1: parsed 4 generated sequences.
+Category 6_0: parsed 4 generated sequences.
+Category 6_1: parsed 4 generated sequences.
+Category 6_2: parsed 4 generated sequences.
+Converted 72 generated sequences to numeric form.
+Epoch [1/10] - Train Loss: 6.1646
+Epoch [2/10] - Train Loss: 5.7826
+Epoch [3/10] - Train Loss: 3.2026
+Epoch [4/10] - Train Loss: 2.0646
+Epoch [5/10] - Train Loss: 0.7364
+Epoch [6/10] - Train Loss: 0.2694
+Epoch [7/10] - Train Loss: 0.1526
+Epoch [8/10] - Train Loss: 0.0695
+Epoch [9/10] - Train Loss: 0.0347
+Epoch [10/10] - Train Loss: 0.0191
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/security_check.py:265: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_name, map_location=device))
+First security pass retained 57/72 generated sequences.
+============================NEED FIND TRUE OUTLIER================================ 
+
+Epoch [1/10] - Train Loss: 5.5152
+Epoch [2/10] - Train Loss: 4.3988
+Epoch [3/10] - Train Loss: 1.9244
+Epoch [4/10] - Train Loss: 1.1243
+Epoch [5/10] - Train Loss: 0.2763
+Epoch [6/10] - Train Loss: 0.1664
+Epoch [7/10] - Train Loss: 0.0726
+Epoch [8/10] - Train Loss: 0.0350
+Epoch [9/10] - Train Loss: 0.0195
+Epoch [10/10] - Train Loss: 0.0099
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/security_check.py:233: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_name, map_location=device))
+Epoch [1/10] - Train Loss: 5.0661
+Epoch [2/10] - Train Loss: 4.6569
+Epoch [3/10] - Train Loss: 2.7302
+Epoch [4/10] - Train Loss: 0.6195
+Epoch [5/10] - Train Loss: 0.3171
+Epoch [6/10] - Train Loss: 0.1468
+Epoch [7/10] - Train Loss: 0.0672
+Epoch [8/10] - Train Loss: 0.0353
+Epoch [9/10] - Train Loss: 0.0157
+Epoch [10/10] - Train Loss: 0.0090
+Finished Training
+Outlier candidate 0: restored after validation.
+Epoch [1/10] - Train Loss: 5.8193
+Epoch [2/10] - Train Loss: 4.3657
+Epoch [3/10] - Train Loss: 2.6258
+Epoch [4/10] - Train Loss: 2.1282
+Epoch [5/10] - Train Loss: 1.0866
+Epoch [6/10] - Train Loss: 0.2793
+Epoch [7/10] - Train Loss: 0.1300
+Epoch [8/10] - Train Loss: 0.0631
+Epoch [9/10] - Train Loss: 0.0346
+Epoch [10/10] - Train Loss: 0.0174
+Finished Training
+Outlier candidate 1: rejected after validation.
+Epoch [1/10] - Train Loss: 5.2404
+Epoch [2/10] - Train Loss: 4.7087
+Epoch [3/10] - Train Loss: 2.3887
+Epoch [4/10] - Train Loss: 1.3074
+Epoch [5/10] - Train Loss: 0.3605
+Epoch [6/10] - Train Loss: 0.2040
+Epoch [7/10] - Train Loss: 0.1135
+Epoch [8/10] - Train Loss: 0.0594
+Epoch [9/10] - Train Loss: 0.0250
+Epoch [10/10] - Train Loss: 0.0132
+Finished Training
+Outlier candidate 2: restored after validation.
+Epoch [1/10] - Train Loss: 5.6030
+Epoch [2/10] - Train Loss: 4.3504
+Epoch [3/10] - Train Loss: 1.8388
+Epoch [4/10] - Train Loss: 1.8354
+Epoch [5/10] - Train Loss: 0.8279
+Epoch [6/10] - Train Loss: 0.2205
+Epoch [7/10] - Train Loss: 0.1267
+Epoch [8/10] - Train Loss: 0.0623
+Epoch [9/10] - Train Loss: 0.0336
+Epoch [10/10] - Train Loss: 0.0164
+Finished Training
+Outlier candidate 3: rejected after validation.
+Epoch [1/10] - Train Loss: 5.4657
+Epoch [2/10] - Train Loss: 4.4859
+Epoch [3/10] - Train Loss: 2.0565
+Epoch [4/10] - Train Loss: 1.6616
+Epoch [5/10] - Train Loss: 0.4948
+Epoch [6/10] - Train Loss: 0.2481
+Epoch [7/10] - Train Loss: 0.1187
+Epoch [8/10] - Train Loss: 0.0691
+Epoch [9/10] - Train Loss: 0.0357
+Epoch [10/10] - Train Loss: 0.0182
+Finished Training
+Outlier candidate 4: rejected after validation.
+Epoch [1/10] - Train Loss: 5.4566
+Epoch [2/10] - Train Loss: 4.5522
+Epoch [3/10] - Train Loss: 1.7292
+Epoch [4/10] - Train Loss: 1.8761
+Epoch [5/10] - Train Loss: 0.5471
+Epoch [6/10] - Train Loss: 0.2276
+Epoch [7/10] - Train Loss: 0.1172
+Epoch [8/10] - Train Loss: 0.0545
+Epoch [9/10] - Train Loss: 0.0279
+Epoch [10/10] - Train Loss: 0.0138
+Finished Training
+Outlier candidate 5: rejected after validation.
+Epoch [1/10] - Train Loss: 5.4365
+Epoch [2/10] - Train Loss: 4.4056
+Epoch [3/10] - Train Loss: 2.7492
+Epoch [4/10] - Train Loss: 1.9905
+Epoch [5/10] - Train Loss: 1.0901
+Epoch [6/10] - Train Loss: 0.3190
+Epoch [7/10] - Train Loss: 0.1512
+Epoch [8/10] - Train Loss: 0.0655
+Epoch [9/10] - Train Loss: 0.0349
+Epoch [10/10] - Train Loss: 0.0204
+Finished Training
+Outlier candidate 6: rejected after validation.
+Epoch [1/10] - Train Loss: 5.0517
+Epoch [2/10] - Train Loss: 3.7670
+Epoch [3/10] - Train Loss: 1.3367
+Epoch [4/10] - Train Loss: 1.0792
+Epoch [5/10] - Train Loss: 0.2951
+Epoch [6/10] - Train Loss: 0.1794
+Epoch [7/10] - Train Loss: 0.0743
+Epoch [8/10] - Train Loss: 0.0359
+Epoch [9/10] - Train Loss: 0.0169
+Epoch [10/10] - Train Loss: 0.0097
+Finished Training
+Outlier candidate 7: rejected after validation.
+Epoch [1/10] - Train Loss: 5.5788
+Epoch [2/10] - Train Loss: 4.1542
+Epoch [3/10] - Train Loss: 2.0169
+Epoch [4/10] - Train Loss: 1.8060
+Epoch [5/10] - Train Loss: 0.8302
+Epoch [6/10] - Train Loss: 0.2497
+Epoch [7/10] - Train Loss: 0.1210
+Epoch [8/10] - Train Loss: 0.0588
+Epoch [9/10] - Train Loss: 0.0270
+Epoch [10/10] - Train Loss: 0.0171
+Finished Training
+Outlier candidate 8: rejected after validation.
+Epoch [1/10] - Train Loss: 5.7331
+Epoch [2/10] - Train Loss: 4.5599
+Epoch [3/10] - Train Loss: 2.1476
+Epoch [4/10] - Train Loss: 0.5838
+Epoch [5/10] - Train Loss: 0.2172
+Epoch [6/10] - Train Loss: 0.1103
+Epoch [7/10] - Train Loss: 0.0486
+Epoch [8/10] - Train Loss: 0.0239
+Epoch [9/10] - Train Loss: 0.0118
+Epoch [10/10] - Train Loss: 0.0056
+Finished Training
+Outlier candidate 9: rejected after validation.
+Epoch [1/10] - Train Loss: 5.4558
+Epoch [2/10] - Train Loss: 4.9040
+Epoch [3/10] - Train Loss: 2.5781
+Epoch [4/10] - Train Loss: 1.8180
+Epoch [5/10] - Train Loss: 0.5788
+Epoch [6/10] - Train Loss: 0.1917
+Epoch [7/10] - Train Loss: 0.1161
+Epoch [8/10] - Train Loss: 0.0605
+Epoch [9/10] - Train Loss: 0.0281
+Epoch [10/10] - Train Loss: 0.0129
+Finished Training
+Outlier candidate 10: rejected after validation.
+Epoch [1/10] - Train Loss: 5.6331
+Epoch [2/10] - Train Loss: 4.5243
+Epoch [3/10] - Train Loss: 2.2134
+Epoch [4/10] - Train Loss: 2.3765
+Epoch [5/10] - Train Loss: 1.4631
+Epoch [6/10] - Train Loss: 0.3727
+Epoch [7/10] - Train Loss: 0.1373
+Epoch [8/10] - Train Loss: 0.0697
+Epoch [9/10] - Train Loss: 0.0420
+Epoch [10/10] - Train Loss: 0.0210
+Finished Training
+Outlier candidate 11: rejected after validation.
+Epoch [1/10] - Train Loss: 5.2090
+Epoch [2/10] - Train Loss: 4.2469
+Epoch [3/10] - Train Loss: 3.3418
+Epoch [4/10] - Train Loss: 1.6573
+Epoch [5/10] - Train Loss: 1.0241
+Epoch [6/10] - Train Loss: 0.3061
+Epoch [7/10] - Train Loss: 0.1623
+Epoch [8/10] - Train Loss: 0.0756
+Epoch [9/10] - Train Loss: 0.0469
+Epoch [10/10] - Train Loss: 0.0245
+Finished Training
+Outlier candidate 12: rejected after validation.
+Epoch [1/10] - Train Loss: 4.9738
+Epoch [2/10] - Train Loss: 4.5064
+Epoch [3/10] - Train Loss: 2.5539
+Epoch [4/10] - Train Loss: 2.3810
+Epoch [5/10] - Train Loss: 1.4617
+Epoch [6/10] - Train Loss: 0.3112
+Epoch [7/10] - Train Loss: 0.1918
+Epoch [8/10] - Train Loss: 0.0952
+Epoch [9/10] - Train Loss: 0.0695
+Epoch [10/10] - Train Loss: 0.0359
+Finished Training
+Outlier candidate 13: restored after validation.
+Epoch [1/10] - Train Loss: 5.2201
+Epoch [2/10] - Train Loss: 4.1329
+Epoch [3/10] - Train Loss: 2.7278
+Epoch [4/10] - Train Loss: 1.5916
+Epoch [5/10] - Train Loss: 0.7139
+Epoch [6/10] - Train Loss: 0.2122
+Epoch [7/10] - Train Loss: 0.1061
+Epoch [8/10] - Train Loss: 0.0614
+Epoch [9/10] - Train Loss: 0.0290
+Epoch [10/10] - Train Loss: 0.0176
+Finished Training
+Outlier candidate 14: rejected after validation.
+Final security filter retained 60/72 sequences.
+Generation completed: {'generated_numeric': 'filter_data/us/night/us_night_generation_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct_seq.pkl', 'tof_final': 'filter_data/us/night/us_night_generation_SPPC_th=0.919_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct_seq_filter_true.pkl', 'tof_final_count': 60}
+Epoch [1/15] - Train Loss: 3.8538
+Epoch [2/15] - Train Loss: 5.8151
+Epoch [3/15] - Train Loss: 2.7278
+Epoch [4/15] - Train Loss: 1.6022
+Epoch [5/15] - Train Loss: 1.3900
+Epoch [6/15] - Train Loss: 0.6651
+Epoch [7/15] - Train Loss: 0.3706
+Epoch [8/15] - Train Loss: 0.1441
+Epoch [9/15] - Train Loss: 0.1028
+Epoch [10/15] - Train Loss: 0.0827
+Epoch [11/15] - Train Loss: 0.0457
+Epoch [12/15] - Train Loss: 0.0031
+Epoch [13/15] - Train Loss: 0.0012
+Epoch [14/15] - Train Loss: 0.0046
+Epoch [15/15] - Train Loss: 0.0087
+Finished Training
+/home/heyang/projects/SmartGen_GCAD/SmartGen/baseline1.py:157: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_name, map_location=device))
+Avg Loss (Validation Dataset): 0.1626
+Percentage:93.0% Threshold: 0.44800010846462185
+/home/heyang/projects/SmartGen_GCAD/SmartGen/baseline1.py:234: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(model_name, map_location=device))
+Avg Loss (Test Dataset): 5.8180
+True Positive: 2985
+True Negative: 3483
+False Positive: 0
+False Negative: 498
+False Positive Rate: 0.0
+False Negative Rate: 0.1429801894918174
+Recall: 0.8570198105081827
+Precision: 1.0
+Accuracy: 0.9285099052540913
+F1 Score: 0.9230055658627088
+AUROC: 0.8848112513023142
+AUPRC: 0.9362056906163079
+Max loss 17.5334 , Min loss: 0.0001
+Finished Test
+{
+  "dataset": "us",
+  "environment": "night",
+  "method": "SPPC",
+  "generator_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct",
+  "generation_threshold": 0.919,
+  "validation_percentile": 93.0,
+  "seed": 2024,
+  "generated_sequence_count": 60,
+  "training_sequence_count": 48,
+  "validation_sequence_count": 12,
+  "normal_test_count": 3483,
+  "attack_test_count": 3483,
+  "detection_threshold": 0.44800010846462185,
+  "metrics": {
+    "TP": 2985,
+    "TN": 3483,
+    "FP": 0,
+    "FN": 498,
+    "FPR": 0.0,
+    "FNR": 0.1429801894918174,
+    "recall": 0.8570198105081827,
+    "precision": 1.0,
+    "accuracy": 0.9285099052540913,
+    "f1_score": 0.9230055658627088,
+    "auroc": 0.8848112513023142,
+    "auprc": 0.9362056906163079
+  },
+  "continuous_scores_path": "anomaly_runs/us_night_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct_SPPC_th-0.919_p-93_seed2024/continuous_scores.npz",
+  "validation_scores_path": "anomaly_runs/us_night_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct_SPPC_th-0.919_p-93_seed2024/validation_scores.npz",
+  "metrics_path": "anomaly_runs/us_night_gpt-5.6-sol__seed2024_ablation_gcad_off_original_gen_cache_night5pct_SPPC_th-0.919_p-93_seed2024/metrics.json"
+}
