@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "status": "completed",
+  "created_at": "2026-07-30T01:09:12.042564+00:00",
+  "updated_at": "2026-07-30T01:20:47.144652+00:00",
+  "git_commit": "fe59276b08174df3c19af279a86e657a1505bb02",
+  "config": {
+    "dataset": "sp",
+    "original_environment": "single",
+    "target_environment": "multiple",
+    "method": "SPPC",
+    "threshold": 0.915,
+    "model": "gpt-5.6-sol",
+    "run_id": "seed2024_ablation_gcad_off_fresh_ssc_original",
+    "experiment_seed": 2024,
+    "gcad_seeds": [
+      2024,
+      2025,
+      2026
+    ],
+    "gcad_history": 4,
+    "gcad_epochs": 50,
+    "gcad_mode": "off",
+    "gcad_prompt_max_relationships": 12,
+    "gcad_prompt_max_per_target": 4,
+    "codex_reasoning_effort": "none",
+    "prompt_profile": "original",
+    "artifact_model": "gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original"
+  },
+  "completed_categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "outputs": {
+    "generated_numeric": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original_seq.pkl",
+    "tof_final": "filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original_seq_filter_true.pkl",
+    "tof_final_count": 110
+  },
+  "pipeline_mode": "original_smartgen_without_gcad",
+  "gcad": {
+    "status": "skipped",
+    "disabled_reason": "gcad_module_not_executed_for_baseline",
+    "artifact_fingerprint": null,
+    "relationship_count": 0,
+    "artifact_relationship_count": 0,
+    "prompt_relationship_count": 0,
+    "prompt_relationship_limits": {
+      "max_relationships": 12,
+      "max_per_target": 4
+    },
+    "path": null,
+    "mode": "off",
+    "module_executed": false,
+    "guidance_enabled": false
+  },
+  "compression": {
+    "method": "SPPC",
+    "training_mode": "trained",
+    "checkpoint_path": "IoT_model/Transformer_sp_single_15epoch.pth",
+    "checkpoint_sha256": "3e09856a336c1dee6f4f2feec15d5da32033f8f03198054aa9ecf183356c789a"
+  },
+  "categories": [
+    "0",
+    "1",
+    "2_0",
+    "2_1",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "generation_backend": {
+    "transport": "codex_cli",
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "ephemeral": true,
+    "ignore_user_config": true,
+    "ignore_rules": true,
+    "sandbox": "read-only",
+    "original_smartgen_sampling_request": {
+      "temperature": 0,
+      "top_p": 0,
+      "seed": 2024,
+      "max_tokens": 8040
+    },
+    "sampling_controls_applied": false,
+    "sampling_controls_reason": "Codex CLI does not recognize temperature, top_p, seed, or max_tokens as configuration fields"
+  },
+  "category_outputs": {
+    "0": "IoT_data/sp/multiple/sp_multiple_generation_day_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "1": "IoT_data/sp/multiple/sp_multiple_generation_day_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "2_0": "IoT_data/sp/multiple/sp_multiple_generation_day_2_0_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "2_1": "IoT_data/sp/multiple/sp_multiple_generation_day_2_1_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "3": "IoT_data/sp/multiple/sp_multiple_generation_day_3_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "4": "IoT_data/sp/multiple/sp_multiple_generation_day_4_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "5": "IoT_data/sp/multiple/sp_multiple_generation_day_5_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl",
+    "6": "IoT_data/sp/multiple/sp_multiple_generation_day_6_SPPC_th=0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original.pkl"
+  },
+  "prompt_sha256": {
+    "0": "4eda244f7d61e79fb505db03f09cfa9afcf4306d06aae76e5a3cfeaf0aae2d0a",
+    "1": "d77a881c3e08d7efb59c89976b107fbf77fef8b2bad90d5615ba9c0170fa5478",
+    "2_0": "093c0af230eccf0323c4f8aac6572842dab7870d428fae17d02929d9c2234ef4",
+    "2_1": "38c9abf5f21d8b4a6c283e785eeb1253bfc1cf03b25b317f31e808b24a101bf2",
+    "3": "3455ce50ae0a1603506e493980048f7c42708162500abe55459ba9cc2cea2b4a",
+    "4": "de5ad6ecf9f0d8299c51b8ab59a0d51f3c08a22fbc2c6fe77458a8884a78e2b9",
+    "5": "70f8bb57e9f527452c6eed461b50f7d0f2cb0e27d95291a1ed15e34a63f3042c",
+    "6": "defecebc5008f96c72ca27431ac10fb78aba38be0b3d2772cc00017e54f3b673"
+  },
+  "environment_adherence": {
+    "target_environment": "multiple",
+    "behavior_count": 938,
+    "hour_counts": {
+      "0": 101,
+      "1": 74,
+      "2": 112,
+      "3": 207,
+      "4": 141,
+      "5": 103,
+      "6": 98,
+      "7": 102
+    },
+    "used_for_filtering": false
+  },
+  "tof": {
+    "input_count": 116,
+    "first_pass_count": 97,
+    "final_count": 110,
+    "intermediates_preserved": true
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "name": "sp_gcad_on_gpt56_vs_historical_original_gen_gpt4o",
+  "dataset": "sp",
+  "environment": "multiple",
+  "on_sequence_count": 83,
+  "off_sequence_count": 89,
+  "balanced_sample_count": 83,
+  "train_ratio": 0.8,
+  "calibration_folds": 5,
+  "mad_multiplier": 3.5,
+  "percentile": 99.0,
+  "epochs": 15,
+  "seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "inputs": {
+    "on": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+      "sha256": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333"
+    },
+    "off": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/filter_data/sp/multiple/sp_multiple_generation_SPPC_th=0.915_gpt-4o_seq_filter_true.pkl",
+      "sha256": "04694430adccba55790ce356dfcb3938dc3f6d548bd07c8cfa9f782908d5c572"
+    },
+    "normal": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/sp/multiple/split_test.pkl",
+      "sha256": "428cc7aa0d16b618abc7a69f3f107626a087e49e041ff3f551223789a72d1e28"
+    },
+    "attack": {
+      "path": "/home/heyang/projects/SmartGen_GCAD/SmartGen/attack/sp/labeled_sp_multiple_attack_tv.pkl",
+      "sha256": "8e96aee61946cd9f581638cd067faaf23cbda98ab59aa912ccf087fefaa59bd8"
+    }
+  }
+}

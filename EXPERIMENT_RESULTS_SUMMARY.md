@@ -7,9 +7,9 @@
 - 当前约定的主实验为 3 个数据集（FR、SP、US）× 3 个迁移任务（winter→spring、daytime→night、single→multiple）× 单 seed（2024），共 9 组；这9组均属于完整方案（GCAD-on），其中两组因可靠性门控没有可注入关系而自动退化。
 - 9 组正式结果均已完成，正式清单、结果文件和校验信息齐全；从“完成当前单 seed 主实验矩阵”的角度看，主实验已符合要求。
 - 9 组宏平均 F1 为 **0.955077**，宏平均 Accuracy 为 **0.953864**。
-- 3 组 GCAD-on/off 已完成等样本、多检测器 seed 分析。结果显示：SP single→multiple 明显支持 GCAD；US daytime→night 基本持平且任务过易；US winter→spring 的 F1 略支持 on，但 AUROC/AUPRC 反而支持 off。GCAD 收益具有任务依赖性，当前不能声称它在所有任务上稳定有效。
-- SP single→multiple 已进一步修复 multiple 的训练/验证重用问题，完成5折未见样本校准及一次独立 off 生成重复。每折独立稳健标准化后，原 off 对比的 on/off F1 为 **0.7904±0.0207 / 0**，AUROC 为 **0.8866±0.0678 / 0.3206±0.1565**；第二次 off 仍为0，确认不是一次生成故障。
-- 初始单检测器协议中的 `US off F1=1` 和 `SP off F1=0` 均有可复现的数据原因，但不再作为消融推断的主要依据。
+- 旧的 3 组 GCAD-off 都复用了 on 归档的 SSC 文件，不符合本项目现在采用的定义“off 必须完全跳过 GCAD 并独立执行原 SmartGen 的 SSC 路径”。这些旧 off 及其多 seed 分析已全部降为 `diagnostic`，不得再作为正式消融结论。
+- SP single→multiple 已按正确定义重跑：清单明确记录 `pipeline_mode=original_smartgen_without_gcad`、`gcad.module_executed=false`、`compression.training_mode=trained`。单 seed F1 为 **0.908046**，对应 on 为 **0.913295**。
+- 正确 SP off 的5折三检测器 seed结果仍显示显著划分敏感性：单次80/20检测 F1 为0.9080，但5折稳健 F1为0；其连续分数 AUROC为 **0.4063±0.2036**，on为 **0.8866±0.0678**。因此既不能用旧的极端 `0 vs 0.913`，也不能只用新单次的 `0.908 vs 0.913` 下结论。
 
 ## 2. 正式主实验汇总
 
@@ -51,7 +51,7 @@
 
 可以直接这样回答：
 
-> 当前完整方案优于 Gen，能证明 SmartGen_GCAD 整体方案有效；但不能仅凭这一点把增益归因给 GCAD。受控 on/off 复评表明，GCAD 在 SP multiple 上有明显正向证据，在 US night 上基本持平，在 US spring 上不同指标方向不一致，因此它的效果具有任务依赖性。当前最重要的是增加 LLM 独立生成重复，先确认 on/off 差值能否跨生成重复稳定，再用 shuffled-GCAD 排除“只是多了一段提示词”的解释。
+> 当前完整方案优于历史 Gen，能证明 SmartGen_GCAD 整体方案有效；但不能仅凭这一点把增益归因给 GCAD。此前三组 off 复用了 on 的 SSC 归档，不符合现采用的严格 off 定义，已经撤销正式资格。正确 SP off 的单次 F1 与 on 接近，但5折连续分数明显弱于 on，说明存在正向信号，同时也存在很强的生成与检测划分敏感性。应先按同一定义重跑 US 两组 off，并补充独立 LLM 生成重复，再用 shuffled-GCAD 排除“只是多了一段提示词”的解释。
 
 “比 Gen 高”回答的是：
 
@@ -102,9 +102,9 @@
 
 ## 6. GCAD 消融结果与后续实验
 
-### 6.1 初始单检测器结果：仅作为异常诊断
+### 6.1 旧 off 结果：定义不符合要求，仅作历史诊断
 
-三组均复用了对应正式 on 组归档内的 SSC 选择文件。逐类别字节检查表明，off 提示词相对 on 提示词只删除了 GCAD guidance 段，其余提示内容一致。
+三组均复用了对应正式 on 组归档内的 SSC 选择文件。虽然当前流水线中 GCAD 只读取 `split_trn.pkl`、并不会改写 SSC，复用 SSC 可构成一种“只改变提示词”的受控消融；但它不符合本项目现在明确采用的定义：**GCAD-off 必须完全不执行 GCAD，并独立运行原 SmartGen 的 SSC 阶段**。因此下表不再是正式 on/off 结果。
 
 | 任务 | GCAD-on F1 | GCAD-off F1 | on−off | on TOF | off TOF |
 |---|---:|---:|---:|---:|---:|
@@ -118,11 +118,11 @@
 - SP multiple 检测器只使用设备列；原协议还将同一份生成数据同时用于训练和阈值验证。off 生成数据更频繁复现攻击中的 Television 设备模式，使攻击分数低于正常分数，因而得到 F1=0。
 - 两组极端数值都有可解释原因，但样本量、验证集和单 seed 不足以支持组件归因；三组 F1 宏平均也会被 SP 的极端差值主导，不能继续使用。
 
-三组 off 的正式归档均已保存完整模型、SSC、prompt/response、原始与解析生成数据、TOF 中间产物、检测数据和 checksum。
+这些归档仍完整保留模型、SSC、prompt/response、原始与解析生成数据、TOF 中间产物、检测数据和 checksum，但已从 `formal` 移至 `diagnostic`。
 
-### 6.2 已完成：稳健 GCAD-on/off 复评
+### 6.2 旧 off 的多 seed 检测：随旧定义一起降为诊断性
 
-复评统一采用：
+该分析统一采用：
 
 - on/off 取相同生成序列数量；
 - 每个模式重新按 80%/20% 划分互不重叠的训练集与阈值验证集；
@@ -151,39 +151,78 @@
 
 SP on 的三个 F1 为约 0.916、0、0.919，而对应 AUROC 均约为 0.875–0.972。这直接证明 F1=0 可能由小验证集估计出的阈值造成，论文中应将 AUROC/AUPRC 与 F1 并列，不能只报最好或单次 F1。
 
-完整结果位于 `experiment_archive/analysis/gcad_off_balanced/`，包括 18 个检测器模型、逐 seed 数据划分、连续异常分数、指标和 SHA-256 校验文件。
+完整结果仍位于 `experiment_archive/analysis/gcad_off_balanced/`，包括 18 个检测器模型、逐 seed 数据划分、连续异常分数、指标和 SHA-256 校验文件；由于 off 输入定义已作废，这些结果只用于追溯异常，不用于论文消融结论。
 
-### 6.3 已完成：SP single→multiple 专项修复
+### 6.3 已完成：按严格定义重跑 SP single→multiple off
 
-`multiple` 原正式代码将同一份生成数据同时用于检测器训练和99分位阈值估计，现已改为训练/验证分离。进一步采用5折交叉训练，确保每条校准分数来自未训练过该序列的模型。
+代码现已硬性保证：
 
-83条校准数据不足以稳定估计99分位：5折后 on/off 的99分位 F1 都会变成0。因此保留99分位结果作为协议记录，同时增加不使用攻击标签的固定稳健阈值。每一折只用该折验证分数计算中心和尺度，先独立标准化该折的测试分数，再对5折标准化分数取均值：
+- `gcad-mode=off` 时不提取、不读取任何 GCAD 产物；
+- off 与 `--reuse-sppc-selection-dir` 同时出现时直接报错；
+- off 独立执行 Split、Dayse、SSC训练与选择、原始提示词生成、TOF和下游异常检测；
+- 实验清单记录 `gcad.module_executed=false` 和 `compression.training_mode=trained`。
+
+独立重训产生的30个 SSC 文件与 on 归档逐文件 SHA-256 完全一致（30/30）。这不是再次复用，而是因为 GCAD 只读、固定 seed 的 SSC 对同一输入产生确定性结果；两侧运行路径已经独立。
+
+正确 off 共解析116条候选，TOF最终保留110条。正式单 seed结果为：
+
+| 模式 | F1 | Accuracy | Precision | Recall | TP | TN | FP | FN |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| on | 0.913295 | 0.905063 | 0.840426 | 1.000000 | 158 | 128 | 30 | 0 |
+| off（独立SSC） | 0.908046 | 0.898734 | 0.831579 | 1.000000 | 158 | 126 | 32 | 0 |
+
+单次 on−off F1 为 **+0.005249**，只能说明这一次 on 略高，不能单独证明稳定收益。
+
+随后采用5折交叉训练，确保每条校准分数来自未训练过该序列的模型。83条校准数据不足以稳定估计99分位：5折后 on/off 的99分位 F1 都为0。因此保留99分位结果作为协议记录，同时增加不使用攻击标签的固定稳健阈值。每一折只用该折验证分数计算中心和尺度，先独立标准化该折的测试分数，再对5折标准化分数取均值：
 
 ```text
 z_fold = (score - median(validation_fold)) / (1.4826 × MAD(validation_fold))
 anomaly if mean(z_fold) >= 3.5
 ```
 
-原 on 与第一次 off 的5折三检测器 seed结果：
+严格 on/off 的5折三检测器 seed结果：
 
 | 模式 | 稳健 F1 | AUROC | AUPRC |
 |---|---:|---:|---:|
 | on | 0.7904 ± 0.0207 | 0.8866 ± 0.0678 | 0.8161 ± 0.0794 |
-| off 第一次 | 0.0000 ± 0.0000 | 0.3206 ± 0.1565 | 0.5370 ± 0.0389 |
+| off（独立SSC） | 0.0000 ± 0.0000 | 0.4063 ± 0.2036 | 0.5922 ± 0.1030 |
 
-预先固定的一次独立 off 生成重复产生113条序列，TOF最终保留110条；修复后的正式训练/验证为88/22，F1仍为0。相同5折、检测器 seed2024 下，on/off 的稳健 F1 为0.8103/0，AUROC为0.8098/0.5641。
+单次80/20检测的0.908与5折结果的0之间存在明显冲突，说明 SP 的生成数据和阈值对训练划分非常敏感。论文不能只选其中一个数；应同时报告独立生成重复、AUROC/AUPRC和完整混淆矩阵。
 
-两次 off 分别有4条和7条最终序列与攻击设备模式完全重合，on 为0；因此 off=0 是关闭GCAD后的生成分布反复覆盖 Television 攻击模式造成的，不是一次调用失败。
+正确结果位于：
 
-完整结果位于 `experiment_archive/analysis/gcad_off_crossfit/`。
+- 正式单 seed：`experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_ablation_gcad_off_fresh_ssc_original__detector-p99-seed2024/`
+- 多 seed 5折：`experiment_archive/analysis/gcad_off_crossfit_fresh_ssc/`
 
-### 6.4 下一优先项：其余 LLM 独立生成重复
+### 6.4 历史原 Gen 为什么不为0
 
-SP off 已新增一次独立生成重复；US spring、US night 及相应 on 侧仍需按预先固定次数补充独立生成，不能把检测器 seed 当作生成重复。
+历史原 Gen 的 SP multiple 最终数据共89条，生成后端为 `gpt-4o-2024-11-20`，使用 OpenAI API 的 `temperature=0`、`top_p=0`、`seed=2024` 和 `max_tokens=8040`。当前严格 off 虽然走原 SmartGen 模块路径，但生成模型为 GPT-5.6 Sol，且通过 Codex CLI 调用，不能应用上述四个采样字段，所以两者不是同一份生成基线。
+
+将历史原 Gen 数据放入与当前实验完全相同的5折、三检测器 seed协议后：
+
+| 数据 | 稳健 F1 | AUROC | AUPRC |
+|---|---:|---:|---:|
+| 当前 GCAD-on | 0.7904 ± 0.0207 | 0.8866 ± 0.0678 | 0.8161 ± 0.0794 |
+| 历史原 Gen（GPT-4o） | 0.7242 ± 0.0252 | 0.4534 ± 0.0709 | 0.5825 ± 0.0481 |
+| 当前严格 off（GPT-5.6） | 0.0000 ± 0.0000 | 0.4063 ± 0.2036 | 0.5922 ± 0.1030 |
+
+历史原 Gen 的三个 seed 都检出全部158条攻击，但同时产生125、133、104个误报。其 F1 不为0主要是因为模型倾向于把大量样本都判为异常，并不表示它能可靠区分正常与攻击；接近随机的 AUROC 更能揭示这一点。当前严格 off 与历史原 Gen 的连续排序能力都较弱，差距没有旧单次 F1 表面上那么大。
+
+完整结果位于 `experiment_archive/analysis/gcad_on_vs_historical_original_gen_crossfit/`。
+
+### 6.5 采样参数如何真正应用
+
+当前 Codex CLI 只实际应用模型和 `reasoning_effort=none`，不接受 `temperature`、`top_p`、请求级 `seed` 或 `max_tokens`。实验清单已经把这四项标记为“原 Gen 请求值，但未应用”，不再伪装成生效参数。
+
+要真正应用这些参数，需要增加 OpenAI API 后端并使用具备对应模型权限的 API key。API层可以设置 `temperature`、`top_p` 和输出 token 上限；Chat Completions 的 `seed` 只是 best-effort，并不保证完全确定。当前环境没有 `OPENAI_API_KEY`，因此还不能实际运行和验证该后端。即使传输方式本身不应改变实验逻辑，生成模型、采样字段是否生效会直接影响复现性。
+
+### 6.6 下一优先项：其余严格 off 与 LLM 独立生成重复
+
+SP off 已按严格定义重跑；US spring、US night 的旧 off 已降为诊断性，必须先按严格定义重跑。随后 on/off 两侧仍需按预先固定次数补充独立生成，不能把检测器 seed 当作生成重复。
 
 当前生成后端不保证完全可由 seed 决定，因此应称为“独立重复运行”，不能暗示 LLM 输出严格确定性。需报告每个任务的 on−off 分布、均值 ± 标准差，以及 bootstrap 置信区间或配对检验。
 
-### 6.5 后置项：随机关系负对照
+### 6.7 后置项：随机关系负对照
 
 至少在 US winter→spring 上加入 `shuffled-GCAD`：
 
@@ -195,7 +234,7 @@ SP off 已新增一次独立生成重复；US spring、US night 及相应 on 侧
 
 本轮没有启动 shuffled，因为 on/off 尚未经过生成重复，且 US spring 的 AUROC/AUPRC 方向与 F1 相反。应先稳定 on/off，再选择确有正向信号的任务做 shuffled。
 
-### 6.6 机制证据
+### 6.8 机制证据
 
 除下游 F1 外，建议报告：
 
@@ -218,16 +257,17 @@ GCAD 找到稳定且非平凡的关系
 ## 7. 主实验现状中的限制
 
 - 当前正式矩阵是单 seed/单次生成，能够作为主结果，但不足以估计生成波动。
-- 稳健复评已证明不能把 GCAD 描述为“所有任务必然提升”：US night 基本持平，US spring 的阈值与无阈值指标方向冲突。
+- US night、US spring 的旧 off 不符合严格定义，必须重跑后才能恢复正式 on/off 结论。
 - `experiment-seed=2024` 控制 SSC、TOF、GCAD holdout 和异常检测器，但 Codex CLI 不应用 temperature、top_p、generation seed 和 max_tokens；因此相同调用次数也会产生不同数量和内容的序列。
 - FR daytime→night、SP daytime→night 因门控未启用 GCAD，只能说明系统在无可靠关系时可安全退化，不能作为“GCAD 带来提升”的证据。
 - FR winter→spring 缺少可选的 TOF candidate scratch 中间文件，但正式复现所需的核心产物、指标与清单完整。
 
 ## 8. 推荐执行顺序
 
-1. 三组严格配对的 GCAD-off 生成和多 seed 下游异常检测均已完成。
-2. SP multiple 的数据划分、5折稳健阈值和一次独立 off 生成重复已完成。
-3. 下一步补充其余预先固定的 on/off 独立生成重复。
+1. SP multiple 的严格 off、正式单 seed、5折三检测器 seed与历史原 Gen同协议分析均已完成。
+2. 下一步按严格定义重跑 US winter→spring off，再重跑 US daytime→night off。
+3. 为 on/off 补充预先固定的独立 LLM 生成重复。
+4. 若真实关系在重复后仍有正向信号，再做 shuffled-GCAD 强负对照。
 4. 生成重复后，优先选择持续出现正向信号的任务做 shuffled-GCAD；不预先假定一定是 US spring。
 5. 同步计算关系遵守率，证明 GCAD 提示确实改变了生成序列中的滞后关系。
 6. 最后再考虑 history、关系上限或稀疏阈值等参数敏感性。
