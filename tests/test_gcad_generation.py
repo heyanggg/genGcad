@@ -405,10 +405,39 @@ def test_gcad_mode_can_disable_or_require_guidance(monkeypatch):
         )
 
 
+def test_gcad_off_skips_module_and_rejects_on_ssc_reuse(monkeypatch):
+    smartgen = str(Path("SmartGen").resolve())
+    monkeypatch.syspath_prepend(smartgen)
+    sys.modules.pop("main", None)
+    import main
+
+    class Args:
+        gcad_mode = "off"
+        reuse_sppc_selection_dir = None
+
+    monkeypatch.setattr(
+        main,
+        "extract_directional_relationships",
+        lambda *args, **kwargs: pytest.fail("GCAD must not run in off mode"),
+    )
+    relationships, output, executed = main.prepare_gcad_stage(Args())
+    assert relationships == {
+        "status": "skipped",
+        "disabled_reason": "gcad_module_not_executed_for_baseline",
+        "lagged_behavior_relations": [],
+    }
+    assert output is None
+    assert executed is False
+
+    Args.reuse_sppc_selection_dir = "/an/on/archive"
+    with pytest.raises(ValueError, match="SSC stage independently"):
+        main.prepare_gcad_stage(Args())
+
+
 def test_main_trains_gcad_from_tss_output_before_ssc():
     source = Path("SmartGen/main.py").read_text(encoding="utf-8")
     split = source.index("        Split(args.dataset")
-    gcad = source.index("        gcad_relationships = extract_directional_relationships", split)
+    gcad = source.index("            prepare_gcad_stage(args)", split)
     ssc = source.index("        Dayse(args.dataset", gcad)
     assert split < gcad < ssc
-    assert "split_trn.pkl" in source[gcad:ssc]
+    assert "prepare_gcad_stage" in source[gcad:ssc]

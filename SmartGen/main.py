@@ -246,6 +246,45 @@ def select_gcad_guidance(gcad_relationships, mode):
     raise ValueError(f"unsupported GCAD mode: {mode!r}")
 
 
+def prepare_gcad_stage(args):
+    """Run GCAD only for GCAD-enabled experiments.
+
+    A GCAD-off run is the original SmartGen pipeline, so it must neither
+    extract/read a GCAD artifact nor reuse an SSC selection from an on run.
+    """
+    if args.gcad_mode == "off":
+        if getattr(args, "reuse_sppc_selection_dir", None):
+            raise ValueError(
+                "--gcad-mode off cannot be combined with "
+                "--reuse-sppc-selection-dir; a GCAD-off baseline must execute "
+                "the original SmartGen SSC stage independently"
+            )
+        return (
+            {
+                "status": "skipped",
+                "disabled_reason": "gcad_module_not_executed_for_baseline",
+                "lagged_behavior_relations": [],
+            },
+            None,
+            False,
+        )
+
+    gcad_output = Path(args.gcad_output) if args.gcad_output else (
+        Path("artifacts") / "gcad" / args.dataset / args.ori_env / "gcad_hints.json"
+    )
+    relationships = extract_directional_relationships(
+        Path("IoT_data") / args.dataset / args.ori_env / "split_trn.pkl",
+        args.dataset,
+        gcad_output,
+        history=args.gcad_history,
+        epochs=args.gcad_epochs,
+        seeds=args.gcad_seeds,
+        split_seed=args.experiment_seed,
+        force=args.gcad_force,
+    )
+    return relationships, gcad_output, True
+
+
 def limit_prompt_gcad_relationships(
     gcad_relationships,
     max_relationships=12,
@@ -402,18 +441,8 @@ def run_generation(args, config):
 
     try:
         Split(args.dataset, args.ori_env, 1)
-        gcad_output = Path(args.gcad_output) if args.gcad_output else (
-            Path("artifacts") / "gcad" / args.dataset / args.ori_env / "gcad_hints.json"
-        )
-        gcad_relationships = extract_directional_relationships(
-            Path("IoT_data") / args.dataset / args.ori_env / "split_trn.pkl",
-            args.dataset,
-            gcad_output,
-            history=args.gcad_history,
-            epochs=args.gcad_epochs,
-            seeds=args.gcad_seeds,
-            split_seed=args.experiment_seed,
-            force=args.gcad_force,
+        gcad_relationships, gcad_output, gcad_module_executed = (
+            prepare_gcad_stage(args)
         )
         prompt_gcad_relationships = select_gcad_guidance(
             gcad_relationships, args.gcad_mode
@@ -426,8 +455,14 @@ def run_generation(args, config):
         prompt_selection = prompt_gcad_relationships["prompt_selection"]
         run.update(
             status="compressing",
+            pipeline_mode=(
+                "original_smartgen_without_gcad"
+                if args.gcad_mode == "off"
+                else "smartgen_with_gcad_stage"
+            ),
             gcad={
                 "status": gcad_relationships.get("status"),
+                "disabled_reason": gcad_relationships.get("disabled_reason"),
                 "artifact_fingerprint": gcad_relationships.get("artifact_fingerprint"),
                 "relationship_count": len(
                     gcad_relationships.get("lagged_behavior_relations", [])
@@ -442,8 +477,9 @@ def run_generation(args, config):
                     "max_relationships": prompt_selection["max_relationships"],
                     "max_per_target": prompt_selection["max_per_target"],
                 },
-                "path": str(gcad_output),
+                "path": str(gcad_output) if gcad_output is not None else None,
                 "mode": args.gcad_mode,
+                "module_executed": gcad_module_executed,
                 "guidance_enabled": (
                     prompt_gcad_relationships.get("status") == "ready"
                     and bool(
