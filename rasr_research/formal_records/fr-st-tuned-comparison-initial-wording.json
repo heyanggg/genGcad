@@ -1,0 +1,97 @@
+{
+  "dataset": "fr",
+  "new_codex_calls": 0,
+  "protocol": "Offline detector tuning, NOT an unchanged-formal-protocol RaSR comparison",
+  "parameters": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 25,
+    "score": "max",
+    "percentile": 97.5
+  },
+  "metrics": {
+    "original_historical_B0": {
+      "TP": 88,
+      "TN": 81,
+      "FP": 7,
+      "FN": 0,
+      "FPR": 0.07954545454545454,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.9263157894736842,
+      "accuracy": 0.9602272727272727,
+      "f1_score": 0.9617486338797814,
+      "auroc": 0.9788223140495868,
+      "auprc": 0.9752206950826237
+    },
+    "original_B3": {
+      "TP": 52,
+      "TN": 88,
+      "FP": 0,
+      "FN": 36,
+      "FPR": 0.0,
+      "FNR": 0.4090909090909091,
+      "recall": 0.5909090909090909,
+      "precision": 1.0,
+      "accuracy": 0.7954545454545454,
+      "f1_score": 0.7428571428571429,
+      "auroc": 1.0,
+      "auprc": 1.0
+    },
+    "common_tuned_historical_data_B0": {
+      "TP": 88,
+      "TN": 81,
+      "FP": 7,
+      "FN": 0,
+      "f1_score": 0.9617486338797814,
+      "precision": 0.9263157894736842,
+      "recall": 1.0,
+      "FPR": 0.07954545454545454,
+      "FNR": 0.0,
+      "auroc": 0.9483471074380164,
+      "auprc": 0.9288725537297639
+    },
+    "common_tuned_B3": {
+      "TP": 88,
+      "TN": 86,
+      "FP": 2,
+      "FN": 0,
+      "f1_score": 0.9887640449438202,
+      "precision": 0.9777777777777777,
+      "recall": 1.0,
+      "FPR": 0.022727272727272728,
+      "FNR": 0.0,
+      "auroc": 1.0,
+      "auprc": 0.9999999999999998
+    }
+  },
+  "f1_delta_percentage_points": {
+    "B3_tuning_vs_original_B3": 24.59069020866773,
+    "tuned_B3_vs_original_historical_B0": 2.701541106403882,
+    "tuned_B3_vs_common_tuned_B0": 2.701541106403882
+  },
+  "interpretation": "Detector recovery is not evidence that RaSR caused the recovery. The common-tuned B3/B0 difference is small and unreplicated.",
+  "limitations": [
+    "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels.",
+    "One final evaluation seed; three holdout seeds are validation, not three independent final experiments.",
+    "Short normal views share parent sequences, not independent calibration observations.",
+    "Covered validation keeps singleton-action groups training-only; proxy negatives represent unseen-action corruption, not all real attacks.",
+    "Generated sample counts and actual SSC prompt exposure differ between historical B0 and B3.",
+    "Threshold, score aggregation, grouped split and training settings changed: keep separate from original formal results.",
+    "F1 gains must be considered alongside false-positive and false-negative rates, not alone."
+  ],
+  "evidence": {
+    "confirmation_sha256": "fb95839469ef7719871a332f349b10de383ffd17d39d84c7965ebfa0995c5747",
+    "selection_sha256": "34a40d7e5b15f35dd68eb7511317d98f3d2ea7b871b979185d204412586d544d",
+    "input_sha256": {
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/train.pkl": "96c3e70a2a04bcb3fea5bbc8b34e09a60d1350824e1d19d236f3cc9b65c9d6db",
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/validation.pkl": "fcb58584212e8c69ab211b62833461ff5cbf416a79694fc8c60a9f10f6915c73",
+      "rasr_research/runs/formal-fr-st-20261124/fr/seed-2024/B3/runtime/anomaly_runs/fr_spring_formal-B3-s2024_SPPC_th-0.918_p-95.5_seed2024/train.pkl": "b72f38d0af8c927efa6e1dfb1059f130cccd645bc9691bd43d852535234b2f7c",
+      "rasr_research/runs/formal-fr-st-20261124/fr/seed-2024/B3/runtime/anomaly_runs/fr_spring_formal-B3-s2024_SPPC_th-0.918_p-95.5_seed2024/validation.pkl": "604563115d9948cfd0dc3a4539561a5c87e4636dfab70ca6ea7ed019d831820c"
+    },
+    "model_sha256": {
+      "historical": "a1fbe189b8f8f9372d8f4fe2a5cefef94ec6bca9d946a6ce646e632e91adfa9e",
+      "B3": "56361f6089b3e0cc1633cd2fb65e5e8572536cd875b793e6ca92c38bb3099f1f"
+    }
+  }
+}

@@ -295,7 +295,7 @@ def report(args):
             'B3_tuning_vs_original_B3':100*(tuned_b3['f1_score']-old_b3['f1_score']),
             'tuned_B3_vs_original_historical_B0':100*(tuned_b3['f1_score']-old_baseline['f1_score']),
             'tuned_B3_vs_common_tuned_B0':100*(tuned_b3['f1_score']-tuned_baseline['f1_score'])},
-        'interpretation':'Detector recovery is not evidence that RaSR caused the recovery. The common-tuned B3/B0 difference is small and unreplicated.',
+        'interpretation':'Detector recovery alone is not evidence that RaSR caused the recovery. The common-tuned B3/B0 comparison is single-seed and unreplicated; retain its actual difference and both protocols.',
         'limitations':[
             confirmed['limitations'],
             'One final evaluation seed; three holdout seeds are validation, not three independent final experiments.',
