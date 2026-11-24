@@ -1,0 +1,173 @@
+{
+  "version": "single-FR-ST-B3-historical-baseline-v1",
+  "dataset": "fr",
+  "arm": "B3",
+  "seed": 2024,
+  "runs_required": 1,
+  "historical_baseline": {
+    "dataset": "fr",
+    "environment": "spring",
+    "method": "SPPC",
+    "generator_model": "gpt-5.6-sol__seed2024_gcad_require_explore",
+    "generation_threshold": 0.918,
+    "validation_percentile": 95.5,
+    "seed": 2024,
+    "generated_sequence_count": 187,
+    "training_sequence_count": 149,
+    "validation_sequence_count": 38,
+    "normal_test_count": 88,
+    "attack_test_count": 88,
+    "detection_threshold": 0.574917899533904,
+    "metrics": {
+      "TP": 88,
+      "TN": 81,
+      "FP": 7,
+      "FN": 0,
+      "FPR": 0.07954545454545454,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.9263157894736842,
+      "accuracy": 0.9602272727272727,
+      "f1_score": 0.9617486338797814
+    }
+  },
+  "baseline_files_sha256": {
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/metrics.json": "a423a06736a5b0eca4554d663b72fe5d079046b1f6bef57e5da1c0312eca9497",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/train.pkl": "96c3e70a2a04bcb3fea5bbc8b34e09a60d1350824e1d19d236f3cc9b65c9d6db",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/validation.pkl": "fcb58584212e8c69ab211b62833461ff5cbf416a79694fc8c60a9f10f6915c73",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/anomaly_detection/detector.pth": "d3328fbdf57cda2180d8da7a18b9fd905436d28f1cee5dbc8429cddf7285648b",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/gss/action_transitions.json": "73a8222b00fd034df5ba3841e81cfec6f542b555530f85b690a2a77af6ae71c6",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/gcad/gcad_hints.json": "8d5779beae06feb336dad897e15b5c05477c971757958e0336f03c0128b26e5d",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/ssc/model.pth": "0a99c84337b1f77f9e703fd2299f31b5016536e06285b5db940c5aa7eba79d2c",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/tof/fr_spring_generation_SPPC_th=0.918_gpt-5.6-sol__seed2024_gcad_require_explore_seq.pkl": "c637c518b706a627138707ae04f8468e90a5aa718678c734468843bdf97fdce4",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/tof/fr_spring_generation_SPPC_th=0.918_gpt-5.6-sol__seed2024_gcad_require_explore_seq_filter_true.pkl": "e066c9f5b80b285aed68bc7806c3d14e165df5670bd25e97bc3b808105d31d42"
+  },
+  "baseline_new_codex_calls": 0,
+  "planned_B3_calls": 16,
+  "repetitions": 1,
+  "baseline_selection_reason": "complete original formal archive; scenario fixed before seeing B3 results",
+  "supersedes": "protocol.json 18-run schedule; the old protocol is retained as historical evidence only",
+  "suspended": [
+    "all fresh B0",
+    "B1",
+    "B2",
+    "B4",
+    "B5",
+    "other scenarios",
+    "seeds 2025/2026",
+    "independent regenerator"
+  ],
+  "generation_policy": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/generation-policy.json",
+  "same_formal_tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "same_formal_detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95.5,
+    "implementation_unchanged": true
+  },
+  "prompt_checks": [
+    {
+      "category": "0_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "0_1",
+      "actual_examples": 12,
+      "example_upper_budget": 12,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "1_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "1_1",
+      "actual_examples": 27,
+      "example_upper_budget": 27,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "2_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "2_1",
+      "actual_examples": 21,
+      "example_upper_budget": 21,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "3_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "3_1",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "3_2",
+      "actual_examples": 4,
+      "example_upper_budget": 4,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "4_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "4_1",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "4_2",
+      "actual_examples": 4,
+      "example_upper_budget": 4,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "5_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "5_1",
+      "actual_examples": 4,
+      "example_upper_budget": 4,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "6_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "6_1",
+      "actual_examples": 16,
+      "example_upper_budget": 16,
+      "non_example_content_identical": true
+    }
+  ],
+  "ssc": "original joint I+J selection, no forced J ratio; original source checkpoint and threshold 0.918",
+  "limits": "same protocol is not bitwise historical reproduction; Codex sampling seed unavailable; only one B3 run, no significance claim"
+}

@@ -119,6 +119,22 @@ def register_next(args):
     destination=RECORDS/filename;original=args.tuning/'summary.json' if tuned else directory/f'single-b3-comparison-{args.dataset}.json'
     if destination.exists() and sha(destination)!=sha(original):raise ValueError('Saved result changed')
     if not destination.exists():shutil.copy2(original,destination)
+    if tuned:
+        for name in ('confirmation.json','selection.json','protocol.json'):
+            target=RECORDS/f'{args.dataset}-st-tuned-{name}'
+            source=args.tuning/name
+            if target.exists() and sha(target)!=sha(source):raise ValueError('Saved tuning evidence changed')
+            if not target.exists():shutil.copy2(source,target)
+    # Preserve the exact executed protocol/SSC/source preparation alongside
+    # aggregate metrics; later code defaults are not a protocol substitute.
+    for source,name in [(directory/'protocol.json',f'{args.dataset}-st-protocol.json'),
+        (directory/f'active-scope-{args.dataset}.json',f'{args.dataset}-st-scope.json'),
+        (ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared/manifest.json',
+         f'{args.dataset}-st-source-preparation.json')]:
+        if not source.exists():continue
+        target=RECORDS/name
+        if target.exists() and sha(target)!=sha(source):raise ValueError('Saved protocol changed: '+name)
+        if not target.exists():shutil.copy2(source,target)
     registry=read(RECORDS/'registry.json')
     key='formal_groups' if entry['status']=='formal' else 'supporting_groups'
     group=registry.setdefault(key,[]);old=next((r for r in group if r['id']==entry['id']),None)

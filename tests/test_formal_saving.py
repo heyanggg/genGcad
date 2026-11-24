@@ -18,6 +18,17 @@ def test_registry_is_the_two_requested_scenarios_not_two_us_variants():
     assert 'previously exposed test' in first_two[1]['evidence_type']
 
 
+def test_completed_fr_keeps_original_failure_and_tuned_formal_result():
+    registry=saving.read(ROOT/'rasr_research/formal_records/registry.json')
+    formal=next(r for r in registry['formal_groups'] if r['id']=='FR-ST-B3-tuned-seed2024')
+    original=next(r for r in registry['supporting_groups'] if r['id']=='FR-ST-B3-original-seed2024')
+    assert formal['metrics']['f1_score']==.9887640449438202
+    assert formal['metrics']['FP']==2 and formal['metrics']['FN']==0
+    assert formal['common_tuned_Gen_GCAD_metrics']['f1_score']==.9617486338797814
+    assert original['metrics']['f1_score']==.7428571428571429
+    assert original['status']=='supporting-not-above-baseline'
+
+
 def test_portable_backup_excludes_raw_datasets_and_credentials(tmp_path):
     for relative in ('runtime/IoT_data/fr/spring/split_test.pkl','runtime/attack/labels.pkl',
                      'I.pkl','source_for_ssc.pkl','auth.json','.env'):

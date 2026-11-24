@@ -1,0 +1,42 @@
+{
+  "dataset": "fr",
+  "config": {
+    "window": 2,
+    "decay": 0.8,
+    "max_events": 10,
+    "semantic_variants": 2,
+    "statistical_variants": 2,
+    "seed": 2024,
+    "validation_ratio": 0.1
+  },
+  "source_count": 1728,
+  "train_count": 1543,
+  "validation_count": 185,
+  "B3_J_count": 2417,
+  "operation_counts": {
+    "semantic_insert": 790,
+    "semantic_replace": 796,
+    "statistical_replace": 831
+  },
+  "skipped": {
+    "duplicate_or_unchanged_variant": 624,
+    "invalid_or_overlength_parent": 747,
+    "insertion_at_length_limit": 6,
+    "no_positive_relation": 137
+  },
+  "input_sha256": {
+    "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn.pkl": "bbaf902a85a145fcf4a874cbe1e06e794c3648bfcebac81c9cfc940e430cd84f",
+    "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/split_trn.pkl": "5ed99cb3c2084e1e8a2917ee81930460638dabea37c43acc66393c5bc8722d76",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/relation_research/embeddings/rasr-raw-v1/fr_embeddings.json": "de39081b4e1cb1e25c35e2980ee79f0ea512c220e2a1dd97ebc307b5abf8f537",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222"
+  },
+  "output_sha256": {
+    "I.pkl": "3e707d1a94ea77f9cbfb32807d25b711a34fbc0983307735876df2d1ebb8f34c",
+    "B3_J.pkl": "51d2d720d05c8dee3e21f729c0fcca302a0331c5e2cdeed34d582f13c7625908",
+    "relations.npz": "16199b6f825965263a2852d4bfd99ee629bc78f35f62177dd3aa2c562109ee49",
+    "split.json": "92b64fb7f60eb3ca264e92e540cb41cb48fd4ee6c12a14eab2ba700b8e9677c7"
+  },
+  "adaptation": "Only B3 is requested: keep its valid existing-algorithm variants, no downsampling to unrun B1/B2 arms. No RaSR algorithm or parameters changed.",
+  "test_or_target_data_used": false,
+  "new_codex_calls": 0
+}

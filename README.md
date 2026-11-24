@@ -38,6 +38,21 @@ The isolated output is `rasr_research/runs/formal-fr-st-20261124/`.
 validation-only tuning contingency before this B3 result, if original F1 does
 not exceed the historical baseline. There is no extra generation or new model.
 
+FR-ST is now completed: 16/16 real calls, 161 generated rows, TOF first 140/final
+157, original detector train/validation 125/32. Original p95.5 B3 F1 was
+0.7428571429 (FP=0/FN=36, AUROC=AUPRC=1.0) and is retained as supporting data.
+The predeclared 144-configuration normal-validation-only search selected the
+same lr=0.001, weight_decay=0.0001, 25-epoch/max-error/p97.5 setting as US.
+After locking, FR B3 F1 reached **0.9887640449** (TP=88/TN=86/FP=2/FN=0,
+precision=0.9777777778, recall=1.0, FPR=0.0227272727, FNR=0,
+AUROC=1.0, AUPRC=0.9999999999999998). The same-tuned historical-data B0 has
+F1 **0.9617486339** (FP=7/FN=0), identical F1 to the original reference.
+Thus the registered tuned FR group exceeds both references by **2.701541 pp**.
+This is one seed on 88 normal/88 attacked tests, previously exposed; it is not
+a fresh confirmatory trial or an isolated stable causal RaSR-gain claim.
+All normal split changes (tuned B3 126/31), correlated views, candidate metrics,
+original negative scores and weights are preserved. No extra Codex calls followed.
+
 The preceding completed scenario was **one US-ST B3 run (seed 2024)** versus the
 original formal US Gen+GCAD archive. It has **11** fixed generation tasks, the
 unmodified joint SSC's **159** actual examples (95 J), and a historical example
@@ -85,8 +100,9 @@ historical 0.9533746332 (-8.0483 percentage points). FP increased 194 -> 225;
 FN increased 92 -> 506. Precision/recall were 0.9177330896 / 0.8322281167;
 FPR/FNR were 0.0746021220 / 0.1677718833; AUROC/AUPRC were 0.9499873904 /
 0.9115929604. The unchanged TOF retained 89 of 95 generated sequences; detector
-training/validation used 71/18. All negative results, raw outputs and checkpoints
-are retained; no parameters or thresholds were tuned after seeing these scores.
+training/validation used 71/18. These original-protocol negative results, raw
+outputs and checkpoints are retained unchanged. Later, separately recorded
+validation-only detector tuning is documented below; it does not replace them.
 
 An operational Windows GBK stderr-decoding failure affected the first three
 US tasks. Their complete real stdout was recovered and validated (32 sequences),
@@ -185,6 +201,9 @@ The lower US B3 result, unselected tuning family and every existing candidate
 remain supporting records; they are not deleted, relabeled as successes or
 overwritten. Future above-baseline B3 results must retain their exact protocol,
 all attempts, weights, provenance and limitations when added to this registry.
+
+The next completed group, **FR-ST tuned B3 F1 0.9887640449**, was added under that
+rule. Its original-protocol F1 0.7428571429 is a separate supporting record.
 
 `rasr_research/save_formal.py` creates a SHA-256/ZIP-CRC-verified portable backup
 of generated data, weights, prompts/responses, all tuning candidates and results.

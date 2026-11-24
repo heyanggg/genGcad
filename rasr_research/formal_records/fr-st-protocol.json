@@ -1,0 +1,257 @@
+{
+  "version": "formal-joint-ssc-v1",
+  "seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "arms": [
+    "B0",
+    "B1",
+    "B3"
+  ],
+  "frozen_rasr_inputs": {
+    "SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222",
+    "relation_research/embeddings/rasr-raw-v1/fr_embeddings.json": "de39081b4e1cb1e25c35e2980ee79f0ea512c220e2a1dd97ebc307b5abf8f537",
+    "rasr_research/runs/b3-source-20261124/fr/prepared/relations.npz": "16199b6f825965263a2852d4bfd99ee629bc78f35f62177dd3aa2c562109ee49",
+    "rasr_research/runs/b3-source-20261124/fr/prepared/B3_J.pkl": "51d2d720d05c8dee3e21f729c0fcca302a0331c5e2cdeed34d582f13c7625908",
+    "rasr_research/runs/b3-source-20261124/fr/prepared/I.pkl": "3e707d1a94ea77f9cbfb32807d25b711a34fbc0983307735876df2d1ebb8f34c",
+    "rasr_research/runs/b3-source-20261124/fr/prepared/split.json": "92b64fb7f60eb3ca264e92e540cb41cb48fd4ee6c12a14eab2ba700b8e9677c7"
+  },
+  "independent_regenerator": false,
+  "selection": "joint I+J; original train-mode SSC; no origin quota",
+  "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
+  "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
+  "budget": "historical actual Prompt category counts and per-category example counts, equal for all arms",
+  "repetition": "independent fresh Codex requests plus downstream seeds 2024/2025/2026; frozen source/SSC/relations",
+  "codex": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "sampling_seed_available": false
+  },
+  "tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95,
+    "implementation_unchanged": true
+  },
+  "old_50_percent_control": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/run_experiment.py",
+  "no_test_based_tuning": true,
+  "datasets": {
+    "fr": {
+      "archive": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024",
+      "reference_config": {
+        "dataset": "fr",
+        "original_environment": "winter",
+        "target_environment": "spring",
+        "method": "SPPC",
+        "threshold": 0.918,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_gcad_require_explore",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "gcad_mode": "require",
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "environment-aware",
+        "artifact_model": "gpt-5.6-sol__seed2024_gcad_require_explore",
+        "validation_percentile": 95.5
+      },
+      "reference_metrics": {
+        "dataset": "fr",
+        "environment": "spring",
+        "method": "SPPC",
+        "generator_model": "gpt-5.6-sol__seed2024_gcad_require_explore",
+        "generation_threshold": 0.918,
+        "validation_percentile": 95.5,
+        "seed": 2024,
+        "generated_sequence_count": 187,
+        "training_sequence_count": 149,
+        "validation_sequence_count": 38,
+        "normal_test_count": 88,
+        "attack_test_count": 88,
+        "detection_threshold": 0.574917899533904,
+        "metrics": {
+          "TP": 88,
+          "TN": 81,
+          "FP": 7,
+          "FN": 0,
+          "FPR": 0.07954545454545454,
+          "FNR": 0.0,
+          "recall": 1.0,
+          "precision": 0.9263157894736842,
+          "accuracy": 0.9602272727272727,
+          "f1_score": 0.9617486338797814
+        }
+      },
+      "categories": [
+        {
+          "category": "0_0",
+          "day": 0,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_0_0.txt",
+          "sha256": "72aa5860d09af814f6c911d487d122343a6ebcb2c360c2b76b38f788f6c1a367"
+        },
+        {
+          "category": "0_1",
+          "day": 0,
+          "examples": 12,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_0_1.txt",
+          "sha256": "3bfe3960c6f1eb8edab998b01e2fd95e3c022c4001303f82789e44fc377c8067"
+        },
+        {
+          "category": "1_0",
+          "day": 1,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_1_0.txt",
+          "sha256": "5be5b67490defc610c23da17069d896bd552b19a724a49f709064750fcf09fc4"
+        },
+        {
+          "category": "1_1",
+          "day": 1,
+          "examples": 27,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_1_1.txt",
+          "sha256": "d3e20c051cf2c39a25cfd692683ee133d9a05ce72349d512d41acf8788110e95"
+        },
+        {
+          "category": "2_0",
+          "day": 2,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_2_0.txt",
+          "sha256": "9ea8c7e5ab012c0f8e67526f6d94c2cc40e42888db4997fb4f341350967ce41d"
+        },
+        {
+          "category": "2_1",
+          "day": 2,
+          "examples": 21,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_2_1.txt",
+          "sha256": "0c1635021ea33155d244f873444117e0cf904a75b833c71093ad3fe190fef8ac"
+        },
+        {
+          "category": "3_0",
+          "day": 3,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_3_0.txt",
+          "sha256": "0cb0217870ead588407d45a28c5815e696047391625abf3cb2447aa196a38c2a"
+        },
+        {
+          "category": "3_1",
+          "day": 3,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_3_1.txt",
+          "sha256": "6e7bd9be51e67a4bd6344791f17c37d054b94518ba27555c884e667360b53755"
+        },
+        {
+          "category": "3_2",
+          "day": 3,
+          "examples": 4,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_3_2.txt",
+          "sha256": "c8f3fc102a4615882949c26f8e18c5623ac67b35db7449ac4d7a55aaf4016dc2"
+        },
+        {
+          "category": "4_0",
+          "day": 4,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_4_0.txt",
+          "sha256": "7975a6ebb65c8ef0ac23e44dfd6771d2cfe8baca6c7075d6d037fa732b91303f"
+        },
+        {
+          "category": "4_1",
+          "day": 4,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_4_1.txt",
+          "sha256": "c1575fecde787662f52881c7449979a4f154a9d907c33c837259d7ae3cb76796"
+        },
+        {
+          "category": "4_2",
+          "day": 4,
+          "examples": 4,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_4_2.txt",
+          "sha256": "285634348b022e682e945e01d422e1839cc98d54fa677ed8fea839c7796f4b45"
+        },
+        {
+          "category": "5_0",
+          "day": 5,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_5_0.txt",
+          "sha256": "f35135170a849de7fc1e6082da3197cdd246fc57b9fafe575ace8a4c926070d3"
+        },
+        {
+          "category": "5_1",
+          "day": 5,
+          "examples": 4,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_5_1.txt",
+          "sha256": "4316a24df429728b545fced20e5c61a7dedd1546a2d308112693a4280264a436"
+        },
+        {
+          "category": "6_0",
+          "day": 6,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_6_0.txt",
+          "sha256": "e75b46687e59c7210c3c6a1081f99a49f81b8d53ebb82e4366b1b0ece18460ea"
+        },
+        {
+          "category": "6_1",
+          "day": 6,
+          "examples": 16,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/generation/run_record/prompts/category_6_1.txt",
+          "sha256": "48766791c9da617dade6f1e16bf51da5dbc703b497b5a7ddb44a962c83c7e3e3"
+        }
+      ],
+      "day_example_budget": {
+        "0": 42,
+        "1": 57,
+        "2": 51,
+        "3": 64,
+        "4": 64,
+        "5": 34,
+        "6": 46
+      },
+      "calls_per_run": 16,
+      "examples_per_run": 358,
+      "historical_generation": {
+        "tof": {
+          "input_count": 196,
+          "first_pass_count": 172,
+          "final_count": 187,
+          "provenance": "counts read from existing archived TOF pickle files"
+        }
+      },
+      "source": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/winter/trn.pkl",
+      "source_sha256": "bbaf902a85a145fcf4a874cbe1e06e794c3648bfcebac81c9cfc940e430cd84f",
+      "real_tss_sha256": "5ed99cb3c2084e1e8a2917ee81930460638dabea37c43acc66393c5bc8722d76",
+      "ssc_checkpoint": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_winter_to_spring_SPPC_th-0.918_gpt-5.6-sol__seed2024_gcad_require_explore__detector-p95.5-seed2024/artifacts/ssc/model.pth",
+      "ssc_checkpoint_sha256": "0a99c84337b1f77f9e703fd2299f31b5016536e06285b5db940c5aa7eba79d2c",
+      "unchanged_core_code": {
+        "models1.py": true,
+        "sppc.py": true,
+        "find_categories.py": true,
+        "security_check.py": true,
+        "baseline1.py": true
+      },
+      "detector_validation_percentile": 95.5,
+      "pilot_differences": {
+        "data": "same true source/target identity; isolated output paths",
+        "ssc": "pilot eval mode + prefix truncation + forced 50% J; formal original train-mode joint greedy SSC",
+        "gss": "same true-source GSS, never re-count J",
+        "gcad": "same archived true-source GCAD; SP 2 / US balanced 12 prompt edges",
+        "prompt": "SP pilot incorrectly inherited a later 4-6-event length constraint absent in historical SP; exact historical templates restored",
+        "generation": "pilot 2 calls / 8 examples -> 16 calls / 358 examples, all seven days",
+        "tof": "same 10-epoch algorithm; pilot only 8-9 inputs vs historical full-size inputs",
+        "detector": "same 15-epoch architecture, Adam, 80/20 split, seed protocol; no tiny pilot dataset cap",
+        "threshold": "same p95 of generated validation losses, not calibrated on target test labels"
+      }
+    }
+  }
+}

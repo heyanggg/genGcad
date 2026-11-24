@@ -100,6 +100,102 @@
       "comparison_report": "us-st-tuned-summary.json",
       "f1_gain_percentage_points": 0.6370792424502891,
       "result_sha256": "e6f462194283ccaf129acebfae64557a343fd5f510eb39b697e0c66149b22917"
+    },
+    {
+      "id": "FR-ST-B3-tuned-seed2024",
+      "scenario": "FR-ST",
+      "status": "formal",
+      "metrics": {
+        "TP": 88,
+        "TN": 86,
+        "FP": 2,
+        "FN": 0,
+        "f1_score": 0.9887640449438202,
+        "precision": 0.9777777777777777,
+        "recall": 1.0,
+        "FPR": 0.022727272727272728,
+        "FNR": 0.0,
+        "auroc": 1.0,
+        "auprc": 0.9999999999999998
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 88,
+        "TN": 81,
+        "FP": 7,
+        "FN": 0,
+        "FPR": 0.07954545454545454,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.9263157894736842,
+        "accuracy": 0.9602272727272727,
+        "f1_score": 0.9617486338797814,
+        "auroc": 0.9788223140495868,
+        "auprc": 0.9752206950826237
+      },
+      "f1_gain_percentage_points": 2.701541106403882,
+      "result": "rasr_research/runs/tuning-fr-st-20261124/covered-view-cv/confirmation.json",
+      "result_sha256": "fb95839469ef7719871a332f349b10de383ffd17d39d84c7965ebfa0995c5747",
+      "protocol": {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "epochs": 25,
+        "score": "max",
+        "percentile": 97.5
+      },
+      "evidence_type": "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels. Detector tuning is not isolated RaSR gain.",
+      "common_tuned_Gen_GCAD_metrics": {
+        "TP": 88,
+        "TN": 81,
+        "FP": 7,
+        "FN": 0,
+        "f1_score": 0.9617486338797814,
+        "precision": 0.9263157894736842,
+        "recall": 1.0,
+        "FPR": 0.07954545454545454,
+        "FNR": 0.0,
+        "auroc": 0.9483471074380164,
+        "auprc": 0.9288725537297639
+      }
+    }
+  ],
+  "supporting_groups": [
+    {
+      "id": "FR-ST-B3-original-seed2024",
+      "scenario": "FR-ST",
+      "status": "supporting-not-above-baseline",
+      "metrics": {
+        "TP": 52,
+        "TN": 88,
+        "FP": 0,
+        "FN": 36,
+        "FPR": 0.0,
+        "FNR": 0.4090909090909091,
+        "recall": 0.5909090909090909,
+        "precision": 1.0,
+        "accuracy": 0.7954545454545454,
+        "f1_score": 0.7428571428571429,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 88,
+        "TN": 81,
+        "FP": 7,
+        "FN": 0,
+        "FPR": 0.07954545454545454,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.9263157894736842,
+        "accuracy": 0.9602272727272727,
+        "f1_score": 0.9617486338797814,
+        "auroc": 0.9788223140495868,
+        "auprc": 0.9752206950826237
+      },
+      "f1_gain_percentage_points": -21.88914910226385,
+      "result": "rasr_research/runs/formal-fr-st-20261124/fr/seed-2024/B3/result.json",
+      "result_sha256": "35d3399300fb6ee0da4bfa7f3f19f7c4f2877d70db6fbe3e2c5f13e201cf4f3e",
+      "protocol": "same generated-validation p95.5 protocol, not the same numeric detector threshold across separately trained models",
+      "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim"
     }
   ]
 }

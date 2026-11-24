@@ -1,0 +1,8 @@
+{
+  "scope": "Report interpretation wording only; no scores, parameters, models or metrics changed",
+  "original_snapshot": "fr-st-tuned-comparison-initial-wording.json",
+  "current_report": "fr-st-tuned-comparison.json",
+  "reason": "The reused US report described its B3/B0 difference as small. Use a magnitude-neutral single-seed limitation for FR and retain the actual +2.7015411064 percentage-point difference.",
+  "confirmation_sha256_unchanged": "fb95839469ef7719871a332f349b10de383ffd17d39d84c7965ebfa0995c5747",
+  "large_backup": "fr-st-b3-tuned-20261124.zip retains its original wording snapshot with all metrics and weights unchanged; this note and current report supplement it without rewriting the archive"
+}
