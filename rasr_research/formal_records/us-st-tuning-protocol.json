@@ -1,0 +1,52 @@
+{
+  "dataset": "us",
+  "input_sha256": {
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "7b6c52a320f67728ef5265d403cfdc3a457c2b9fe76042cd21c19ce9d6734ae7",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "55a4384559c2d6df462e38718d2c066af244fffd63914f90551ab6df22a6c14e",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-20261124/us/seed-2024/B3/runtime/anomaly_runs/us_spring_formal-B3-s2024_SPPC_th-0.905_p-95_seed2024/train.pkl": "79bb0decf4a24dc669a685d3603ac427e6d0c29111593d514c11caae90fce8bb",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-20261124/us/seed-2024/B3/runtime/anomaly_runs/us_spring_formal-B3-s2024_SPPC_th-0.905_p-95_seed2024/validation.pkl": "fe6092e535fafbba2c978ec4485b9b78d6e5c1810f3e5026233e94da2d478908"
+  },
+  "grid": {
+    "learning_rate": [
+      0.0003,
+      0.001
+    ],
+    "weight_decay": [
+      0.0,
+      0.0001
+    ],
+    "epochs": [
+      5,
+      10,
+      15,
+      25
+    ],
+    "score": [
+      "mean",
+      "max",
+      "top2"
+    ],
+    "percentile": [
+      90.0,
+      95.0,
+      97.5
+    ]
+  },
+  "cv_seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "architecture": "unchanged 512D 8-head 2 encoder/2 decoder existing TransformerAutoencoder",
+  "loss": "unchanged masked normal reconstruction cross-entropy",
+  "batch_size": 32,
+  "selection": "mean proxy F1 over BOTH arms and three generated-normal holdouts; ties normal mean loss then original-parameter proximity",
+  "proxy": "uniform one-action substitution from legal dictionary actions absent in the normal generated corpus; NOT real labeled anomalies",
+  "test_files_accessed_for_selection": false,
+  "test_previously_exposed_in_earlier_experiments": true,
+  "new_model_or_generator": false,
+  "new_codex_calls": 0,
+  "holdout_note": "exact-duplicate groups disjoint; singleton-action groups kept in training",
+  "calibration_views": true,
+  "view_independence_warning": "Multiple normal views share held-out parent rows; view count is not independent sample size"
+}

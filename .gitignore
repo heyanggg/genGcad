@@ -1,3 +1,19 @@
 # Local models/data retained from the archived codex/tof-research branch.
 # Switch back to that branch to restore its code, reports, and handoff.
 /tof_research/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+/SmartGen/IoT_data/
+/SmartGen/IoT_model/
+/SmartGen/artifacts/
+/SmartGen/runs/
+/SmartGen/filter_data/
+/SmartGen/check_model/
+/SmartGen/anomaly_runs/
+/experiment_archive/
+/relation_research/previews/
+/relation_research/models/
+/relation_research/embeddings/
+/rasr_research/runs/
+/rasr_research/backups/

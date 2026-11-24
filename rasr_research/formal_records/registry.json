@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/heyanggg/genGcad",
+  "authority": "Human clarification: formal groups are SP-ST higher B3 and US-ST higher-F1 B3, not two US groups",
+  "future_rule": "Retain every result; register completed B3 variants exceeding their corresponding historical Gen+GCAD F1 as formal, with exact protocol, tuning history, all attempts and limitations. Never use formal status as a statistical-significance claim.",
+  "formal_groups": [
+    {
+      "id": "SP-ST-B3-original-seed2024",
+      "scenario": "SP-ST",
+      "status": "formal",
+      "protocol": "Original formal detector: 15 epochs, mean reconstruction error, validation p95",
+      "metrics": {
+        "TP": 710,
+        "TN": 720,
+        "FP": 8,
+        "FN": 18,
+        "FPR": 0.01098901098901099,
+        "FNR": 0.024725274725274724,
+        "recall": 0.9752747252747253,
+        "precision": 0.9888579387186629,
+        "accuracy": 0.9821428571428571,
+        "f1_score": 0.9820193637621024,
+        "auroc": 0.9959545948556938,
+        "auprc": 0.9949128021979587
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 723,
+        "TN": 690,
+        "FP": 38,
+        "FN": 5,
+        "FPR": 0.0521978021978022,
+        "FNR": 0.006868131868131868,
+        "recall": 0.9931318681318682,
+        "precision": 0.9500657030223391,
+        "accuracy": 0.970467032967033,
+        "f1_score": 0.9711215580926797,
+        "auroc": 0.9826787223765246,
+        "auprc": 0.9791831466321852
+      },
+      "result": "rasr_research\\runs\\formal-20261124\\sp\\seed-2024\\B3\\result.json",
+      "evidence_type": "Single-seed historical comparison, not stable causal proof",
+      "comparison_report": "sp-st-comparison.json",
+      "f1_gain_percentage_points": 1.0897805669422667,
+      "result_sha256": "66b1629ed3a588814af3f26562948a508f85eb7e6b432cd6a01e94d0a2e2c87d"
+    },
+    {
+      "id": "US-ST-B3-tuned-seed2024",
+      "scenario": "US-ST",
+      "status": "formal",
+      "protocol": "Existing detector tuned on grouped generated-normal validation plus synthetic proxies; locked before final scoring",
+      "parameters": {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "epochs": 25,
+        "score": "max",
+        "percentile": 97.5
+      },
+      "metrics": {
+        "TP": 3016,
+        "TN": 2763,
+        "FP": 253,
+        "FN": 0,
+        "f1_score": 0.9597454256165473,
+        "precision": 0.9226063016212909,
+        "recall": 1.0,
+        "FPR": 0.08388594164456234,
+        "FNR": 0.0,
+        "auroc": 0.9706682067874958,
+        "auprc": 0.9355678018007016
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 2924,
+        "TN": 2822,
+        "FP": 194,
+        "FN": 92,
+        "FPR": 0.0643236074270557,
+        "FNR": 0.03050397877984085,
+        "recall": 0.9694960212201591,
+        "precision": 0.9377806286080821,
+        "accuracy": 0.9525862068965517,
+        "f1_score": 0.9533746331920444,
+        "auroc": 0.9692301425993288,
+        "auprc": 0.9494183298962511
+      },
+      "common_tuned_Gen_GCAD_metrics": {
+        "TP": 3016,
+        "TN": 2760,
+        "FP": 256,
+        "FN": 0,
+        "f1_score": 0.9592875318066157,
+        "precision": 0.921760391198044,
+        "recall": 1.0,
+        "FPR": 0.08488063660477453,
+        "FNR": 0.0,
+        "auroc": 0.9550908087899022,
+        "auprc": 0.9241468496338632
+      },
+      "result": "rasr_research\\runs\\tuning-20261124\\covered-view-cv\\confirmation.json",
+      "evidence_type": "Exploratory on previously exposed test; changed detector protocol; not isolated RaSR gain",
+      "comparison_report": "us-st-tuned-summary.json",
+      "f1_gain_percentage_points": 0.6370792424502891,
+      "result_sha256": "e6f462194283ccaf129acebfae64557a343fd5f510eb39b697e0c66149b22917"
+    }
+  ]
+}

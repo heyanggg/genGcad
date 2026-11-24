@@ -1,0 +1,19 @@
+{
+  "version": "single-US-ST-B3-v1",
+  "authority": "latest explicit human instruction: historical B0 plus one formal B3 scenario only",
+  "queue_root": "runs/formal-20261124",
+  "allowed_runs": ["us/seed-2024/B3"],
+  "max_additional_calls": 11,
+  "max_workers": 3,
+  "allowed_call_ids": ["call-00", "call-01", "call-02", "call-03", "call-04", "call-05", "call-06", "call-07", "call-08", "call-09", "call-10"],
+  "parallelism_note": "At most three in-flight requests in the 11 unique atomic-claim US call slots; no new requests or repetitions.",
+  "hold": true,
+  "hold_reason": "All 11 authorized US-ST B3 tasks have valid saved responses (3 recovered without repeating requests, 8 normal exits). No further generation authorized; original TOF/detection only.",
+  "completed_current_run_calls": 11,
+  "recovered_stdout_calls_without_regeneration": 3,
+  "resume_authority": "Explicit human reply: Ok继续吧, approving the proposed single US-ST B3 run with 11 calls, original SSC actual 159 examples, no new B0 or ablations.",
+  "automatic_retries": false,
+  "baseline_new_calls": 0,
+  "forbidden": ["fresh B0", "B1", "B2", "B4", "B5", "additional SP-ST generation", "additional repetitions", "independent regenerator"],
+  "preserve_existing_responses_and_errors": true
+}
