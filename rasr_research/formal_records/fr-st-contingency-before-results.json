@@ -1,0 +1,22 @@
+{
+  "scenario": "FR-ST",
+  "authority": "Human asks to run next B3, diagnose and tune if it underperforms, and retain all outcomes",
+  "generation_budget": 16,
+  "initial_protocol": "Original archived FR-ST: SSC 0.918, unchanged 10-epoch TOF, unchanged 15-epoch detector, generated-validation p95.5",
+  "tuning_trigger": "Completed original-protocol B3 F1 does not exceed historical Gen+GCAD F1 0.9617486338797814",
+  "tuning_family": "Existing TransformerAutoencoder only; same covered-view-cv protocol used on US, fixed now before FR B3 results",
+  "grid": {
+    "learning_rate": [0.0003, 0.001],
+    "weight_decay": [0.0, 0.0001],
+    "epochs": [5, 10, 15, 25],
+    "score": ["mean", "max", "top2"],
+    "percentile": [90.0, 95.0, 97.5]
+  },
+  "validation_seeds": [2024, 2025, 2026],
+  "selection": "Mean generic-unseen-action proxy F1 across historical-normal and B3-normal training corpora; ties normal reconstruction loss and original-setting proximity",
+  "normal_validation": "Exact-duplicate groups disjoint; validation actions retain training support; full/prefix/singleton views generated only from held-out parents",
+  "test_label_selection": false,
+  "final_evaluation_policy": "If triggered, lock one shared parameter setting, refit both arms, evaluate once, retain results even if lower; no choosing a second family by target F1",
+  "limitations": "Historical test was already scored. Tuning outcome is exploratory. Multiple normal views are correlated, synthetic proxies are not true attack labels, and all formal status claims must preserve these limits.",
+  "new_B0_generation_or_ablation": false
+}

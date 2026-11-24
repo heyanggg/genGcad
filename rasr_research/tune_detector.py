@@ -34,6 +34,9 @@ def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def tokens(row):return tuple(row[3:40:4])
 
 
+def vocabulary_size(ds):return {'sp':235,'us':269,'fr':223}[ds]
+
+
 def coverage_split(rows,seed,ratio=.2):
     """Exact duplicates never cross; retain support for every validation action.
 
@@ -95,8 +98,9 @@ def normal_views(rows):
 
 def stress(args):
     selection=read(args.output/'selection.json')
-    ds=args.dataset;vocab=235 if ds=='sp' else 269
-    source_rows=load(ROOT/f'rasr_research/runs/pilot-20261124/{ds}/prepared/I.pkl')
+    ds=args.dataset;vocab=vocabulary_size(ds)
+    source_root='b3-source-20261124' if ds=='fr' else 'pilot-20261124'
+    source_rows=load(ROOT/f'rasr_research/runs/{source_root}/{ds}/prepared/I.pkl')
     result={'source_TSS_lengths':dict(Counter(len(r['row'])//4 for r in source_rows)),
         'selection_sha256':sha(args.output/'selection.json'),'test_files_accessed':False,'arms':{}}
     device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -163,7 +167,7 @@ def fit(args):
     output=args.output
     if (output/'selection.json').exists():raise ValueError('Selection already locked; do not silently retune')
     spec,pools,fingerprints=inputs(args)
-    ds=args.dataset;vocab=235 if ds=='sp' else 269
+    ds=args.dataset;vocab=vocabulary_size(ds)
     legal=[value for name,value in getattr(dictionary,f'{ds}_actions').items() if not name.startswith('None:')]
     grid={'learning_rate':[.0003,.001],'weight_decay':[0.,.0001],
           'epochs':[5,10,15,25],'score':['mean','max','top2'],'percentile':[90.,95.,97.5]}
@@ -243,7 +247,7 @@ def confirm(args):
     if (args.output/'confirmation.json').exists():raise ValueError('Confirmation already exists; no adaptive rerun')
     selection=read(args.output/'selection.json')
     for path,digest in selection['input_sha256'].items():assert sha(path)==digest
-    ds=args.dataset;vocab=235 if ds=='sp' else 269
+    ds=args.dataset;vocab=vocabulary_size(ds)
     source=Path('/home/heyang/projects/SmartGen_GCAD/SmartGen')
     # Only this post-lock action is allowed to read the target test files.
     normal=load(source/f'IoT_data/{ds}/spring/split_test.pkl')
@@ -276,7 +280,7 @@ def report(args):
     """Summarize preserved evaluations; never select or retrain from test results."""
     confirmed=read(args.output/'confirmation.json')
     assert confirmed['selection_sha256']==sha(args.output/'selection.json')
-    suffix='-us' if args.dataset=='us' else ''
+    suffix='-'+args.dataset if args.dataset!='sp' else ''
     comparison=read(args.formal/f'single-b3-comparison{suffix}.json')
     old_b3=comparison['B3_metrics']
     old_baseline=comparison['comparison_baseline_metrics']
@@ -311,7 +315,7 @@ def report(args):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--action',choices=['fit','confirm','stress','report'],required=True)
-    parser.add_argument('--dataset',choices=['sp','us'],default='us')
+    parser.add_argument('--dataset',choices=['sp','us','fr'],default='us')
     parser.add_argument('--formal',type=Path,default=ROOT/'rasr_research/runs/formal-20261124')
     parser.add_argument('--output',type=Path,default=ROOT/'rasr_research/runs/tuning-20261124/covered-cv')
     parser.add_argument('--calibration-views',action='store_true')

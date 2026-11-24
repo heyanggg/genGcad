@@ -27,7 +27,18 @@ The autoencoder is a compressor, not an extra behavior generator. Original GSS
 and cached GCAD (source hash verified) read only true I; no augmented observations
 are counted as real. Original data files are never overwritten.
 
-The latest authorized next step is **one US-ST B3 run (seed 2024)** versus the
+The active next scenario is **one FR-ST B3 run (seed 2024)** versus its archived
+Gen+GCAD F1 0.9617486339. It uses 16 fixed calls, original joint SSC threshold
+0.918, 358 actual examples (209 J), unchanged 10-epoch TOF and 15-epoch detector,
+and the original FR **p95.5**, not the SP/US p95. Source preparation retains
+1728 real TSS rows and 2417 valid B3 variants with the unchanged RaSR algorithm.
+No B1/B2 variants or control-arm matching are computed for this B3-only step.
+The isolated output is `rasr_research/runs/formal-fr-st-20261124/`.
+`formal_records/fr-st-contingency-before-results.json` fixes the source/generated-
+validation-only tuning contingency before this B3 result, if original F1 does
+not exceed the historical baseline. There is no extra generation or new model.
+
+The preceding completed scenario was **one US-ST B3 run (seed 2024)** versus the
 original formal US Gen+GCAD archive. It has **11** fixed generation tasks, the
 unmodified joint SSC's **159** actual examples (95 J), and a historical example
 upper budget of 229. No refill, SSC tuning, fresh B0, ablation, repeated run or

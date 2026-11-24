@@ -5,6 +5,7 @@ Raw source/target datasets and credentials are never included in the backup.
 Large weights/evidence are release assets, not oversized Git blobs.
 """
 import argparse
+import base64
 import hashlib
 import http.client
 import json
@@ -96,6 +97,37 @@ def safe_artifact(path):
         and path.suffix not in {'.pyc','.lock'} and path.name not in {'auth.json','credentials.json','.env'})
 
 
+def register_next(args):
+    directory=args.formal;comparison=read(directory/f'single-b3-comparison-{args.dataset}.json')
+    if comparison['status']!='completed':raise ValueError('Cannot register an incomplete experiment')
+    baseline=comparison['comparison_baseline_metrics']
+    tuned=read(args.tuning/'confirmation.json') if args.tuning else None
+    metrics=tuned['arms']['B3']['metrics'] if tuned else comparison['B3_metrics']
+    variant='tuned' if tuned else 'original'
+    result=args.tuning/'confirmation.json' if tuned else directory/f'{args.dataset}/seed-2024/B3/result.json'
+    entry={'id':f'{args.dataset.upper()}-ST-B3-{variant}-seed2024','scenario':args.dataset.upper()+'-ST',
+        'status':'formal' if metrics['f1_score']>baseline['f1_score'] else 'supporting-not-above-baseline',
+        'metrics':metrics,'Gen_GCAD_reference_metrics':baseline,
+        'f1_gain_percentage_points':100*(metrics['f1_score']-baseline['f1_score']),
+        'result':result.relative_to(ROOT).as_posix(),'result_sha256':sha(result),
+        'protocol':tuned['selection']['parameters'] if tuned else comparison['threshold_protocol'],
+        'evidence_type':'Single-seed historical comparison; all attempts retained, no significance claim'}
+    if tuned:
+        entry['common_tuned_Gen_GCAD_metrics']=tuned['arms']['historical']['metrics']
+        entry['evidence_type']=tuned['limitations']+' Detector tuning is not isolated RaSR gain.'
+    filename=f'{args.dataset}-st-{variant}-comparison.json'
+    destination=RECORDS/filename;original=args.tuning/'summary.json' if tuned else directory/f'single-b3-comparison-{args.dataset}.json'
+    if destination.exists() and sha(destination)!=sha(original):raise ValueError('Saved result changed')
+    if not destination.exists():shutil.copy2(original,destination)
+    registry=read(RECORDS/'registry.json')
+    key='formal_groups' if entry['status']=='formal' else 'supporting_groups'
+    group=registry.setdefault(key,[]);old=next((r for r in group if r['id']==entry['id']),None)
+    if old is not None and old!=entry:raise ValueError('Registered result changed')
+    if old is None:group.append(entry)
+    write(RECORDS/'registry.json',registry)
+    print('SAVED '+json.dumps(entry),flush=True)
+
+
 def build():
     register();BACKUPS.mkdir(parents=True,exist_ok=True)
     roots=[FORMAL/'sp/seed-2024/B3',FORMAL/'us/seed-2024/B3',
@@ -123,6 +155,30 @@ def build():
         'sha256':sha(archive),'file_count':len(inventory),'zip_crc_verified':True,
         'raw_source_and_target_datasets_included':False,'github_uploaded':False})
     print('BACKUP '+json.dumps(read(RECORDS/'backup-receipt.json')),flush=True)
+
+
+def build_next(args):
+    register_next(args)
+    variant='tuned' if args.tuning else 'original'
+    archive=BACKUPS/f'{args.dataset}-st-b3-{variant}-20261124.zip'
+    if archive.exists():raise ValueError('Existing archive retained; refusing overwrite')
+    roots=[args.formal,ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared']
+    if args.tuning:roots.append(args.tuning)
+    files=set(p for base in roots for p in base.rglob('*') if safe_artifact(p))
+    files.update(RECORDS.glob(f'{args.dataset}-*.json'))
+    files.add(RECORDS/'registry.json')
+    files.add(ROOT/f'relation_research/embeddings/rasr-raw-v1/{args.dataset}_embeddings.json')
+    manifest={'files':[{'path':p.relative_to(ROOT).as_posix(),'sha256':sha(p),'bytes':p.stat().st_size}
+                       for p in sorted(files)],'raw_source_and_target_datasets_included':False}
+    BACKUPS.mkdir(parents=True,exist_ok=True)
+    with zipfile.ZipFile(archive,'x',compression=zipfile.ZIP_DEFLATED,compresslevel=4) as bundle:
+        bundle.writestr('backup-manifest.json',json.dumps(manifest,indent=2))
+        for p in sorted(files):bundle.write(p,p.relative_to(ROOT).as_posix())
+    with zipfile.ZipFile(archive) as bundle:assert bundle.testzip() is None
+    receipt={'archive_name':archive.name,'bytes':archive.stat().st_size,'sha256':sha(archive),
+             'file_count':len(files),'zip_crc_verified':True,'github_uploaded':False}
+    write(RECORDS/f'{args.dataset}-st-{variant}-backup-receipt.json',receipt)
+    print('BACKUP '+json.dumps(receipt),flush=True)
 
 
 def upload(args):
@@ -179,12 +235,33 @@ def upload(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--action',choices=['register','build','upload'],required=True)
+    parser.add_argument('--action',choices=['register','register-next','build','build-next','upload','git-export'],required=True)
     parser.add_argument('--commit',help='Already-pushed immutable commit for release tag')
+    parser.add_argument('--batch',type=int,default=0)
+    parser.add_argument('--utf8',action='store_true',help='Inline text tree export for the connected GitHub API')
+    parser.add_argument('--dataset',choices=['fr'],default='fr')
+    parser.add_argument('--formal',type=Path,default=ROOT/'rasr_research/runs/formal-fr-st-20261124')
+    parser.add_argument('--tuning',type=Path)
+    parser.add_argument('--since',help='Export only paths changed since this local commit')
     args=parser.parse_args()
+    args.formal=args.formal.resolve()
+    if args.tuning:args.tuning=args.tuning.resolve()
     if args.action=='upload':
         if not args.commit or not re.fullmatch(r'[0-9a-f]{40}',args.commit):parser.error('--commit must be a pushed commit SHA')
         upload(args)
+    elif args.action=='register-next':register_next(args)
+    elif args.action=='build-next':build_next(args)
+    elif args.action=='git-export':
+        command=['git','diff','--name-only','-z',args.since,'HEAD'] if args.since else ['git','ls-files','-z']
+        paths=subprocess.run(command,cwd=str(ROOT),capture_output=True,check=True).stdout.decode().split('\0')
+        paths=[p for p in paths if p]
+        # Read the committed blobs, not potentially-changing working-tree files.
+        records=[]
+        for path in paths[args.batch*4:(args.batch+1)*4]:
+            blob=subprocess.run(['git','show','HEAD:'+path],cwd=str(ROOT),capture_output=True,check=True).stdout
+            records.append({'path':path,'content':blob.decode('utf-8') if args.utf8 else base64.b64encode(blob).decode('ascii'),
+                'git_sha':hashlib.sha1(b'blob '+str(len(blob)).encode()+b'\0'+blob).hexdigest()})
+        print(json.dumps({'total':len(paths),'batch':args.batch,'files':records}))
     else:{'register':register,'build':build}[args.action]()
 
 
