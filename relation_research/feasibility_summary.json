@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "generation_calls": 0,
+  "target_data_reads": 0,
+  "embedding_file_sha256": {
+    "fr": "0828d3cd85ab7c0fd78b7ccffc42e0fb861f027bbc2586a41d32395d043cda99",
+    "sp": "016ce5fd3fc75f0a4d19b20671a3d09610967660a79f6aceeb825b4e927ad0d7",
+    "us": "23fb3873b229f63b26a95cfba187fe7d8044d01a25e11bc17f5b5c95f27c6c4f"
+  },
+  "config": {
+    "min_cosine": 0.65,
+    "mapping_top_k": 3,
+    "max_changed_endpoints": 1
+  },
+  "mapping_statistics": {
+    "fr": {
+      "dictionary_actions": 222,
+      "directed_pairs_tested": 49062,
+      "compatible_pairs_before_similarity": 6,
+      "accepted_directed_mappings": 6,
+      "mapped_source_action_count": 6,
+      "function_families": {
+        "video_entertainment": 6
+      },
+      "rejected_pair_reasons": {
+        "ambiguous_state_direction": 548,
+        "different_function": 4222,
+        "different_operation": 106,
+        "non_device_action": 1320,
+        "opposite_or_different_state": 84,
+        "same_device_alias_not_new_behavior": 4,
+        "telemetry_or_unknown_operation": 5950,
+        "unresolved_function_or_state": 36822
+      },
+      "target_environment_specific_mappings": 0
+    },
+    "sp": {
+      "dictionary_actions": 234,
+      "directed_pairs_tested": 54522,
+      "compatible_pairs_before_similarity": 6,
+      "accepted_directed_mappings": 6,
+      "mapped_source_action_count": 6,
+      "function_families": {
+        "video_entertainment": 6
+      },
+      "rejected_pair_reasons": {
+        "ambiguous_state_direction": 548,
+        "different_function": 4228,
+        "different_operation": 106,
+        "non_device_action": 1392,
+        "opposite_or_different_state": 78,
+        "same_device_alias_not_new_behavior": 4,
+        "telemetry_or_unknown_operation": 5950,
+        "unresolved_function_or_state": 42210
+      },
+      "target_environment_specific_mappings": 0
+    },
+    "us": {
+      "dictionary_actions": 268,
+      "directed_pairs_tested": 71556,
+      "compatible_pairs_before_similarity": 6,
+      "accepted_directed_mappings": 6,
+      "mapped_source_action_count": 6,
+      "function_families": {
+        "video_entertainment": 6
+      },
+      "rejected_pair_reasons": {
+        "ambiguous_state_direction": 564,
+        "different_function": 4494,
+        "different_operation": 106,
+        "non_device_action": 1596,
+        "opposite_or_different_state": 82,
+        "same_device_alias_not_new_behavior": 4,
+        "telemetry_or_unknown_operation": 6300,
+        "unresolved_function_or_state": 58404
+      },
+      "target_environment_specific_mappings": 0
+    }
+  },
+  "mapping_threshold_sensitivity": {
+    "fr": {
+      "0.65": 6,
+      "0.8": 2,
+      "0.9": 0
+    },
+    "sp": {
+      "0.65": 6,
+      "0.8": 2,
+      "0.9": 0
+    },
+    "us": {
+      "0.65": 6,
+      "0.8": 2,
+      "0.9": 0
+    }
+  },
+  "tasks": [
+    {
+      "dataset": "fr",
+      "source_environment": "winter",
+      "target_environment": "spring",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 51,
+          "source_edges_with_mapping": 3,
+          "coverage": 0.058823529411764705,
+          "candidate_count": 3,
+          "novel_candidate_count": 3
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 5,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 3,
+        "novel_candidate_count": 3,
+        "selected_count": 3,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "5ed99cb3c2084e1e8a2917ee81930460638dabea37c43acc66393c5bc8722d76",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "fr",
+      "source_environment": "daytime",
+      "target_environment": "night",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 9,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 0,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 0,
+        "novel_candidate_count": 0,
+        "selected_count": 0,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "1faf8ef1c25777430a3eed4b6b8b6f6f3288b40494fe637384c630b36cdd46e0",
+      "source_sha256_unchanged": true,
+      "gcad_status": "disabled"
+    },
+    {
+      "dataset": "fr",
+      "source_environment": "single",
+      "target_environment": "multiple",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 22,
+          "source_edges_with_mapping": 4,
+          "coverage": 0.18181818181818182,
+          "candidate_count": 4,
+          "novel_candidate_count": 4
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 1,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 4,
+        "novel_candidate_count": 4,
+        "selected_count": 4,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "c96a010506017224c575d79dd43b0ec5d09ceb4a7cd8fd377f817a9d558a38fd",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "sp",
+      "source_environment": "winter",
+      "target_environment": "spring",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 86,
+          "source_edges_with_mapping": 6,
+          "coverage": 0.06976744186046512,
+          "candidate_count": 7,
+          "novel_candidate_count": 7
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 2,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 7,
+        "novel_candidate_count": 7,
+        "selected_count": 7,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "2f8a94b9743986fe8d052b851ea6da1749bfec1a2c39e43684aa68b56b4df633",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "sp",
+      "source_environment": "daytime",
+      "target_environment": "night",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 33,
+          "source_edges_with_mapping": 3,
+          "coverage": 0.09090909090909091,
+          "candidate_count": 3,
+          "novel_candidate_count": 3
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 0,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 3,
+        "novel_candidate_count": 3,
+        "selected_count": 3,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "24a0b5275fa8c249d09af4b0b41995fc3be1f88eefefdff33ce7bebbc1a755a8",
+      "source_sha256_unchanged": true,
+      "gcad_status": "disabled"
+    },
+    {
+      "dataset": "sp",
+      "source_environment": "single",
+      "target_environment": "multiple",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 55,
+          "source_edges_with_mapping": 5,
+          "coverage": 0.09090909090909091,
+          "candidate_count": 6,
+          "novel_candidate_count": 6
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 1,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 6,
+        "novel_candidate_count": 6,
+        "selected_count": 6,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "247d3cd78e69c033bfd930c8e945ae8cc194f5c29a31acdb8cadf8b9459819b0",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "us",
+      "source_environment": "winter",
+      "target_environment": "spring",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 223,
+          "source_edges_with_mapping": 53,
+          "coverage": 0.23766816143497757,
+          "candidate_count": 58,
+          "novel_candidate_count": 50
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 44,
+          "source_edges_with_mapping": 8,
+          "coverage": 0.18181818181818182,
+          "candidate_count": 8,
+          "novel_candidate_count": 8
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 66,
+        "novel_candidate_count": 58,
+        "selected_count": 12,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "7363d0bd39baf96b73313e0982fcffcddaf560aabf42fcd71d1a79fedf1a2927",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "us",
+      "source_environment": "daytime",
+      "target_environment": "night",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 106,
+          "source_edges_with_mapping": 22,
+          "coverage": 0.20754716981132076,
+          "candidate_count": 29,
+          "novel_candidate_count": 29
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 19,
+          "source_edges_with_mapping": 0,
+          "coverage": 0,
+          "candidate_count": 0,
+          "novel_candidate_count": 0
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 29,
+        "novel_candidate_count": 29,
+        "selected_count": 12,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "0ac2e56e5aae29dc884843238fb5379b9ff3f445880bdbb198b620b2e4b73072",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    },
+    {
+      "dataset": "us",
+      "source_environment": "single",
+      "target_environment": "multiple",
+      "action_mapping_count": 6,
+      "mapping_function_families": {
+        "video_entertainment": 6
+      },
+      "by_relation_type": {
+        "observed_transition": {
+          "eligible_source_edges": 90,
+          "source_edges_with_mapping": 25,
+          "coverage": 0.2777777777777778,
+          "candidate_count": 33,
+          "novel_candidate_count": 33
+        },
+        "predictive_lag": {
+          "eligible_source_edges": 16,
+          "source_edges_with_mapping": 7,
+          "coverage": 0.4375,
+          "candidate_count": 7,
+          "novel_candidate_count": 7
+        }
+      },
+      "statistics": {
+        "all_candidate_count": 40,
+        "novel_candidate_count": 40,
+        "selected_count": 12,
+        "environment_supported_candidate_count": 0
+      },
+      "source_sha256": "7b412ed3763aa80aa2c9b484e1f8a27e061743aeb5dfc05bd04fe58f197ff75e",
+      "source_sha256_unchanged": true,
+      "gcad_status": "ready"
+    }
+  ],
+  "interpretation": "source-only candidate feasibility; counts are not validated target relations or performance gains",
+  "environment_limitation": "all mappings currently use catalogue compatibility; none has independent target-environment preference evidence",
+  "implementation_sha256": {
+    "relation_research/audit_transfer.py": "3d92129fd2898e3ca3f09bffb28b53679a72b7eeb50cb3915c8a09cdb29c467f",
+    "SmartGen/relation_transfer.py": "0a29e2196a678c6b946cd390b35bee13ce86030a69ffa90f8ae19e004b037958",
+    "relation_research/build_embeddings.py": "60b240d34f5bc9ef4afc09b28884bfbac6276ec8cb56ff29beba7aa74d4e13d8"
+  }
+}

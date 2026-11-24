@@ -1,0 +1,23 @@
+{
+  "scope": "pilot-20261124, observed before any successful model response for the affected dataset",
+  "issues": [
+    {
+      "dataset": "sp",
+      "stage": "SSC budget preflight",
+      "observed": "Day 0 real-I SPPC compression retained 7, below the initial quota of 8.",
+      "action": "Reduced every arm to four examples per call before the first Codex request; original protocol preserved."
+    },
+    {
+      "dataset": "sp",
+      "stage": "backend transport preflight",
+      "observed": "WSL Python could not execute the Windows codex.exe: Exec format error; no remote model response from this attempt.",
+      "action": "Native Windows bridge executes the same existing Codex client, model, prompt and read-only settings."
+    },
+    {
+      "dataset": "us",
+      "stage": "SSC budget preflight",
+      "observed": "Day 0 real-I SPPC compression retained 7, below the initial quota of 8.",
+      "action": "Reduced every arm to four examples per call before the first Codex request, matching SP."
+    }
+  ]
+}

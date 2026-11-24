@@ -69,6 +69,13 @@ def split(file_path, interval_threshold, total_threshold, data_name):
     with open(file_path, 'rb') as file:
         data = pickle.load(file)
 
+    return split_sequences(data, interval_threshold, total_threshold, data_name)
+
+
+def split_sequences(data, interval_threshold, total_threshold, data_name):
+    """Original TSS algorithm with explicit in-memory input for provenance."""
+    data = list(data)
+
     for (i, row) in enumerate(data):
         data[i] = np.reshape(np.array(row), (-1, 4)).T
 

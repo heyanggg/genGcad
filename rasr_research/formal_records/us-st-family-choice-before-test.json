@@ -1,0 +1,11 @@
+{
+  "chosen_family": "covered-view-cv",
+  "previous_family": "covered-cv",
+  "previous_family_target_confirmation_performed": false,
+  "decision_uses_target_test_metrics": false,
+  "reason": "Source training TSS has 23625/30105 sequences of length 1 or 2; generated validation consists of length 5-6 chains. Held-out-normal short-view stress FPR is 0.065934 for B3 under full-chain-only calibration, above nominal 0.05.",
+  "change": "Calibrate/select using full/prefix/singleton views of held-out generated normal groups, plus generic unseen-legal-action proxies. No target test rows or named target attack actions are used.",
+  "independence_warning": "Multiple views share one held-out normal parent and are not additional independent observations.",
+  "final_confirmation_policy": "One locked covered-view-cv candidate is evaluated for both historical-data and B3-data arms. No selecting the best family by target test F1.",
+  "new_codex_calls": 0
+}

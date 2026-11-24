@@ -1,0 +1,97 @@
+{
+  "dataset": "us",
+  "new_codex_calls": 0,
+  "protocol": "Offline detector tuning, NOT an unchanged-formal-protocol RaSR comparison",
+  "parameters": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "epochs": 25,
+    "score": "max",
+    "percentile": 97.5
+  },
+  "metrics": {
+    "original_historical_B0": {
+      "TP": 2924,
+      "TN": 2822,
+      "FP": 194,
+      "FN": 92,
+      "FPR": 0.0643236074270557,
+      "FNR": 0.03050397877984085,
+      "recall": 0.9694960212201591,
+      "precision": 0.9377806286080821,
+      "accuracy": 0.9525862068965517,
+      "f1_score": 0.9533746331920444,
+      "auroc": 0.9692301425993288,
+      "auprc": 0.9494183298962511
+    },
+    "original_B3": {
+      "TP": 2510,
+      "TN": 2791,
+      "FP": 225,
+      "FN": 506,
+      "FPR": 0.07460212201591512,
+      "FNR": 0.16777188328912468,
+      "recall": 0.8322281167108754,
+      "precision": 0.9177330895795247,
+      "accuracy": 0.8788129973474801,
+      "f1_score": 0.8728916710137367,
+      "auroc": 0.9499873904164526,
+      "auprc": 0.9115929604477154
+    },
+    "common_tuned_historical_data_B0": {
+      "TP": 3016,
+      "TN": 2760,
+      "FP": 256,
+      "FN": 0,
+      "f1_score": 0.9592875318066157,
+      "precision": 0.921760391198044,
+      "recall": 1.0,
+      "FPR": 0.08488063660477453,
+      "FNR": 0.0,
+      "auroc": 0.9550908087899022,
+      "auprc": 0.9241468496338632
+    },
+    "common_tuned_B3": {
+      "TP": 3016,
+      "TN": 2763,
+      "FP": 253,
+      "FN": 0,
+      "f1_score": 0.9597454256165473,
+      "precision": 0.9226063016212909,
+      "recall": 1.0,
+      "FPR": 0.08388594164456234,
+      "FNR": 0.0,
+      "auroc": 0.9706682067874958,
+      "auprc": 0.9355678018007016
+    }
+  },
+  "f1_delta_percentage_points": {
+    "B3_tuning_vs_original_B3": 8.685375460281064,
+    "tuned_B3_vs_original_historical_B0": 0.6370792424502891,
+    "tuned_B3_vs_common_tuned_B0": 0.045789380993155326
+  },
+  "interpretation": "Detector recovery is not evidence that RaSR caused the recovery. The common-tuned B3/B0 difference is small and unreplicated.",
+  "limitations": [
+    "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels.",
+    "One final evaluation seed; three holdout seeds are validation, not three independent final experiments.",
+    "Short normal views share parent sequences, not independent calibration observations.",
+    "Covered validation keeps singleton-action groups training-only; proxy negatives represent unseen-action corruption, not all real attacks.",
+    "Generated sample counts and actual SSC prompt exposure differ between historical B0 and B3.",
+    "Threshold, score aggregation, grouped split and training settings changed: keep separate from original formal results.",
+    "F1 gains must be considered alongside false-positive and false-negative rates, not alone."
+  ],
+  "evidence": {
+    "confirmation_sha256": "e6f462194283ccaf129acebfae64557a343fd5f510eb39b697e0c66149b22917",
+    "selection_sha256": "22a0dece7c407f547ff1a6eb2f1e15e584986440cf0f622bc9287fc91a492019",
+    "input_sha256": {
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "7b6c52a320f67728ef5265d403cfdc3a457c2b9fe76042cd21c19ce9d6734ae7",
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/us_winter_to_spring_SPPC_th-0.905_gpt-5.6-sol__seed2024_gcad_balanced12_spring46_retry2__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "55a4384559c2d6df462e38718d2c066af244fffd63914f90551ab6df22a6c14e",
+      "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-20261124/us/seed-2024/B3/runtime/anomaly_runs/us_spring_formal-B3-s2024_SPPC_th-0.905_p-95_seed2024/train.pkl": "79bb0decf4a24dc669a685d3603ac427e6d0c29111593d514c11caae90fce8bb",
+      "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-20261124/us/seed-2024/B3/runtime/anomaly_runs/us_spring_formal-B3-s2024_SPPC_th-0.905_p-95_seed2024/validation.pkl": "fe6092e535fafbba2c978ec4485b9b78d6e5c1810f3e5026233e94da2d478908"
+    },
+    "model_sha256": {
+      "historical": "8f4b055980eac8191cf3a4b60476ff09c6c6ca087def4877820bb8f3c166b4cd",
+      "B3": "f710dd54fd2d77e94238a188fed04893a8afa60120d751c5ceb79013ed02c8c9"
+    }
+  }
+}

@@ -7,6 +7,8 @@ def Find_categories(dataset, ori_env, method, threshold):
     for day in range(7):
         with open(f'IoT_data/{dataset}/{ori_env}/trn_day_{day}_{method}_th={threshold}.pkl', 'rb') as file3:
             data = pickle.load(file3)
+        if not data:
+            continue
         if len(data) <= 30:
             all_categories.append(day)
         else:

@@ -2,9 +2,6 @@ import json
 import pickle
 from typing import List, Tuple, Dict
 
-import numpy as np
-
-
 class LinkAnalyzer:
     def __init__(self, actions: Dict[str, int]):
         self.actions = actions
@@ -43,6 +40,8 @@ class LinkAnalyzer:
         return top_transitions
 
     def print_transition_matrix(self):
+        import numpy as np
+
         num_count = len(self.number_set)
         self.transition_matrix = np.zeros((num_count, num_count), dtype=int)
 
@@ -65,21 +64,11 @@ class LinkAnalyzer:
             print()
 
 
-def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name):
+def build_transition_guidance(sequences: List[List[int]], actions: Dict[str, int]):
+    """Pure GSS builder shared by ATM and read-only relation previews."""
     analyzer = LinkAnalyzer(actions)
     analyzer.fit_sequences(sequences)
-
     top_transitions = analyzer.get_top_transitions(top_n=5)
-
-    print("The top 5 most commonly followed actions after each action: ")
-    for num, transitions in top_transitions.items():
-        if not transitions:
-            print(f"Actions {analyzer.index_to_number[num]} are usually not followed by any other actions")
-        else:
-            print(f"Actions {analyzer.index_to_number[num]} most common action afterwards: ")
-            for next_num, count in transitions:
-                print(f"  -> {analyzer.index_to_number[next_num]}: {count} times")
-
     transition_results = {}
 
     for num, transitions in top_transitions.items():
@@ -103,10 +92,19 @@ def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name)
                 "transitions": transition_data
             }
 
+    return transition_results
+
+
+def analyze_link(sequences: List[List[int]], actions: Dict[str, int], file_name, verbose=False):
+    transition_results = build_transition_guidance(sequences, actions)
     with open(file_name, 'w', encoding='utf-8') as f:
         json.dump(transition_results, f, ensure_ascii=False, indent=4)
 
-    analyzer.print_transition_matrix()
+    if verbose:
+        analyzer = LinkAnalyzer(actions)
+        analyzer.fit_sequences(sequences)
+        analyzer.print_transition_matrix()
+    return transition_results
 
 
 def ATM(dataset, ori_env, actions):
@@ -120,8 +118,7 @@ def ATM(dataset, ori_env, actions):
         for sublist in data
     ]
     file_name = f'IoT_data/{dataset}/{ori_env}/action_transitions.json'
-    analyze_link(sequences, actions, file_name)
+    result = analyze_link(sequences, actions, file_name)
 
-    with open(file_name, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        print(json.dumps(data, ensure_ascii=False, indent=2))
+    print(f'Wrote GSS transition guidance to {file_name}.')
+    return result
