@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/heyanggg/genGcad",
+  "branch": "codex/next-research",
+  "remote_commit": "167fc33748842f53be17f9001482a296922ff024",
+  "remote_tree": "7837e776120dba8101e9e31e0adbf114d187bbd9",
+  "local_snapshot_commit": "b0fbebad08887bbf26c8a5e43f2c5e645bc0454f",
+  "method": "Authenticated connected GitHub Git Data API; CLI has no credentials",
+  "remote_ref_verified_via_git_ls_remote": true,
+  "formal_result_groups": ["SP-ST-B3-original-seed2024", "US-ST-B3-tuned-seed2024"],
+  "large_archive_uploaded": false,
+  "large_archive_local_receipt": "backup-receipt.json",
+  "main_branch_changed": false
+}

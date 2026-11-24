@@ -35,7 +35,8 @@ def corpus(rows,names):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--dataset',choices=['sp','us'],default='us')
+    parser.add_argument('--dataset',choices=['sp','us','fr'],default='us')
+    parser.add_argument('--normal-only',action='store_true',help='Do not read even cached target test scores')
     parser.add_argument('--root',type=Path,default=ROOT/'rasr_research/runs/formal-20261124')
     parser.add_argument('--output',type=Path,default=ROOT/'rasr_research/runs/tuning-20261124/diagnosis.json')
     args=parser.parse_args();ds=args.dataset
@@ -43,8 +44,7 @@ def main():
     names={v:k for k,v in getattr(dictionary,f'{ds}_actions').items()}
     archive=Path(spec['archive'])
     result={'dataset':ds,'mode':'descriptive diagnostics only, not a parameter selector',
-        'test_already_exposed':True,'arms':{}}
-    b3=read(args.root/f'{ds}/seed-2024/B3/result.json')
+        'test_already_exposed':True,'cached_target_scores_read':not args.normal_only,'arms':{}}
     for arm in ('historical','B0','B3'):
         if arm=='historical':
             folder=archive/'artifacts/anomaly_detection';metric=spec['reference_metrics']
@@ -68,9 +68,10 @@ def main():
             item['validation_loss_quantiles']={str(q):float(np.percentile(values,q)) for q in (0,50,75,90,95,100)}
             item['validation_tail']=[{'loss':float(values[i]),'actions':[names.get(a,str(a)) for a in actions(validation[i])],
                 'train_action_counts':[seen[a] for a in actions(validation[i])]} for i in np.argsort(values)[-5:][::-1]]
-        stored=np.load(scores);labels=stored['labels'];losses=stored['scores']
-        item['test_descriptive_score_quantiles']={str(label):{str(q):float(np.percentile(losses[labels==label],q))
-            for q in (0,10,25,50,75,90,95,100)} for label in (0,1)}
+        if not args.normal_only:
+            stored=np.load(scores);labels=stored['labels'];losses=stored['scores']
+            item['test_descriptive_score_quantiles']={str(label):{str(q):float(np.percentile(losses[labels==label],q))
+                for q in (0,10,25,50,75,90,95,100)} for label in (0,1)}
         result['arms'][arm]=item
     atomic_write_json(args.output,result)
     print(json.dumps(result,indent=2))

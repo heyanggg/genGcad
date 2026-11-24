@@ -51,6 +51,29 @@ def test_historical_constants_preserved_without_new_regenerator():
     assert 'model.eval()' not in source
 
 
+def test_legacy_fr_tof_metadata_uses_only_actual_archived_counts(tmp_path):
+    folder=tmp_path/'artifacts/tof';folder.mkdir(parents=True)
+    formal.atomic_pickle_dump(folder/'fr_seq.pkl',[[1],[2],[3]])
+    formal.atomic_pickle_dump(folder/'fr_seq_filter.pkl',[[1]])
+    formal.atomic_pickle_dump(folder/'fr_seq_filter_true.pkl',[[1],[2]])
+    counts=formal.archived_tof(tmp_path,{})
+    assert (counts['input_count'],counts['first_pass_count'],counts['final_count'])==(3,1,2)
+    assert formal.vocabulary_size('fr')==223
+
+
+def test_new_fr_embedding_does_not_invalidate_old_frozen_sp_us_inputs(tmp_path,monkeypatch):
+    monkeypatch.setattr(formal,'ROOT',tmp_path)
+    rasr=tmp_path/'SmartGen/rasr.py';rasr.parent.mkdir();rasr.write_text('unchanged algorithm')
+    embed=tmp_path/'relation_research/embeddings/rasr-raw-v1';embed.mkdir(parents=True)
+    for ds in ('sp','us'):
+        (embed/f'{ds}_embeddings.json').write_text(ds)
+        prepared=formal.prepared_path(ds);prepared.mkdir(parents=True)
+        for name in ('relations.npz','B1_J.pkl','B3_J.pkl','I.pkl'):(prepared/name).write_bytes(b'unchanged')
+    before=formal.frozen_files()
+    (embed/'fr_embeddings.json').write_text('new independent scene')
+    assert formal.frozen_files()==before
+
+
 def test_short_ssc_output_keeps_call_budget_without_refill_or_duplicates():
     templates=[{'day':3,'examples':30},{'day':3,'examples':3}]
     assert formal.category_partition({3:['a','b']},templates)==[['a'],['b']]
@@ -66,16 +89,16 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['us/seed-2024/B3']
-    assert policy['max_additional_calls']==11
+    assert policy['allowed_runs']==['fr/seed-2024/B3']
+    assert policy['max_additional_calls']==16
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(11)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(16)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']
     assert policy['automatic_retries'] is False
     source=(ROOT/'rasr_research/formal_experiment.py').read_text()
-    assert "choices=['audit','prepare-single','evaluate-single','score-historical','wait-single','recover-stdout']" in source
+    assert "choices=['audit','prepare-single','evaluate-single','score-historical','wait-single','recover-stdout','status']" in source
     assert "seeds=(2024,)" in source
 
 
@@ -104,7 +127,7 @@ def test_recover_real_stdout_without_inventing_exit_status_or_repeating_call(tmp
     with pytest.raises(AssertionError):formal.verify_response_receipt(tmp_path)
 
 
-@pytest.mark.parametrize('dataset,vocab',[('sp',235),('us',269)])
+@pytest.mark.parametrize('dataset,vocab',[('sp',235),('us',269),('fr',223)])
 def test_historical_rescore_reuses_checkpoint_and_original_threshold_without_training(tmp_path,monkeypatch,dataset,vocab):
     archive=tmp_path/'archive'
     checkpoint=archive/'artifacts/anomaly_detection/detector.pth'

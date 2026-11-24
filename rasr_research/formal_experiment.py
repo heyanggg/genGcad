@@ -68,11 +68,21 @@ def cwd(path):
         os.chdir(previous)
 
 
-def frozen_files():
+def prepared_path(ds):
+    root='b3-source-20261124' if ds=='fr' else 'pilot-20261124'
+    return ROOT/f'rasr_research/runs/{root}/{ds}/prepared'
+
+
+def vocabulary_size(ds):
+    return {'sp':235,'us':269,'fr':223}[ds]
+
+
+def frozen_files(datasets=('sp','us')):
     return {str(p.relative_to(ROOT)): sha(p) for p in [ROOT / "SmartGen/rasr.py",
-        *sorted((ROOT / "relation_research/embeddings/rasr-raw-v1").glob("*_embeddings.json")),
-        *[ROOT / f"rasr_research/runs/pilot-20261124/{ds}/prepared/{name}" for ds in ("sp", "us")
-          for name in ("relations.npz", "B1_J.pkl", "B3_J.pkl", "I.pkl")]]}
+        *[ROOT/f'relation_research/embeddings/rasr-raw-v1/{ds}_embeddings.json' for ds in sorted(datasets)],
+        *[prepared_path(ds)/name for ds in datasets
+          for name in (('relations.npz','B3_J.pkl','I.pkl','split.json') if ds=='fr' else
+                       ('relations.npz','B1_J.pkl','B3_J.pkl','I.pkl'))]]}
 
 
 def unpack_prompt(prompt):
@@ -81,15 +91,28 @@ def unpack_prompt(prompt):
     return prefix + MARKER, ast.literal_eval(examples), END + suffix
 
 
+def archived_tof(archive,run):
+    if 'tof' in run:return run['tof']
+    # Older FR archive predates the run-record TOF field. Recover only counts
+    # actually present in saved files, never invented intermediate diagnostics.
+    matches=[sorted((archive/'artifacts/tof').glob(pattern)) for pattern in
+             ('*_seq.pkl','*_seq_filter.pkl','*_seq_filter_true.pkl')]
+    if any(len(paths)!=1 for paths in matches):raise ValueError('Ambiguous archived TOF files')
+    return dict(zip(('input_count','first_pass_count','final_count'),
+                    [len(load(paths[0])) for paths in matches]),
+                provenance='counts read from existing archived TOF pickle files')
+
+
 def audit(args):
     destination = args.output / "protocol.json"
     if destination.exists():
         saved = read(destination)
-        if saved["frozen_rasr_inputs"] != frozen_files():
+        if saved["frozen_rasr_inputs"] != frozen_files(tuple(saved['datasets'])):
             raise ValueError("RaSR algorithm or frozen data changed; do not resume")
         return saved
+    datasets=('fr',) if getattr(args,'dataset',None)=='fr' else ('sp','us')
     result = {"version": "formal-joint-ssc-v1", "seeds": list(SEEDS), "arms": list(ARMS),
-        "frozen_rasr_inputs": frozen_files(), "independent_regenerator": False,
+        "frozen_rasr_inputs": frozen_files(datasets), "independent_regenerator": False,
         "selection": "joint I+J; original train-mode SSC; no origin quota",
         "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
         "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
@@ -101,7 +124,10 @@ def audit(args):
             "train_ratio": .8, "validation_percentile": 95, "implementation_unchanged": True},
         "old_50_percent_control": str(ROOT / "rasr_research/run_experiment.py"),
         "no_test_based_tuning": True, "datasets": {}}
-    for ds in ("sp", "us"):
+    if datasets==('fr',):
+        result.update(seeds=[2024],arms=['B3'],
+            repetition='One explicitly approved B3 generation; historical B0 reused, no ablation or repeated generation')
+    for ds in datasets:
         archive = list((args.source / "experiment_archive/formal").glob(f"{ds}_winter_to_spring_*"))
         if len(archive) != 1:
             raise ValueError(f"ambiguous archive {archive}")
@@ -116,12 +142,12 @@ def audit(args):
             day_budget[day] += len(examples)
             templates.append({"category": str(cat), "day": day, "examples": len(examples),
                               "path": str(file), "sha256": sha(file)})
-        prepared = ROOT / f"rasr_research/runs/pilot-20261124/{ds}/prepared"
+        prepared = prepared_path(ds)
         original = args.source / f"SmartGen/IoT_data/{ds}/winter/trn.pkl"
         pilot = read(prepared / "manifest.json")
-        assert sha(original) == pilot["source_sha256"]
+        assert sha(original) == (pilot['input_sha256'][str(original)] if ds=='fr' else pilot['source_sha256'])
         source_tss = args.source / f"SmartGen/IoT_data/{ds}/winter/split_trn.pkl"
-        assert sha(source_tss) == pilot["true_tss_sha256"]
+        assert sha(source_tss) == (pilot['input_sha256'][str(source_tss)] if ds=='fr' else pilot['true_tss_sha256'])
         assert [r["row"] for r in load(prepared/"I.pkl")] == load(source_tss)
         equal_code = {}
         for relative in ("models1.py", "sppc.py", "find_categories.py", "security_check.py", "baseline1.py"):
@@ -131,11 +157,12 @@ def audit(args):
             "reference_metrics": read(archive / "artifacts/anomaly_detection/metrics.json"),
             "categories": templates, "day_example_budget": {str(k):v for k,v in day_budget.items()},
             "calls_per_run": len(templates), "examples_per_run": sum(day_budget.values()),
-            "historical_generation": {"tof": run["tof"]}, "source": str(original),
+            "historical_generation": {"tof": archived_tof(archive,run)}, "source": str(original),
             "source_sha256": sha(original), "real_tss_sha256": sha(source_tss),
             "ssc_checkpoint": str(archive / "artifacts/ssc/model.pth"),
             "ssc_checkpoint_sha256": sha(archive / "artifacts/ssc/model.pth"),
             "unchanged_core_code": equal_code,
+            "detector_validation_percentile":manifest['config']['validation_percentile'],
             "pilot_differences": {"data": "same true source/target identity; isolated output paths",
                 "ssc": "pilot eval mode + prefix truncation + forced 50% J; formal original train-mode joint greedy SSC",
                 "gss": "same true-source GSS, never re-count J",
@@ -145,6 +172,9 @@ def audit(args):
                 "tof": "same 10-epoch algorithm; pilot only 8-9 inputs vs historical full-size inputs",
                 "detector": "same 15-epoch architecture, Adam, 80/20 split, seed protocol; no tiny pilot dataset cap",
                 "threshold": "same p95 of generated validation losses, not calibrated on target test labels"}}
+        if ds=='fr':
+            result['datasets'][ds]['pilot_differences']['gcad']='Same original archived true-source FR GCAD and prompt wording'
+            result['datasets'][ds]['pilot_differences']['threshold']='Original FR p95.5 generated-validation protocol, not US/SP p95'
     atomic_write_json(destination, result)
     return result
 
@@ -232,7 +262,7 @@ def compress(args, protocol, ds, arm):
         atomic_write_json(receipt, {"mode": "verified actual archived SSC examples", "J_input": 0,
             "J_selected": 0, "actual_examples": sum(map(len,selected))})
         return selected
-    prepared = ROOT / f"rasr_research/runs/pilot-20261124/{ds}/prepared"
+    prepared = prepared_path(ds)
     originals, variants = load(prepared/"I.pkl"), load(prepared/f"{arm}_J.pkl")
     linked = defaultdict(list)
     for r in variants:
@@ -242,7 +272,7 @@ def compress(args, protocol, ds, arm):
         "input_ids_sha256":hashlib.sha256(json.dumps([r["id"] for r in pool]).encode()).hexdigest(),
         "frozen_variants_sha256": sha(prepared/f"{arm}_J.pkl"), "origin_quota": None})
     threshold = protocol["datasets"][ds]["reference_config"]["threshold"]
-    vocab = 235 if ds=="sp" else 269
+    vocab = vocabulary_size(ds)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     setup_seed(2024)  # identical fixed source-compression protocol for paired arms
     by_day, audits = {}, []
@@ -413,7 +443,8 @@ def evaluate_run(args, protocol, ds, seed, arm):
         Extract(ds,"spring",threshold,"SPPC",label,categories)
         Transnum(ds,"spring",threshold,"SPPC",label,categories,maps)
         tof=security_check(ds,"spring",threshold,"SPPC",label,seed=seed,keep_intermediates=True)
-        detection=Anomaly_detection(ds,"spring",threshold,"SPPC",label,95,seed=seed)
+        percentile=protocol['datasets'][ds].get('detector_validation_percentile',95)
+        detection=Anomaly_detection(ds,"spring",threshold,"SPPC",label,percentile,seed=seed)
     raw=load(runtime/f"filter_data/{ds}/spring/{ds}_spring_generation_SPPC_th={threshold}_{label}_seq.pkl")
     final=load(runtime/tof["output_path"])
     final_counter=Counter(tuple(r) for r in final)
@@ -539,7 +570,7 @@ def prepare_single(args, protocol):
         'supersedes':'protocol.json 18-run schedule; the old protocol is retained as historical evidence only',
         'suspended':['all fresh B0','B1','B2','B4','B5','other scenarios','seeds 2025/2026','independent regenerator'],
         'generation_policy':str(policy_path),'same_formal_tof':protocol['tof'],
-        'same_formal_detector':protocol['detector'],'prompt_checks':prompt_checks,
+        'same_formal_detector':dict(protocol['detector'],validation_percentile=spec.get('detector_validation_percentile',95)),'prompt_checks':prompt_checks,
         'ssc':f"original joint I+J selection, no forced J ratio; original source checkpoint and threshold {spec['reference_config']['threshold']}",
         'limits':'same protocol is not bitwise historical reproduction; Codex sampling seed unavailable; only one B3 run, no significance claim'})
     single_report(args, protocol)
@@ -595,7 +626,7 @@ def single_report(args, protocol):
             'B3_TOF_final':result['tof']['final_count'] if result else None,
             'B3_detector_training':result['detection']['training_sequence_count'] if result else None,
             'B3_detector_validation':result['detection']['validation_sequence_count'] if result else None},
-        'threshold_protocol':'same generated-validation p95 protocol, not the same numeric detector threshold across separately trained models',
+        'threshold_protocol':f"same generated-validation p{spec.get('detector_validation_percentile',95):g} protocol, not the same numeric detector threshold across separately trained models",
         'historical_auroc_auprc':'not recorded in original metrics; do not invent or substitute replay scores',
         'historical_checkpoint_rescore':rescore,
         'archived_prior_failure_logs':[str(p) for p in (run/'codex').glob('call-*/prior-failed-attempt-*/worker-error.json')],
@@ -631,7 +662,7 @@ def score_historical_checkpoint(args, protocol):
     normal=args.source/f'SmartGen/IoT_data/{ds}/spring/split_test.pkl'
     setup_seed(2024)
     with (output/'evaluation.log').open('w',encoding='utf-8') as log,redirect_stdout(log),redirect_stderr(log):
-        evaluation=evaluate_detector('spring',235 if ds=='sp' else 269,str(attack),str(normal),str(checkpoint),10,
+        evaluation=evaluate_detector('spring',vocabulary_size(ds),str(attack),str(normal),str(checkpoint),10,
             threshold=reference['detection_threshold'],scores_path=output/'continuous_scores.npz',detailed=True)
     names=('TP','TN','FP','FN','FPR','FNR','recall','precision','accuracy','f1_score')
     metrics={name:float(value) for name,value in zip(names,evaluation['threshold_metrics'])}
@@ -652,9 +683,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source",type=Path,default=Path('/home/heyang/projects/SmartGen_GCAD'))
     parser.add_argument("--output",type=Path,default=ROOT/'rasr_research/runs/formal-20261124')
-    parser.add_argument("--action",choices=['audit','prepare-single','evaluate-single','score-historical','wait-single','recover-stdout'],required=True,
+    parser.add_argument("--action",choices=['audit','prepare-single','evaluate-single','score-historical','wait-single','recover-stdout','status'],required=True,
                         help='Old multi-arm queue/watch actions are intentionally disabled by the latest user instruction')
-    parser.add_argument("--dataset",choices=['sp','us'])
+    parser.add_argument("--dataset",choices=['sp','us','fr'])
     args=parser.parse_args();args.output=args.output.resolve();args.output.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(2); protocol=audit(args)
     if args.action!='audit': budget_amendment(args)
@@ -664,6 +695,7 @@ def main():
     if active_policy['allowed_runs']!=[f'{ds}/seed-2024/B3'] and not (args.output/f'{ds}/seed-2024/B3/result.json').exists():
         parser.error('Only the explicitly authorized single B3 scenario may be run')
     if args.action=='prepare-single':prepare_single(args,protocol)
+    if args.action=='status':single_report(args,protocol)
     if args.action=='recover-stdout':
         run=args.output/f'{ds}/seed-2024/B3'
         count=0
