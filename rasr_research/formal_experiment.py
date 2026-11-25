@@ -120,6 +120,18 @@ def archived_tof(archive,run):
                 provenance='counts read from existing archived TOF pickle files')
 
 
+def preserved_gcad_state(config,gcad):
+    """Preserve the archived auto decision; never silently enable guidance."""
+    enabled=bool(gcad.get('guidance_enabled',False))
+    if not enabled:
+        if not (config.get('gcad_mode')=='auto' and gcad.get('status')=='disabled'
+                and gcad.get('relationship_count')==0):
+            raise ValueError('Unverified disabled GCAD state; do not silently treat as active guidance')
+    return {'guidance_enabled':enabled,'archived_mode':config.get('gcad_mode'),
+            'interpretation':('Original enabled GCAD guidance preserved' if enabled else
+                'Original GCAD-auto pipeline disabled guidance; zero prompt edges. This is NOT an active-GCAD three-module comparison.')}
+
+
 def audit(args):
     destination = args.output / "protocol.json"
     if destination.exists():
@@ -201,7 +213,7 @@ def audit(args):
             spec=result['datasets'][ds]
             assert manifest['config']['original_environment']==source_env
             assert manifest['config']['target_environment']==target_env
-            assert run['gcad'].get('guidance_enabled',False),'A genuine enabled-GCAD historical baseline is required'
+            spec['gcad_comparison_state']=preserved_gcad_state(manifest['config'],run['gcad'])
             assert spec['reference_metrics']['training_sequence_count']+spec['reference_metrics']['validation_sequence_count']==spec['reference_metrics']['generated_sequence_count']
             spec['historical_gcad']=run['gcad']
             spec['prepared_source']=str(prepared)
@@ -642,7 +654,10 @@ def single_report(args, protocol):
              if metrics and key in metrics and key in ('f1_score','precision','recall','FPR','FNR','auroc','auprc')}
     atomic_write_json(report_path, {
         'status':'completed' if result else ('blocked-generation' if errors or policy.get('hold') else 'awaiting-generation'),
-        'scenario':scenario(protocol,ds),'baseline_type':'original project formal Gen+GCAD archive, not newly generated B0',
+        'scenario':scenario(protocol,ds),'baseline_type':('original project GCAD-auto formal archive (guidance disabled), not newly generated B0'
+            if spec.get('gcad_comparison_state',{}).get('guidance_enabled') is False else
+            'original project formal Gen+GCAD archive, not newly generated B0'),
+        'gcad_comparison_state':spec.get('gcad_comparison_state'),
         'historical_baseline':baseline,'B3_metrics':metrics,'B3_minus_historical':delta,
         'comparison_baseline_metrics':comparable_baseline,
         'ranking_baseline_provenance':'original archived detector re-scored at original threshold; threshold metrics verified identical' if rescore and rescore['matches_original_recorded_metrics'] else None,

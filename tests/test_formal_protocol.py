@@ -89,11 +89,11 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['us/seed-2024/B3']
-    assert policy['queue_root']=='runs/formal-us-dt-20261125'
-    assert policy['max_additional_calls']==18
+    assert policy['allowed_runs']==['sp/seed-2024/B3']
+    assert policy['queue_root']=='runs/formal-sp-dt-20261125'
+    assert policy['max_additional_calls']==13
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(18)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(13)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']
@@ -170,3 +170,15 @@ def test_new_environment_paths_and_inputs_cannot_reuse_seasonal_source():
     protocol={'datasets':{'us':{'reference_config':{'target_environment':'night'}}}}
     assert formal.target_environment(protocol,'us')=='night'
     assert formal.scenario(protocol,'us')=='US-DT'
+
+
+def test_archived_auto_disabled_gcad_is_preserved_and_not_claimed_active():
+    state=formal.preserved_gcad_state({'gcad_mode':'auto'},
+        {'status':'disabled','guidance_enabled':False,'relationship_count':0})
+    assert state['guidance_enabled'] is False
+    assert 'NOT an active-GCAD' in state['interpretation']
+    with pytest.raises(ValueError):
+        formal.preserved_gcad_state({'gcad_mode':'require'},
+            {'status':'disabled','guidance_enabled':False,'relationship_count':0})
+    assert formal.preserved_gcad_state({'gcad_mode':'require'},
+        {'status':'ready','guidance_enabled':True})['guidance_enabled'] is True

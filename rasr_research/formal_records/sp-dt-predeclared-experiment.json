@@ -1,0 +1,24 @@
+{
+  "scenario": "SP-DT: daytime to night",
+  "date": "2026-11-25",
+  "authority": "Explicit human reply: ok,继续下一组（同上）",
+  "scope": "Exactly one B3 seed-2024 generation run; reuse historical B0 data/results/checkpoint, no fresh B0 or ablations",
+  "selection_reason": "Next complete daytime/night archive has existing checkpoint, saved independent train/validation files and actual prompts. Remaining multiple-occupancy archives lack train/validation files and contain inconsistent split-count metadata; not silently treated as equivalent complete baselines.",
+  "gcad_caveat": "Historical GCAD-auto disabled guidance and used zero prompt relations. Preserve this exact state and archived prompts; do not invent active GCAD guidance or label this an active-GCAD three-module comparison.",
+  "historical_config": {"ssc_threshold":0.917,"calls":13,"example_upper_budget":273,"detector_validation_percentile":95,"detector_epochs":15,"tof_epochs":10,"generated_rows":51,"detector_train":40,"detector_validation":11},
+  "prompt": "Exact archived non-example content including GSS and original GCAD-auto decision. Replace only examples using original SSC joint I+J selection. No forced J fraction or refill.",
+  "rasr": "Unchanged C/T/S, window 2, decay 0.8; at most two semantic and two statistical attempts; skip invalid/duplicate/no-op edits. No independent regenerator or new module.",
+  "conditional_tuning": {
+    "trigger": "Original-protocol B3 does not exceed historical F1 0.9844200807847664",
+    "method": "Same existing-detector normal-validation-only search as preceding groups, common parameters selected over historical and B3 generated-normal pools; zero extra Codex calls",
+    "task_adapter": "Keep original night detector hour field index 1; no action-field substitution, new architecture or loss",
+    "grid": {"learning_rate":[0.0003,0.001],"weight_decay":[0,0.0001],"epochs":[5,10,15,25],"score":["mean","max","top2"],"percentile":[90,95,97.5]},
+    "holdouts":[2024,2025,2026],"calibration_views":true,
+    "proxy": "Uniform one-hour-field substitution with legal dictionary values unseen in each generated-normal pool; not real anomaly labels. Stop if no unseen values, without inventing another search.",
+    "selection": "Mean proxy F1 over both arms/three grouped holdouts; ties normal mean loss then existing deterministic parameter-proximity rule. Full-row duplicate groups disjoint; retain singleton input-field support in training.",
+    "lock": "Save selection and input hashes before final refits and one post-lock confirmation; no target-test parameter selection",
+    "limits": "Exploratory on historically exposed tests; correlated normal views and changed detector protocol disclosed. Preserve all candidates and negative results. Do not claim isolated RaSR benefit from detector recovery."
+  },
+  "retention": "Save all results, full SSC/prompt/generated/TOF/detector lineage and weights. Register above-historical variants under the user's formal-group rule with GCAD-disabled caveat. Upload full archive and verify bytes/SHA-256.",
+  "target_test_used_for_parameter_selection":false
+}
