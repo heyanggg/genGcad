@@ -4,5 +4,10 @@
   "sha256": "1cd48da1e8f9fd8812a997209d7313324756b020f9774006a4432e681cd4059a",
   "file_count": 172,
   "zip_crc_verified": true,
-  "github_uploaded": false
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-sp-mt-b3-20261125",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-sp-mt-b3-20261125/sp-mt-b3-original-20261125.zip",
+  "github_asset_size": 245386324,
+  "github_digest": "sha256:1cd48da1e8f9fd8812a997209d7313324756b020f9774006a4432e681cd4059a",
+  "source_commit": "4c14ba41688481a3c8319569b364ef81e7afec5a"
 }

@@ -8,7 +8,7 @@
   "allowed_call_ids": ["call-00", "call-01", "call-02", "call-03", "call-04", "call-05", "call-06", "call-07"],
   "parallelism_note": "At most three in-flight requests in eight unique historical SP-MT slots; no other runs or automatic retries.",
   "hold": true,
-  "hold_reason": "All eight SP-MT calls completed with valid saved responses. Generation closed; only evaluation and the predeclared conditional normal-validation search may proceed, zero extra calls.",
+  "hold_reason": "SP-MT completed and backed up. B3 exceeds both original historical and matched reevaluated baselines; conditional tuning was not triggered. No further generation, tuning or other scenario is authorized by this run.",
   "completed_current_run_calls": 8,
   "resume_authority": "Explicit human reply: ok,继续下一组（同上） after completed FR-DT. SP-MT selected before new B3 results; use zero-call historical-data reevaluation because original detector splits were not archived. Preserve original historical metrics separately.",
   "automatic_retries": false,
