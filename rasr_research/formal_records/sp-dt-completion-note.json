@@ -1,0 +1,28 @@
+{
+  "scenario":"SP-DT",
+  "result_sha256":"dbce02b8038aa0f53923073d90a2c650ab857412486e1fb8465ef1775c13b91b",
+  "historical_F1":0.9844200807847664,
+  "B3_F1":0.9912841371295759,
+  "gain_percentage_points":0.6864056344809466,
+  "actual_new_codex_calls":13,
+  "new_B0_calls":0,
+  "automatic_retries":false,
+  "prompt_examples":273,
+  "J_prompt_examples":195,
+  "forced_J_quota":null,
+  "historical_volumes":{"generated":52,"TOF_first":48,"TOF_final":51,"detector_train":40,"detector_validation":11},
+  "B3_volumes":{"generated":52,"TOF_first":48,"TOF_final":52,"detector_train":41,"detector_validation":11},
+  "metrics_change":{"FP":[54,30],"FN":[0,0],"AUROC":[1.0,1.0],"AUPRC":[1.0,1.0]},
+  "original_protocol":{"TOF_epochs":10,"detector_epochs":15,"validation_percentile":95,"seed":2024,"hour_input_field":1},
+  "calibrated_thresholds":{"historical":0.002369719964917749,"B3":0.0662797327968292},
+  "conditional_tuning_triggered":false,
+  "parameter_selection_from_test":false,
+  "generation_closed":true,
+  "interpretation":"Observed gain is fewer false positives under the existing generated-validation p95 protocol. Both saved models have perfect ranking on this exposed test; thresholds differ after separate fits. Do not infer a proven causal mechanism or choose a cutoff from test scores.",
+  "limitations":[
+    "Historical GCAD-auto disabled guidance and used zero prompt edges. Exact state retained: not an active-GCAD three-module comparison.",
+    "One stochastic generation run and one final detector seed, not stable or statistically significant causal evidence.",
+    "B3 retains one additional TOF row and one additional detector training row; do not claim exact training-volume matching.",
+    "Only RaSR-inspired C/T/S augmentation is used, not the paper's independent relation-aware regenerator."
+  ]
+}

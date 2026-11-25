@@ -194,6 +194,50 @@
       "result_sha256": "04dde6602529ef122f55ccae3df90cfb8872e5f6ebee0e91da8e33a5d273d197",
       "protocol": "same generated-validation p93 protocol, not the same numeric detector threshold across separately trained models",
       "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim"
+    },
+    {
+      "id": "SP-DT-B3-original-seed2024",
+      "scenario": "SP-DT",
+      "status": "formal",
+      "metrics": {
+        "TP": 1706,
+        "TN": 1676,
+        "FP": 30,
+        "FN": 0,
+        "FPR": 0.017584994138335287,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.9827188940092166,
+        "accuracy": 0.9912075029308324,
+        "f1_score": 0.9912841371295759,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 1706,
+        "TN": 1652,
+        "FP": 54,
+        "FN": 0,
+        "FPR": 0.031652989449003514,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.9693181818181819,
+        "accuracy": 0.9841735052754983,
+        "f1_score": 0.9844200807847664,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "f1_gain_percentage_points": 0.6864056344809466,
+      "result": "rasr_research/runs/formal-sp-dt-20261125/sp/seed-2024/B3/result.json",
+      "result_sha256": "dbce02b8038aa0f53923073d90a2c650ab857412486e1fb8465ef1775c13b91b",
+      "protocol": "same generated-validation p95 protocol, not the same numeric detector threshold across separately trained models",
+      "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim",
+      "gcad_comparison_state": {
+        "guidance_enabled": false,
+        "archived_mode": "auto",
+        "interpretation": "Original GCAD-auto pipeline disabled guidance; zero prompt edges. This is NOT an active-GCAD three-module comparison."
+      },
+      "baseline_caveat": "Historical GCAD-auto disabled guidance; do not label this an active-GCAD three-module comparison."
     }
   ],
   "supporting_groups": [

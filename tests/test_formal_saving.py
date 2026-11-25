@@ -94,3 +94,34 @@ def test_us_daytime_formal_result_keeps_original_protocol_and_residual_false_neg
     diagnostic=saving.read(ROOT/'rasr_research/formal_records/us-dt-posthoc-diagnostics.json')
     assert diagnostic['conditional_tuning_triggered'] is False
     assert diagnostic['already_completed_test_score_diagnostics']['used_for_parameter_selection'] is False
+
+
+def test_auto_disabled_gcad_caveat_survives_sp_formal_registration(tmp_path,monkeypatch):
+    records=tmp_path/'records';records.mkdir()
+    monkeypatch.setattr(saving,'ROOT',tmp_path);monkeypatch.setattr(saving,'RECORDS',records)
+    saving.write(records/'registry.json',{'formal_groups':[]})
+    formal=tmp_path/'formal'
+    saving.write(formal/'sp/seed-2024/B3/result.json',{'actual':'fixture only'})
+    state={'guidance_enabled':False,'archived_mode':'auto','interpretation':'No active guidance'}
+    saving.write(formal/'single-b3-comparison.json',{'status':'completed','scenario':'SP-DT',
+        'comparison_baseline_metrics':{'f1_score':.98},'B3_metrics':{'f1_score':.99},
+        'threshold_protocol':'original p95','gcad_comparison_state':state})
+    saving.register_next(SimpleNamespace(formal=formal,dataset='sp',tuning=None))
+    entry=saving.read(records/'registry.json')['formal_groups'][0]
+    assert entry['id']=='SP-DT-B3-original-seed2024'
+    assert entry['gcad_comparison_state']==state
+    assert 'not label this an active-GCAD' in entry['baseline_caveat']
+
+
+def test_completed_sp_daytime_result_retains_actual_metrics_and_protocol_limits():
+    records=saving.read(ROOT/'rasr_research/formal_records/registry.json')
+    entry=next(r for r in records['formal_groups'] if r['id']=='SP-DT-B3-original-seed2024')
+    assert entry['metrics']['f1_score']==.9912841371295759
+    assert entry['metrics']['FP']==30 and entry['metrics']['FN']==0
+    assert entry['Gen_GCAD_reference_metrics']['f1_score']==.9844200807847664
+    assert entry['gcad_comparison_state']['guidance_enabled'] is False
+    note=saving.read(ROOT/'rasr_research/formal_records/sp-dt-completion-note.json')
+    assert note['conditional_tuning_triggered'] is False
+    assert note['actual_new_codex_calls']==13 and note['new_B0_calls']==0
+    assert note['B3_volumes']['detector_train']==41
+    assert note['historical_volumes']['detector_train']==40

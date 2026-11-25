@@ -27,7 +27,7 @@ The autoencoder is a compressor, not an extra behavior generator. Original GSS
 and cached GCAD (source hash verified) read only true I; no augmented observations
 are counted as real. Original data files are never overwritten.
 
-The active next scenario is **one SP-DT B3 run (daytime -> night, seed 2024)**,
+The latest completed scenario is **one SP-DT B3 run (daytime -> night, seed 2024)**,
 in `rasr_research/runs/formal-sp-dt-20261125/`. Keep its archived GCAD-auto
 decision: guidance was disabled, zero prompt edges. This is not an active-GCAD
 three-module comparison. Do not silently enable GCAD to change the reference.
@@ -38,6 +38,20 @@ and 3045 valid unchanged-RaSR variants. Keep original TOF, hour-field detector,
 detector split 40/11. `formal_records/sp-dt-predeclared-experiment.json` freezes
 the conditional normal-validation-only search before new results. No fresh B0,
 ablation, independent generator, extra generation or test-label selection.
+
+SP-DT completed 13/13 real calls: 52 generated rows, TOF first 48/final 52,
+detector train/validation 41/11. Historical counts are 52/48/51 and 40/11;
+one extra retained training row is disclosed, not treated as exactly matched.
+With unchanged 15-epoch/p95 protocol, B3 F1 is **0.9912841371** versus
+**0.9844200808** (**+0.686406 pp**), FP **54 -> 30**, FN **0 -> 0**.
+Precision 0.9827188940, recall 1.0, FPR 0.0175849941, FNR 0,
+AUROC=AUPRC=1.0 (ranking also 1.0 for the original checkpoint).
+It is registered as `SP-DT-B3-original-seed2024`, explicitly retaining the
+GCAD-auto-disabled caveat. Numeric p95 thresholds differ across separate fits
+(original 0.0023697200, B3 0.0662797328). The gain is fewer false positives,
+not improved ranking/recall or proof of stable causal RaSR benefit.
+The conditional search was **not triggered**; zero extra generation or tuning.
+All evidence is preserved and the generation policy is closed.
 
 The preceding completed scenario was **one US-DT B3 run (daytime -> night, seed 2024)**,
 in `rasr_research/runs/formal-us-dt-20261125/`. Historical GCAD is enabled with

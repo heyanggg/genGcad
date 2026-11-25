@@ -1,0 +1,155 @@
+{
+  "version": "single-SP-DT-B3-historical-baseline-v1",
+  "dataset": "sp",
+  "arm": "B3",
+  "seed": 2024,
+  "runs_required": 1,
+  "historical_baseline": {
+    "dataset": "sp",
+    "environment": "night",
+    "method": "SPPC",
+    "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_auto_envaware",
+    "generation_threshold": 0.917,
+    "validation_percentile": 95.0,
+    "seed": 2024,
+    "generated_sequence_count": 51,
+    "training_sequence_count": 40,
+    "validation_sequence_count": 11,
+    "normal_test_count": 1706,
+    "attack_test_count": 1706,
+    "detection_threshold": 0.002369719964917749,
+    "metrics": {
+      "TP": 1706,
+      "TN": 1652,
+      "FP": 54,
+      "FN": 0,
+      "FPR": 0.031652989449003514,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.9693181818181819,
+      "accuracy": 0.9841735052754983,
+      "f1_score": 0.9844200807847664
+    }
+  },
+  "baseline_files_sha256": {
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/anomaly_detection/metrics.json": "2f531d1675f6fe38a6ec433aab806f3efbae2d8c4d92a340760632db0647a432",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "cade7df3678339b2b71764967879fe123e26a6df59828fbf13dfe43d33f77bd1",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "54970d43c9a5e8d86ff2005810e00338f78172251da96f74b7beeabbae21627b",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/anomaly_detection/detector.pth": "5a0694a2baed0a9deafd180f0fee372e454d1afffe7c3b430dd3609c56c326a5",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/gss/action_transitions.json": "bd9bdb20d04ba2c722e17621aa6b303c76690182f0d9827eb49d83ca9400ad21",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/gcad/gcad_hints.json": "d2bd4394f045b237776c72fb31635338eab26bdf5ab0e1667ff0d06aaf1333a9",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/ssc/model.pth": "aef5dca85758108e6ea16f94be38d9dd3f94535e1618611aef4dec034570b295",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/tof/sp_night_generation_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware_seq.pkl": "f1382c01c5a1ad4a012eddc5351e298b2f403a44effcfd99a853c365004aa52c",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/tof/sp_night_generation_SPPC_th=0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware_seq_filter_true.pkl": "0f9a7ff7e0e12c7ba22a25dd807cf0955e254ea0b2ed31b2f861af0dddc4ff9a"
+  },
+  "baseline_new_codex_calls": 0,
+  "planned_B3_calls": 13,
+  "repetitions": 1,
+  "baseline_selection_reason": "complete original formal archive; scenario fixed before seeing B3 results",
+  "supersedes": "protocol.json 18-run schedule; the old protocol is retained as historical evidence only",
+  "suspended": [
+    "all fresh B0",
+    "B1",
+    "B2",
+    "B4",
+    "B5",
+    "other scenarios",
+    "seeds 2025/2026",
+    "independent regenerator"
+  ],
+  "generation_policy": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/generation-policy.json",
+  "same_formal_tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "same_formal_detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95.0,
+    "implementation_unchanged": true
+  },
+  "prompt_checks": [
+    {
+      "category": "0_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "0_1",
+      "actual_examples": 2,
+      "example_upper_budget": 2,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "1_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "1_1",
+      "actual_examples": 21,
+      "example_upper_budget": 21,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "2_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "2_1",
+      "actual_examples": 3,
+      "example_upper_budget": 3,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "3_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "3_1",
+      "actual_examples": 14,
+      "example_upper_budget": 14,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "4_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "4_1",
+      "actual_examples": 10,
+      "example_upper_budget": 10,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "5_0",
+      "actual_examples": 30,
+      "example_upper_budget": 30,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "5_1",
+      "actual_examples": 14,
+      "example_upper_budget": 14,
+      "non_example_content_identical": true
+    },
+    {
+      "category": "6",
+      "actual_examples": 29,
+      "example_upper_budget": 29,
+      "non_example_content_identical": true
+    }
+  ],
+  "ssc": "original joint I+J selection, no forced J ratio; original source checkpoint and threshold 0.917",
+  "limits": "same protocol is not bitwise historical reproduction; Codex sampling seed unavailable; only one B3 run, no significance claim"
+}

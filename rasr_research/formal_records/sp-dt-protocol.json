@@ -1,0 +1,244 @@
+{
+  "version": "formal-joint-ssc-v1",
+  "seeds": [
+    2024
+  ],
+  "arms": [
+    "B3"
+  ],
+  "frozen_rasr_inputs": {
+    "SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222",
+    "relation_research/embeddings/rasr-raw-v1/sp_embeddings.json": "69e9692f7697a7efb9be09c3a41aa6b08a324c3eef87c044b1cec94f665f46b8",
+    "rasr_research/runs/b3-source-20261125/sp-daytime/prepared/relations.npz": "ec3d71067b2f1208c0853ea2dd9ab60373f75982d58539fed5b801cd01f3c0bf",
+    "rasr_research/runs/b3-source-20261125/sp-daytime/prepared/B3_J.pkl": "529123123e8984ef13feb0ebc3e2a8acbe34c03245bd80a3aea1662b19e47c75",
+    "rasr_research/runs/b3-source-20261125/sp-daytime/prepared/I.pkl": "0ea9f012b0cddfa00a347006d897acd64e19561562e2c79550aa89c317b0e607",
+    "rasr_research/runs/b3-source-20261125/sp-daytime/prepared/split.json": "bd3397a19d2ff83520188319fd544856883f423e6c5687e55b226bf45b96feba"
+  },
+  "independent_regenerator": false,
+  "selection": "joint I+J; original train-mode SSC; no origin quota",
+  "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
+  "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
+  "budget": "historical actual Prompt category counts and per-category example counts, equal for all arms",
+  "repetition": "One explicitly approved B3 generation; historical B0 reused, no ablation or repeated generation",
+  "codex": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "sampling_seed_available": false
+  },
+  "tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95,
+    "implementation_unchanged": true
+  },
+  "old_50_percent_control": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/run_experiment.py",
+  "no_test_based_tuning": true,
+  "datasets": {
+    "sp": {
+      "archive": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024",
+      "reference_config": {
+        "dataset": "sp",
+        "original_environment": "daytime",
+        "target_environment": "night",
+        "method": "SPPC",
+        "threshold": 0.917,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_gcad_h4_auto_envaware",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "gcad_mode": "auto",
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "environment-aware",
+        "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_auto_envaware",
+        "validation_percentile": 95.0
+      },
+      "reference_metrics": {
+        "dataset": "sp",
+        "environment": "night",
+        "method": "SPPC",
+        "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_auto_envaware",
+        "generation_threshold": 0.917,
+        "validation_percentile": 95.0,
+        "seed": 2024,
+        "generated_sequence_count": 51,
+        "training_sequence_count": 40,
+        "validation_sequence_count": 11,
+        "normal_test_count": 1706,
+        "attack_test_count": 1706,
+        "detection_threshold": 0.002369719964917749,
+        "metrics": {
+          "TP": 1706,
+          "TN": 1652,
+          "FP": 54,
+          "FN": 0,
+          "FPR": 0.031652989449003514,
+          "FNR": 0.0,
+          "recall": 1.0,
+          "precision": 0.9693181818181819,
+          "accuracy": 0.9841735052754983,
+          "f1_score": 0.9844200807847664
+        }
+      },
+      "categories": [
+        {
+          "category": "0_0",
+          "day": 0,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_0_0.txt",
+          "sha256": "4e41111985b942804cde33aba16482ff2b384418c1c0918c273216459f374830"
+        },
+        {
+          "category": "0_1",
+          "day": 0,
+          "examples": 2,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_0_1.txt",
+          "sha256": "f41a3de05baa2f0a077d8a1a5c84f54498f071efbe3d024552ebfa5ea779aa0e"
+        },
+        {
+          "category": "1_0",
+          "day": 1,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_1_0.txt",
+          "sha256": "32876eb74b27668afe1335c3f870510570043ea9bc48d444cdeba6ae70594a12"
+        },
+        {
+          "category": "1_1",
+          "day": 1,
+          "examples": 21,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_1_1.txt",
+          "sha256": "261cf04bb2b67247b679c8434cb8ddab1caa8169a29f73f90c5a1464775af722"
+        },
+        {
+          "category": "2_0",
+          "day": 2,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_2_0.txt",
+          "sha256": "3e004628e9c34fbe8f1ab8f4cb862a954e7b471cffaaed3a19c76a05865edfdd"
+        },
+        {
+          "category": "2_1",
+          "day": 2,
+          "examples": 3,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_2_1.txt",
+          "sha256": "cf3f74f175872941638890eb37fe8e107e63fc8bc3d3d7d42fba2774d2acb85a"
+        },
+        {
+          "category": "3_0",
+          "day": 3,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_3_0.txt",
+          "sha256": "1c0db7c9046afe1dffbdb4afb3f3afc3c71ae5230cae40e70b3d3b91912fa31b"
+        },
+        {
+          "category": "3_1",
+          "day": 3,
+          "examples": 14,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_3_1.txt",
+          "sha256": "5e52947cb3f6114df933f676e98fd69c2a40dda37283223d9eb3183cc253340c"
+        },
+        {
+          "category": "4_0",
+          "day": 4,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_4_0.txt",
+          "sha256": "b1e7afa4080d74b768a6e284239597c79491fc9425a37ec4ca91d8fdcc27e797"
+        },
+        {
+          "category": "4_1",
+          "day": 4,
+          "examples": 10,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_4_1.txt",
+          "sha256": "50244c1501f74eeba8f2ecaaa1254aff77169ad136c21381494eff637f638b40"
+        },
+        {
+          "category": "5_0",
+          "day": 5,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_5_0.txt",
+          "sha256": "c7d6c49be42b0dffbe36e4c30a3465a08e57e1f284a7b073d8c4cac9a741728a"
+        },
+        {
+          "category": "5_1",
+          "day": 5,
+          "examples": 14,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_5_1.txt",
+          "sha256": "3eb46d66d93ee10c8abe8931209588cd1e06bb57ee108d2f72a766f8e25fcec8"
+        },
+        {
+          "category": "6",
+          "day": 6,
+          "examples": 29,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_6.txt",
+          "sha256": "2c69dbf61ab4ee442d57ecb9a056572b6d7bd3ad3305859be614c1dc10934b9f"
+        }
+      ],
+      "day_example_budget": {
+        "0": 32,
+        "1": 51,
+        "2": 33,
+        "3": 44,
+        "4": 40,
+        "5": 44,
+        "6": 29
+      },
+      "calls_per_run": 13,
+      "examples_per_run": 273,
+      "historical_generation": {
+        "tof": {
+          "input_count": 52,
+          "first_pass_count": 48,
+          "final_count": 51,
+          "intermediates_preserved": true
+        }
+      },
+      "source": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/sp/daytime/trn.pkl",
+      "source_sha256": "be0b4f276b3bd783c41329d7c07a780c0b5b5b85b8cbe822a46d88dddf296fbe",
+      "real_tss_sha256": "24a0b5275fa8c249d09af4b0b41995fc3be1f88eefefdff33ce7bebbc1a755a8",
+      "ssc_checkpoint": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_daytime_to_night_SPPC_th-0.917_gpt-5.6-sol__seed2024_gcad_h4_auto_envaware__detector-p95-seed2024/artifacts/ssc/model.pth",
+      "ssc_checkpoint_sha256": "aef5dca85758108e6ea16f94be38d9dd3f94535e1618611aef4dec034570b295",
+      "unchanged_core_code": {
+        "models1.py": true,
+        "sppc.py": true,
+        "find_categories.py": true,
+        "security_check.py": true,
+        "baseline1.py": true
+      },
+      "detector_validation_percentile": 95.0,
+      "pilot_differences": {
+        "scope": "New source task; no pilot results reused",
+        "data": "Same true source TSS and target evaluation identity; isolated outputs",
+        "ssc": "Original joint I+J greedy SSC, no origin quota; identical archived source checkpoint and threshold",
+        "gss_gcad_prompt": "Exact archived prompt outside examples; no recounting on J",
+        "budget": "Identical historical calls and per-category example upper bounds; actual SSC output, no refill",
+        "tof_detector": "Unchanged implementation, historical percentile and original environment-specific token field"
+      },
+      "gcad_comparison_state": {
+        "guidance_enabled": false,
+        "archived_mode": "auto",
+        "interpretation": "Original GCAD-auto pipeline disabled guidance; zero prompt edges. This is NOT an active-GCAD three-module comparison."
+      },
+      "historical_gcad": {
+        "status": "disabled",
+        "artifact_fingerprint": "b7b89769b98ed6c581590b72212b30beaa8b9a4a76494339e81d41b7fd2de0ae",
+        "relationship_count": 0,
+        "path": "artifacts/gcad/sp/daytime/preflight_history4.json",
+        "mode": "auto",
+        "guidance_enabled": false
+      },
+      "prepared_source": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/b3-source-20261125/sp-daytime/prepared"
+    }
+  },
+  "source_environment": "daytime"
+}
