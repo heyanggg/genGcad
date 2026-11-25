@@ -232,6 +232,7 @@ def upload(args):
     allowed.update({'sp-dt-original-backup-receipt.json','sp-dt-tuned-backup-receipt.json'})
     allowed.update({'fr-dt-original-backup-receipt.json','fr-dt-tuned-backup-receipt.json'})
     allowed.update({'sp-mt-original-backup-receipt.json','sp-mt-tuned-backup-receipt.json'})
+    allowed.update({'us-mt-original-backup-receipt.json','us-mt-tuned-backup-receipt.json'})
     if receipt_name not in allowed:raise ValueError('Only explicitly scoped experiment backup receipts may be uploaded')
     receipt_path=RECORDS/receipt_name;receipt=read(receipt_path)
     if Path(receipt['archive_name']).name!=receipt['archive_name']:raise ValueError('Invalid archive basename')
@@ -252,6 +253,8 @@ def upload(args):
     if receipt_name=='fr-dt-tuned-backup-receipt.json':tag='rasr-fr-dt-b3-tuned-20261125'
     if receipt_name.startswith('sp-mt-'):tag='rasr-sp-mt-b3-20261125'
     if receipt_name=='sp-mt-tuned-backup-receipt.json':tag='rasr-sp-mt-b3-tuned-20261125'
+    if receipt_name.startswith('us-mt-'):tag='rasr-us-mt-b3-20261125'
+    if receipt_name=='us-mt-tuned-backup-receipt.json':tag='rasr-us-mt-b3-tuned-20261125'
     def api(method,path,payload=None):
         data=None if payload is None else json.dumps(payload).encode()
         request=urllib.request.Request('https://api.github.com'+path,data=data,method=method,

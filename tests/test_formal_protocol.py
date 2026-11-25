@@ -89,11 +89,11 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['sp/seed-2024/B3']
-    assert policy['queue_root']=='runs/formal-sp-mt-20261125'
-    assert policy['max_additional_calls']==8
+    assert policy['allowed_runs']==['us/seed-2024/B3']
+    assert policy['queue_root']=='runs/formal-us-mt-20261125'
+    assert policy['max_additional_calls']==26
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(8)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(26)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']

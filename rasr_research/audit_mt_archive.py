@@ -7,10 +7,10 @@ from pathlib import Path
 SOURCE = Path('/home/heyang/projects/SmartGen_GCAD')
 
 
-def normal_split_audit(formal):
+def normal_split_audit(formal,dataset='sp'):
     """Inspect only generated normals and calibration; no target test access."""
     import numpy as np
-    receipt=json.loads((formal/'baseline-reevaluation/sp/result.json').read_text())
+    receipt=json.loads((formal/f'baseline-reevaluation/{dataset}/result.json').read_text())
     folder=Path(receipt['detector_dir'])
     def rows(path):
         with path.open('rb') as handle:return pickle.load(handle)
@@ -31,11 +31,12 @@ def normal_split_audit(formal):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--formal',type=Path)
+    parser.add_argument('--dataset',choices=['sp','us','fr'])
     args=parser.parse_args()
     if args.formal:
-        normal_split_audit(args.formal)
+        normal_split_audit(args.formal,args.dataset or 'sp')
         return
-    for ds in ('sp', 'us', 'fr'):
+    for ds in ((args.dataset,) if args.dataset else ('sp', 'us', 'fr')):
         archive, = (SOURCE/'experiment_archive/formal').glob(f'{ds}_single_to_multiple_*')
         manifest = json.loads((archive/'manifest.json').read_text())
         metrics = json.loads((archive/'artifacts/anomaly_detection/metrics.json').read_text())

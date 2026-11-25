@@ -1,0 +1,24 @@
+{
+  "scenario":"US-MT: single to multiple",
+  "date":"2026-11-25",
+  "authority":"Explicit human reply: ok,继续下一组（同上） after completed SP-MT",
+  "scope":"Exactly one B3 seed-2024 run, 26 historical call slots; zero fresh B0, no other scenario or ablation",
+  "selection_reason":"Next country in the existing single-to-multiple series after SP; fixed before any new B3 performance. Full existing generation, prompts and checkpoint are available but original detector splits are not.",
+  "historical_config":{"ssc_threshold":0.913,"calls":26,"TOF_epochs":10,"detector_epochs":15,"validation_percentile":99,"generated_raw":297,"TOF_final":297,"recorded_train":297,"recorded_validation":297,"historical_f1":0.9417461482024945},
+  "baseline_protocol_repair":"Do not invent missing historical splits. Reevaluate existing 297 final rows using unchanged baseline1.py, 80/20 seed2024 and p99, zero generation and no TOF rerun. Retain old metrics/checkpoint separately; B3 versus reevaluated baseline is the matched-protocol comparison.",
+  "rasr":"Unchanged C/T/S window2 decay0.8, two semantic and two statistical attempts; skip invalid/no-op/duplicate/no-relation edits. No new module, independent regenerator, endpoint transport or functional-equivalence gating.",
+  "SSC_prompt":"Original source-trained SSC on joint I+J, no forced J fraction or refill. Exact archived non-example prompts with real-source GSS and GCAD. Same category slots and example upper limits; record actual exposure.",
+  "conditional_tuning":{
+    "trigger":"Original-protocol B3 does not exceed historical F1 0.9417461482024945 OR does not exceed matched-protocol existing-data baseline",
+    "method":"Existing generated-normal validation search, one shared configuration across historical-data and B3 pools; no model changes or extra Codex calls",
+    "task_adapter":"Existing multiple detector device field index2, unchanged network/capacity/reconstruction loss",
+    "grid":{"learning_rate":[0.0003,0.001],"weight_decay":[0,0.0001],"epochs":[5,10,15,25],"score":["mean","max","top2"],"percentile":[90,95,97.5]},
+    "holdouts":[2024,2025,2026],"calibration_views":true,
+    "proxy":"Uniform input-device substitution from legal dictionary values unseen in each generated-normal pool, synthetic proxies not actual anomaly labels. Stop if no unseen legal values or feasible disjoint grouped holdout; do not invent another search.",
+    "selection":"Mean proxy F1 across both arms and three normal holdouts, existing deterministic tie rule. Full-row duplicate groups disjoint; singleton feature support retained in training.",
+    "lock":"Save selection/input hashes and GitHub snapshot before one final target-test confirmation. No test labels used to pick parameters.",
+    "limits":"Historically exposed test, one final seed, correlated normal views and changed calibration protocol. Preserve all original, reevaluated and common-tuned outcomes, including decreases. No isolated causal RaSR-gain claim."
+  },
+  "retention":"Register above-historical variants under the user's formal-group rule with protocol caveats; preserve all others. Upload complete generated data/weights/relations/prompt evidence and verify GitHub bytes plus SHA256.",
+  "target_test_used_for_parameter_selection":false
+}
