@@ -191,3 +191,22 @@ def test_legacy_above_historical_formal_group_keeps_unmatched_protocol_caveat(tm
     assert entry['matched_protocol_Gen_GCAD_metrics']['f1_score']==.95
     assert entry['B3_minus_matched_protocol_f1_percentage_points']<0
     assert 'not evidence' in entry['formal_label_caveat']
+
+
+def test_completed_sp_multiple_preserves_all_three_controls_and_no_unneeded_tuning():
+    folder=ROOT/'rasr_research/formal_records'
+    registry=saving.read(folder/'registry.json')
+    entry=next(r for r in registry['formal_groups'] if r['id']=='SP-MT-B3-original-seed2024')
+    assert entry['metrics']['f1_score']==.9404761904761905
+    assert entry['metrics']['FP']==20 and entry['metrics']['FN']==0
+    assert entry['Gen_GCAD_reference_metrics']['f1_score']==.9132947976878613
+    assert entry['matched_protocol_Gen_GCAD_metrics']['f1_score']==0
+    assert 'NOT an apples-to-apples' in entry['historical_protocol_caveat']
+    comparison=saving.read(folder/'sp-mt-original-comparison.json')
+    assert comparison['generation']['valid_responses']==8
+    assert comparison['generation']['new_baseline_calls']==0
+    assert comparison['prompt']['actual_examples']==176 and comparison['prompt']['J_examples']==119
+    assert comparison['data_volumes']['B3_TOF_final']==71
+    note=saving.read(folder/'sp-mt-completion-note.json')
+    assert note['tuning']['triggered'] is False
+    assert note['result_sha256']==entry['result_sha256']

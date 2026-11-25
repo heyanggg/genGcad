@@ -1,0 +1,303 @@
+{
+  "version": "formal-joint-ssc-v1",
+  "seeds": [
+    2024
+  ],
+  "arms": [
+    "B3"
+  ],
+  "frozen_rasr_inputs": {
+    "SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222",
+    "relation_research/embeddings/rasr-raw-v1/sp_embeddings.json": "69e9692f7697a7efb9be09c3a41aa6b08a324c3eef87c044b1cec94f665f46b8",
+    "rasr_research/runs/b3-source-20261125/sp-single/prepared/relations.npz": "79160eac1e83212c403a0071028348d0f33a4c1d9fbc6e6c2a79a299b2b6de4a",
+    "rasr_research/runs/b3-source-20261125/sp-single/prepared/B3_J.pkl": "a19ea7971523e1454e62f07d49fdc6593a0ce6133e1ac38e77f780389f5c7437",
+    "rasr_research/runs/b3-source-20261125/sp-single/prepared/I.pkl": "045695c28003a999d30386fffdcc6532b218bc326267dde348fce8c63021bb22",
+    "rasr_research/runs/b3-source-20261125/sp-single/prepared/split.json": "b3fbd3756cf1eba3be4b4d3197915e749949074412823f50d033d67345b49f46"
+  },
+  "independent_regenerator": false,
+  "selection": "joint I+J; original train-mode SSC; no origin quota",
+  "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
+  "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
+  "budget": "historical actual Prompt category counts and per-category example counts, equal for all arms",
+  "repetition": "One explicitly approved B3 generation; historical B0 reused, no ablation or repeated generation",
+  "codex": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "sampling_seed_available": false
+  },
+  "tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95,
+    "implementation_unchanged": true
+  },
+  "old_50_percent_control": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/run_experiment.py",
+  "no_test_based_tuning": true,
+  "datasets": {
+    "sp": {
+      "archive": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024",
+      "reference_config": {
+        "dataset": "sp",
+        "original_environment": "single",
+        "target_environment": "multiple",
+        "method": "SPPC",
+        "threshold": 0.915,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_gcad_h4_original",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "gcad_mode": "require",
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "original",
+        "artifact_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+        "validation_percentile": 99.0
+      },
+      "reference_metrics": {
+        "dataset": "sp",
+        "environment": "multiple",
+        "method": "SPPC",
+        "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+        "generation_threshold": 0.915,
+        "validation_percentile": 99.0,
+        "seed": 2024,
+        "generated_sequence_count": 83,
+        "training_sequence_count": 83,
+        "validation_sequence_count": 83,
+        "normal_test_count": 158,
+        "attack_test_count": 158,
+        "detection_threshold": 0.0006041320459917165,
+        "metrics": {
+          "TP": 158,
+          "TN": 128,
+          "FP": 30,
+          "FN": 0,
+          "FPR": 0.189873417721519,
+          "FNR": 0.0,
+          "recall": 1.0,
+          "precision": 0.8404255319148937,
+          "accuracy": 0.9050632911392406,
+          "f1_score": 0.9132947976878613
+        }
+      },
+      "categories": [
+        {
+          "category": "0",
+          "day": 0,
+          "examples": 26,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_0.txt",
+          "sha256": "9e54d996c22eaf83a06f7354a72810997157215bf16eeedfb89f9b297fc97268"
+        },
+        {
+          "category": "1",
+          "day": 1,
+          "examples": 25,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_1.txt",
+          "sha256": "e9a74c7287bcaa451215d271114385b101a177144c380566cac95fa19fd5597c"
+        },
+        {
+          "category": "2_0",
+          "day": 2,
+          "examples": 30,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_2_0.txt",
+          "sha256": "b23e43e5bb196990fbdda2cfe57be79273cdc9f45b4b944cc1a386610c236cf7"
+        },
+        {
+          "category": "2_1",
+          "day": 2,
+          "examples": 1,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_2_1.txt",
+          "sha256": "029581515e4d7630fb86ff94964a32eccb935d528a628315ce42cadc57b3079f"
+        },
+        {
+          "category": "3",
+          "day": 3,
+          "examples": 27,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_3.txt",
+          "sha256": "9792a329dd6a1252b1bd35d0e6982115673159085b91d84ba27f6634cbe40398"
+        },
+        {
+          "category": "4",
+          "day": 4,
+          "examples": 29,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_4.txt",
+          "sha256": "d2db324e0224201d3d282c256d6fac338c07781401a076cce485327ee237c20d"
+        },
+        {
+          "category": "5",
+          "day": 5,
+          "examples": 22,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_5.txt",
+          "sha256": "192d45fb9b1396de4ef30f4eb5152823560a53e3f4d6bfc24ee6a1a7086bbf9f"
+        },
+        {
+          "category": "6",
+          "day": 6,
+          "examples": 16,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/generation/run_record/prompts/category_6.txt",
+          "sha256": "1d4a7dd5a75c3eba8ecf041bda07628bb3f8b3c07c6859380b61afd027e8f816"
+        }
+      ],
+      "day_example_budget": {
+        "0": 26,
+        "1": 25,
+        "2": 31,
+        "3": 27,
+        "4": 29,
+        "5": 22,
+        "6": 16
+      },
+      "calls_per_run": 8,
+      "examples_per_run": 176,
+      "historical_generation": {
+        "tof": {
+          "input_count": 88,
+          "first_pass_count": 72,
+          "final_count": 83,
+          "intermediates_preserved": true
+        }
+      },
+      "source": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/sp/single/trn.pkl",
+      "source_sha256": "6d1e21e7ae5f52f4c39dd87ef1e132014cca384598157b9986dae642be8d2f1e",
+      "real_tss_sha256": "247d3cd78e69c033bfd930c8e945ae8cc194f5c29a31acdb8cadf8b9459819b0",
+      "ssc_checkpoint": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/ssc/model.pth",
+      "ssc_checkpoint_sha256": "3e09856a336c1dee6f4f2feec15d5da32033f8f03198054aa9ecf183356c789a",
+      "unchanged_core_code": {
+        "models1.py": true,
+        "sppc.py": true,
+        "find_categories.py": true,
+        "security_check.py": true,
+        "baseline1.py": true
+      },
+      "detector_validation_percentile": 99.0,
+      "pilot_differences": {
+        "scope": "New source task; no pilot results reused",
+        "data": "Same true source TSS and target evaluation identity; isolated outputs",
+        "ssc": "Original joint I+J greedy SSC, no origin quota; identical archived source checkpoint and threshold",
+        "gss_gcad_prompt": "Exact archived prompt outside examples; no recounting on J",
+        "budget": "Identical historical calls and per-category example upper bounds; actual SSC output, no refill",
+        "tof_detector": "Unchanged implementation, historical percentile and original environment-specific token field"
+      },
+      "gcad_comparison_state": {
+        "guidance_enabled": true,
+        "archived_mode": "require",
+        "interpretation": "Original enabled GCAD guidance preserved"
+      },
+      "baseline_reevaluation": {
+        "mode": "Existing historical post-TOF generation; NEW detector evaluation, NOT recovery of historical splits",
+        "dataset": "sp",
+        "new_codex_calls": 0,
+        "TOF_rerun": false,
+        "input": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl",
+        "input_sha256": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333",
+        "input_count": 83,
+        "original_record": {
+          "dataset": "sp",
+          "environment": "multiple",
+          "method": "SPPC",
+          "generator_model": "gpt-5.6-sol__seed2024_gcad_h4_original",
+          "generation_threshold": 0.915,
+          "validation_percentile": 99.0,
+          "seed": 2024,
+          "generated_sequence_count": 83,
+          "training_sequence_count": 83,
+          "validation_sequence_count": 83,
+          "normal_test_count": 158,
+          "attack_test_count": 158,
+          "detection_threshold": 0.0006041320459917165,
+          "metrics": {
+            "TP": 158,
+            "TN": 128,
+            "FP": 30,
+            "FN": 0,
+            "FPR": 0.189873417721519,
+            "FNR": 0.0,
+            "recall": 1.0,
+            "precision": 0.8404255319148937,
+            "accuracy": 0.9050632911392406,
+            "f1_score": 0.9132947976878613
+          }
+        },
+        "historical_split_recovered": false,
+        "reason": "Legacy archives and original anomaly_runs contain no saved detector train/validation files; recorded train=N, validation=N, generated=N is inconsistent. Original split and historical training protocol are unverifiable.",
+        "protocol": {
+          "epochs": 15,
+          "learning_rate": 0.001,
+          "train_ratio": 0.8,
+          "seed": 2024,
+          "validation_percentile": 99.0,
+          "core_algorithm_changed": false
+        },
+        "detector_dir": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024",
+        "detection": {
+          "dataset": "sp",
+          "environment": "multiple",
+          "method": "SPPC",
+          "generator_model": "legacy-existing-data-reevaluation",
+          "generation_threshold": 0.915,
+          "validation_percentile": 99.0,
+          "seed": 2024,
+          "generated_sequence_count": 83,
+          "training_sequence_count": 66,
+          "validation_sequence_count": 17,
+          "normal_test_count": 158,
+          "attack_test_count": 158,
+          "detection_threshold": 0.27599093686789267,
+          "metrics": {
+            "TP": 0,
+            "TN": 153,
+            "FP": 5,
+            "FN": 158,
+            "FPR": 0.03164556962025317,
+            "FNR": 1.0,
+            "recall": 0.0,
+            "precision": 0.0,
+            "accuracy": 0.48417721518987344,
+            "f1_score": 0,
+            "auroc": 0.9344656305079314,
+            "auprc": 0.8761407123932883
+          },
+          "continuous_scores_path": "anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/continuous_scores.npz",
+          "validation_scores_path": "anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/validation_scores.npz",
+          "metrics_path": "anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/metrics.json"
+        },
+        "files_sha256": {
+          "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/tof/sp_multiple_generation_SPPC_th=0.915_gpt-5.6-sol__seed2024_gcad_h4_original_seq_filter_true.pkl": "ae2da406b9a7ad92bbc9ab0fe5bf9991adda0b9e6fc9d502f53c97cb85b1d333",
+          "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/anomaly_detection/metrics.json": "0f3e1f7d12c5231f0d241d37dc6c051100a1cb69d482128df26b473ca99fac9c",
+          "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/sp_single_to_multiple_SPPC_th-0.915_gpt-5.6-sol__seed2024_gcad_h4_original__detector-p99-seed2024/artifacts/anomaly_detection/detector.pth": "573be047ad20b966f3bb0f9cd2c16d0ea2637b31c3811c59dad12fa32cbd7c18",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/continuous_scores.npz": "b13c8b2ea27be9bfccc645514d20277af5c6e46a340e72bc2c6beecfef3d2163",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/detector.pth": "49560bc21565ff0169f8ba4db0fcbbbb5491ee4aea40421e4c76de8fdf3489f8",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/metrics.json": "4c0094e255fc63f029674440b64358d8f62147baf8bd04f21ec7d39c5aba25e5",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/train.pkl": "a62177d4763744f7c928b26e7eb9663fe912d27f0ea5b80b0156f3437fb5939a",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/validation.pkl": "4ab7611fee68f1b30f2811318079fb454dfc0b8ac5616e45000ad7f90cbdf131",
+          "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/runtime/anomaly_runs/sp_multiple_legacy-existing-data-reevaluation_SPPC_th-0.915_p-99_seed2024/validation_scores.npz": "70714d51cf696448444081b5adeaa8616c62a41c0ac167bf532b946639f0c380"
+        },
+        "selection_uses_target_test": false,
+        "original_source_modified": false
+      },
+      "baseline_reevaluation_receipt": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-sp-mt-20261125/baseline-reevaluation/sp/result.json",
+      "historical_protocol_caveat": "Historical detector split unavailable and counts inconsistent; compare B3 to explicit existing-data baseline reevaluation for matched protocol. Original historical score is retained but is NOT an apples-to-apples control.",
+      "historical_gcad": {
+        "status": "ready",
+        "artifact_fingerprint": "116a6cfe13690480613b26985bf471e9fc4454982ae50bb3dd31460736c43d71",
+        "relationship_count": 1,
+        "path": "artifacts/gcad/sp/single/preflight_history4.json",
+        "mode": "require",
+        "guidance_enabled": true
+      },
+      "prepared_source": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/b3-source-20261125/sp-single/prepared"
+    }
+  },
+  "source_environment": "single"
+}

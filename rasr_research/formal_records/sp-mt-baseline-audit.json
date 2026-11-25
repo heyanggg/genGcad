@@ -1,0 +1,13 @@
+{
+  "scenario":"SP-MT",
+  "original_historical_f1":0.9132947976878613,
+  "original_checkpoint_rescore_matches_all_ten_threshold_metrics":true,
+  "original_detection_threshold":0.0006041320459917165,
+  "legacy_metadata":{"generated":83,"training":83,"validation":83,"split_files_archived":false,"split_files_in_original_anomaly_runs":false},
+  "inference_limit":"The historical score is verified, but original train/validation usage is not recoverable. Inconsistent counts alone do not prove a specific leakage mechanism or justify claiming the old protocol was reproduced.",
+  "existing_data_reevaluation":{"new_codex_calls":0,"TOF_rerun":false,"generated_final":83,"training":66,"validation":17,"epochs":15,"seed":2024,"percentile":99,"threshold":0.27599093686789267,"f1":0,"FP":5,"FN":158,"AUROC":0.9344656305079314,"AUPRC":0.8761407123932883},
+  "normal_only_diagnostic":{"target_test_files_accessed":false,"validation_devices_not_in_training":[],"train_validation_exact_row_overlap":0,"validation_loss_quantiles":{"minimum":0.000040689134038984776,"median":0.00038404608494602144,"p90":0.002345392969436944,"p95":0.06807457264512755,"p99":0.27599093686789267,"maximum":0.327970027923584}},
+  "interpretation":"A very high-loss normal validation row strongly affects p99 with only 17 held-out rows. Device vocabulary is covered; this diagnostic does not establish the cause of that row's reconstruction error. No test-based percentile change or generation change is authorized by this observation.",
+  "planned_comparison":"Keep historical score, matched existing-data baseline, B3 and any predeclared common-normal-validation tuned comparisons distinct. Never substitute the zero-F1 baseline for the user's original 91.33% reference.",
+  "predeclared_remote_commit":"3adf0e21b2d3cf012f84466cca6be03f039c1b1d"
+}

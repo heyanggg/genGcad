@@ -1,0 +1,24 @@
+{
+  "scenario":"SP-MT",
+  "completed_scope":"One seed-2024 B3 generation, original TOF and detector; existing-data baseline reevaluation only because original detector splits are missing",
+  "calls":{"B3":8,"new_B0":0,"retries":0,"extra_after_eight":0},
+  "source":{"I":5643,"valid_J":12856,"J_retained_by_SSC_before_cap":421,"prompt_examples":176,"prompt_J_examples":119,"forced_J_quota":null},
+  "historical_volumes":{"generated":88,"TOF_first":72,"TOF_final":83,"recorded_detector_train":83,"recorded_detector_validation":83,"split_counts_verifiable":false},
+  "reevaluated_baseline_volumes":{"TOF_final_reused":83,"detector_train":66,"detector_validation":17,"TOF_rerun":false},
+  "B3_volumes":{"generated":82,"TOF_first":68,"TOF_final":71,"detector_train":56,"detector_validation":15},
+  "metrics":{
+    "historical_Gen_GCAD":{"F1":0.9132947976878613,"Precision":0.8404255319148937,"Recall":1,"FPR":0.189873417721519,"FNR":0,"AUROC":0.8588567537253645,"AUPRC":0.8286212795073554,"FP":30,"FN":0},
+    "matched_protocol_existing_data_Gen_GCAD":{"F1":0,"Precision":0,"Recall":0,"FPR":0.03164556962025317,"FNR":1,"AUROC":0.9344656305079314,"AUPRC":0.8761407123932883,"FP":5,"FN":158},
+    "B3":{"F1":0.9404761904761905,"Precision":0.8876404494382022,"Recall":1,"FPR":0.12658227848101267,"FNR":0,"AUROC":0.9462025316455696,"AUPRC":0.9239766081871345,"FP":20,"FN":0}
+  },
+  "B3_f1_gain_vs_historical_percentage_points":2.7181392788329206,
+  "tuning":{"triggered":false,"reason":"B3 exceeds both original historical F1 and matched-protocol existing-data baseline. No search, model adjustment or extra generation executed."},
+  "detector":{"epochs":15,"learning_rate":0.001,"validation_percentile":99,"B3_threshold":0.0005464891914743928,"input_field":"device index2","architecture_changed":false},
+  "GCAD":{"guidance_enabled":true,"archived_mode":"require","prompt_relations":1,"real_source_only":true},
+  "formal_group":"SP-MT-B3-original-seed2024",
+  "result_sha256":"ddf361e3c9378311177b906a136d9416561cf8211cd470bdbc90b0225606b9d3",
+  "comparison_sha256":"4f90b7eb46efb4830738a66d2081fb72645e9300c9340d2e8949b012eaf244f9",
+  "interpretation":"Above-historical result retained as a human-designated formal group. Historical checkpoint reproduces its recorded threshold metrics, but its split/training usage is unavailable and count metadata conflicts. Do not claim same-protocol reproduction of the old 91.33% experiment. The explicit current-protocol control uses existing historical generated data, not a new B0 generation.",
+  "limitations":["Single final seed and historically exposed test; no causal or stable-gain claim.","Historical detector split missing; distinguish original and reevaluated baseline.","Equal eight-call and 176-example budgets do not ensure equal generated or TOF-final row counts.","The zero-F1 baseline reevaluation and all evidence are preserved; do not substitute it for the user's original historical reference."],
+  "generation_closed":true
+}
