@@ -4,5 +4,10 @@
   "sha256": "7679466383c6fa44db488eb202185371a3ce264672a35099ce2eac814db901cb",
   "file_count": 162,
   "zip_crc_verified": true,
-  "github_uploaded": false
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-fr-dt-b3-tuned-20261125",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-fr-dt-b3-tuned-20261125/fr-dt-b3-tuned-20261125.zip",
+  "github_asset_size": 222675343,
+  "github_digest": "sha256:7679466383c6fa44db488eb202185371a3ce264672a35099ce2eac814db901cb",
+  "source_commit": "4845e226dcf5b4e6d05efccac2aa6f140a33dea7"
 }
