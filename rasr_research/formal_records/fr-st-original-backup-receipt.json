@@ -4,5 +4,10 @@
   "sha256": "ed33b3f475198e101ff66c882e8a8dde2c2d8b28eaccb3b7ff84ed61a914556c",
   "file_count": 240,
   "zip_crc_verified": true,
-  "github_uploaded": false
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-formal-fr-st-20261124",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-formal-fr-st-20261124/fr-st-b3-original-20261124.zip",
+  "github_asset_size": 112479391,
+  "github_digest": "sha256:ed33b3f475198e101ff66c882e8a8dde2c2d8b28eaccb3b7ff84ed61a914556c",
+  "source_commit": "651b2dafc9ffc64640fbbaeb36462953d2228879"
 }

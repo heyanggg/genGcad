@@ -199,7 +199,12 @@ def build_next(args):
 
 def upload(args):
     """Use the existing Git credential helper in memory; never print credentials."""
-    archive=BACKUPS/'rasr-formal-sp-us-20261124.zip';receipt=read(RECORDS/'backup-receipt.json')
+    receipt_name=getattr(args,'receipt','backup-receipt.json')
+    allowed={'backup-receipt.json','fr-st-original-backup-receipt.json','fr-st-tuned-backup-receipt.json'}
+    if receipt_name not in allowed:raise ValueError('Only the three authorized backup receipts may be uploaded')
+    receipt_path=RECORDS/receipt_name;receipt=read(receipt_path)
+    if Path(receipt['archive_name']).name!=receipt['archive_name']:raise ValueError('Invalid archive basename')
+    archive=BACKUPS/receipt['archive_name']
     assert sha(archive)==receipt['sha256']
     remote=subprocess.run(['git','remote','get-url','origin'],cwd=str(ROOT),capture_output=True,text=True,check=True).stdout.strip()
     if remote!='https://github.com/heyanggg/genGcad.git':raise ValueError('Unexpected remote')
@@ -209,7 +214,7 @@ def upload(args):
     values=dict(line.split('=',1) for line in credential.stdout.splitlines() if '=' in line)
     token=values.get('password')
     if credential.returncode or not token:raise RuntimeError('No noninteractive GitHub credential; no credential output saved')
-    repo='heyanggg/genGcad';tag='rasr-formal-sp-us-20261124'
+    repo='heyanggg/genGcad';tag='rasr-formal-sp-us-20261124' if receipt_name=='backup-receipt.json' else 'rasr-formal-fr-st-20261124'
     def api(method,path,payload=None):
         data=None if payload is None else json.dumps(payload).encode()
         request=urllib.request.Request('https://api.github.com'+path,data=data,method=method,
@@ -220,8 +225,8 @@ def upload(args):
     except urllib.error.HTTPError as error:
         if error.code!=404:raise
         release=api('POST',f'/repos/{repo}/releases',{'tag_name':tag,'target_commitish':args.commit,
-            'name':'Formal RaSR groups: SP-ST and tuned US-ST (2026-11-24)',
-            'body':'Two human-designated formal B3 groups, exact protocols and full generated evidence. US uses tuned detector settings and a previously exposed test; not isolated causal RaSR proof. All negative attempts retained. Raw source/target datasets and credentials excluded.',
+            'name':('Formal RaSR groups: SP-ST and tuned US-ST (2026-11-24)' if receipt_name=='backup-receipt.json' else 'FR-ST B3: original and tuned results (2026-11-24)'),
+            'body':'Human-designated formal B3 groups, exact protocols and full generated evidence. Tuned results use a changed detector protocol and previously exposed tests; not isolated causal RaSR proof. All negative attempts retained. Raw source/target datasets and credentials excluded.',
             'draft':False,'prerelease':False})
     assets=api('GET',f'/repos/{repo}/releases/{release["id"]}/assets')
     old=next((asset for asset in assets if asset['name']==archive.name),None)
@@ -245,7 +250,7 @@ def upload(args):
     if asset.get('digest'):assert asset['digest']=='sha256:'+receipt['sha256']
     receipt.update(github_uploaded=True,release_url=release['html_url'],asset_url=asset['browser_download_url'],
         github_asset_size=asset['size'],github_digest=asset.get('digest'),source_commit=args.commit)
-    write(RECORDS/'backup-receipt.json',receipt)
+    write(receipt_path,receipt)
     print('GITHUB BACKUP VERIFIED '+json.dumps(receipt),flush=True)
 
 
@@ -253,6 +258,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--action',choices=['register','register-next','build','build-next','upload','git-export'],required=True)
     parser.add_argument('--commit',help='Already-pushed immutable commit for release tag')
+    parser.add_argument('--receipt',default='backup-receipt.json',help='One of the three existing authorized archive receipts')
     parser.add_argument('--batch',type=int,default=0)
     parser.add_argument('--utf8',action='store_true',help='Inline text tree export for the connected GitHub API')
     parser.add_argument('--dataset',choices=['fr'],default='fr')
