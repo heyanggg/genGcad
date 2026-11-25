@@ -143,6 +143,29 @@ def preserved_gcad_state(config,gcad,artifact=None):
     return state
 
 
+def baseline_detector_dir(spec):
+    replay=spec.get('baseline_reevaluation')
+    return Path(replay['detector_dir']) if replay else Path(spec['archive'])/'artifacts/anomaly_detection'
+
+
+def verified_baseline_reevaluation(path,archive,original):
+    """Explicit legacy protocol repair, never claim recovered historical splits."""
+    saved=read(path)
+    assert saved['new_codex_calls']==0 and saved['TOF_rerun'] is False
+    assert saved['historical_split_recovered'] is False
+    assert saved['original_record']==original
+    final,=(archive/'artifacts/tof').glob('*_seq_filter_true.pkl')
+    assert saved['input']==str(final) and saved['input_sha256']==sha(final)
+    for file,digest in saved['files_sha256'].items():assert sha(file)==digest
+    folder=Path(saved['detector_dir']);detection=saved['detection']
+    training,validation=load(folder/'train.pkl'),load(folder/'validation.pkl')
+    assert len(training)==detection['training_sequence_count']
+    assert len(validation)==detection['validation_sequence_count']
+    assert len(training)+len(validation)==original['generated_sequence_count']
+    assert Counter(map(tuple,training+validation))==Counter(map(tuple,load(final)))
+    return saved
+
+
 def audit(args):
     destination = args.output / "protocol.json"
     if destination.exists():
@@ -151,6 +174,10 @@ def audit(args):
             raise ValueError('Output belongs to a different source environment; use an isolated directory')
         if saved["frozen_rasr_inputs"] != frozen_files(tuple(saved['datasets']),saved.get('source_environment','winter')):
             raise ValueError("RaSR algorithm or frozen data changed; do not resume")
+        for spec in saved['datasets'].values():
+            if 'baseline_reevaluation' in spec:
+                assert verified_baseline_reevaluation(Path(spec['baseline_reevaluation_receipt']),
+                    Path(spec['archive']),spec['reference_metrics'])==spec['baseline_reevaluation']
         return saved
     source_env=getattr(args,'source_env','winter')
     target_env={'winter':'spring','daytime':'night','single':'multiple'}[source_env]
@@ -232,7 +259,13 @@ def audit(args):
                 assert gcad_artifact['source']['dataset']==ds
                 spec['legacy_disabled_gcad_artifact_sha256']=sha(hints)
             spec['gcad_comparison_state']=preserved_gcad_state(manifest['config'],run['gcad'],gcad_artifact)
-            assert spec['reference_metrics']['training_sequence_count']+spec['reference_metrics']['validation_sequence_count']==spec['reference_metrics']['generated_sequence_count']
+            historical=spec['reference_metrics']
+            if historical['training_sequence_count']+historical['validation_sequence_count']!=historical['generated_sequence_count']:
+                if source_env!='single':raise ValueError('Unverified historical split')
+                receipt=args.output/f'baseline-reevaluation/{ds}/result.json'
+                spec['baseline_reevaluation']=verified_baseline_reevaluation(receipt,archive,historical)
+                spec['baseline_reevaluation_receipt']=str(receipt)
+                spec['historical_protocol_caveat']='Historical detector split unavailable and counts inconsistent; compare B3 to explicit existing-data baseline reevaluation for matched protocol. Original historical score is retained but is NOT an apples-to-apples control.'
             spec['historical_gcad']=run['gcad']
             spec['prepared_source']=str(prepared)
             spec['pilot_differences']={'scope':'New source task; no pilot results reused',
@@ -605,11 +638,11 @@ def prepare_single(args, protocol):
     assert policy['allowed_runs'] == [f'{ds}/seed-2024/B3']
     spec = protocol['datasets'][ds]
     assert len(spec['categories']) == policy['max_additional_calls']
-    queue(args, protocol, ds, 'B3', seeds=(2024,))
     archive = Path(spec['archive'])
+    detector=baseline_detector_dir(spec)
     files = [archive/'artifacts/anomaly_detection/metrics.json',
-             archive/'artifacts/anomaly_detection/train.pkl',
-             archive/'artifacts/anomaly_detection/validation.pkl',
+             detector/'train.pkl',
+             detector/'validation.pkl',
              archive/'artifacts/anomaly_detection/detector.pth',
              archive/'artifacts/gss/action_transitions.json',
              archive/'artifacts/gcad/gcad_hints.json',
@@ -618,8 +651,12 @@ def prepare_single(args, protocol):
              *sorted((archive/'artifacts/tof').glob('*_seq_filter_true.pkl'))]
     baseline = read(files[0])
     assert baseline == spec['reference_metrics']
-    assert len(load(archive/'artifacts/anomaly_detection/train.pkl')) == baseline['training_sequence_count']
-    assert len(load(archive/'artifacts/anomaly_detection/validation.pkl')) == baseline['validation_sequence_count']
+    actual=spec.get('baseline_reevaluation',{}).get('detection',baseline)
+    assert len(load(detector/'train.pkl')) == actual['training_sequence_count']
+    assert len(load(detector/'validation.pkl')) == actual['validation_sequence_count']
+    if 'baseline_reevaluation' in spec:
+        files.extend([Path(spec['baseline_reevaluation_receipt']),detector/'metrics.json',detector/'detector.pth'])
+    queue(args, protocol, ds, 'B3', seeds=(2024,))
     prompt_checks = []
     run = args.output/f'{ds}/seed-2024/B3'
     for index, template in enumerate(spec['categories']):
@@ -633,6 +670,8 @@ def prepare_single(args, protocol):
     atomic_write_json(single_file(args,ds,'active-scope'), {
         'version':f'single-{scenario(protocol,ds)}-B3-historical-baseline-v1','dataset':ds,'arm':'B3','seed':2024,
         'runs_required':1,'historical_baseline':baseline,
+        'baseline_reevaluation':spec.get('baseline_reevaluation'),
+        'historical_protocol_caveat':spec.get('historical_protocol_caveat'),
         'baseline_files_sha256':{str(p):sha(p) for p in files},
         'baseline_new_codex_calls':0,'planned_B3_calls':len(spec['categories']),'repetitions':1,
         'baseline_selection_reason':'complete original formal archive; scenario fixed before seeing B3 results',
@@ -707,6 +746,14 @@ def single_report(args, protocol):
                      'single-run historical comparison, not evidence of stable causal improvement',
         'previous_results_retained_but_excluded_from_primary_comparison':True})
     report=read(report_path)
+    if 'baseline_reevaluation' in spec:
+        replay=spec['baseline_reevaluation']
+        report['historical_protocol_caveat']=spec['historical_protocol_caveat']
+        report['matched_protocol_baseline']=replay['detection']
+        report['baseline_reevaluation_receipt']=spec['baseline_reevaluation_receipt']
+        report['B3_minus_matched_protocol_baseline']={key:metrics[key]-value
+            for key,value in replay['detection']['metrics'].items()
+            if metrics and key in metrics and key in ('f1_score','precision','recall','FPR','FNR','auroc','auprc')}
     report['previous_scope_existing_B0_not_rerun']={
         'path':str(prior_baseline_path),'metrics':prior_baseline['detection']['metrics'],
         'TOF_final':prior_baseline['tof']['final_count'],

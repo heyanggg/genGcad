@@ -160,7 +160,8 @@ def train_epochs(model,rows,vocab,device,optimizer,start,end,seed,feature_index=
 
 def inputs(args):
     spec=read(args.formal/'protocol.json')['datasets'][args.dataset]
-    archive=Path(spec['archive'])/'artifacts/anomaly_detection'
+    archive=(Path(spec['baseline_reevaluation']['detector_dir']) if 'baseline_reevaluation' in spec
+             else Path(spec['archive'])/'artifacts/anomaly_detection')
     b3=read(args.formal/f'{args.dataset}/seed-2024/B3/result.json')
     folder=args.formal/f'{args.dataset}/seed-2024/B3/runtime'/Path(b3['detection']['metrics_path']).parent
     files={'historical':[archive/'train.pkl',archive/'validation.pkl'],

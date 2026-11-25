@@ -89,11 +89,11 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['fr/seed-2024/B3']
-    assert policy['queue_root']=='runs/formal-fr-dt-20261125'
-    assert policy['max_additional_calls']==7
+    assert policy['allowed_runs']==['sp/seed-2024/B3']
+    assert policy['queue_root']=='runs/formal-sp-mt-20261125'
+    assert policy['max_additional_calls']==8
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(7)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(8)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']
@@ -197,3 +197,21 @@ def test_legacy_disabled_gcad_requires_matching_empty_archived_artifact_not_inve
         formal.preserved_gcad_state(config,run,dict(artifact,artifact_fingerprint='wrong'))
     with pytest.raises(ValueError):
         formal.preserved_gcad_state(config,run,dict(artifact,lagged_behavior_relations=[{'edge':'unexpected'}]))
+
+
+def test_legacy_reevaluation_requires_exact_saved_final_pool_and_immutable_receipt(tmp_path):
+    archive=tmp_path/'archive';tof=archive/'artifacts/tof';tof.mkdir(parents=True)
+    final=tof/'legacy_seq_filter_true.pkl';formal.atomic_pickle_dump(final,[[1],[2],[3]])
+    folder=tmp_path/'reevaluation';folder.mkdir()
+    formal.atomic_pickle_dump(folder/'train.pkl',[[3],[1]])
+    formal.atomic_pickle_dump(folder/'validation.pkl',[[2]])
+    original={'generated_sequence_count':3,'training_sequence_count':3,'validation_sequence_count':3}
+    saved={'new_codex_calls':0,'TOF_rerun':False,'historical_split_recovered':False,
+        'original_record':original,'input':str(final),'input_sha256':formal.sha(final),
+        'detector_dir':str(folder),'detection':{'training_sequence_count':2,'validation_sequence_count':1},
+        'files_sha256':{str(p):formal.sha(p) for p in (final,folder/'train.pkl',folder/'validation.pkl')}}
+    receipt=tmp_path/'result.json';formal.atomic_write_json(receipt,saved)
+    assert formal.verified_baseline_reevaluation(receipt,archive,original)==saved
+    assert formal.baseline_detector_dir({'archive':str(archive),'baseline_reevaluation':saved})==folder
+    formal.atomic_pickle_dump(folder/'validation.pkl',[[99]])
+    with pytest.raises(AssertionError):formal.verified_baseline_reevaluation(receipt,archive,original)
