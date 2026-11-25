@@ -1,0 +1,11 @@
+{
+  "purpose":"Correct one generic limitation sentence; preserve initial report, all models, metrics and locked parameters unchanged",
+  "initial_report":"fr-dt-tuned-comparison-initial-wording.json",
+  "initial_sha256":"3c6b539bf396084d56f6bbaf9e509726bbde93515516c5951d36780bfb1bda17",
+  "corrected_report":"fr-dt-tuned-comparison.json",
+  "corrected_sha256":"7d6c5e3c6b27ee4b7012673fb3c6868e217021012a55855336f8dc85af11c076",
+  "correction":"Original boilerplate asserted sample counts differ. FR-DT actually has equal generated count 28, detector split 22/6 and prompt-example count 47 for historical and B3. The corrected generic sentence makes equality/difference scenario-specific; actual content and J exposure still differ.",
+  "selection_sha256_unchanged":"41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a",
+  "confirmation_sha256_unchanged":"ea0b2f87e1b824a5e1a1703805b6535fc77c16beeb01831f049a3329dd7c632c",
+  "new_training_or_generation_or_test_scoring":false
+}

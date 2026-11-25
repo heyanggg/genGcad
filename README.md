@@ -27,7 +27,7 @@ The autoencoder is a compressor, not an extra behavior generator. Original GSS
 and cached GCAD (source hash verified) read only true I; no augmented observations
 are counted as real. Original data files are never overwritten.
 
-The active next scenario is **one FR-DT B3 run (daytime -> night, seed 2024)**,
+The latest completed scenario is **one FR-DT B3 run (daytime -> night, seed 2024)**,
 in `rasr_research/runs/formal-fr-dt-20261125/`. Its legacy archived hints confirm
 disabled GCAD, zero relations and a fingerprint/source-TSS hash match; the old
 config has no mode flag, which is not invented. Not an active-GCAD comparison.
@@ -41,6 +41,25 @@ fixes the conditional generated-normal-only tuning search before new results.
 No fresh B0, generation expansion/repeat, ablation or independent regenerator.
 The very small validation set and historical disabled-GCAD state are explicit
 limitations, not silently changed to improve apparent comparability.
+
+FR-DT completed 7/7 calls, 28 generated rows, TOF first 27/final 28 and original
+detector split 22/6 (historical raw/final/split also 28/28/22/6). Original B3
+F1 **declined to 0.8964218456**, FP=220/FN=0, versus original historical
+**0.9719244513**, FP=55/FN=0. This negative result is retained separately.
+The predeclared 144-configuration generated-normal validation search selected
+lr=0.001, wd=0, **5 epochs / mean error / p97.5**, shared across both pools.
+Selection was locked and committed **before** tuned test confirmation:
+`95d4ee464c8441e3bab99b8e903603de1f7e2aec`. No new Codex calls.
+Tuned B3 F1 is **0.9916666667** (FP=16/FN=0, precision 0.9834710744,
+recall 1, FPR 0.0168067227, FNR 0, AUROC 1, AUPRC approximately 1).
+The same-tuned historical-data control is **0.9333333333** (FP=136/FN=0),
+which is WORSE than its original protocol. B3 exceeds the original historical
+reference by **1.974222 pp** and the common-tuned control by **5.833333 pp**.
+Keep all four scores: recovery is not an unchanged-protocol RaSR gain or a
+universal detector improvement. `FR-DT-B3-tuned-seed2024` is human-designated
+formal; original B3 is supporting-negative. Only 6 held-out parent rows per
+final model (69 correlated views), one final seed and exposed tests: exploratory.
+GCAD stays verified disabled with no invented mode flag. Generation is closed.
 
 The preceding completed scenario is **one SP-DT B3 run (daytime -> night, seed 2024)**,
 in `rasr_research/runs/formal-sp-dt-20261125/`. Keep its archived GCAD-auto

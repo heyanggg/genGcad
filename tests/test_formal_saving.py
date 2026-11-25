@@ -142,3 +142,33 @@ def test_legacy_disabled_gcad_registration_does_not_invent_auto_mode(tmp_path,mo
     assert entry['gcad_comparison_state']['archived_mode'] is None
     assert 'no mode flag recorded' in entry['baseline_caveat']
     assert 'auto' not in entry['baseline_caveat']
+
+
+def test_completed_fr_daytime_keeps_original_decline_and_common_tuned_control():
+    records=saving.read(ROOT/'rasr_research/formal_records/registry.json')
+    tuned=next(r for r in records['formal_groups'] if r['id']=='FR-DT-B3-tuned-seed2024')
+    negative=next(r for r in records['supporting_groups'] if r['id']=='FR-DT-B3-original-seed2024')
+    assert negative['metrics']['f1_score']==.8964218455743879
+    assert negative['metrics']['FP']==220 and negative['metrics']['FN']==0
+    assert tuned['metrics']['f1_score']==.9916666666666667
+    assert tuned['metrics']['FP']==16 and tuned['metrics']['FN']==0
+    assert tuned['common_tuned_Gen_GCAD_metrics']['f1_score']==.9333333333333333
+    assert tuned['Gen_GCAD_reference_metrics']['f1_score']==.9719244512506381
+    assert tuned['protocol']['epochs']==5 and tuned['protocol']['score']=='mean'
+    assert tuned['gcad_comparison_state']['archived_mode'] is None
+    lock=saving.read(ROOT/'rasr_research/formal_records/fr-dt-tuning-lock-before-confirmation.json')
+    confirmation=saving.read(ROOT/'rasr_research/formal_records/fr-dt-tuned-confirmation.json')
+    assert lock['selection_sha256']==confirmation['selection_sha256']
+    assert lock['parameters']==confirmation['selection']['parameters']
+
+
+def test_fr_daytime_volume_wording_correction_preserves_every_metric_and_lock():
+    folder=ROOT/'rasr_research/formal_records'
+    note=saving.read(folder/'fr-dt-summary-wording-note.json')
+    before=saving.read(folder/note['initial_report']);after=saving.read(folder/note['corrected_report'])
+    assert saving.sha(folder/note['initial_report'])==note['initial_sha256']
+    assert saving.sha(folder/note['corrected_report'])==note['corrected_sha256']
+    assert {k:v for k,v in before.items() if k!='limitations'}=={k:v for k,v in after.items() if k!='limitations'}
+    assert sum(a!=b for a,b in zip(before['limitations'],after['limitations']))==1
+    assert saving.sha(folder/'fr-dt-tuned-confirmation.json')==note['confirmation_sha256_unchanged']
+    assert saving.sha(folder/'fr-dt-tuned-selection.json')==note['selection_sha256_unchanged']

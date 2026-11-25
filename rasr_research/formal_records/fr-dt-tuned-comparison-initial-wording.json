@@ -1,0 +1,105 @@
+{
+  "dataset": "fr",
+  "new_codex_calls": 0,
+  "protocol": "Offline detector tuning, NOT an unchanged-formal-protocol RaSR comparison",
+  "parameters": {
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "epochs": 5,
+    "score": "mean",
+    "percentile": 97.5
+  },
+  "metrics": {
+    "original_historical_B0": {
+      "TP": 952,
+      "TN": 897,
+      "FP": 55,
+      "FN": 0,
+      "FPR": 0.05777310924369748,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.945382323733863,
+      "accuracy": 0.9711134453781513,
+      "f1_score": 0.9719244512506381,
+      "auroc": 1.0,
+      "auprc": 1.0
+    },
+    "original_B3": {
+      "TP": 952,
+      "TN": 732,
+      "FP": 220,
+      "FN": 0,
+      "FPR": 0.23109243697478993,
+      "FNR": 0.0,
+      "recall": 1.0,
+      "precision": 0.8122866894197952,
+      "accuracy": 0.884453781512605,
+      "f1_score": 0.8964218455743879,
+      "auroc": 1.0,
+      "auprc": 1.0
+    },
+    "common_tuned_historical_data_B0": {
+      "TP": 952,
+      "TN": 816,
+      "FP": 136,
+      "FN": 0,
+      "f1_score": 0.9333333333333333,
+      "precision": 0.875,
+      "recall": 1.0,
+      "FPR": 0.14285714285714285,
+      "FNR": 0.0,
+      "auroc": 1.0,
+      "auprc": 0.9999999999999999
+    },
+    "common_tuned_B3": {
+      "TP": 952,
+      "TN": 936,
+      "FP": 16,
+      "FN": 0,
+      "f1_score": 0.9916666666666667,
+      "precision": 0.9834710743801653,
+      "recall": 1.0,
+      "FPR": 0.01680672268907563,
+      "FNR": 0.0,
+      "auroc": 1.0,
+      "auprc": 0.9999999999999999
+    }
+  },
+  "f1_delta_percentage_points": {
+    "B3_tuning_vs_original_B3": 9.524482109227883,
+    "tuned_B3_vs_original_historical_B0": 1.9742215416028608,
+    "tuned_B3_vs_common_tuned_B0": 5.833333333333335
+  },
+  "interpretation": "Detector recovery alone is not evidence that RaSR caused the recovery. The common-tuned B3/B0 comparison is single-seed and unreplicated; retain its actual difference and both protocols.",
+  "limitations": [
+    "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels.",
+    "One final evaluation seed; three holdout seeds are validation, not three independent final experiments.",
+    "Short normal views share parent sequences, not independent calibration observations.",
+    "Covered validation retains singleton input-field supports in training. Proxies corrupt only the original detector input field; they are not real anomaly labels.",
+    "Generated sample counts and actual SSC prompt exposure differ between historical B0 and B3.",
+    "Threshold, score aggregation, grouped split and training settings changed: keep separate from original formal results.",
+    "F1 gains must be considered alongside false-positive and false-negative rates, not alone.",
+    "Historical artifact confirms disabled GCAD; no mode flag was recorded. Not an active-GCAD three-module comparison."
+  ],
+  "evidence": {
+    "confirmation_sha256": "ea0b2f87e1b824a5e1a1703805b6535fc77c16beeb01831f049a3329dd7c632c",
+    "selection_sha256": "41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a",
+    "input_sha256": {
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "89bd4e5a4f549bf366b954a06c78dc117b5eeaa2a222d81239b29de7e08a8340",
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "1e59c29cf64c8ad1244697cdffd07c8bacd99ae513736ed911c6542daa8c1cf2",
+      "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/train.pkl": "80b79ea4d23b57d8997edb389a2f36895e179814479bcb0803e6769e8dcfede1",
+      "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/validation.pkl": "7dfba47b83bc0e35f03b3f836c7c77f081b1f5c6eb412470874fd2d839156dbc"
+    },
+    "model_sha256": {
+      "historical": "8107f4f197fe02a56d61409852e5bb772a7abea2193db08653c95b589015b3c3",
+      "B3": "af7abff08c30d569b4b285eaa813df2ad292d4df5fb6ccdbdc695a06192decba"
+    }
+  },
+  "gcad_comparison_state": {
+    "guidance_enabled": false,
+    "archived_mode": null,
+    "interpretation": "Original legacy archive confirms disabled GCAD and zero prompt edges; no mode flag was recorded or inferred. NOT an active-GCAD three-module comparison.",
+    "mode_field_missing_in_legacy_config": true,
+    "archived_disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
+  }
+}

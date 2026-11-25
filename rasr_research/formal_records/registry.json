@@ -238,6 +238,70 @@
         "interpretation": "Original GCAD-auto pipeline disabled guidance; zero prompt edges. This is NOT an active-GCAD three-module comparison."
       },
       "baseline_caveat": "Historical GCAD-auto disabled guidance; do not label this an active-GCAD three-module comparison."
+    },
+    {
+      "id": "FR-DT-B3-tuned-seed2024",
+      "scenario": "FR-DT",
+      "status": "formal",
+      "metrics": {
+        "TP": 952,
+        "TN": 936,
+        "FP": 16,
+        "FN": 0,
+        "f1_score": 0.9916666666666667,
+        "precision": 0.9834710743801653,
+        "recall": 1.0,
+        "FPR": 0.01680672268907563,
+        "FNR": 0.0,
+        "auroc": 1.0,
+        "auprc": 0.9999999999999999
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 952,
+        "TN": 897,
+        "FP": 55,
+        "FN": 0,
+        "FPR": 0.05777310924369748,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.945382323733863,
+        "accuracy": 0.9711134453781513,
+        "f1_score": 0.9719244512506381,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "f1_gain_percentage_points": 1.9742215416028608,
+      "result": "rasr_research/runs/tuning-fr-dt-20261125/covered-view-cv/confirmation.json",
+      "result_sha256": "ea0b2f87e1b824a5e1a1703805b6535fc77c16beeb01831f049a3329dd7c632c",
+      "protocol": {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "epochs": 5,
+        "score": "mean",
+        "percentile": 97.5
+      },
+      "evidence_type": "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels. Detector tuning is not isolated RaSR gain.",
+      "common_tuned_Gen_GCAD_metrics": {
+        "TP": 952,
+        "TN": 816,
+        "FP": 136,
+        "FN": 0,
+        "f1_score": 0.9333333333333333,
+        "precision": 0.875,
+        "recall": 1.0,
+        "FPR": 0.14285714285714285,
+        "FNR": 0.0,
+        "auroc": 1.0,
+        "auprc": 0.9999999999999999
+      },
+      "gcad_comparison_state": {
+        "guidance_enabled": false,
+        "archived_mode": null,
+        "interpretation": "Original legacy archive confirms disabled GCAD and zero prompt edges; no mode flag was recorded or inferred. NOT an active-GCAD three-module comparison.",
+        "mode_field_missing_in_legacy_config": true,
+        "archived_disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
+      },
+      "baseline_caveat": "Historical artifact confirms disabled GCAD with no mode flag recorded; not an active-GCAD three-module comparison."
     }
   ],
   "supporting_groups": [

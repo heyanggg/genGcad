@@ -1,0 +1,54 @@
+{
+  "dataset": "fr",
+  "input_sha256": {
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "89bd4e5a4f549bf366b954a06c78dc117b5eeaa2a222d81239b29de7e08a8340",
+    "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "1e59c29cf64c8ad1244697cdffd07c8bacd99ae513736ed911c6542daa8c1cf2",
+    "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/train.pkl": "80b79ea4d23b57d8997edb389a2f36895e179814479bcb0803e6769e8dcfede1",
+    "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/validation.pkl": "7dfba47b83bc0e35f03b3f836c7c77f081b1f5c6eb412470874fd2d839156dbc"
+  },
+  "grid": {
+    "learning_rate": [
+      0.0003,
+      0.001
+    ],
+    "weight_decay": [
+      0.0,
+      0.0001
+    ],
+    "epochs": [
+      5,
+      10,
+      15,
+      25
+    ],
+    "score": [
+      "mean",
+      "max",
+      "top2"
+    ],
+    "percentile": [
+      90.0,
+      95.0,
+      97.5
+    ]
+  },
+  "cv_seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "environment": "night",
+  "feature_index": 1,
+  "architecture": "unchanged 512D 8-head 2 encoder/2 decoder existing TransformerAutoencoder",
+  "loss": "unchanged masked normal reconstruction cross-entropy",
+  "batch_size": 32,
+  "selection": "mean proxy F1 over BOTH arms and three generated-normal holdouts; ties normal mean loss then original-parameter proximity",
+  "proxy": "Uniform substitution of the existing detector input field with a legal dictionary value unseen in each generated-normal pool. No target test rows or attack labels accessed. If either pool has no unseen legal values, stop without inventing proxies or changing the search.",
+  "test_files_accessed_for_selection": false,
+  "test_previously_exposed_in_earlier_experiments": true,
+  "new_model_or_generator": false,
+  "new_codex_calls": 0,
+  "holdout_note": "Exact full-row duplicate groups disjoint; singleton input-field supports kept in training",
+  "calibration_views": true,
+  "view_independence_warning": "Multiple normal views share held-out parent rows; view count is not independent sample size"
+}

@@ -4,5 +4,10 @@
   "sha256": "3117d5a10e5d99156b36fdb485927dae2c80cd76a29620cd6501a69248c5decd",
   "file_count": 134,
   "zip_crc_verified": true,
-  "github_uploaded": false
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-fr-dt-b3-20261125",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-fr-dt-b3-20261125/fr-dt-b3-original-20261125.zip",
+  "github_asset_size": 112083523,
+  "github_digest": "sha256:3117d5a10e5d99156b36fdb485927dae2c80cd76a29620cd6501a69248c5decd",
+  "source_commit": "95d4ee464c8441e3bab99b8e903603de1f7e2aec"
 }

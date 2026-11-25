@@ -1,0 +1,88 @@
+{
+  "dataset": "fr",
+  "selection_sha256": "41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a",
+  "selection": {
+    "parameters": {
+      "learning_rate": 0.001,
+      "weight_decay": 0.0,
+      "epochs": 5,
+      "score": "mean",
+      "percentile": 97.5
+    },
+    "input_sha256": {
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/train.pkl": "89bd4e5a4f549bf366b954a06c78dc117b5eeaa2a222d81239b29de7e08a8340",
+      "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/anomaly_detection/validation.pkl": "1e59c29cf64c8ad1244697cdffd07c8bacd99ae513736ed911c6542daa8c1cf2",
+      "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/train.pkl": "80b79ea4d23b57d8997edb389a2f36895e179814479bcb0803e6769e8dcfede1",
+      "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/runtime/anomaly_runs/fr_night_formal-B3-s2024_SPPC_th-0.92_p-95_seed2024/validation.pkl": "7dfba47b83bc0e35f03b3f836c7c77f081b1f5c6eb412470874fd2d839156dbc"
+    },
+    "selection_metric": 0.9952852475670438,
+    "test_not_used_to_select": true,
+    "new_codex_calls": 0,
+    "candidate_count": 144,
+    "calibration_views": true,
+    "environment": "night",
+    "feature_index": 1
+  },
+  "limitations": "Previously exposed test; exploratory confirmation, NOT a fresh confirmatory holdout. Proxy validation negatives are not real anomaly labels.",
+  "new_codex_calls": 0,
+  "arms": {
+    "historical": {
+      "metrics": {
+        "TP": 952,
+        "TN": 816,
+        "FP": 136,
+        "FN": 0,
+        "f1_score": 0.9333333333333333,
+        "precision": 0.875,
+        "recall": 1.0,
+        "FPR": 0.14285714285714285,
+        "FNR": 0.0,
+        "auroc": 1.0,
+        "auprc": 0.9999999999999999
+      },
+      "calibration": {
+        "threshold": 2.194756555557251,
+        "parameters": {
+          "learning_rate": 0.001,
+          "weight_decay": 0.0,
+          "epochs": 5,
+          "score": "mean",
+          "percentile": 97.5
+        },
+        "train_count": 22,
+        "validation_count": 6,
+        "calibration_view_count": 69,
+        "selection_sha256": "41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a"
+      }
+    },
+    "B3": {
+      "metrics": {
+        "TP": 952,
+        "TN": 936,
+        "FP": 16,
+        "FN": 0,
+        "f1_score": 0.9916666666666667,
+        "precision": 0.9834710743801653,
+        "recall": 1.0,
+        "FPR": 0.01680672268907563,
+        "FNR": 0.0,
+        "auroc": 1.0,
+        "auprc": 0.9999999999999999
+      },
+      "calibration": {
+        "threshold": 0.9545902013778685,
+        "parameters": {
+          "learning_rate": 0.001,
+          "weight_decay": 0.0,
+          "epochs": 5,
+          "score": "mean",
+          "percentile": 97.5
+        },
+        "train_count": 22,
+        "validation_count": 6,
+        "calibration_view_count": 69,
+        "selection_sha256": "41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a"
+      }
+    }
+  }
+}

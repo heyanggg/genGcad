@@ -316,7 +316,7 @@ def report(args):
             'One final evaluation seed; three holdout seeds are validation, not three independent final experiments.',
             'Short normal views share parent sequences, not independent calibration observations.',
             'Covered validation keeps singleton-action groups training-only; proxy negatives represent unseen-action corruption, not all real attacks.',
-            'Generated sample counts and actual SSC prompt exposure differ between historical B0 and B3.',
+            'Generated sample counts and actual SSC prompt exposure must be checked in the scenario comparison; equality or difference is scenario-specific.',
             'Threshold, score aggregation, grouped split and training settings changed: keep separate from original formal results.',
             'F1 gains must be considered alongside false-positive and false-negative rates, not alone.'],
         'evidence':{'confirmation_sha256':sha(args.output/'confirmation.json'),
