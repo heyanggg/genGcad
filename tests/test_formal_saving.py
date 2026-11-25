@@ -56,3 +56,28 @@ def test_lower_next_result_is_saved_as_supporting_not_a_formal_success(tmp_path,
     assert len(registry['supporting_groups'])==1
     assert registry['supporting_groups'][0]['metrics']['f1_score']==.90
     assert (records/'fr-st-original-comparison.json').exists()
+
+
+def test_daytime_result_cannot_overwrite_seasonal_us_records(tmp_path,monkeypatch):
+    records=tmp_path/'records';records.mkdir()
+    monkeypatch.setattr(saving,'ROOT',tmp_path);monkeypatch.setattr(saving,'RECORDS',records)
+    saving.write(records/'registry.json',{'formal_groups':[{'id':'US-ST-B3-tuned-seed2024'}]})
+    formal=tmp_path/'formal'
+    saving.write(formal/'us/seed-2024/B3/result.json',{'actual':'daytime result'})
+    saving.write(formal/'single-b3-comparison-us.json',{'status':'completed','scenario':'US-DT',
+        'comparison_baseline_metrics':{'f1_score':.90},'B3_metrics':{'f1_score':.91},
+        'threshold_protocol':'original US night p93'})
+    args=SimpleNamespace(formal=formal,dataset='us',tuning=None)
+    saving.register_next(args);saving.register_next(args)
+    registry=saving.read(records/'registry.json')
+    assert [r['id'] for r in registry['formal_groups']]==['US-ST-B3-tuned-seed2024','US-DT-B3-original-seed2024']
+    assert (records/'us-dt-original-comparison.json').exists()
+    assert not (records/'us-st-original-comparison.json').exists()
+
+
+def test_three_prior_release_backups_are_verified_by_remote_sha_and_size():
+    for name in ('backup-receipt.json','fr-st-original-backup-receipt.json','fr-st-tuned-backup-receipt.json'):
+        receipt=saving.read(ROOT/'rasr_research/formal_records'/name)
+        assert receipt['github_uploaded'] is True
+        assert receipt['github_asset_size']==receipt['bytes']
+        assert receipt['github_digest']=='sha256:'+receipt['sha256']

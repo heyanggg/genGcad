@@ -27,7 +27,27 @@ The autoencoder is a compressor, not an extra behavior generator. Original GSS
 and cached GCAD (source hash verified) read only true I; no augmented observations
 are counted as real. Original data files are never overwritten.
 
-The active next scenario is **one FR-ST B3 run (seed 2024)** versus its archived
+The active next scenario is **one US-DT B3 run (daytime -> night, seed 2024)**,
+in `rasr_research/runs/formal-us-dt-20261125/`. Historical GCAD is enabled with
+11 prompt relationships. Its existing checkpoint reproduces F1 **0.9035871046**
+exactly (AUROC 0.9417488117, AUPRC 0.9585462391), without B0 generation/training.
+The fixed budget is **18 calls**, **450 actual examples / 450 upper bound**,
+including **323 J** naturally selected by the original joint SSC (threshold
+0.919). Source inputs: 1364 true daytime TSS rows plus 3825 valid unchanged-RaSR
+variants. Original TOF, 15-epoch detector, hour-field input and **p93** calibration
+are retained. Old seasonal inputs/queues cannot be reused for this scenario.
+`formal_records/us-dt-predeclared-experiment.json` freezes the conditional
+normal-validation-only tuning search before new results; no additional model,
+generator, ablation, generation repeat or test-label-based selection is allowed.
+
+The three previous large archives are now uploaded and verified by both exact
+bytes and GitHub SHA-256 digests, with receipts committed in `formal_records/`:
+[SP-ST / US-ST backup](https://github.com/heyanggg/genGcad/releases/tag/rasr-formal-sp-us-20261124)
+and [FR-ST original + tuned backups](https://github.com/heyanggg/genGcad/releases/tag/rasr-formal-fr-st-20261124).
+Raw source/target datasets and credentials are excluded. The 2026-11-25 run
+starts only after all three prior asset checks pass.
+
+The preceding FR-ST scenario was **one FR-ST B3 run (seed 2024)** versus its archived
 Gen+GCAD F1 0.9617486339. It uses 16 fixed calls, original joint SSC threshold
 0.918, 358 actual examples (209 J), unchanged 10-epoch TOF and 15-epoch detector,
 and the original FR **p95.5**, not the SP/US p95. Source preparation retains

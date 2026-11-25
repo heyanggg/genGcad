@@ -16,8 +16,8 @@ from experiment import atomic_pickle_dump,atomic_write_json
 from formal_experiment import sha,load
 
 
-def prepare(source,dataset,output):
-    raw=source/f'SmartGen/IoT_data/{dataset}/winter/trn.pkl'
+def prepare(source,dataset,output,source_env='winter'):
+    raw=source/f'SmartGen/IoT_data/{dataset}/{source_env}/trn.pkl'
     tss=raw.parent/'split_trn.pkl'
     embeddings=ROOT/f'relation_research/embeddings/rasr-raw-v1/{dataset}_embeddings.json'
     ready=output/'manifest.json'
@@ -44,7 +44,7 @@ def prepare(source,dataset,output):
         'validation_ids':[r['id'] for r in validation],
         'train_parent_groups':sorted({r['parent_group'] for r in training}),
         'validation_parent_groups':sorted({r['parent_group'] for r in validation})})
-    saved={'dataset':dataset,'config':asdict(config),'source_count':len(originals),
+    saved={'dataset':dataset,'source_environment':source_env,'config':asdict(config),'source_count':len(originals),
         'train_count':len(training),'validation_count':len(validation),'B3_J_count':len(variants),
         'operation_counts':dict(Counter(r['edit']['operation'] for r in variants)),'skipped':skips,
         'input_sha256':{str(p):sha(p) for p in (raw,tss,embeddings,ROOT/'SmartGen/rasr.py')},
@@ -57,9 +57,10 @@ def prepare(source,dataset,output):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source',type=Path,default=Path('/home/heyang/projects/SmartGen_GCAD'))
-    parser.add_argument('--dataset',choices=['fr'],default='fr')
+    parser.add_argument('--dataset',choices=['sp','us','fr'],default='fr')
+    parser.add_argument('--source-env',choices=['winter','daytime','single'],default='winter')
     parser.add_argument('--output',type=Path,default=ROOT/'rasr_research/runs/b3-source-20261124/fr/prepared')
-    args=parser.parse_args();print(json.dumps(prepare(args.source,args.dataset,args.output),indent=2))
+    args=parser.parse_args();print(json.dumps(prepare(args.source,args.dataset,args.output,args.source_env),indent=2))
 
 
 if __name__=='__main__':main()

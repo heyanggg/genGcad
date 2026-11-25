@@ -4,6 +4,7 @@ import inspect
 from pathlib import Path
 import numpy as np
 import torch
+import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('detector_tuning',ROOT/'rasr_research/tune_detector.py')
@@ -12,6 +13,23 @@ tune=importlib.util.module_from_spec(spec);spec.loader.exec_module(tune)
 
 def row(*actions):
     return [v for a in actions for v in (0,0,1,a)]
+
+
+@pytest.mark.parametrize('environment,field,classname',[('spring',3,'TimeSeriesDataset2'),('night',1,'TimeSeriesDataset3'),('multiple',2,'TimeSeriesDataset4')])
+def test_environment_input_adapter_matches_original_dataset(environment,field,classname):
+    import models1
+    rows=[[0,7,4,11,0,6,5,12],[1,0,3,10]]
+    padded=np.full((len(rows),40),268,dtype=np.int64)
+    for i,r in enumerate(rows):padded[i,:len(r)]=r
+    dataset=getattr(models1,classname)(269,padded)
+    expected=np.stack([dataset[i][0].numpy() for i in range(len(rows))])
+    assert tune.feature_index(environment)==field
+    assert np.array_equal(tune.arrays(rows,269,field),expected)
+    proxies=tune.proxy_rows(rows,rows,list(range(20)),42,field)
+    for index,changed in enumerate(proxies):
+        original=rows[index//3]
+        diffs=[i for i,(a,b) in enumerate(zip(original,changed)) if a!=b]
+        assert len(diffs)==1 and diffs[0]%4==field
 
 
 def test_covered_validation_has_no_duplicate_groups_or_unseen_normal_actions():

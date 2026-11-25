@@ -1,0 +1,22 @@
+{
+  "scenario": "US-DT: daytime to night",
+  "date": "2026-11-25",
+  "scope": "One B3 seed-2024 run only; historical B0 data and detector reused, no new B0 calls or ablations",
+  "selection_reason": "Complete historical baseline with enabled GCAD and consistent train/validation counts; chosen before new B3 results. SP daytime baseline disables GCAD and SP multiple archive has inconsistent split counts, so neither is silently treated as an equivalent complete baseline.",
+  "historical_config": {"ssc_threshold": 0.919, "calls": 18, "example_upper_budget": 450, "detector_validation_percentile": 93, "detector_epochs": 15, "tof_epochs": 10},
+  "prompt": "Exact archived non-example content including GSS, enabled GCAD and original environment-aware constraints. Only source examples replaced by original SSC joint I+J output. No forced enhanced quota, no refill.",
+  "rasr": "Unchanged C/T/S and insertion/replacement algorithms; window 2, decay 0.8, at most two semantic and two statistical attempts per original training parent; no independent generator.",
+  "conditional_tuning": {
+    "trigger": "Original-protocol B3 does not exceed historical F1",
+    "method": "Same existing-detector search as prior US-ST/FR-ST, shared across historical/B3 generated-normal pools and three grouped holdouts; no new Codex calls",
+    "task_adapter": "Original night detector uses quadruple hour field index 1, not actions. Coverage, scoring and proxy mutation all use that same field; network and loss unchanged.",
+    "grid": {"learning_rate": [0.0003,0.001], "weight_decay": [0,0.0001], "epochs": [5,10,15,25], "score": ["mean","max","top2"], "percentile": [90,95,97.5]},
+    "calibration_views": true,
+    "proxy": "Uniform one-field substitution using legal dictionary hour values unseen in each normal generated pool; not real anomaly labels. If either pool has no unseen values, stop without changing search or inventing proxies.",
+    "selection": "Mean proxy F1 over both pools and seeds 2024/2025/2026; ties normal mean loss then existing deterministic original-parameter proximity rule",
+    "lock": "Write selection hash before final refits and one post-lock test scoring; preserve every candidate and negative result",
+    "limits": "Exploratory on historically exposed tests; changed detector protocol kept separate. Formal status is a human designation, not statistical significance or isolated RaSR proof. No test-label parameter selection."
+  },
+  "prior_large_backups": "All three GitHub assets verified by exact SHA-256 and bytes before any new generation",
+  "target_test_used_for_parameter_selection": false
+}

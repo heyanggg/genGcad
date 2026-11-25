@@ -68,7 +68,9 @@ def cwd(path):
         os.chdir(previous)
 
 
-def prepared_path(ds):
+def prepared_path(ds, source_env='winter'):
+    if source_env!='winter':
+        return ROOT/f'rasr_research/runs/b3-source-20261125/{ds}-{source_env}/prepared'
     root='b3-source-20261124' if ds=='fr' else 'pilot-20261124'
     return ROOT/f'rasr_research/runs/{root}/{ds}/prepared'
 
@@ -77,12 +79,27 @@ def vocabulary_size(ds):
     return {'sp':235,'us':269,'fr':223}[ds]
 
 
-def frozen_files(datasets=('sp','us')):
+def frozen_files(datasets=('sp','us'),source_env='winter'):
     return {str(p.relative_to(ROOT)): sha(p) for p in [ROOT / "SmartGen/rasr.py",
         *[ROOT/f'relation_research/embeddings/rasr-raw-v1/{ds}_embeddings.json' for ds in sorted(datasets)],
-        *[prepared_path(ds)/name for ds in datasets
-          for name in (('relations.npz','B3_J.pkl','I.pkl','split.json') if ds=='fr' else
+        *[prepared_path(ds,source_env)/name for ds in datasets
+          for name in (('relations.npz','B3_J.pkl','I.pkl','split.json') if ds=='fr' or source_env!='winter' else
                        ('relations.npz','B1_J.pkl','B3_J.pkl','I.pkl'))]]}
+
+
+def target_environment(protocol,ds):
+    return protocol['datasets'][ds].get('reference_config',{}).get('target_environment','spring')
+
+
+def test_relatives(ds,environment):
+    attack={'spring':'heater','night':'time','multiple':'tv'}[environment]
+    return (f'IoT_data/{ds}/{environment}/split_test.pkl',
+            f'attack/{ds}/labeled_{ds}_{environment}_attack_{attack}.pkl')
+
+
+def scenario(protocol,ds):
+    spec=protocol['datasets'][ds]
+    return ds.upper()+'-'+{'spring':'ST','night':'DT','multiple':'MT'}[target_environment(protocol,ds)]
 
 
 def unpack_prompt(prompt):
@@ -107,12 +124,16 @@ def audit(args):
     destination = args.output / "protocol.json"
     if destination.exists():
         saved = read(destination)
-        if saved["frozen_rasr_inputs"] != frozen_files(tuple(saved['datasets'])):
+        if saved.get('source_environment','winter')!=getattr(args,'source_env','winter'):
+            raise ValueError('Output belongs to a different source environment; use an isolated directory')
+        if saved["frozen_rasr_inputs"] != frozen_files(tuple(saved['datasets']),saved.get('source_environment','winter')):
             raise ValueError("RaSR algorithm or frozen data changed; do not resume")
         return saved
-    datasets=('fr',) if getattr(args,'dataset',None)=='fr' else ('sp','us')
+    source_env=getattr(args,'source_env','winter')
+    target_env={'winter':'spring','daytime':'night','single':'multiple'}[source_env]
+    datasets=(args.dataset,) if source_env!='winter' or getattr(args,'dataset',None)=='fr' else ('sp','us')
     result = {"version": "formal-joint-ssc-v1", "seeds": list(SEEDS), "arms": list(ARMS),
-        "frozen_rasr_inputs": frozen_files(datasets), "independent_regenerator": False,
+        "frozen_rasr_inputs": frozen_files(datasets,source_env), "independent_regenerator": False,
         "selection": "joint I+J; original train-mode SSC; no origin quota",
         "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
         "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
@@ -124,11 +145,12 @@ def audit(args):
             "train_ratio": .8, "validation_percentile": 95, "implementation_unchanged": True},
         "old_50_percent_control": str(ROOT / "rasr_research/run_experiment.py"),
         "no_test_based_tuning": True, "datasets": {}}
-    if datasets==('fr',):
+    if source_env!='winter':result['source_environment']=source_env
+    if datasets==('fr',) or source_env!='winter':
         result.update(seeds=[2024],arms=['B3'],
             repetition='One explicitly approved B3 generation; historical B0 reused, no ablation or repeated generation')
     for ds in datasets:
-        archive = list((args.source / "experiment_archive/formal").glob(f"{ds}_winter_to_spring_*"))
+        archive = list((args.source / "experiment_archive/formal").glob(f"{ds}_{source_env}_to_{target_env}_*"))
         if len(archive) != 1:
             raise ValueError(f"ambiguous archive {archive}")
         archive = archive[0]
@@ -142,12 +164,12 @@ def audit(args):
             day_budget[day] += len(examples)
             templates.append({"category": str(cat), "day": day, "examples": len(examples),
                               "path": str(file), "sha256": sha(file)})
-        prepared = prepared_path(ds)
-        original = args.source / f"SmartGen/IoT_data/{ds}/winter/trn.pkl"
+        prepared = prepared_path(ds,source_env)
+        original = args.source / f"SmartGen/IoT_data/{ds}/{source_env}/trn.pkl"
         pilot = read(prepared / "manifest.json")
-        assert sha(original) == (pilot['input_sha256'][str(original)] if ds=='fr' else pilot['source_sha256'])
-        source_tss = args.source / f"SmartGen/IoT_data/{ds}/winter/split_trn.pkl"
-        assert sha(source_tss) == (pilot['input_sha256'][str(source_tss)] if ds=='fr' else pilot['true_tss_sha256'])
+        assert sha(original) == (pilot['input_sha256'][str(original)] if 'input_sha256' in pilot else pilot['source_sha256'])
+        source_tss = args.source / f"SmartGen/IoT_data/{ds}/{source_env}/split_trn.pkl"
+        assert sha(source_tss) == (pilot['input_sha256'][str(source_tss)] if 'input_sha256' in pilot else pilot['true_tss_sha256'])
         assert [r["row"] for r in load(prepared/"I.pkl")] == load(source_tss)
         equal_code = {}
         for relative in ("models1.py", "sppc.py", "find_categories.py", "security_check.py", "baseline1.py"):
@@ -175,6 +197,20 @@ def audit(args):
         if ds=='fr':
             result['datasets'][ds]['pilot_differences']['gcad']='Same original archived true-source FR GCAD and prompt wording'
             result['datasets'][ds]['pilot_differences']['threshold']='Original FR p95.5 generated-validation protocol, not US/SP p95'
+        if source_env!='winter':
+            spec=result['datasets'][ds]
+            assert manifest['config']['original_environment']==source_env
+            assert manifest['config']['target_environment']==target_env
+            assert run['gcad'].get('guidance_enabled',False),'A genuine enabled-GCAD historical baseline is required'
+            assert spec['reference_metrics']['training_sequence_count']+spec['reference_metrics']['validation_sequence_count']==spec['reference_metrics']['generated_sequence_count']
+            spec['historical_gcad']=run['gcad']
+            spec['prepared_source']=str(prepared)
+            spec['pilot_differences']={'scope':'New source task; no pilot results reused',
+                'data':'Same true source TSS and target evaluation identity; isolated outputs',
+                'ssc':'Original joint I+J greedy SSC, no origin quota; identical archived source checkpoint and threshold',
+                'gss_gcad_prompt':'Exact archived prompt outside examples; no recounting on J',
+                'budget':'Identical historical calls and per-category example upper bounds; actual SSC output, no refill',
+                'tof_detector':'Unchanged implementation, historical percentile and original environment-specific token field'}
     atomic_write_json(destination, result)
     return result
 
@@ -262,7 +298,7 @@ def compress(args, protocol, ds, arm):
         atomic_write_json(receipt, {"mode": "verified actual archived SSC examples", "J_input": 0,
             "J_selected": 0, "actual_examples": sum(map(len,selected))})
         return selected
-    prepared = prepared_path(ds)
+    prepared = Path(protocol['datasets'][ds].get('prepared_source',prepared_path(ds)))
     originals, variants = load(prepared/"I.pkl"), load(prepared/f"{arm}_J.pkl")
     linked = defaultdict(list)
     for r in variants:
@@ -344,13 +380,14 @@ def queue(args, protocol, ds, arm, seeds=SEEDS):
     print(f"QUEUED {ds} {arm}: {len(selected)} calls x {len(seeds)} repetition(s); no remote calls made",flush=True)
 
 
-def target_copies(args, ds, runtime):
+def target_copies(args, ds, runtime,environment='spring'):
+    normal_rel,attack_rel=test_relatives(ds,environment)
     verified=args.output/f'historical-checkpoint-score/{ds}/result.json'
     if verified.exists():
         previous=read(verified)
-        assert sha(args.source/f'SmartGen/IoT_data/{ds}/spring/split_test.pkl')==previous['normal_test_sha256']
-        assert sha(args.source/f'SmartGen/attack/{ds}/labeled_{ds}_spring_attack_heater.pkl')==previous['attack_test_sha256']
-    for rel in (f"IoT_data/{ds}/spring/split_test.pkl",f"attack/{ds}/labeled_{ds}_spring_attack_heater.pkl"):
+        assert sha(args.source/'SmartGen'/normal_rel)==previous['normal_test_sha256']
+        assert sha(args.source/'SmartGen'/attack_rel)==previous['attack_test_sha256']
+    for rel in (normal_rel,attack_rel):
         dest=runtime/rel; dest.parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(args.source/"SmartGen"/rel,dest)
 
@@ -412,23 +449,24 @@ def verify_response_receipt(directory):
 
 
 def evaluate_run(args, protocol, ds, seed, arm):
+    environment=target_environment(protocol,ds)
     run=args.output/ds/f"seed-{seed}"/arm
     if (run/"result.json").exists(): return read(run/"result.json")
     templates=protocol["datasets"][ds]["categories"]
     calls=[run/f"codex/call-{i:02d}" for i in range(len(templates))]
     if not all((p/"response.txt").exists() for p in calls): return None
     runtime=run/"runtime"; runtime.mkdir(exist_ok=True)
-    target_copies(args,ds,runtime)
+    target_copies(args,ds,runtime,environment)
     threshold=protocol["datasets"][ds]["reference_config"]["threshold"]
     label=f"formal-{arm}-s{seed}"
     categories=[t["category"] for t in templates]
-    target=runtime/f"IoT_data/{ds}/spring"; target.mkdir(parents=True,exist_ok=True)
-    (runtime/f"filter_data/{ds}/spring").mkdir(parents=True,exist_ok=True)
+    target=runtime/f"IoT_data/{ds}/{environment}"; target.mkdir(parents=True,exist_ok=True)
+    (runtime/f"filter_data/{ds}/{environment}").mkdir(parents=True,exist_ok=True)
     evidence=[]
     for t,p in zip(templates,calls):
         receipt=verify_response_receipt(p)
         response=(p/"response.txt").read_text(); parsed=CodexClient.parse_sequence_block(response)
-        atomic_pickle_dump(target/f"{ds}_spring_generation_day_{t['category']}_SPPC_th={threshold}_{label}.pkl",response)
+        atomic_pickle_dump(target/f"{ds}_{environment}_generation_day_{t['category']}_SPPC_th={threshold}_{label}.pkl",response)
         audit=read(p/"input_audit.json"); assert sha(p/"prompt.txt")==audit["prompt_sha256"]
         evidence.append({"category":t["category"],"prompt_sha256":audit["prompt_sha256"],
             "cli_returncode":receipt['returncode'],
@@ -440,12 +478,12 @@ def evaluate_run(args, protocol, ds, seed, arm):
     atomic_write_json(run/"status.json",{"status":"TOF-and-detection","seed":seed})
     maps=[dictionary.dayofweek_dict,dictionary.hour_dict,getattr(dictionary,f"{ds}_devices_dict"),getattr(dictionary,f"{ds}_actions")]
     with (run/"evaluation.log").open("w",encoding="utf-8",buffering=1) as log,redirect_stdout(log),redirect_stderr(log),cwd(runtime):
-        Extract(ds,"spring",threshold,"SPPC",label,categories)
-        Transnum(ds,"spring",threshold,"SPPC",label,categories,maps)
-        tof=security_check(ds,"spring",threshold,"SPPC",label,seed=seed,keep_intermediates=True)
+        Extract(ds,environment,threshold,"SPPC",label,categories)
+        Transnum(ds,environment,threshold,"SPPC",label,categories,maps)
+        tof=security_check(ds,environment,threshold,"SPPC",label,seed=seed,keep_intermediates=True)
         percentile=protocol['datasets'][ds].get('detector_validation_percentile',95)
-        detection=Anomaly_detection(ds,"spring",threshold,"SPPC",label,percentile,seed=seed)
-    raw=load(runtime/f"filter_data/{ds}/spring/{ds}_spring_generation_SPPC_th={threshold}_{label}_seq.pkl")
+        detection=Anomaly_detection(ds,environment,threshold,"SPPC",label,percentile,seed=seed)
+    raw=load(runtime/f"filter_data/{ds}/{environment}/{ds}_{environment}_generation_SPPC_th={threshold}_{label}_seq.pkl")
     final=load(runtime/tof["output_path"])
     final_counter=Counter(tuple(r) for r in final)
     detector_dir=runtime/Path(detection["metrics_path"]).parent
@@ -453,7 +491,7 @@ def evaluate_run(args, protocol, ds, seed, arm):
     validation_counter=Counter(tuple(r) for r in load(detector_dir/'validation.pkl'))
     converted_all=[]
     for entry,t in zip(evidence,templates):
-        seqs=load(target/f"{ds}_spring_generation_day_{t['category']}_SPPC_th={threshold}_{label}_seq.pkl")
+        seqs=load(target/f"{ds}_{environment}_generation_day_{t['category']}_SPPC_th={threshold}_{label}_seq.pkl")
         entry["generated_sequences"]=[]
         for i,text in enumerate(seqs):
             numeric=numeric_sequence(text,maps)
@@ -465,7 +503,7 @@ def evaluate_run(args, protocol, ds, seed, arm):
                 "matching_detector_train_copies":train_counter[tuple(numeric)],
                 "matching_detector_validation_copies":validation_counter[tuple(numeric)],
                 "duplicate_attribution":"matching counts refer to identical numeric rows, not unique causality"})
-        entry["conversion_output"]=str(runtime/f"filter_data/{ds}/spring/{ds}_spring_generation_SPPC_th={threshold}_{label}_seq.pkl")
+        entry["conversion_output"]=str(runtime/f"filter_data/{ds}/{environment}/{ds}_{environment}_generation_SPPC_th={threshold}_{label}_seq.pkl")
     assert converted_all==raw,"evidence trace must agree exactly with existing Transnum output"
     result={"status":"completed","dataset":ds,"arm":arm,"seed":seed,"tof":tof,"detection":detection,
         "actual_codex_calls":len(calls),"prompt_examples":sum(e["actual_examples"] for e in evidence),
@@ -533,6 +571,7 @@ def prepare_single(args, protocol):
     if not policy_path.exists():
         raise ValueError("Explicit single-run generation policy is required before queue preparation")
     policy = read(policy_path)
+    assert args.output.resolve()==(policy_path.parent/policy['queue_root']).resolve(), 'Queue output must match the single authorized scenario root'
     assert policy['allowed_runs'] == [f'{ds}/seed-2024/B3']
     spec = protocol['datasets'][ds]
     assert len(spec['categories']) == policy['max_additional_calls']
@@ -562,7 +601,7 @@ def prepare_single(args, protocol):
         prompt_checks.append({'category':template['category'],'actual_examples':len(examples),
                               'example_upper_budget':template['examples'],'non_example_content_identical':True})
     atomic_write_json(single_file(args,ds,'active-scope'), {
-        'version':f'single-{ds.upper()}-ST-B3-historical-baseline-v1','dataset':ds,'arm':'B3','seed':2024,
+        'version':f'single-{scenario(protocol,ds)}-B3-historical-baseline-v1','dataset':ds,'arm':'B3','seed':2024,
         'runs_required':1,'historical_baseline':baseline,
         'baseline_files_sha256':{str(p):sha(p) for p in files},
         'baseline_new_codex_calls':0,'planned_B3_calls':len(spec['categories']),'repetitions':1,
@@ -603,7 +642,7 @@ def single_report(args, protocol):
              if metrics and key in metrics and key in ('f1_score','precision','recall','FPR','FNR','auroc','auprc')}
     atomic_write_json(report_path, {
         'status':'completed' if result else ('blocked-generation' if errors or policy.get('hold') else 'awaiting-generation'),
-        'scenario':f'{ds.upper()}-ST','baseline_type':'original project formal Gen+GCAD archive, not newly generated B0',
+        'scenario':scenario(protocol,ds),'baseline_type':'original project formal Gen+GCAD archive, not newly generated B0',
         'historical_baseline':baseline,'B3_metrics':metrics,'B3_minus_historical':delta,
         'comparison_baseline_metrics':comparable_baseline,
         'ranking_baseline_provenance':'original archived detector re-scored at original threshold; threshold metrics verified identical' if rescore and rescore['matches_original_recorded_metrics'] else None,
@@ -658,11 +697,13 @@ def score_historical_checkpoint(args, protocol):
     reference=protocol['datasets'][ds]['reference_metrics']
     checkpoint=Path(protocol['datasets'][ds]['archive'])/'artifacts/anomaly_detection/detector.pth'
     fingerprint=sha(checkpoint)
-    attack=args.source/f'SmartGen/attack/{ds}/labeled_{ds}_spring_attack_heater.pkl'
-    normal=args.source/f'SmartGen/IoT_data/{ds}/spring/split_test.pkl'
+    environment=target_environment(protocol,ds)
+    normal_rel,attack_rel=test_relatives(ds,environment)
+    attack=args.source/'SmartGen'/attack_rel
+    normal=args.source/'SmartGen'/normal_rel
     setup_seed(2024)
     with (output/'evaluation.log').open('w',encoding='utf-8') as log,redirect_stdout(log),redirect_stderr(log):
-        evaluation=evaluate_detector('spring',vocabulary_size(ds),str(attack),str(normal),str(checkpoint),10,
+        evaluation=evaluate_detector(environment,vocabulary_size(ds),str(attack),str(normal),str(checkpoint),10,
             threshold=reference['detection_threshold'],scores_path=output/'continuous_scores.npz',detailed=True)
     names=('TP','TN','FP','FN','FPR','FNR','recall','precision','accuracy','f1_score')
     metrics={name:float(value) for name,value in zip(names,evaluation['threshold_metrics'])}
@@ -686,6 +727,7 @@ def main():
     parser.add_argument("--action",choices=['audit','prepare-single','evaluate-single','score-historical','wait-single','recover-stdout','status'],required=True,
                         help='Old multi-arm queue/watch actions are intentionally disabled by the latest user instruction')
     parser.add_argument("--dataset",choices=['sp','us','fr'])
+    parser.add_argument('--source-env',choices=['winter','daytime','single'],default='winter')
     args=parser.parse_args();args.output=args.output.resolve();args.output.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(2); protocol=audit(args)
     if args.action!='audit': budget_amendment(args)
@@ -708,7 +750,7 @@ def main():
     if args.action=='wait-single':
         run=args.output/f'{ds}/seed-2024/B3'
         count=len(protocol['datasets'][ds]['categories'])
-        print(f'WAIT {ds.upper()}-ST B3 only: original TOF/detector start after all {count} existing responses; zero new Codex calls',flush=True)
+        print(f'WAIT {scenario(protocol,ds)} B3 only: original TOF/detector start after all {count} existing responses; zero new Codex calls',flush=True)
         while not all((run/f'codex/call-{i:02d}/response.txt').exists() for i in range(count)):
             if (run/'generation-halt.json').exists():
                 single_report(args,protocol)

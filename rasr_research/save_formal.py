@@ -98,14 +98,20 @@ def safe_artifact(path):
 
 
 def register_next(args):
-    directory=args.formal;comparison=read(directory/f'single-b3-comparison-{args.dataset}.json')
+    directory=args.formal
+    suffix='' if args.dataset=='sp' else '-'+args.dataset
+    comparison_path=directory/f'single-b3-comparison{suffix}.json'
+    comparison=read(comparison_path)
+    scenario_name=comparison.get('scenario',args.dataset.upper()+'-ST')
+    if not re.fullmatch(r'(SP|US|FR)-(ST|DT|MT)',scenario_name):raise ValueError('Invalid scenario')
+    record_prefix=scenario_name.lower()
     if comparison['status']!='completed':raise ValueError('Cannot register an incomplete experiment')
     baseline=comparison['comparison_baseline_metrics']
     tuned=read(args.tuning/'confirmation.json') if args.tuning else None
     metrics=tuned['arms']['B3']['metrics'] if tuned else comparison['B3_metrics']
     variant='tuned' if tuned else 'original'
     result=args.tuning/'confirmation.json' if tuned else directory/f'{args.dataset}/seed-2024/B3/result.json'
-    entry={'id':f'{args.dataset.upper()}-ST-B3-{variant}-seed2024','scenario':args.dataset.upper()+'-ST',
+    entry={'id':f'{scenario_name}-B3-{variant}-seed2024','scenario':scenario_name,
         'status':'formal' if metrics['f1_score']>baseline['f1_score'] else 'supporting-not-above-baseline',
         'metrics':metrics,'Gen_GCAD_reference_metrics':baseline,
         'f1_gain_percentage_points':100*(metrics['f1_score']-baseline['f1_score']),
@@ -115,22 +121,25 @@ def register_next(args):
     if tuned:
         entry['common_tuned_Gen_GCAD_metrics']=tuned['arms']['historical']['metrics']
         entry['evidence_type']=tuned['limitations']+' Detector tuning is not isolated RaSR gain.'
-    filename=f'{args.dataset}-st-{variant}-comparison.json'
-    destination=RECORDS/filename;original=args.tuning/'summary.json' if tuned else directory/f'single-b3-comparison-{args.dataset}.json'
+    filename=f'{record_prefix}-{variant}-comparison.json'
+    destination=RECORDS/filename;original=args.tuning/'summary.json' if tuned else comparison_path
     if destination.exists() and sha(destination)!=sha(original):raise ValueError('Saved result changed')
     if not destination.exists():shutil.copy2(original,destination)
     if tuned:
         for name in ('confirmation.json','selection.json','protocol.json'):
-            target=RECORDS/f'{args.dataset}-st-tuned-{name}'
+            target=RECORDS/f'{record_prefix}-tuned-{name}'
             source=args.tuning/name
             if target.exists() and sha(target)!=sha(source):raise ValueError('Saved tuning evidence changed')
             if not target.exists():shutil.copy2(source,target)
     # Preserve the exact executed protocol/SSC/source preparation alongside
     # aggregate metrics; later code defaults are not a protocol substitute.
-    for source,name in [(directory/'protocol.json',f'{args.dataset}-st-protocol.json'),
-        (directory/f'active-scope-{args.dataset}.json',f'{args.dataset}-st-scope.json'),
-        (ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared/manifest.json',
-         f'{args.dataset}-st-source-preparation.json')]:
+    protocol=read(directory/'protocol.json') if (directory/'protocol.json').exists() else {}
+    source_env=protocol.get('source_environment','winter')
+    prepared=(ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared' if source_env=='winter'
+              else ROOT/f'rasr_research/runs/b3-source-20261125/{args.dataset}-{source_env}/prepared')
+    for source,name in [(directory/'protocol.json',f'{record_prefix}-protocol.json'),
+        (directory/f'active-scope{suffix}.json',f'{record_prefix}-scope.json'),
+        (prepared/'manifest.json',f'{record_prefix}-source-preparation.json')]:
         if not source.exists():continue
         target=RECORDS/name
         if target.exists() and sha(target)!=sha(source):raise ValueError('Saved protocol changed: '+name)
@@ -176,9 +185,17 @@ def build():
 def build_next(args):
     register_next(args)
     variant='tuned' if args.tuning else 'original'
-    archive=BACKUPS/f'{args.dataset}-st-b3-{variant}-20261124.zip'
+    suffix='' if args.dataset=='sp' else '-'+args.dataset
+    comparison=read(args.formal/f'single-b3-comparison{suffix}.json')
+    record_prefix=comparison['scenario'].lower()
+    date=getattr(args,'backup_date','20261124')
+    if not re.fullmatch(r'\d{8}',date):raise ValueError('Invalid archive date')
+    archive=BACKUPS/f'{record_prefix}-b3-{variant}-{date}.zip'
     if archive.exists():raise ValueError('Existing archive retained; refusing overwrite')
-    roots=[args.formal,ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared']
+    source_env=read(args.formal/'protocol.json').get('source_environment','winter')
+    prepared=(ROOT/f'rasr_research/runs/b3-source-20261124/{args.dataset}/prepared' if source_env=='winter'
+              else ROOT/f'rasr_research/runs/b3-source-20261125/{args.dataset}-{source_env}/prepared')
+    roots=[args.formal,prepared]
     if args.tuning:roots.append(args.tuning)
     files=set(p for base in roots for p in base.rglob('*') if safe_artifact(p))
     files.update(RECORDS.glob(f'{args.dataset}-*.json'))
@@ -193,15 +210,16 @@ def build_next(args):
     with zipfile.ZipFile(archive) as bundle:assert bundle.testzip() is None
     receipt={'archive_name':archive.name,'bytes':archive.stat().st_size,'sha256':sha(archive),
              'file_count':len(files),'zip_crc_verified':True,'github_uploaded':False}
-    write(RECORDS/f'{args.dataset}-st-{variant}-backup-receipt.json',receipt)
+    write(RECORDS/f'{record_prefix}-{variant}-backup-receipt.json',receipt)
     print('BACKUP '+json.dumps(receipt),flush=True)
 
 
 def upload(args):
     """Use the existing Git credential helper in memory; never print credentials."""
     receipt_name=getattr(args,'receipt','backup-receipt.json')
-    allowed={'backup-receipt.json','fr-st-original-backup-receipt.json','fr-st-tuned-backup-receipt.json'}
-    if receipt_name not in allowed:raise ValueError('Only the three authorized backup receipts may be uploaded')
+    allowed={'backup-receipt.json','fr-st-original-backup-receipt.json','fr-st-tuned-backup-receipt.json',
+             'us-dt-original-backup-receipt.json','us-dt-tuned-backup-receipt.json'}
+    if receipt_name not in allowed:raise ValueError('Only explicitly scoped experiment backup receipts may be uploaded')
     receipt_path=RECORDS/receipt_name;receipt=read(receipt_path)
     if Path(receipt['archive_name']).name!=receipt['archive_name']:raise ValueError('Invalid archive basename')
     archive=BACKUPS/receipt['archive_name']
@@ -215,6 +233,7 @@ def upload(args):
     token=values.get('password')
     if credential.returncode or not token:raise RuntimeError('No noninteractive GitHub credential; no credential output saved')
     repo='heyanggg/genGcad';tag='rasr-formal-sp-us-20261124' if receipt_name=='backup-receipt.json' else 'rasr-formal-fr-st-20261124'
+    if receipt_name.startswith('us-dt-'):tag='rasr-us-dt-b3-20261125'
     def api(method,path,payload=None):
         data=None if payload is None else json.dumps(payload).encode()
         request=urllib.request.Request('https://api.github.com'+path,data=data,method=method,
@@ -225,7 +244,7 @@ def upload(args):
     except urllib.error.HTTPError as error:
         if error.code!=404:raise
         release=api('POST',f'/repos/{repo}/releases',{'tag_name':tag,'target_commitish':args.commit,
-            'name':('Formal RaSR groups: SP-ST and tuned US-ST (2026-11-24)' if receipt_name=='backup-receipt.json' else 'FR-ST B3: original and tuned results (2026-11-24)'),
+            'name':('RaSR B3 experiment evidence: '+tag),
             'body':'Human-designated formal B3 groups, exact protocols and full generated evidence. Tuned results use a changed detector protocol and previously exposed tests; not isolated causal RaSR proof. All negative attempts retained. Raw source/target datasets and credentials excluded.',
             'draft':False,'prerelease':False})
     assets=api('GET',f'/repos/{repo}/releases/{release["id"]}/assets')
@@ -258,10 +277,11 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--action',choices=['register','register-next','build','build-next','upload','git-export'],required=True)
     parser.add_argument('--commit',help='Already-pushed immutable commit for release tag')
-    parser.add_argument('--receipt',default='backup-receipt.json',help='One of the three existing authorized archive receipts')
+    parser.add_argument('--receipt',default='backup-receipt.json',help='A scoped experiment archive receipt')
+    parser.add_argument('--backup-date',default='20261124')
     parser.add_argument('--batch',type=int,default=0)
     parser.add_argument('--utf8',action='store_true',help='Inline text tree export for the connected GitHub API')
-    parser.add_argument('--dataset',choices=['fr'],default='fr')
+    parser.add_argument('--dataset',choices=['sp','us','fr'],default='fr')
     parser.add_argument('--formal',type=Path,default=ROOT/'rasr_research/runs/formal-fr-st-20261124')
     parser.add_argument('--tuning',type=Path)
     parser.add_argument('--since',help='Export only paths changed since this local commit')

@@ -89,10 +89,11 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['fr/seed-2024/B3']
-    assert policy['max_additional_calls']==16
+    assert policy['allowed_runs']==['us/seed-2024/B3']
+    assert policy['queue_root']=='runs/formal-us-dt-20261125'
+    assert policy['max_additional_calls']==18
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(16)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(18)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']
@@ -161,3 +162,11 @@ def test_historical_rescore_reuses_checkpoint_and_original_threshold_without_tra
     assert result['threshold_unchanged']
     assert result['matches_original_recorded_metrics']
     assert checkpoint.read_bytes()==b'unchanged checkpoint fixture'
+
+
+def test_new_environment_paths_and_inputs_cannot_reuse_seasonal_source():
+    assert formal.prepared_path('us','daytime')!=formal.prepared_path('us')
+    assert formal.test_relatives('us','night')==('IoT_data/us/night/split_test.pkl','attack/us/labeled_us_night_attack_time.pkl')
+    protocol={'datasets':{'us':{'reference_config':{'target_environment':'night'}}}}
+    assert formal.target_environment(protocol,'us')=='night'
+    assert formal.scenario(protocol,'us')=='US-DT'
