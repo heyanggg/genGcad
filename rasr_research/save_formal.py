@@ -243,6 +243,7 @@ def upload(args):
     if receipt_name.startswith('us-dt-'):tag='rasr-us-dt-b3-20261125'
     if receipt_name.startswith('sp-dt-'):tag='rasr-sp-dt-b3-20261125'
     if receipt_name.startswith('fr-dt-'):tag='rasr-fr-dt-b3-20261125'
+    if receipt_name=='fr-dt-tuned-backup-receipt.json':tag='rasr-fr-dt-b3-tuned-20261125'
     def api(method,path,payload=None):
         data=None if payload is None else json.dumps(payload).encode()
         request=urllib.request.Request('https://api.github.com'+path,data=data,method=method,
