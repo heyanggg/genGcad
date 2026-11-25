@@ -120,16 +120,27 @@ def archived_tof(archive,run):
                 provenance='counts read from existing archived TOF pickle files')
 
 
-def preserved_gcad_state(config,gcad):
+def preserved_gcad_state(config,gcad,artifact=None):
     """Preserve the archived auto decision; never silently enable guidance."""
     enabled=bool(gcad.get('guidance_enabled',False))
+    legacy=False
     if not enabled:
-        if not (config.get('gcad_mode')=='auto' and gcad.get('status')=='disabled'
-                and gcad.get('relationship_count')==0):
+        disabled=gcad.get('status')=='disabled' and gcad.get('relationship_count')==0
+        legacy=(disabled and config.get('gcad_mode') is None and artifact is not None
+            and bool(gcad.get('artifact_fingerprint'))
+            and artifact.get('artifact_fingerprint')==gcad['artifact_fingerprint']
+            and artifact.get('status')=='disabled' and artifact.get('lagged_behavior_relations')==[]
+            and bool(artifact.get('disabled_reason')))
+        if not ((config.get('gcad_mode')=='auto' and disabled) or legacy):
             raise ValueError('Unverified disabled GCAD state; do not silently treat as active guidance')
-    return {'guidance_enabled':enabled,'archived_mode':config.get('gcad_mode'),
+    state={'guidance_enabled':enabled,'archived_mode':config.get('gcad_mode'),
             'interpretation':('Original enabled GCAD guidance preserved' if enabled else
                 'Original GCAD-auto pipeline disabled guidance; zero prompt edges. This is NOT an active-GCAD three-module comparison.')}
+    if legacy:
+        state.update(mode_field_missing_in_legacy_config=True,
+            archived_disabled_reason=artifact['disabled_reason'],
+            interpretation='Original legacy archive confirms disabled GCAD and zero prompt edges; no mode flag was recorded or inferred. NOT an active-GCAD three-module comparison.')
+    return state
 
 
 def audit(args):
@@ -213,7 +224,14 @@ def audit(args):
             spec=result['datasets'][ds]
             assert manifest['config']['original_environment']==source_env
             assert manifest['config']['target_environment']==target_env
-            spec['gcad_comparison_state']=preserved_gcad_state(manifest['config'],run['gcad'])
+            gcad_artifact=None
+            if manifest['config'].get('gcad_mode') is None and run['gcad'].get('status')=='disabled':
+                hints=archive/'artifacts/gcad/gcad_hints.json'
+                gcad_artifact=read(hints)
+                assert gcad_artifact['source']['sha256']==sha(source_tss)
+                assert gcad_artifact['source']['dataset']==ds
+                spec['legacy_disabled_gcad_artifact_sha256']=sha(hints)
+            spec['gcad_comparison_state']=preserved_gcad_state(manifest['config'],run['gcad'],gcad_artifact)
             assert spec['reference_metrics']['training_sequence_count']+spec['reference_metrics']['validation_sequence_count']==spec['reference_metrics']['generated_sequence_count']
             spec['historical_gcad']=run['gcad']
             spec['prepared_source']=str(prepared)
@@ -654,7 +672,7 @@ def single_report(args, protocol):
              if metrics and key in metrics and key in ('f1_score','precision','recall','FPR','FNR','auroc','auprc')}
     atomic_write_json(report_path, {
         'status':'completed' if result else ('blocked-generation' if errors or policy.get('hold') else 'awaiting-generation'),
-        'scenario':scenario(protocol,ds),'baseline_type':('original project GCAD-auto formal archive (guidance disabled), not newly generated B0'
+        'scenario':scenario(protocol,ds),'baseline_type':('original project GCAD-disabled formal archive, not newly generated B0'
             if spec.get('gcad_comparison_state',{}).get('guidance_enabled') is False else
             'original project formal Gen+GCAD archive, not newly generated B0'),
         'gcad_comparison_state':spec.get('gcad_comparison_state'),

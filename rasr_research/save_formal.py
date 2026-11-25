@@ -124,6 +124,8 @@ def register_next(args):
     if (comparison.get('gcad_comparison_state') or {}).get('guidance_enabled') is False:
         entry['gcad_comparison_state']=comparison['gcad_comparison_state']
         entry['baseline_caveat']='Historical GCAD-auto disabled guidance; do not label this an active-GCAD three-module comparison.'
+        if entry['gcad_comparison_state'].get('mode_field_missing_in_legacy_config'):
+            entry['baseline_caveat']='Historical artifact confirms disabled GCAD with no mode flag recorded; not an active-GCAD three-module comparison.'
     filename=f'{record_prefix}-{variant}-comparison.json'
     destination=RECORDS/filename;original=args.tuning/'summary.json' if tuned else comparison_path
     if destination.exists() and sha(destination)!=sha(original):raise ValueError('Saved result changed')
@@ -223,6 +225,7 @@ def upload(args):
     allowed={'backup-receipt.json','fr-st-original-backup-receipt.json','fr-st-tuned-backup-receipt.json',
              'us-dt-original-backup-receipt.json','us-dt-tuned-backup-receipt.json'}
     allowed.update({'sp-dt-original-backup-receipt.json','sp-dt-tuned-backup-receipt.json'})
+    allowed.update({'fr-dt-original-backup-receipt.json','fr-dt-tuned-backup-receipt.json'})
     if receipt_name not in allowed:raise ValueError('Only explicitly scoped experiment backup receipts may be uploaded')
     receipt_path=RECORDS/receipt_name;receipt=read(receipt_path)
     if Path(receipt['archive_name']).name!=receipt['archive_name']:raise ValueError('Invalid archive basename')
@@ -239,6 +242,7 @@ def upload(args):
     repo='heyanggg/genGcad';tag='rasr-formal-sp-us-20261124' if receipt_name=='backup-receipt.json' else 'rasr-formal-fr-st-20261124'
     if receipt_name.startswith('us-dt-'):tag='rasr-us-dt-b3-20261125'
     if receipt_name.startswith('sp-dt-'):tag='rasr-sp-dt-b3-20261125'
+    if receipt_name.startswith('fr-dt-'):tag='rasr-fr-dt-b3-20261125'
     def api(method,path,payload=None):
         data=None if payload is None else json.dumps(payload).encode()
         request=urllib.request.Request('https://api.github.com'+path,data=data,method=method,

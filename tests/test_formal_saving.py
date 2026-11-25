@@ -125,3 +125,20 @@ def test_completed_sp_daytime_result_retains_actual_metrics_and_protocol_limits(
     assert note['actual_new_codex_calls']==13 and note['new_B0_calls']==0
     assert note['B3_volumes']['detector_train']==41
     assert note['historical_volumes']['detector_train']==40
+
+
+def test_legacy_disabled_gcad_registration_does_not_invent_auto_mode(tmp_path,monkeypatch):
+    records=tmp_path/'records';records.mkdir()
+    monkeypatch.setattr(saving,'ROOT',tmp_path);monkeypatch.setattr(saving,'RECORDS',records)
+    saving.write(records/'registry.json',{'formal_groups':[]})
+    formal=tmp_path/'formal'
+    saving.write(formal/'fr/seed-2024/B3/result.json',{'actual':'fixture only'})
+    state={'guidance_enabled':False,'archived_mode':None,'mode_field_missing_in_legacy_config':True}
+    saving.write(formal/'single-b3-comparison-fr.json',{'status':'completed','scenario':'FR-DT',
+        'comparison_baseline_metrics':{'f1_score':.97},'B3_metrics':{'f1_score':.98},
+        'threshold_protocol':'original p95','gcad_comparison_state':state})
+    saving.register_next(SimpleNamespace(formal=formal,dataset='fr',tuning=None))
+    entry=saving.read(records/'registry.json')['formal_groups'][0]
+    assert entry['gcad_comparison_state']['archived_mode'] is None
+    assert 'no mode flag recorded' in entry['baseline_caveat']
+    assert 'auto' not in entry['baseline_caveat']

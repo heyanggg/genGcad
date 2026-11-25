@@ -1,0 +1,25 @@
+{
+  "scenario":"FR-DT: daytime to night",
+  "date":"2026-11-25",
+  "authority":"Explicit human reply: ok,继续下一组（同上） after completed SP-DT",
+  "scope":"Exactly one B3 seed-2024 generation; reuse historical B0 data/results/checkpoint, no fresh B0 or ablations",
+  "selection_reason":"Next remaining complete daytime/night archive has original checkpoint, saved train/validation and actual prompts. Multiple-occupancy archives still lack split files and contain inconsistent count metadata; do not silently treat them as equivalent complete references.",
+  "historical_config":{"ssc_threshold":0.92,"calls":7,"example_upper_budget":47,"TOF_epochs":10,"detector_epochs":15,"validation_percentile":95,"generated_rows":28,"detector_train":22,"detector_validation":6},
+  "scale_note":"28 historical rows is this scenario's archived formal scale, not the retired 8-9-row pilot. Preserve seven daily calls; do not enlarge generation to compensate for a small source dataset.",
+  "gcad_caveat":"Legacy config records no gcad_mode. Verify disabled archived hints, empty relation list, matching fingerprint and true source TSS SHA-256. Preserve disabled guidance without inferring a mode or enabling new hints. Not an active-GCAD three-module comparison.",
+  "rasr":"Unchanged C/T/S, window 2, decay 0.8, maximum two semantic and two statistical attempts; skip invalid/no-op/duplicate edits. No independent regenerator, function-equivalence gating, endpoint transport or new module.",
+  "SSC_prompt":"Original source-trained SSC on joint I+J; no forced J fraction or refill. Historical per-category example counts are upper bounds. Exact archived non-example prompt including GSS and disabled GCAD is retained.",
+  "conditional_tuning":{
+    "trigger":"Original-protocol B3 does not exceed historical F1 0.9719244512506381",
+    "method":"Same existing-detector generated-normal validation search as previous groups; common parameters selected across historical and B3 normal pools, zero extra Codex calls",
+    "task_adapter":"Keep night detector hour field index 1, unchanged architecture/capacity and reconstruction loss",
+    "grid":{"learning_rate":[0.0003,0.001],"weight_decay":[0,0.0001],"epochs":[5,10,15,25],"score":["mean","max","top2"],"percentile":[90,95,97.5]},
+    "holdouts":[2024,2025,2026],"calibration_views":true,
+    "proxy":"Uniform one-hour-field substitution from legal dictionary values unseen in each generated-normal pool; not real anomaly labels. Stop without another search if no unseen legal values or no feasible grouped holdout.",
+    "selection":"Mean proxy F1 over both arms and three grouped holdouts; ties normal mean loss then existing deterministic parameter-proximity rule. Full-row duplicate groups disjoint, singleton feature support retained in training.",
+    "lock":"Save selection/input hashes before final refits and one post-lock confirmation. No test-label parameter selection.",
+    "limits":"Exploratory on historically exposed tests, very small normal validation sets, correlated short views and changed detector protocol. Retain all candidates, failures and negative results; detector recovery is not isolated RaSR benefit."
+  },
+  "retention":"Retain all metrics and complete SSC/prompt/generated/TOF/detector lineage and weights. Register above-historical variants under the human formal-group rule with exact caveats. Upload complete archive and verify bytes/SHA-256.",
+  "target_test_used_for_parameter_selection":false
+}

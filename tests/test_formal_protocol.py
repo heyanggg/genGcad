@@ -89,11 +89,11 @@ def test_full_output_preserves_historical_partition_and_prefix():
 
 def test_active_authority_is_single_b3_not_the_retired_multi_arm_schedule():
     policy=json.loads((ROOT/'rasr_research/generation-policy.json').read_text())
-    assert policy['allowed_runs']==['sp/seed-2024/B3']
-    assert policy['queue_root']=='runs/formal-sp-dt-20261125'
-    assert policy['max_additional_calls']==13
+    assert policy['allowed_runs']==['fr/seed-2024/B3']
+    assert policy['queue_root']=='runs/formal-fr-dt-20261125'
+    assert policy['max_additional_calls']==7
     assert policy['max_workers']==3
-    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(13)]
+    assert policy['allowed_call_ids']==[f'call-{i:02d}' for i in range(7)]
     assert isinstance(policy['hold'],bool)
     if not policy['hold']:
         assert 'Explicit human reply' in policy['resume_authority']
@@ -182,3 +182,18 @@ def test_archived_auto_disabled_gcad_is_preserved_and_not_claimed_active():
             {'status':'disabled','guidance_enabled':False,'relationship_count':0})
     assert formal.preserved_gcad_state({'gcad_mode':'require'},
         {'status':'ready','guidance_enabled':True})['guidance_enabled'] is True
+
+
+def test_legacy_disabled_gcad_requires_matching_empty_archived_artifact_not_invented_mode():
+    config={};run={'status':'disabled','relationship_count':0,'artifact_fingerprint':'frozen-proof'}
+    with pytest.raises(ValueError):formal.preserved_gcad_state(config,run)
+    artifact={'status':'disabled','lagged_behavior_relations':[],
+        'artifact_fingerprint':'frozen-proof','disabled_reason':'no_stable_edge'}
+    state=formal.preserved_gcad_state(config,run,artifact)
+    assert state['archived_mode'] is None and state['guidance_enabled'] is False
+    assert state['mode_field_missing_in_legacy_config'] is True
+    assert config=={} and 'guidance_enabled' not in run
+    with pytest.raises(ValueError):
+        formal.preserved_gcad_state(config,run,dict(artifact,artifact_fingerprint='wrong'))
+    with pytest.raises(ValueError):
+        formal.preserved_gcad_state(config,run,dict(artifact,lagged_behavior_relations=[{'edge':'unexpected'}]))

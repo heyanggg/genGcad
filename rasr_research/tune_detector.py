@@ -328,6 +328,8 @@ def report(args):
     if (comparison.get('gcad_comparison_state') or {}).get('guidance_enabled') is False:
         result['gcad_comparison_state']=comparison['gcad_comparison_state']
         result['limitations'].append('Historical GCAD-auto disabled guidance; this is not an active-GCAD three-module comparison.')
+        if result['gcad_comparison_state'].get('mode_field_missing_in_legacy_config'):
+            result['limitations'][-1]='Historical artifact confirms disabled GCAD; no mode flag was recorded. Not an active-GCAD three-module comparison.'
     atomic_write_json(args.output/'summary.json',result)
     print(json.dumps(result,indent=2))
 

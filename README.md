@@ -27,7 +27,22 @@ The autoencoder is a compressor, not an extra behavior generator. Original GSS
 and cached GCAD (source hash verified) read only true I; no augmented observations
 are counted as real. Original data files are never overwritten.
 
-The latest completed scenario is **one SP-DT B3 run (daytime -> night, seed 2024)**,
+The active next scenario is **one FR-DT B3 run (daytime -> night, seed 2024)**,
+in `rasr_research/runs/formal-fr-dt-20261125/`. Its legacy archived hints confirm
+disabled GCAD, zero relations and a fingerprint/source-TSS hash match; the old
+config has no mode flag, which is not invented. Not an active-GCAD comparison.
+Preserve the archived 7-call budget and 47 example upper bound (actual 47,
+including 16 J naturally selected by original joint SSC at threshold 0.92).
+Source pool: 319 I plus 392 valid unchanged-RaSR J. Original formal generation
+has 28 rows, train/validation 22/6 and F1 0.9719244513; this is its full archived
+scale, not the retired 8-9-row pilot. Keep original 10-epoch TOF, hour-field
+15-epoch detector and p95. `formal_records/fr-dt-predeclared-experiment.json`
+fixes the conditional generated-normal-only tuning search before new results.
+No fresh B0, generation expansion/repeat, ablation or independent regenerator.
+The very small validation set and historical disabled-GCAD state are explicit
+limitations, not silently changed to improve apparent comparability.
+
+The preceding completed scenario is **one SP-DT B3 run (daytime -> night, seed 2024)**,
 in `rasr_research/runs/formal-sp-dt-20261125/`. Keep its archived GCAD-auto
 decision: guidance was disabled, zero prompt edges. This is not an active-GCAD
 three-module comparison. Do not silently enable GCAD to change the reference.
