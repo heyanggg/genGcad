@@ -1,0 +1,17 @@
+{
+  "authority":"Explicit human message: 恢复任务",
+  "scope":"Resume the same US-MT B3, not a new scenario, repetition or algorithm",
+  "successful_slots_reused":["call-00","call-01","call-02"],
+  "reviewed_failed_slots":["call-03","call-04","call-05"],
+  "failure":"All three exited with code1, zero stdout and no response; saved errors explicitly report workspace out of credits",
+  "preservation":"Failure receipts/stdout/stderr/claims saved under each original slot's prior-failed-attempt-before-explicit-resume-20261125; halt receipt saved, not deleted. Exact file hashes in run explicit-resume-20261125.json.",
+  "unstarted_slots":"call-06 through call-25",
+  "max_additional_worker_attempts":23,
+  "unique_slots_total":26,
+  "prior_failed_worker_attempts":3,
+  "expected_worker_attempts_if_completed":29,
+  "CLI_internal_reconnects":"Separate transport retries retained verbatim in stderr; not hidden or represented as additional successful call slots",
+  "automatic_worker_retries":false,
+  "unchanged":["saved successful responses","all 26 prompt hashes","C/T/S and insert/replace algorithms","SSC selection","model","GSS and GCAD","TOF and detector protocols","predeclared conditional normal-validation search"],
+  "new_B0_calls":0
+}

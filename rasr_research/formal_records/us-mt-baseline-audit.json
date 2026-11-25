@@ -1,0 +1,12 @@
+{
+  "scenario":"US-MT",
+  "original_historical_f1":0.9417461482024945,
+  "original_checkpoint_rescore_matches_all_ten_threshold_metrics":true,
+  "original_detection_threshold":0.00008947730384534247,
+  "legacy_metadata":{"generated":297,"training":297,"validation":297,"detector_split_files_archived":false,"original_anomaly_runs_files_available":false},
+  "inference_limit":"Inconsistent legacy counts and missing split files do not prove a specific historical leakage mechanism. Do not invent a recovered historical split or claim old-protocol reproduction.",
+  "existing_data_reevaluation":{"new_codex_calls":0,"TOF_rerun":false,"TOF_final_reused":297,"training":237,"validation":60,"epochs":15,"seed":2024,"percentile":99,"threshold":0.0009584459790494264,"f1":0.896995108315863,"FP":737,"FN":0,"AUROC":0.9644850622193482,"AUPRC":0.9342118185455764},
+  "normal_only_diagnostic":{"target_test_files_accessed":false,"validation_devices_not_in_training":[],"train_validation_exact_row_overlap":0,"validation_loss_quantiles":{"minimum":0.0000033736164368747268,"median":0.00000889891725819325,"p90":0.0000388911026675487,"p95":0.0003125759700196795,"p99":0.0009584459790494264,"maximum":0.0014498013770207763}},
+  "planned_comparison":"Keep original historical, matched existing-data baseline, original B3 and any predeclared common-tuned results distinct. Do not substitute the 89.70% baseline reevaluation for the user's 94.17% historical reference.",
+  "predeclared_remote_commit":"6c3c79fb334664ef4b97e48247747b4585dfcce8"
+}

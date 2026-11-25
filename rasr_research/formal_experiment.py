@@ -684,6 +684,20 @@ def prepare_single(args, protocol):
     single_report(args, protocol)
 
 
+def explicit_resume_accounting(run,current_attempts):
+    receipt=run/'explicit-resume-20261125.json'
+    if not receipt.exists():return {}
+    resumed=read(receipt)
+    for call,digest in resumed['completed_slots_reused'].items():
+        assert sha(run/'codex'/call/'response.txt')==digest,'Never regenerate or replace completed responses on resume'
+    saved_failures=list((run/'codex').glob('call-*/prior-failed-attempt-*/worker-error.json'))
+    assert len(saved_failures)==resumed['prior_failed_attempts']
+    return {'saved_prior_failed_CLI_attempts':len(saved_failures),
+        'total_CLI_attempts_including_saved_failures':current_attempts+len(saved_failures),
+        'explicit_resume_receipt':str(receipt),'explicit_resume_receipt_sha256':sha(receipt),
+        'CLI_internal_reconnects_not_counted_as_new_worker_attempts':True}
+
+
 def single_report(args, protocol):
     ds=single_dataset(args)
     spec=protocol['datasets'][ds]
@@ -746,6 +760,7 @@ def single_report(args, protocol):
                      'single-run historical comparison, not evidence of stable causal improvement',
         'previous_results_retained_but_excluded_from_primary_comparison':True})
     report=read(report_path)
+    report['generation'].update(explicit_resume_accounting(run,report['generation']['started_current_attempts']))
     if 'baseline_reevaluation' in spec:
         replay=spec['baseline_reevaluation']
         report['historical_protocol_caveat']=spec['historical_protocol_caveat']

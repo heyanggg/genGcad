@@ -215,3 +215,19 @@ def test_legacy_reevaluation_requires_exact_saved_final_pool_and_immutable_recei
     assert formal.baseline_detector_dir({'archive':str(archive),'baseline_reevaluation':saved})==folder
     formal.atomic_pickle_dump(folder/'validation.pkl',[[99]])
     with pytest.raises(AssertionError):formal.verified_baseline_reevaluation(receipt,archive,original)
+
+
+def test_explicit_resume_counts_saved_failed_attempts_and_protects_completed_responses(tmp_path):
+    assert formal.explicit_resume_accounting(tmp_path,0)=={}
+    directory=tmp_path/'codex/call-00';directory.mkdir(parents=True)
+    response=directory/'response.txt';response.write_text('immutable successful response')
+    failed=tmp_path/'codex/call-03/prior-failed-attempt-before-explicit-resume-20261125'
+    failed.mkdir(parents=True)
+    formal.atomic_write_json(failed/'worker-error.json',{'error':'workspace out of credits'})
+    formal.atomic_write_json(tmp_path/'explicit-resume-20261125.json',{
+        'completed_slots_reused':{'call-00':formal.sha(response)},'prior_failed_attempts':1})
+    accounting=formal.explicit_resume_accounting(tmp_path,26)
+    assert accounting['total_CLI_attempts_including_saved_failures']==27
+    assert accounting['saved_prior_failed_CLI_attempts']==1
+    response.write_text('unacceptable replacement')
+    with pytest.raises(AssertionError):formal.explicit_resume_accounting(tmp_path,26)
