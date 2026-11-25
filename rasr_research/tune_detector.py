@@ -326,6 +326,10 @@ def report(args):
             'model_sha256':{arm:sha(args.output/arm/'detector.pth') for arm in ('historical','B3')}}}
     if confirmed['selection'].get('feature_index',3)!=3:
         result['limitations'][3]='Covered validation retains singleton input-field supports in training. Proxies corrupt only the original detector input field; they are not real anomaly labels.'
+    if comparison.get('historical_protocol_caveat'):
+        result['historical_protocol_caveat']=comparison['historical_protocol_caveat']
+        result['metrics']['matched_protocol_existing_data_B0']=comparison['matched_protocol_baseline']['metrics']
+        result['limitations'].append(comparison['historical_protocol_caveat'])
     if (comparison.get('gcad_comparison_state') or {}).get('guidance_enabled') is False:
         result['gcad_comparison_state']=comparison['gcad_comparison_state']
         result['limitations'].append('Historical GCAD-auto disabled guidance; this is not an active-GCAD three-module comparison.')

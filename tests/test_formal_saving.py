@@ -172,3 +172,22 @@ def test_fr_daytime_volume_wording_correction_preserves_every_metric_and_lock():
     assert sum(a!=b for a,b in zip(before['limitations'],after['limitations']))==1
     assert saving.sha(folder/'fr-dt-tuned-confirmation.json')==note['confirmation_sha256_unchanged']
     assert saving.sha(folder/'fr-dt-tuned-selection.json')==note['selection_sha256_unchanged']
+
+
+def test_legacy_above_historical_formal_group_keeps_unmatched_protocol_caveat(tmp_path,monkeypatch):
+    records=tmp_path/'records';records.mkdir()
+    monkeypatch.setattr(saving,'ROOT',tmp_path);monkeypatch.setattr(saving,'RECORDS',records)
+    saving.write(records/'registry.json',{'formal_groups':[]})
+    formal=tmp_path/'formal'
+    saving.write(formal/'sp/seed-2024/B3/result.json',{'actual':'fixture'})
+    saving.write(formal/'single-b3-comparison.json',{'status':'completed','scenario':'SP-MT',
+        'comparison_baseline_metrics':{'f1_score':.91},'B3_metrics':{'f1_score':.92},
+        'matched_protocol_baseline':{'metrics':{'f1_score':.95}},
+        'historical_protocol_caveat':'Historical detector split unavailable',
+        'threshold_protocol':'p99 new split'})
+    saving.register_next(SimpleNamespace(formal=formal,dataset='sp',tuning=None))
+    entry=saving.read(records/'registry.json')['formal_groups'][0]
+    assert entry['Gen_GCAD_reference_metrics']['f1_score']==.91
+    assert entry['matched_protocol_Gen_GCAD_metrics']['f1_score']==.95
+    assert entry['B3_minus_matched_protocol_f1_percentage_points']<0
+    assert 'not evidence' in entry['formal_label_caveat']

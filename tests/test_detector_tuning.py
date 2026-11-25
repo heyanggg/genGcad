@@ -15,6 +15,25 @@ def row(*actions):
     return [v for a in actions for v in (0,0,1,a)]
 
 
+def test_legacy_tuning_uses_explicit_reevaluated_generated_pool_not_missing_old_splits(tmp_path):
+    import pickle
+    from types import SimpleNamespace
+    formal=tmp_path/'formal';baseline=formal/'baseline-reevaluation/sp/detector'
+    runtime=formal/'sp/seed-2024/B3/runtime';b3=runtime/'anomaly_runs/b3'
+    for folder,rows in ((baseline,[[1],[2]]),(b3,[[3],[4]])):
+        folder.mkdir(parents=True)
+        for filename,subset in (('train.pkl',rows[:1]),('validation.pkl',rows[1:])):
+            with (folder/filename).open('wb') as handle:pickle.dump(subset,handle)
+    tune.atomic_write_json(formal/'protocol.json',{'datasets':{'sp':{
+        'archive':str(tmp_path/'missing-legacy-splits'),
+        'baseline_reevaluation':{'detector_dir':str(baseline)}}}})
+    tune.atomic_write_json(formal/'sp/seed-2024/B3/result.json',{
+        'detection':{'metrics_path':'anomaly_runs/b3/metrics.json'}})
+    _,rows,fingerprints=tune.inputs(SimpleNamespace(formal=formal,dataset='sp'))
+    assert rows=={'historical':[[1],[2]],'B3':[[3],[4]]}
+    assert len(fingerprints)==4 and all('missing-legacy-splits' not in p for p in fingerprints)
+
+
 @pytest.mark.parametrize('environment,field,classname',[('spring',3,'TimeSeriesDataset2'),('night',1,'TimeSeriesDataset3'),('multiple',2,'TimeSeriesDataset4')])
 def test_environment_input_adapter_matches_original_dataset(environment,field,classname):
     import models1

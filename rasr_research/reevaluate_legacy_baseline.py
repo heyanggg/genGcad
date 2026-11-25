@@ -14,12 +14,34 @@ from formal_experiment import (Anomaly_detection, ROOT, atomic_write_json, cwd,
     load, read, sha, target_copies)
 
 
+def snapshot(archive,output):
+    """Copy replayable generated-data/control artifacts, never real datasets."""
+    paths=[archive/'artifacts/anomaly_detection/metrics.json',
+        archive/'artifacts/anomaly_detection/detector.pth',
+        archive/'artifacts/gss/action_transitions.json',archive/'artifacts/gcad/gcad_hints.json',
+        archive/'artifacts/ssc/model.pth',
+        *sorted((archive/'artifacts/tof').glob('*_seq.pkl')),
+        *sorted((archive/'artifacts/tof').glob('*_seq_filter_true.pkl'))]
+    evidence=[]
+    for source in paths:
+        destination=output/'historical-input-snapshot'/source.relative_to(archive)
+        destination.parent.mkdir(parents=True,exist_ok=True)
+        if not destination.exists():shutil.copy2(source,destination)
+        assert sha(source)==sha(destination)
+        evidence.append({'source':str(source),'copy':str(destination),'sha256':sha(source)})
+    receipt=output/'historical-input-snapshot/inventory.json'
+    content={'original_source_modified':False,'raw_real_data_included':False,'files':evidence}
+    if receipt.exists():assert read(receipt)==content
+    else:atomic_write_json(receipt,content)
+
+
 def reevaluate(args):
     archive, = (args.source/'experiment_archive/formal').glob(f'{args.dataset}_single_to_multiple_*')
     original = read(archive/'artifacts/anomaly_detection/metrics.json')
     config = read(archive/'manifest.json')['config']
     final, = (archive/'artifacts/tof').glob('*_seq_filter_true.pkl')
     output = args.output/'baseline-reevaluation'/args.dataset
+    snapshot(archive,output)
     receipt = output/'result.json'
     if receipt.exists():
         saved = read(receipt)
