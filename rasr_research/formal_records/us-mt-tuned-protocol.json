@@ -1,0 +1,54 @@
+{
+  "dataset": "us",
+  "input_sha256": {
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-us-mt-20261125/baseline-reevaluation/us/runtime/anomaly_runs/us_multiple_legacy-existing-data-reevaluation_SPPC_th-0.913_p-99_seed2024/train.pkl": "7857d54b290032cbcaadbea1e7b63570549ff785b900567b429de4a1092321c1",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-us-mt-20261125/baseline-reevaluation/us/runtime/anomaly_runs/us_multiple_legacy-existing-data-reevaluation_SPPC_th-0.913_p-99_seed2024/validation.pkl": "5e801f385df5c727998012695d179adc4c270418797e0fc4d7ffa8fa1e57987d",
+    "rasr_research/runs/formal-us-mt-20261125/us/seed-2024/B3/runtime/anomaly_runs/us_multiple_formal-B3-s2024_SPPC_th-0.913_p-99_seed2024/train.pkl": "aeca1be32f13c906d2e69bcfb61a9ebfd4f2d372a0f4c5f327893f075f458df4",
+    "rasr_research/runs/formal-us-mt-20261125/us/seed-2024/B3/runtime/anomaly_runs/us_multiple_formal-B3-s2024_SPPC_th-0.913_p-99_seed2024/validation.pkl": "f08822c499ff7aa912dd9db87cc8d0861375ac76546970e5021f6da16bc15dd9"
+  },
+  "grid": {
+    "learning_rate": [
+      0.0003,
+      0.001
+    ],
+    "weight_decay": [
+      0.0,
+      0.0001
+    ],
+    "epochs": [
+      5,
+      10,
+      15,
+      25
+    ],
+    "score": [
+      "mean",
+      "max",
+      "top2"
+    ],
+    "percentile": [
+      90.0,
+      95.0,
+      97.5
+    ]
+  },
+  "cv_seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "environment": "multiple",
+  "feature_index": 2,
+  "architecture": "unchanged 512D 8-head 2 encoder/2 decoder existing TransformerAutoencoder",
+  "loss": "unchanged masked normal reconstruction cross-entropy",
+  "batch_size": 32,
+  "selection": "mean proxy F1 over BOTH arms and three generated-normal holdouts; ties normal mean loss then original-parameter proximity",
+  "proxy": "Uniform substitution of the existing detector input field with a legal dictionary value unseen in each generated-normal pool. No target test rows or attack labels accessed. If either pool has no unseen legal values, stop without inventing proxies or changing the search.",
+  "test_files_accessed_for_selection": false,
+  "test_previously_exposed_in_earlier_experiments": true,
+  "new_model_or_generator": false,
+  "new_codex_calls": 0,
+  "holdout_note": "Exact full-row duplicate groups disjoint; singleton input-field supports kept in training",
+  "calibration_views": true,
+  "view_independence_warning": "Multiple normal views share held-out parent rows; view count is not independent sample size"
+}

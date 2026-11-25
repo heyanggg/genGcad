@@ -4,5 +4,10 @@
   "sha256": "4733e35c4f2d6700f9d83b9efe840c5cfa800f1356aab8557e5b4d402b5beee7",
   "file_count": 418,
   "zip_crc_verified": true,
-  "github_uploaded": false
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-us-mt-b3-20261125",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-us-mt-b3-20261125/us-mt-b3-original-20261125.zip",
+  "github_asset_size": 248351180,
+  "github_digest": "sha256:4733e35c4f2d6700f9d83b9efe840c5cfa800f1356aab8557e5b4d402b5beee7",
+  "source_commit": "9e34822f971b0dc196e054a5939894d1acca9e4f"
 }

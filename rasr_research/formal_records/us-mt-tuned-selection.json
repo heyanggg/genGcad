@@ -1,0 +1,22 @@
+{
+  "parameters": {
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0,
+    "epochs": 25,
+    "score": "max",
+    "percentile": 97.5
+  },
+  "input_sha256": {
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-us-mt-20261125/baseline-reevaluation/us/runtime/anomaly_runs/us_multiple_legacy-existing-data-reevaluation_SPPC_th-0.913_p-99_seed2024/train.pkl": "7857d54b290032cbcaadbea1e7b63570549ff785b900567b429de4a1092321c1",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/formal-us-mt-20261125/baseline-reevaluation/us/runtime/anomaly_runs/us_multiple_legacy-existing-data-reevaluation_SPPC_th-0.913_p-99_seed2024/validation.pkl": "5e801f385df5c727998012695d179adc4c270418797e0fc4d7ffa8fa1e57987d",
+    "rasr_research/runs/formal-us-mt-20261125/us/seed-2024/B3/runtime/anomaly_runs/us_multiple_formal-B3-s2024_SPPC_th-0.913_p-99_seed2024/train.pkl": "aeca1be32f13c906d2e69bcfb61a9ebfd4f2d372a0f4c5f327893f075f458df4",
+    "rasr_research/runs/formal-us-mt-20261125/us/seed-2024/B3/runtime/anomaly_runs/us_multiple_formal-B3-s2024_SPPC_th-0.913_p-99_seed2024/validation.pkl": "f08822c499ff7aa912dd9db87cc8d0861375ac76546970e5021f6da16bc15dd9"
+  },
+  "selection_metric": 0.9957619846875144,
+  "test_not_used_to_select": true,
+  "new_codex_calls": 0,
+  "candidate_count": 144,
+  "calibration_views": true,
+  "environment": "multiple",
+  "feature_index": 2
+}

@@ -1,0 +1,16 @@
+{
+  "scenario":"US-MT",
+  "selection_sha256":"86944d425136c9a02eeecec4e95e8c8737cb38a26376159f1e72652325a85968",
+  "all_candidates_sha256":"a87cd505a51aa25692bc0c97bfe9bba0be82dc4b95c38573d76ab0ac0d9d810e",
+  "parameters":{"learning_rate":0.0003,"weight_decay":0,"epochs":25,"score":"max","percentile":97.5},
+  "candidate_count":144,
+  "normal_holdout_seeds":[2024,2025,2026],
+  "selection_metric_mean_proxy_f1":0.9957619846875144,
+  "selection_uses_target_test":false,
+  "confirmation_exists_when_locked":false,
+  "test_previously_exposed":true,
+  "original_B3_result_sha256":"3ac743f7f3975a27cd03326de48855ac88eebdf87d53bff728e33d03ab0d245f",
+  "next_action":"Publish this immutable parameter/input lock to GitHub before exactly one separate confirmation; do not adapt parameters to that result.",
+  "original_failure_preserved":true,
+  "new_codex_calls":0
+}
