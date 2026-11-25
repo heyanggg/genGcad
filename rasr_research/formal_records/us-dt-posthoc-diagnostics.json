@@ -1,0 +1,32 @@
+{
+  "scenario": "US-DT",
+  "stage": "Post-completion read-only diagnostics; not used to select parameters, rerun generation or change formal result",
+  "result_sha256": "04dde6602529ef122f55ccae3df90cfb8872e5f6ebee0e91da8e33a5d273d197",
+  "comparison": {
+    "same_counts": {"calls":18,"prompt_examples":450,"raw_generated":72,"TOF_final":68,"detector_training":54,"detector_validation":14},
+    "historical_false_positive":139,"B3_false_positive":0,
+    "historical_false_negative":498,"B3_false_negative":498,
+    "f1_gain_percentage_points":1.941846127666358
+  },
+  "validation_only_evidence": {
+    "historical_training_hour_counts":{"0":132,"1":111,"2":17,"3":1,"6":44,"7":91},
+    "historical_validation_hour_counts":{"0":27,"1":30,"2":3,"6":21,"7":22},
+    "B3_training_hour_counts":{"0":108,"1":123,"2":15,"6":48,"7":89},
+    "B3_validation_hour_counts":{"0":42,"1":31,"2":3,"3":1,"6":10,"7":17},
+    "B3_validation_largest_losses":[
+      {"row_index":7,"loss":0.008480936288833618,"hour_values":[0,1,2]},
+      {"row_index":13,"loss":0.16530467569828033,"hour_values":[0,1,2,7]},
+      {"row_index":6,"loss":1.5799098014831543,"hour_values":[0,1,3]}
+    ],
+    "original_p93_thresholds":{"historical":0.0020601516449823974,"B3":0.2926191370189188},
+    "observation":"Hour code 3 is absent from B3 detector training but present once in its 14-row generated validation set. That row has the largest validation reconstruction loss and affects the unchanged p93 threshold. This is observed calibration sensitivity, not a proven causal RaSR mechanism."
+  },
+  "already_completed_test_score_diagnostics":{
+    "normal_max":0.013403899036347866,"attack_min":0.08471596240997314,
+    "interpretation":"Perfect ranking coexists with 498 false negatives at the generated-validation threshold. These test-score boundaries must not be used to choose a new threshold.",
+    "used_for_parameter_selection":false
+  },
+  "conditional_tuning_triggered":false,
+  "new_codex_calls_after_first_18":0,
+  "limits":"Single seed and a small generated validation set; historical comparison with stochastic generation. Formal status follows the user's above-reference rule, not statistical significance or stable isolated RaSR benefit."
+}

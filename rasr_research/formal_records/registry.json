@@ -156,6 +156,44 @@
         "auroc": 0.9483471074380164,
         "auprc": 0.9288725537297639
       }
+    },
+    {
+      "id": "US-DT-B3-original-seed2024",
+      "scenario": "US-DT",
+      "status": "formal",
+      "metrics": {
+        "TP": 2985,
+        "TN": 3483,
+        "FP": 0,
+        "FN": 498,
+        "FPR": 0.0,
+        "FNR": 0.1429801894918174,
+        "recall": 0.8570198105081827,
+        "precision": 1.0,
+        "accuracy": 0.9285099052540913,
+        "f1_score": 0.9230055658627088,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 2985,
+        "TN": 3344,
+        "FP": 139,
+        "FN": 498,
+        "FPR": 0.03990812517944301,
+        "FNR": 0.1429801894918174,
+        "recall": 0.8570198105081827,
+        "precision": 0.95550576184379,
+        "accuracy": 0.9085558426643698,
+        "f1_score": 0.9035871045860452,
+        "auroc": 0.9417488116885189,
+        "auprc": 0.9585462390836756
+      },
+      "f1_gain_percentage_points": 1.941846127666358,
+      "result": "rasr_research/runs/formal-us-dt-20261125/us/seed-2024/B3/result.json",
+      "result_sha256": "04dde6602529ef122f55ccae3df90cfb8872e5f6ebee0e91da8e33a5d273d197",
+      "protocol": "same generated-validation p93 protocol, not the same numeric detector threshold across separately trained models",
+      "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim"
     }
   ],
   "supporting_groups": [

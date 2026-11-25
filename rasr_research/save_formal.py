@@ -245,7 +245,7 @@ def upload(args):
         if error.code!=404:raise
         release=api('POST',f'/repos/{repo}/releases',{'tag_name':tag,'target_commitish':args.commit,
             'name':('RaSR B3 experiment evidence: '+tag),
-            'body':'Human-designated formal B3 groups, exact protocols and full generated evidence. Tuned results use a changed detector protocol and previously exposed tests; not isolated causal RaSR proof. All negative attempts retained. Raw source/target datasets and credentials excluded.',
+            'body':'Complete B3 experiment evidence with exact protocols and all positive/negative results. Formal status, where applicable, is defined only by the saved registry. Tuned results use a changed detector protocol and previously exposed tests; not isolated causal RaSR proof. Raw source/target datasets and credentials excluded.',
             'draft':False,'prerelease':False})
     assets=api('GET',f'/repos/{repo}/releases/{release["id"]}/assets')
     old=next((asset for asset in assets if asset['name']==archive.name),None)

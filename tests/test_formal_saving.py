@@ -81,3 +81,16 @@ def test_three_prior_release_backups_are_verified_by_remote_sha_and_size():
         assert receipt['github_uploaded'] is True
         assert receipt['github_asset_size']==receipt['bytes']
         assert receipt['github_digest']=='sha256:'+receipt['sha256']
+
+
+def test_us_daytime_formal_result_keeps_original_protocol_and_residual_false_negatives():
+    registry=saving.read(ROOT/'rasr_research/formal_records/registry.json')
+    result=next(r for r in registry['formal_groups'] if r['id']=='US-DT-B3-original-seed2024')
+    assert result['metrics']['f1_score']==.9230055658627088
+    assert result['metrics']['FP']==0 and result['metrics']['FN']==498
+    assert result['Gen_GCAD_reference_metrics']['f1_score']==.9035871045860452
+    assert 'p93' in result['protocol']
+    assert 'parameters' not in result
+    diagnostic=saving.read(ROOT/'rasr_research/formal_records/us-dt-posthoc-diagnostics.json')
+    assert diagnostic['conditional_tuning_triggered'] is False
+    assert diagnostic['already_completed_test_score_diagnostics']['used_for_parameter_selection'] is False

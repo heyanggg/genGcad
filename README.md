@@ -47,6 +47,25 @@ and [FR-ST original + tuned backups](https://github.com/heyanggg/genGcad/release
 Raw source/target datasets and credentials are excluded. The 2026-11-25 run
 starts only after all three prior asset checks pass.
 
+US-DT is now completed and registered as **US-DT-B3-original-seed2024**:
+18/18 successful real calls, 72 generated rows, TOF first 59/final 68 and
+detector split 54/14. Historical raw/final/split counts are also 72/68/54/14.
+At the unchanged original p93 protocol, B3 F1 is **0.9230055659** versus
+**0.9035871046**, a **1.941846 percentage-point** gain. Precision is 1.0,
+recall 0.8570198105, FPR 0, FNR 0.1429801895, AUROC=AUPRC=1.0.
+FP drops 139 -> 0; FN stays 498. Numeric calibrated thresholds differ
+(historical 0.0020601516, B3 0.2926191370); no target-derived cutoff is used.
+Because the original-protocol result exceeds its reference, the predeclared
+conditional tuning was **not triggered**: no tuning/refit or extra generation.
+This remains one historical comparison, not evidence of stable causal gain.
+The complete prompt/SSC/generated/TOF/detector evidence and ranking scores are
+retained; generation policy is closed after exactly 18 new calls.
+Posthoc read-only diagnostics show that hour code 3 occurs in B3 validation
+but not detector training, and its row has the highest validation loss. With
+only 14 validation rows, this affects p93 calibration. The gain is fewer false
+positives, not better recall. See `formal_records/us-dt-posthoc-diagnostics.json`;
+no test-score boundary is used to choose a new threshold.
+
 The preceding FR-ST scenario was **one FR-ST B3 run (seed 2024)** versus its archived
 Gen+GCAD F1 0.9617486339. It uses 16 fixed calls, original joint SSC threshold
 0.918, 358 actual examples (209 J), unchanged 10-epoch TOF and 15-epoch detector,
@@ -87,7 +106,7 @@ call's `prior-failed-attempt-before-explicit-credit-resume` directory.
 No automatic retry is enabled. The native
 worker stops the queue on its first failure and preserves all failed-call logs.
 
-The formal B3 queue has the historical 16-call budget, 399 actual Prompt
+The completed SP-ST B3 queue had the historical 16-call budget, 399 actual Prompt
 examples selected by original joint I+J SSC, including 233 J examples naturally
 selected (not a forced quota). Historical SP F1 is 0.9711215581; its 205 TOF-final
 sequences split into 164 detector-training and 41 validation rows. Same original
