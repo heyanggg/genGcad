@@ -443,6 +443,61 @@
         "archived_disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
       },
       "baseline_caveat": "Historical artifact confirms disabled GCAD with no mode flag recorded; not an active-GCAD three-module comparison."
+    },
+    {
+      "id": "US-MT-B3-original-seed2024",
+      "scenario": "US-MT",
+      "status": "supporting-not-above-baseline",
+      "metrics": {
+        "TP": 0,
+        "TN": 3107,
+        "FP": 102,
+        "FN": 3209,
+        "FPR": 0.031785602991586163,
+        "FNR": 1.0,
+        "recall": 0.0,
+        "precision": 0.0,
+        "accuracy": 0.4841071985042069,
+        "f1_score": 0,
+        "auroc": 0.9107349509078791,
+        "auprc": 0.878375306940737
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 3209,
+        "TN": 2812,
+        "FP": 397,
+        "FN": 0,
+        "FPR": 0.12371455282019321,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.8899057127010538,
+        "accuracy": 0.9381427235899034,
+        "f1_score": 0.9417461482024945,
+        "auroc": 0.9550084625849257,
+        "auprc": 0.9187978939451997
+      },
+      "f1_gain_percentage_points": -94.17461482024945,
+      "result": "rasr_research/runs/formal-us-mt-20261125/us/seed-2024/B3/result.json",
+      "result_sha256": "3ac743f7f3975a27cd03326de48855ac88eebdf87d53bff728e33d03ab0d245f",
+      "protocol": "same generated-validation p99 protocol, not the same numeric detector threshold across separately trained models",
+      "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim",
+      "historical_protocol_caveat": "Historical detector split unavailable and counts inconsistent; compare B3 to explicit existing-data baseline reevaluation for matched protocol. Original historical score is retained but is NOT an apples-to-apples control.",
+      "matched_protocol_Gen_GCAD_metrics": {
+        "TP": 3209,
+        "TN": 2472,
+        "FP": 737,
+        "FN": 0,
+        "FPR": 0.2296665627921471,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.8132285859097821,
+        "accuracy": 0.8851667186039265,
+        "f1_score": 0.896995108315863,
+        "auroc": 0.9644850622193482,
+        "auprc": 0.9342118185455764
+      },
+      "B3_minus_matched_protocol_f1_percentage_points": -89.69951083158631,
+      "formal_label_caveat": "Not a formal above-historical group; retained as a negative supporting result. Historical protocol reproduction is unverified."
     }
   ]
 }

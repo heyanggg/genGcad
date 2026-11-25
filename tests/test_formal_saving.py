@@ -210,3 +210,20 @@ def test_completed_sp_multiple_preserves_all_three_controls_and_no_unneeded_tuni
     note=saving.read(folder/'sp-mt-completion-note.json')
     assert note['tuning']['triggered'] is False
     assert note['result_sha256']==entry['result_sha256']
+
+
+def test_original_us_multiple_negative_is_preserved_not_mislabeled_formal():
+    folder=ROOT/'rasr_research/formal_records'
+    registry=saving.read(folder/'registry.json')
+    entry=next(r for r in registry['supporting_groups'] if r['id']=='US-MT-B3-original-seed2024')
+    assert entry['metrics']['f1_score']==0 and entry['metrics']['FN']==3209
+    assert entry['Gen_GCAD_reference_metrics']['f1_score']==.9417461482024945
+    assert entry['matched_protocol_Gen_GCAD_metrics']['f1_score']==.896995108315863
+    assert 'Not a formal' in entry['formal_label_caveat']
+    note=saving.read(folder/'us-mt-negative-label-wording-note.json')
+    assert note['original_result_sha256_unchanged']==entry['result_sha256']
+    comparison=saving.read(folder/'us-mt-original-comparison.json')
+    assert comparison['generation']['valid_responses']==26
+    assert comparison['generation']['total_CLI_attempts_including_saved_failures']==29
+    assert comparison['generation']['saved_prior_failed_CLI_attempts']==3
+    assert comparison['prompt']['actual_examples']==689 and comparison['prompt']['J_examples']==505

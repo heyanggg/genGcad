@@ -1,0 +1,13 @@
+{
+  "group":"US-MT-B3-original-seed2024",
+  "changed_field_only":"formal_label_caveat",
+  "initial_value":"User-designated above-historical group; verify matched-protocol control separately, not evidence of historical-protocol reproduction.",
+  "corrected_value":"Not a formal above-historical group; retained as a negative supporting result. Historical protocol reproduction is unverified.",
+  "reason":"The generic caveat was added even to a below-baseline group. Clarify the already-recorded supporting-not-above-baseline status, not change classification or metrics.",
+  "status_unchanged":"supporting-not-above-baseline",
+  "F1_unchanged":0,
+  "FP_unchanged":102,
+  "FN_unchanged":3209,
+  "original_result_sha256_unchanged":"3ac743f7f3975a27cd03326de48855ac88eebdf87d53bff728e33d03ab0d245f",
+  "all_other_registry_fields_unchanged":true
+}

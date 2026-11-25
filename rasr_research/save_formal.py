@@ -126,6 +126,8 @@ def register_next(args):
         entry['matched_protocol_Gen_GCAD_metrics']=comparison['matched_protocol_baseline']['metrics']
         entry['B3_minus_matched_protocol_f1_percentage_points']=100*(metrics['f1_score']-entry['matched_protocol_Gen_GCAD_metrics']['f1_score'])
         entry['formal_label_caveat']='User-designated above-historical group; verify matched-protocol control separately, not evidence of historical-protocol reproduction.'
+        if entry['status']!='formal':
+            entry['formal_label_caveat']='Not a formal above-historical group; retained as a negative supporting result. Historical protocol reproduction is unverified.'
     if (comparison.get('gcad_comparison_state') or {}).get('guidance_enabled') is False:
         entry['gcad_comparison_state']=comparison['gcad_comparison_state']
         entry['baseline_caveat']='Historical GCAD-auto disabled guidance; do not label this an active-GCAD three-module comparison.'
