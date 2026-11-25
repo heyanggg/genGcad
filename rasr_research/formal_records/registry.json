@@ -278,6 +278,52 @@
       "result_sha256": "35d3399300fb6ee0da4bfa7f3f19f7c4f2877d70db6fbe3e2c5f13e201cf4f3e",
       "protocol": "same generated-validation p95.5 protocol, not the same numeric detector threshold across separately trained models",
       "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim"
+    },
+    {
+      "id": "FR-DT-B3-original-seed2024",
+      "scenario": "FR-DT",
+      "status": "supporting-not-above-baseline",
+      "metrics": {
+        "TP": 952,
+        "TN": 732,
+        "FP": 220,
+        "FN": 0,
+        "FPR": 0.23109243697478993,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.8122866894197952,
+        "accuracy": 0.884453781512605,
+        "f1_score": 0.8964218455743879,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "Gen_GCAD_reference_metrics": {
+        "TP": 952,
+        "TN": 897,
+        "FP": 55,
+        "FN": 0,
+        "FPR": 0.05777310924369748,
+        "FNR": 0.0,
+        "recall": 1.0,
+        "precision": 0.945382323733863,
+        "accuracy": 0.9711134453781513,
+        "f1_score": 0.9719244512506381,
+        "auroc": 1.0,
+        "auprc": 1.0
+      },
+      "f1_gain_percentage_points": -7.550260567625022,
+      "result": "rasr_research/runs/formal-fr-dt-20261125/fr/seed-2024/B3/result.json",
+      "result_sha256": "78569d9ce4631d5425f6f24b2cfc0641f8b0fbc391b2892ebe2e4ee7ccbc5adf",
+      "protocol": "same generated-validation p95 protocol, not the same numeric detector threshold across separately trained models",
+      "evidence_type": "Single-seed historical comparison; all attempts retained, no significance claim",
+      "gcad_comparison_state": {
+        "guidance_enabled": false,
+        "archived_mode": null,
+        "interpretation": "Original legacy archive confirms disabled GCAD and zero prompt edges; no mode flag was recorded or inferred. NOT an active-GCAD three-module comparison.",
+        "mode_field_missing_in_legacy_config": true,
+        "archived_disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
+      },
+      "baseline_caveat": "Historical artifact confirms disabled GCAD with no mode flag recorded; not an active-GCAD three-module comparison."
     }
   ]
 }

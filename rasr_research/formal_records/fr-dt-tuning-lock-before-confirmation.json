@@ -1,0 +1,21 @@
+{
+  "scenario":"FR-DT",
+  "stage":"After all generated-normal CV and final normal refits, before any tuned target-test confirmation",
+  "trigger":{"historical_F1":0.9719244512506381,"original_B3_F1":0.8964218455743879,"original_result_retained":true},
+  "selection_sha256":"41af9fe6c827f933a8f17f9605d06e224114ae36e5f4d55c90716d784391795a",
+  "parameters":{"learning_rate":0.001,"weight_decay":0.0,"epochs":5,"score":"mean","percentile":97.5},
+  "candidate_count":144,
+  "validation_holdout_seeds":[2024,2025,2026],
+  "selection_proxy_mean_F1":0.9952852475670438,
+  "parameters_shared_across_historical_and_B3":true,
+  "calibration_views":true,
+  "normal_refits":{
+    "historical":{"train":22,"validation":6,"correlated_calibration_views":69,"threshold":2.194756555557251},
+    "B3":{"train":22,"validation":6,"correlated_calibration_views":69,"threshold":0.9545902013778685}
+  },
+  "tuned_test_confirmation_not_run_at_this_stage":true,
+  "test_labels_used_to_select_parameters":false,
+  "new_codex_calls_after_original_seven":0,
+  "next_action":"One post-lock confirmation for both normal-data pools. Do not adapt the search to those test scores.",
+  "limitations":"Only six held-out parent rows per final model; 69 views are correlated, not 69 independent validation sequences. Proxies are not real anomaly labels. Legacy GCAD disabled, no mode flag recorded. Previously exposed target tests: exploratory, not fresh confirmatory evidence."
+}

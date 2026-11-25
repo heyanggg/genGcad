@@ -1,0 +1,202 @@
+{
+  "version": "formal-joint-ssc-v1",
+  "seeds": [
+    2024
+  ],
+  "arms": [
+    "B3"
+  ],
+  "frozen_rasr_inputs": {
+    "SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222",
+    "relation_research/embeddings/rasr-raw-v1/fr_embeddings.json": "de39081b4e1cb1e25c35e2980ee79f0ea512c220e2a1dd97ebc307b5abf8f537",
+    "rasr_research/runs/b3-source-20261125/fr-daytime/prepared/relations.npz": "5efa3cc8b2dbd2ebf1df5fbdbeafc478b437ce63a3042ad41fbe1e38f12fb2fa",
+    "rasr_research/runs/b3-source-20261125/fr-daytime/prepared/B3_J.pkl": "014217a60a4dc92d6dbf761f7fb8fa926d6b2bf63497db5cad1299e560dd7c64",
+    "rasr_research/runs/b3-source-20261125/fr-daytime/prepared/I.pkl": "77ec6ba1a2986706439701fb4ba24477122ab3ac5540b870a6584f1dc65863c3",
+    "rasr_research/runs/b3-source-20261125/fr-daytime/prepared/split.json": "b614470b2d059f207ceefa658a19c0ffab1518725b32ffa028d6a104526135e9"
+  },
+  "independent_regenerator": false,
+  "selection": "joint I+J; original train-mode SSC; no origin quota",
+  "ssc_fit": "same archived real-source-trained backbone shared by all arms and repetitions",
+  "ssc_pool_order": "original parent order, each parent followed by its frozen variants; same layout for B1/B3",
+  "budget": "historical actual Prompt category counts and per-category example counts, equal for all arms",
+  "repetition": "One explicitly approved B3 generation; historical B0 reused, no ablation or repeated generation",
+  "codex": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "none",
+    "sampling_seed_available": false
+  },
+  "tof": {
+    "epochs": 10,
+    "implementation_unchanged": true
+  },
+  "detector": {
+    "epochs": 15,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_ratio": 0.8,
+    "validation_percentile": 95,
+    "implementation_unchanged": true
+  },
+  "old_50_percent_control": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/run_experiment.py",
+  "no_test_based_tuning": true,
+  "datasets": {
+    "fr": {
+      "archive": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024",
+      "reference_config": {
+        "dataset": "fr",
+        "original_environment": "daytime",
+        "target_environment": "night",
+        "method": "SPPC",
+        "threshold": 0.92,
+        "model": "gpt-5.6-sol",
+        "run_id": "seed2024_calibrated_none",
+        "experiment_seed": 2024,
+        "gcad_seeds": [
+          2024,
+          2025,
+          2026
+        ],
+        "gcad_history": 4,
+        "gcad_epochs": 50,
+        "codex_reasoning_effort": "none",
+        "prompt_profile": "environment-aware",
+        "artifact_model": "gpt-5.6-sol__seed2024_calibrated_none",
+        "validation_percentile": 95.0
+      },
+      "reference_metrics": {
+        "dataset": "fr",
+        "environment": "night",
+        "method": "SPPC",
+        "generator_model": "gpt-5.6-sol__seed2024_calibrated_none",
+        "generation_threshold": 0.92,
+        "validation_percentile": 95.0,
+        "seed": 2024,
+        "generated_sequence_count": 28,
+        "training_sequence_count": 22,
+        "validation_sequence_count": 6,
+        "normal_test_count": 952,
+        "attack_test_count": 952,
+        "detection_threshold": 0.022233746945858,
+        "metrics": {
+          "TP": 952,
+          "TN": 897,
+          "FP": 55,
+          "FN": 0,
+          "FPR": 0.05777310924369748,
+          "FNR": 0.0,
+          "recall": 1.0,
+          "precision": 0.945382323733863,
+          "accuracy": 0.9711134453781513,
+          "f1_score": 0.9719244512506381
+        }
+      },
+      "categories": [
+        {
+          "category": "0",
+          "day": 0,
+          "examples": 6,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_0.txt",
+          "sha256": "a0096e99d48e2e33a083f5ccf53a2a813646ae155e940891beb5f2d41a4bd339"
+        },
+        {
+          "category": "1",
+          "day": 1,
+          "examples": 7,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_1.txt",
+          "sha256": "b866152a321d75a0fb8454b99c61ee31af0aee89daba365c68b6ef8f7faf0a1d"
+        },
+        {
+          "category": "2",
+          "day": 2,
+          "examples": 8,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_2.txt",
+          "sha256": "b27b0921a63db4fa9c0fd7db6a5dff06f928e53e7b312f5c86fadd3fd3ebdbe2"
+        },
+        {
+          "category": "3",
+          "day": 3,
+          "examples": 8,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_3.txt",
+          "sha256": "9bc9193b05c194d773c5aa48f333312f4dd7f323200e9d949398f8371c5ac8b5"
+        },
+        {
+          "category": "4",
+          "day": 4,
+          "examples": 11,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_4.txt",
+          "sha256": "1b500713bd5266558798dd56e2704c38a80c3b58726f8101b6922083d99e1a50"
+        },
+        {
+          "category": "5",
+          "day": 5,
+          "examples": 3,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_5.txt",
+          "sha256": "dd0796b4e9b3ddb402913c6835e3474086cb6f9b4ffcf8a065e0347c37ba9594"
+        },
+        {
+          "category": "6",
+          "day": 6,
+          "examples": 4,
+          "path": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/generation/run_record/prompts/category_6.txt",
+          "sha256": "317f39fb8a7ab00b851737544edffba00f52b65586275acd0ea5f036298236c0"
+        }
+      ],
+      "day_example_budget": {
+        "0": 6,
+        "1": 7,
+        "2": 8,
+        "3": 8,
+        "4": 11,
+        "5": 3,
+        "6": 4
+      },
+      "calls_per_run": 7,
+      "examples_per_run": 47,
+      "historical_generation": {
+        "tof": {
+          "input_count": 28,
+          "first_pass_count": 28,
+          "final_count": 28,
+          "provenance": "counts read from existing archived TOF pickle files"
+        }
+      },
+      "source": "/home/heyang/projects/SmartGen_GCAD/SmartGen/IoT_data/fr/daytime/trn.pkl",
+      "source_sha256": "49275accc317486a7a8bdf0a27a9415d7a5ba5ca742f46fb51bfa2ecc4fe5ace",
+      "real_tss_sha256": "1faf8ef1c25777430a3eed4b6b8b6f6f3288b40494fe637384c630b36cdd46e0",
+      "ssc_checkpoint": "/home/heyang/projects/SmartGen_GCAD/experiment_archive/formal/fr_daytime_to_night_SPPC_th-0.92_gpt-5.6-sol__seed2024_calibrated_none__detector-p95-seed2024/artifacts/ssc/model.pth",
+      "ssc_checkpoint_sha256": "b13ff4e77074dad6efd6ec343214117d63fd9ee16cc47a5763bc38927066b4fc",
+      "unchanged_core_code": {
+        "models1.py": true,
+        "sppc.py": true,
+        "find_categories.py": true,
+        "security_check.py": true,
+        "baseline1.py": true
+      },
+      "detector_validation_percentile": 95.0,
+      "pilot_differences": {
+        "scope": "New source task; no pilot results reused",
+        "data": "Same true source TSS and target evaluation identity; isolated outputs",
+        "ssc": "Original joint I+J greedy SSC, no origin quota; identical archived source checkpoint and threshold",
+        "gss_gcad_prompt": "Exact archived prompt outside examples; no recounting on J",
+        "budget": "Identical historical calls and per-category example upper bounds; actual SSC output, no refill",
+        "tof_detector": "Unchanged implementation, historical percentile and original environment-specific token field"
+      },
+      "legacy_disabled_gcad_artifact_sha256": "3ebcbec5a8b68688dcb8dc3a8a4f1fb4f3f777b9ce1c02426eb68d01d731f11d",
+      "gcad_comparison_state": {
+        "guidance_enabled": false,
+        "archived_mode": null,
+        "interpretation": "Original legacy archive confirms disabled GCAD and zero prompt edges; no mode flag was recorded or inferred. NOT an active-GCAD three-module comparison.",
+        "mode_field_missing_in_legacy_config": true,
+        "archived_disabled_reason": "no_directional_edge_was_stable_across_accepted_seeds"
+      },
+      "historical_gcad": {
+        "status": "disabled",
+        "artifact_fingerprint": "e20d022666c56a48d3ffbea04c490c37f9eb8105142b72ed2fbb8f5b3588efc5",
+        "relationship_count": 0,
+        "path": "artifacts/gcad/fr/daytime/gcad_hints.json"
+      },
+      "prepared_source": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/b3-source-20261125/fr-daytime/prepared"
+    }
+  },
+  "source_environment": "daytime"
+}
