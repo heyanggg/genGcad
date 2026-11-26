@@ -1,0 +1,24 @@
+{
+  "target_score_arrays_opened": false,
+  "rule_selection_from_normal_impact": false,
+  "arms": {
+    "historical": {
+      "source_normal_count": 2322,
+      "old_flagged": 1359,
+      "new_flagged": 1359,
+      "newly_flagged": 0,
+      "boundary_rows": 1359,
+      "margin": 9.459765193398084e-10,
+      "p99_is_not_a_one_percent_FPR_guarantee_in_presence_of_ties": true
+    },
+    "B3": {
+      "source_normal_count": 2322,
+      "old_flagged": 1334,
+      "new_flagged": 1359,
+      "newly_flagged": 25,
+      "boundary_rows": 1359,
+      "margin": 4.9883871339195807e-11,
+      "p99_is_not_a_one_percent_FPR_guarantee_in_presence_of_ties": true
+    }
+  }
+}

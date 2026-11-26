@@ -1,0 +1,23 @@
+{
+  "files_sha256": {
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/protocol.json": "8b37abcf890cacd7c4dfc2cc046b4bac886e8daf30186c4175772715e493faf6",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-normal-impact.json": "9984430b50445dbb3dda0878279cc0a910d43b3016193a90766a9eaad10b067c",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/rasr_research/evaluate_mt_boundary.py": "fe715ca1e575e1d81822f3bcb211ed61f13d448f68384374cd075ac82558062c",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/tests/test_mt_float_boundary.py": "3f2517191316afe65b3332d641f0c9e34341d89715d183df06bf756af7e5d022",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/rasr_research/recover_mt_protocol.py": "49d67a4187e787f70557e2a2419bb7de502e8b7b3f6cdbc3466a249e0cf62f47",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/rasr_research/repair_tof_mt.py": "522c60ab78913df0d6009377a7cad1d0218cf61007848796a6b95dda007da44f",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/rasr_research/seal_tof_mt.py": "dcbeddfffa0d24c42ffc956245cf0364add33693146af5ecdc2581a042f8de28",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/SmartGen/baseline1.py": "e7b6e6e0a2738bac0a5ae875f143b4f3bdc2ba4d524a0a8ee18697dd5cf71f86",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/SmartGen/models1.py": "205c42dcd620187d033ba6cd4044cc8b9a06b7eec5e56b59e90225d70f2b7cd7",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-snapshot/SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/stability-us-mt-20261126/evaluation/historical/detector.pth": "0b4715a4e9aece65dd8bbfb4922b28af909dfd8d9958f51ee934c65179bca40a",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/historical/source-scores.npz": "1177e543c1fe16658a3df68f04060267e2a82150790589d9dd6b1ec1dbb317e0",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/historical/continuous_scores.npz": "fdd48273a12b367ed98be7109a0579fb58bab5b20923eba8c119298ea929573d",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/stability-us-mt-20261126/evaluation/B3/detector.pth": "46164074ff7b9861c10a79440414a00e42a3abe20be5957bfbe3383ada4e28fd",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/B3/source-scores.npz": "1e86a366ba7af0fed35eed3e8ceccbebe88e892d65d3740a1f56b839d045c3b2",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/B3/continuous_scores.npz": "b7865ce05158972cc03bb9cfb9d7f40f30fadcfae9d51e88cf922306c5a6c0d4"
+  },
+  "target_score_arrays_opened_by_this_trial": false,
+  "boundary_rule_fixed": true,
+  "previous_target_exposure": true
+}

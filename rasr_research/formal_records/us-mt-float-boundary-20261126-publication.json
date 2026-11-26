@@ -1,0 +1,11 @@
+{
+  "github_uploaded": true,
+  "release_url": "https://github.com/heyanggg/genGcad/releases/tag/rasr-us-mt-float-boundary-20261126",
+  "asset_url": "https://github.com/heyanggg/genGcad/releases/download/rasr-us-mt-float-boundary-20261126/us-mt-b3-float-boundary-20261126.zip",
+  "archive_sha256": "5c861b359f8365a67e4c434760a8ffc4ebf83e73079168f382ddcfc281648182",
+  "github_asset_size": 111272210,
+  "github_digest": "sha256:5c861b359f8365a67e4c434760a8ffc4ebf83e73079168f382ddcfc281648182",
+  "exact_code_is_in_release_asset": true,
+  "tag_base_commit": "b66dc505af49edb02c6b3ea8452ce6e4ce9eca53",
+  "unrelated_failure_history_pushed": false
+}

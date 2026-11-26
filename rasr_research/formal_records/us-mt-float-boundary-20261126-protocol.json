@@ -1,0 +1,102 @@
+{
+  "version": "US-MT-fixed-float32-relative-boundary-v1",
+  "scenario": "US-MT",
+  "authorization": "Human explicitly approved one B0/B3 uniform relative-float32 boundary control; no other experiment.",
+  "rule": "anomaly iff score>=nominal_p99 OR abs(score-nominal_p99)<=eps(float32)*abs(nominal_p99); rtol=eps(float32),atol=0",
+  "rtol": 1.1920928955078125e-07,
+  "atol": 0.0,
+  "percentile": 99,
+  "calibration_count": 2322,
+  "effective_cut_is_disclosed": true,
+  "tolerance_grid_or_search": false,
+  "hypothesis_informed_by_previous_target_boundary_observation": true,
+  "parameters_fixed_before_this_confirmation": true,
+  "independent_final_calibration": false,
+  "source_calibration_exposure": {
+    "rows_entered_SSC": 2322,
+    "original_rows_entered_Prompt": 17
+  },
+  "prior_protocol_sha256": "b5b33ecf82541ab91f94677f42d9fc9427024b38ec42d3eb137872c8125ef9de",
+  "prior_result_sha256": "799a0b962d4b0d19fe33664c6508f227d7984fbdfcfbef41445ecc143f638020",
+  "historical_reference": {
+    "TP": 3209,
+    "TN": 2812,
+    "FP": 397,
+    "FN": 0,
+    "FPR": 0.12371455282019321,
+    "FNR": 0.0,
+    "recall": 1.0,
+    "precision": 0.8899057127010538,
+    "accuracy": 0.9381427235899034,
+    "f1_score": 0.9417461482024945
+  },
+  "arms": {
+    "historical": {
+      "checkpoint": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/stability-us-mt-20261126/evaluation/historical/detector.pth",
+      "checkpoint_sha256": "0b4715a4e9aece65dd8bbfb4922b28af909dfd8d9958f51ee934c65179bca40a",
+      "nominal_threshold": 0.007935426197946072,
+      "absolute_margin": 9.459765193398084e-10,
+      "effective_decision_cut": 0.007935425251969552,
+      "source_scores": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/historical/source-scores.npz",
+      "source_scores_sha256": "1177e543c1fe16658a3df68f04060267e2a82150790589d9dd6b1ec1dbb317e0",
+      "cached_scores": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/historical/continuous_scores.npz",
+      "cached_scores_sha256": "fdd48273a12b367ed98be7109a0579fb58bab5b20923eba8c119298ea929573d",
+      "old_strict_metrics": {
+        "TP": 2886,
+        "TN": 2910,
+        "FP": 299,
+        "FN": 323,
+        "precision": 0.9061224489795918,
+        "recall": 0.8993455905266439,
+        "FPR": 0.0931754440635712,
+        "FNR": 0.10065440947335619,
+        "accuracy": 0.9030850732315363,
+        "f1_score": 0.9027213012198937,
+        "auroc": 0.9484427610449382,
+        "auprc": 0.906992485523442
+      }
+    },
+    "B3": {
+      "checkpoint": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/stability-us-mt-20261126/evaluation/B3/detector.pth",
+      "checkpoint_sha256": "46164074ff7b9861c10a79440414a00e42a3abe20be5957bfbe3383ada4e28fd",
+      "nominal_threshold": 0.00041845624218694866,
+      "absolute_margin": 4.9883871339195807e-11,
+      "effective_decision_cut": 0.0004184561923030773,
+      "source_scores": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/B3/source-scores.npz",
+      "source_scores_sha256": "1e86a366ba7af0fed35eed3e8ceccbebe88e892d65d3740a1f56b839d045c3b2",
+      "cached_scores": "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/source-p99-us-mt-20261126/B3/continuous_scores.npz",
+      "cached_scores_sha256": "b7865ce05158972cc03bb9cfb9d7f40f30fadcfae9d51e88cf922306c5a6c0d4",
+      "old_strict_metrics": {
+        "TP": 2594,
+        "TN": 2889,
+        "FP": 320,
+        "FN": 615,
+        "precision": 0.8901853122855182,
+        "recall": 0.8083515113742599,
+        "FPR": 0.09971953879713306,
+        "FNR": 0.1916484886257401,
+        "accuracy": 0.8543159862885634,
+        "f1_score": 0.8472970765964396,
+        "auroc": 0.9376878153440567,
+        "auprc": 0.8938529741278457
+      }
+    }
+  },
+  "new_training_runs": 0,
+  "new_Codex_calls": 0,
+  "new_TOF_fits": 0,
+  "new_model_forwards": 0,
+  "new_environments_downloads_installations": 0,
+  "legacy_defaults_changed": false,
+  "source_sha256": {
+    "rasr_research/evaluate_mt_boundary.py": "fe715ca1e575e1d81822f3bcb211ed61f13d448f68384374cd075ac82558062c",
+    "tests/test_mt_float_boundary.py": "3f2517191316afe65b3332d641f0c9e34341d89715d183df06bf756af7e5d022",
+    "rasr_research/recover_mt_protocol.py": "49d67a4187e787f70557e2a2419bb7de502e8b7b3f6cdbc3466a249e0cf62f47",
+    "rasr_research/repair_tof_mt.py": "522c60ab78913df0d6009377a7cad1d0218cf61007848796a6b95dda007da44f",
+    "rasr_research/seal_tof_mt.py": "dcbeddfffa0d24c42ffc956245cf0364add33693146af5ecdc2581a042f8de28",
+    "SmartGen/baseline1.py": "e7b6e6e0a2738bac0a5ae875f143b4f3bdc2ba4d524a0a8ee18697dd5cf71f86",
+    "SmartGen/models1.py": "205c42dcd620187d033ba6cd4044cc8b9a06b7eec5e56b59e90225d70f2b7cd7",
+    "SmartGen/rasr.py": "781fa15a3ec3c0e50d31c25fe1395c55a979e8cef7832c1fc298daee108b0222"
+  },
+  "limitations": "Exploratory decision-protocol change proposed AFTER observing target-boundary errors. Not independent confirmation or proof of a numerical bug, relationship reasoning, or RaSR incremental benefit. Source validation was exposed to SSC/Prompt. Keep nominal thresholds and raw scores unchanged; disclose equivalent lower decision cuts. Compare B3 to SAME-rule B0 as well as old archive. No within-trial tolerance/percentile/seed/checkpoint search. No global adoption."
+}

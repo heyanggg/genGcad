@@ -1,0 +1,57 @@
+{
+  "completed": true,
+  "above_historical_archive": true,
+  "above_same_rule_B0": false,
+  "RaSR_incremental_benefit_established": false,
+  "metrics": {
+    "historical": {
+      "TP": 3209,
+      "TN": 2910,
+      "FP": 299,
+      "FN": 0,
+      "precision": 0.9147662485746865,
+      "recall": 1.0,
+      "FPR": 0.0931754440635712,
+      "FNR": 0.0,
+      "accuracy": 0.9534122779682144,
+      "f1_score": 0.9554860800952806,
+      "auroc": 0.9484427610449382,
+      "auprc": 0.906992485523442
+    },
+    "B3": {
+      "TP": 3209,
+      "TN": 2889,
+      "FP": 320,
+      "FN": 0,
+      "precision": 0.9093227543213375,
+      "recall": 1.0,
+      "FPR": 0.09971953879713306,
+      "FNR": 0.0,
+      "accuracy": 0.9501402306014335,
+      "f1_score": 0.9525081626595429,
+      "auroc": 0.9376878153440567,
+      "auprc": 0.8938529741278457
+    }
+  },
+  "new_training_runs": 0,
+  "new_Codex_calls": 0,
+  "new_model_forwards": 0,
+  "new_TOF_fits": 0,
+  "new_environments_downloads_installations": 0,
+  "RaSR_changed": false,
+  "legacy_defaults_changed": false,
+  "independent_final_calibration": false,
+  "original_data_overwritten": false,
+  "github_uploaded": false,
+  "limitations": "Exploratory decision-protocol change proposed AFTER observing target-boundary errors. Not independent confirmation or proof of a numerical bug, relationship reasoning, or RaSR incremental benefit. Source validation was exposed to SSC/Prompt. Keep nominal thresholds and raw scores unchanged; disclose equivalent lower decision cuts. Compare B3 to SAME-rule B0 as well as old archive. No within-trial tolerance/percentile/seed/checkpoint search. No global adoption.",
+  "files_sha256": {
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/protocol.json": "8b37abcf890cacd7c4dfc2cc046b4bac886e8daf30186c4175772715e493faf6",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/source-normal-impact.json": "9984430b50445dbb3dda0878279cc0a910d43b3016193a90766a9eaad10b067c",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/lock.json": "ced2f2bd17bb6f6a939ce68c2f7049363064eda54d41eec7ae03f800e48e8fe7",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/evaluation-start.json": "ed57404be3009b5d7d277989fa8f2fe92de050e6469928b05443ab4f1277581c",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/confirmation.json": "649bb5bb39e724db0b2c5356f81f2c8f5a9cd0f5c6c9486e998f8c924a9a52cb",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/saved-entry.json": "25f141255eb2d56033a267b4e60689740a5625768742b29ab3c47c0acd41d5c3",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/historical/continuous_scores.npz": "6db1d9e05ec90fb7a45139befbb783f164e0ab3228fa33e1b6a50f731926bab1",
+    "/mnt/c/Users/heyang/Documents/smartgen-gcad/rasr_research/runs/float-boundary-us-mt-20261126/B3/continuous_scores.npz": "9c781932218da93010a8ac9c67f7247e05a11ee644ff3aad23ef4b435a88156e"
+  }
+}

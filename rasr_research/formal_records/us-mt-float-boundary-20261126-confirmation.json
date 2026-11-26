@@ -1,0 +1,99 @@
+{
+  "pre_confirmation_commit": "03821cd281e1561c3a72b80f3bd353915260d12a",
+  "protocol_sha256": "8b37abcf890cacd7c4dfc2cc046b4bac886e8daf30186c4175772715e493faf6",
+  "lock_sha256": "ced2f2bd17bb6f6a939ce68c2f7049363064eda54d41eec7ae03f800e48e8fe7",
+  "arms": {
+    "historical": {
+      "metrics": {
+        "TP": 3209,
+        "TN": 2910,
+        "FP": 299,
+        "FN": 0,
+        "precision": 0.9147662485746865,
+        "recall": 1.0,
+        "FPR": 0.0931754440635712,
+        "FNR": 0.0,
+        "accuracy": 0.9534122779682144,
+        "f1_score": 0.9554860800952806,
+        "auroc": 0.9484427610449382,
+        "auprc": 0.906992485523442
+      },
+      "nominal_threshold": 0.007935426197946072,
+      "absolute_margin": 9.459765193398084e-10,
+      "effective_decision_cut": 0.007935425251969552,
+      "score_verification": {
+        "verified": true,
+        "normal_rows": 3209,
+        "attack_rows": 3209,
+        "counts": {
+          "TP": 3209,
+          "TN": 2910,
+          "FP": 299,
+          "FN": 0
+        },
+        "original_nominal_threshold": 0.007935426197946072,
+        "effective_decision_cut": 0.007935425251969552,
+        "rtol": 1.1920928955078125e-07,
+        "atol": 0.0,
+        "independent_gap_rule_verified": true
+      },
+      "changed_normal_predictions": 0,
+      "changed_attack_predictions": 323,
+      "changes_are_normal_to_anomaly_only": true,
+      "unchanged_continuous_scores": true,
+      "scores_sha256": "6db1d9e05ec90fb7a45139befbb783f164e0ab3228fa33e1b6a50f731926bab1",
+      "original_checkpoint_sha256": "0b4715a4e9aece65dd8bbfb4922b28af909dfd8d9958f51ee934c65179bca40a",
+      "original_scores_sha256": "fdd48273a12b367ed98be7109a0579fb58bab5b20923eba8c119298ea929573d"
+    },
+    "B3": {
+      "metrics": {
+        "TP": 3209,
+        "TN": 2889,
+        "FP": 320,
+        "FN": 0,
+        "precision": 0.9093227543213375,
+        "recall": 1.0,
+        "FPR": 0.09971953879713306,
+        "FNR": 0.0,
+        "accuracy": 0.9501402306014335,
+        "f1_score": 0.9525081626595429,
+        "auroc": 0.9376878153440567,
+        "auprc": 0.8938529741278457
+      },
+      "nominal_threshold": 0.00041845624218694866,
+      "absolute_margin": 4.9883871339195807e-11,
+      "effective_decision_cut": 0.0004184561923030773,
+      "score_verification": {
+        "verified": true,
+        "normal_rows": 3209,
+        "attack_rows": 3209,
+        "counts": {
+          "TP": 3209,
+          "TN": 2889,
+          "FP": 320,
+          "FN": 0
+        },
+        "original_nominal_threshold": 0.00041845624218694866,
+        "effective_decision_cut": 0.0004184561923030773,
+        "rtol": 1.1920928955078125e-07,
+        "atol": 0.0,
+        "independent_gap_rule_verified": true
+      },
+      "changed_normal_predictions": 0,
+      "changed_attack_predictions": 615,
+      "changes_are_normal_to_anomaly_only": true,
+      "unchanged_continuous_scores": true,
+      "scores_sha256": "9c781932218da93010a8ac9c67f7247e05a11ee644ff3aad23ef4b435a88156e",
+      "original_checkpoint_sha256": "46164074ff7b9861c10a79440414a00e42a3abe20be5957bfbe3383ada4e28fd",
+      "original_scores_sha256": "b7865ce05158972cc03bb9cfb9d7f40f30fadcfae9d51e88cf922306c5a6c0d4"
+    }
+  },
+  "limitations": "Exploratory decision-protocol change proposed AFTER observing target-boundary errors. Not independent confirmation or proof of a numerical bug, relationship reasoning, or RaSR incremental benefit. Source validation was exposed to SSC/Prompt. Keep nominal thresholds and raw scores unchanged; disclose equivalent lower decision cuts. Compare B3 to SAME-rule B0 as well as old archive. No within-trial tolerance/percentile/seed/checkpoint search. No global adoption.",
+  "new_model_forwards": 0,
+  "new_training_runs": 0,
+  "new_Codex_calls": 0,
+  "hypothesis_informed_by_prior_target_results": true,
+  "B3_minus_archive_F1": 0.010762014457048386,
+  "B3_minus_same_rule_B0_F1": -0.0029779174357377203,
+  "RaSR_incremental_benefit_established": false
+}

@@ -1,0 +1,30 @@
+US-MT uniform float32-relative boundary control: predeclared 2026-11-26
+
+Human explicitly approved the proposed B0/B3 numerical boundary control.
+Rule for BOTH arms:
+  prediction = anomaly iff score >= nominal_p99 OR
+               abs(score - nominal_p99) <= eps(float32)*abs(nominal_p99)
+  eps(float32) = 1.1920928955078125e-7; absolute tolerance = 0.
+No tolerance grid, ULP sweep, percentile search, filtering, per-device rules,
+score reversal, new model/module, training, generation, downloads or forwards.
+The rule is label- and device-independent, an explicit LOWER effective decision
+cut. Nominal p99 and original continuous scores remain saved unchanged.
+
+Reuse the already frozen original device-only B0/B3 checkpoints and the previous
+2322 real-source validation p99 thresholds. No action/full-quad/position/masked
+training changes. Keep all old predictions, scores and protocols untouched.
+Measure source-normal flag changes and target-normal/attack prediction changes.
+Lock protocol/code/checkpoints/source-score/target-score file hashes and commit
+the lock before confirming from the cached target score arrays.
+
+This proposal was motivated by previously observed target boundary errors.
+It is exploratory and NOT an independent numerical-bug fix or fresh validation.
+Source relation-validation I was exposed to SSC (2322) and Prompt (17).
+The normal-source p99 has a large tied score mass and does not guarantee1% FPR.
+Boundary inclusion may increase false positives; keep any such changes.
+Compare B3 to BOTH historical Gen+GCAD and same-rule B0; improvement above the
+old archive alone does not establish incremental RaSR benefit.
+No global default changes. Retain every result; failures local only. If B3 is
+above the archived baseline, preserve under the human-designated formal rule
+with paired B0/caveats and selectively publish only this scoped record/artifacts,
+not the local failed-experiment history or unrelated context_research files.
